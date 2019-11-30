@@ -1,0 +1,187 @@
+ # Universidade Federal do Rio de Janeiro
+ # Escola Politecnica
+ # Departamento de Eletronica e de Computacao
+ # Prof. Marcelo Luiz Drumond Lanza
+ # EEL 270 - Computacao II - Turma 2019/2
+ 
+ # $Author: ewerton.silles $
+ # $Date: 2019/11/30 04:31:59 $
+ # $Log: GNUmakefile,v $
+ # Revision 1.4  2019/11/30 04:31:59  ewerton.silles
+ # *** empty log message ***
+ #
+ # Revision 1.3  2019/11/16 03:48:22  ewerton.silles
+ # *** empty log message ***
+ #
+ # Revision 1.2  2019/11/15 01:42:45  ewerton.silles
+ # *** empty log message ***
+ #
+ # Revision 1.1  2019/11/08 02:11:08  ewerton.silles
+ # Initial revision
+ # 
+
+OS = $(shell uname -s)
+
+#  Tools
+CC = gcc
+LD = gcc
+
+ifeq ($(cc), GCC)
+CC = gcc
+endif
+
+ifeq ($(cc), CLANG)
+CC = clang
+endif
+
+LD = $(CC)
+
+AR = ar
+AFLAGS = -r
+
+#  Options
+CFLAGS = -Wall -std=c11
+LFLAGS = -Wall -std=c11
+
+#  object files
+#===> funcoes secundarias
+DVFM_EVS_GETLANGUAGEINDEXOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlGetLanguageIndex.o
+DVFM_EVS_GETABSOLUTEFILENAMEOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlGetAbsoluteFileName.o
+DVFM_EVS_CHECKSTRINGFIELDOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlCheckStringField.o
+DVFM_EVS_CHECKNICKNAMEOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlCheckNickname.o
+DVFM_EVS_CHECKEMAILOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlCheckEmail.o
+DVFM_EVS_CREATERANDOMSTRINGOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlCreateRandomString.o
+DVFM_EVS_CREATENICKNAMEOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlCreateNickname.o
+DVFM_EVS_GETCRYPTALGORITHMOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlGetCryptAlgorithm.o
+DVFM_EVS_ENCODEPASSWORDWITHSPECIFICALGORITHMOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlEncodePasswordWithSpecificAlgorithm.o
+DVFM_EVS_ENCODEPASSWORDWITHSPECIFICSALTOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlEncodePasswordWithSpecificSalt.o
+DVFM_EVS_CHECKPASSWORDOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlCheckPassword.o
+
+#===> funcoes primarias
+DVFM_EVS_GETCLIERRORMESSAGEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlGetCliErrorMessage.o
+DVFM_EVS_GETNCURSESERRORMESSAGEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlGetNcursesErrorMessage.o
+DVFM_EVS_GETWEBERRORMESSAGEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlGetWebErrorMessage.o
+DVFM_EVS_GETCLIUSERINTERFACEMESSAGEOBJS = dvfmEvsUmlUserInterface.o dvfmEvsUmlGetCliUserInterfaceMessage.o
+DVFM_EVS_GETNCURSESUSERINTERFACEMESSAGEOBJS = dvfmEvsUmlUserInterface.o dvfmEvsUmlGetNcursesUserInterfaceMessage.o
+DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS = dvfmEvsUmlUserInterface.o dvfmEvsUmlGetWebUserInterfaceMessage.o
+
+# shortcut
+#===> funcoes secundarias
+DVFM_EVS_SECUNDARYFUNCTIONS = getLanguageIndex\
+							  getAbsoluteFileName\
+							  checkStringField\
+							  checkNickname\
+							  checkEmail\
+							  createRandomString\
+							  createNickname\
+							  getCryptAlgorithm\
+							  encodePasswordWithSpecificAlgorithm\
+							  encodePasswordWithSpecificSalt\
+							  checkPassword
+
+#===> funcoes primarias
+DVFM_EVS_PRIMARYFUNCTIONS = getCliErrorMessage\
+							getNcursesErrorMessage\
+							getWebErrorMessage\
+							getCliUserInterfaceMessage\
+							getNcursesUserInterfaceMessage\
+							getWebUserInterfaceMessage
+
+DVFM_EVS_ALL = $(DVFM_EVS_SECUNDARYFUNCTIONS)\
+					$(DVFM_EVS_PRIMARYFUNCTIONS)
+
+# implicit rule
+.c.o:
+	$(CC) $(CFLAGS) -c $<
+
+# commands
+all: $(DVFM_EVS_ALL)
+
+secundaryFunctions: $(DVFM_EVS_SECUNDARYFUNCTIONS)
+
+primaryFunctions: $(DVFM_EVS_PRIMARYFUNCTIONS)
+
+#===> funcoes secundarias
+getLanguageIndex: $(DVFM_EVS_GETLANGUAGEINDEXOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETLANGUAGEINDEXOBJS) -lcrypt
+	cp $@ $@-$(OS)-$(CC)
+
+getAbsoluteFileName: $(DVFM_EVS_GETABSOLUTEFILENAMEOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETABSOLUTEFILENAMEOBJS) -lcrypt
+	cp $@ $@-$(OS)-$(CC)
+
+checkStringField: $(DVFM_EVS_CHECKSTRINGFIELDOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKSTRINGFIELDOBJS) -lcrypt
+	cp $@ $@-$(OS)-$(CC)
+
+checkNickname: $(DVFM_EVS_CHECKNICKNAMEOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKNICKNAMEOBJS) -lcrypt
+	cp $@ $@-$(OS)-$(CC)
+
+checkEmail: $(DVFM_EVS_CHECKEMAILOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKEMAILOBJS) -lcrypt
+	cp $@ $@-$(OS)-$(CC)
+
+createRandomString: $(DVFM_EVS_CREATERANDOMSTRINGOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CREATERANDOMSTRINGOBJS) -lcrypt
+	cp $@ $@-$(OS)-$(CC)
+
+createNickname: $(DVFM_EVS_CREATENICKNAMEOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CREATENICKNAMEOBJS) -lcrypt
+	cp $@ $@-$(OS)-$(CC)
+
+getCryptAlgorithm: $(DVFM_EVS_GETCRYPTALGORITHMOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETCRYPTALGORITHMOBJS) -lcrypt
+	cp $@ $@-$(OS)-$(CC)
+
+encodePasswordWithSpecificAlgorithm: $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICALGORITHMOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICALGORITHMOBJS) -lcrypt
+	cp $@ $@-$(OS)-$(CC)
+
+encodePasswordWithSpecificSalt: $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICSALTOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICSALTOBJS) -lcrypt
+	cp $@ $@-$(OS)-$(CC)
+
+checkPassword: $(DVFM_EVS_CHECKPASSWORDOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKPASSWORDOBJS) -lcrypt
+	cp $@ $@-$(OS)-$(CC)
+
+#===> funcoes primarias
+
+getCliErrorMessage: $(DVFM_EVS_GETCLIERRORMESSAGEOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETCLIERRORMESSAGEOBJS)
+	cp $@ $@-$(OS)-$(CC)
+
+getNcursesErrorMessage: $(DVFM_EVS_GETNCURSESERRORMESSAGEOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETNCURSESERRORMESSAGEOBJS)
+	cp $@ $@-$(OS)-$(CC)
+
+getWebErrorMessage: $(DVFM_EVS_GETWEBERRORMESSAGEOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETWEBERRORMESSAGEOBJS)
+	cp $@ $@-$(OS)-$(CC)
+
+getCliUserInterfaceMessage: $(DVFM_EVS_GETCLIUSERINTERFACEMESSAGEOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETCLIUSERINTERFACEMESSAGEOBJS)
+	cp $@ $@-$(OS)-$(CC)
+
+getNcursesUserInterfaceMessage: $(DVFM_EVS_GETNCURSESUSERINTERFACEMESSAGEOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETNCURSESUSERINTERFACEMESSAGEOBJS)
+	cp $@ $@-$(OS)-$(CC)
+
+getWebUserInterfaceMessage: $(DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS)
+	cp $@ $@-$(OS)-$(CC)
+
+clean:
+	rm -f *.o $(DVFM_EVS_ALL)
+
+clean-all:
+	rm -f *.o $(DVFM_EVS_ALL) *-FreeBSD-* *-Linux-*
+
+clean-freebsd:
+	rm -f *.o $(DVFM_EVS_ALL) *-FreeBSD-*
+
+clean-linux:
+	rm -f *.o $(DVFM_EVS_ALL) *-Linux-*
+
+# $RCSfile: GNUmakefile,v $ 
