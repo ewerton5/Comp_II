@@ -78,20 +78,8 @@ main (int argc, char **argv)
 		break;
 
 		default:
-			/*html all language*/
+			/*html english*/
 	}
-
- /* printf ("<html>\n");
-  printf ("  <head>\n");
-  printf ("    <title>\n");
-  printf ("      C&aacute;lculo de Fatorial\n");
-  printf ("    </title>\n");
-  printf ("  </head>\n");
-  printf ("  <body bgcolor=\"cyan\">\n");
-  printf ("      C&aacute;lculo de Fatorial<br><br><\n");
-  printf ("      %s!: %f\n", numeroString, resultado);
-  printf ("  </body>\n");
-  printf ("</html>\n");*/
 
   mlCgiFreeResources ();
 
