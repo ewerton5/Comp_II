@@ -23,7 +23,18 @@
 
 #include			"dvfmEvsUmlTypes.h"
 
-typedef enum {
+typedef enum 
+{
+    dvfmEvsUmlSystemName,
+    dvfmEvsUmlAuthors,
+    dvfmEvsUmlLogin,
+    dvfmEvsUmlPassword,
+    dvfmEvsUmlConfirm,
+    dvfmEvsUmlLanguageOption,
+    dvfmEvsUmlRegister,
+    dvfmEvsUmlTemporaryPassword,
+    dvfmEvsUmlHelp,
+    dvfmEvsUmlUseLicense,
     dvfmEvsUmlSizeUserInterfaceMessageNumberType
 } dvfmEvsUmlUserInterfaceMessageNumberType;
 
