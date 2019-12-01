@@ -46,11 +46,29 @@ char *dvfmEvsUmlNcursesUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvs
 char *dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeUserInterfaceMessageNumberType]=
 {
  {
-
+	"Account Management System",
+	"Authors",
+	"Login",
+	"Password",
+	"Confirm",
+	"Portuguese",
+	"Register",
+	"Temporary password",
+	"Help",
+	"Use license"
  },
 
  {
-
+	"Sistema de Gerenciamento de Contas",
+	"Autores",
+	"Login",
+	"Senha",
+	"Confirmar",
+	"Ingles",
+	"Cadastre -se",
+	"Senha temporaria",
+	"Ajuda",
+	"Licenca de uso"
  }
 };
 
