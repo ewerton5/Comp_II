@@ -13,6 +13,7 @@ $Log$
 #include <stdio.h>
 #include <stdlib.h>
 #include "Bibliotecas/mlcgi.h"
+#include "dvfmEvsUmlUserInterface.h"
 #include "dvfmEvsUmlFunctions.h"
 
 #define DVFM_EVS_UML_OK					0
@@ -29,7 +30,7 @@ main (int argc, char **argv)
 	char dvfmEvsUmlConfigurationFileName [DVFM_EVS_UML_CONFIGURATION_FILE_NAME_LENGTH + 1];
 	char dvfmEvsUmlLanguage [DVFM_EVS_UML_LANGUAGE_LENGTH + 1];
 
-	dvfmEvsUmlReturnCode = mlCgiInitialize (&dvfmEvsUmlExecutionEnvironment)
+	dvfmEvsUmlReturnCode = mlCgiInitialize (&dvfmEvsUmlExecutionEnvironment);
 	dvfmEvsUmlLanguageType dvfmEvsUmlLanguageSystem;
 
 	if (dvfmEvsUmlReturnCode != ML_CGI_OK)
@@ -74,7 +75,7 @@ main (int argc, char **argv)
 			printf("<html>\n");
 			printf("      <head>\n");
 			printf("            <title>\n");
-			printf("                  %s\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlSystemName]);
+			printf("                  %s\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlSystemName, dvfmEvsUmlLanguageSystem));
 			printf("                  <meta autores = \"David Vinicius Ferreira Moreira e Ewerton Vieira de Silles\">\n");
 			printf("            </title>\n");
 			printf("      </head>\n");
@@ -82,11 +83,11 @@ main (int argc, char **argv)
 			printf("\n");
 			printf("            <div align = \"center\">\n");
 			printf("                  <font size=\"15\">\n");
-			printf("                  %s\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlSystemName]);
+			printf("                  %s\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlSystemName, dvfmEvsUmlLanguageSystem));
 			printf("                  </font>\n");
 			printf("                  <br><br>\n");
 			printf("                  <font size=\"-10\">\n");
-			printf("                        %s: <br>\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlAuthors]);
+			printf("                        %s: <br>\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlAuthors, dvfmEvsUmlLanguageSystem));
 			printf("                        <a href=\"mailto:davidmoreira@poli.ufrj.br\">David Vinicius Ferreira Moreira</a> <br>\n");
 			printf("                        <a href=\"mailto:ewerton5@poli.ufrj.br\">Ewerton Vieira de Silles</a>\n");
 			printf("                  </font>\n");
@@ -100,7 +101,7 @@ main (int argc, char **argv)
 			printf("                        <table border=\"0\">\n");
 			printf("                              <tr>\n");
 			printf("                                    <td>\n");
-			printf("                                          %s:\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlLogin]);
+			printf("                                          %s:\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlLogin, dvfmEvsUmlLanguageSystem));
 			printf("                                    </td>\n");
 			printf("                                    <td>\n");
 			printf("                                          <input type=\"text\" name=\"dvfmEvsUmlNickname\" max=\"127\"> \n");
@@ -108,7 +109,7 @@ main (int argc, char **argv)
 			printf("                              </tr>\n");
 			printf("                              <tr>\n");
 			printf("                                    <td>\n");
-			printf("                                          %s:\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlPassword]);
+			printf("                                          %s:\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlPassword, dvfmEvsUmlLanguageSystem));
 			printf("                                    </td>\n");
 			printf("                                    <td>\n");
 			printf("                                          <input type=\"password\" name=\"dvfmEvsUmlPassword\" max=\"65\">\n");
@@ -119,7 +120,7 @@ main (int argc, char **argv)
 			printf("\n");
 			printf("                                    </td>\n");
 			printf("                                    <td>\n");
-			printf("                                          <input type=\"submit\" value=\"%s\">\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlConfirm]);
+			printf("                                          <input type=\"submit\" value=\"%s\">\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlConfirm, dvfmEvsUmlLanguageSystem));
 			printf("                                    </td>\n");
 			printf("                              </tr>\n");
 			printf("                              <tr>\n");
@@ -142,7 +143,7 @@ main (int argc, char **argv)
 			printf("                  <br>\n");
 			printf("                  <br>\n");
 			printf("                  <pre>\n");
-			printf("                        <a href=\"dvfmEvsUmlMain.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlEnglish\">%s</a>      <a href=\"dvfmEvsUmlShowRequestRegistrationForm.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlPortuguese\">%s</a>      <a href=\"dvfmEvsUmlShowRequestPasswordResetForm.cgi\">%s</a>      <a href=\"dvfmEvsUmlShowWebHelp.cgi\">%s</a>      <a href=\"dvfmEvsUmlShowLicense.cgi\">%s</a>       \n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlLanguageOption], dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlRegister], dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlTemporaryPassword], dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlHelp], dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlUseLicense]);
+			printf("                        <a href=\"dvfmEvsUmlMain.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlEnglish\">%s</a>      <a href=\"dvfmEvsUmlShowRequestRegistrationForm.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlPortuguese\">%s</a>      <a href=\"dvfmEvsUmlShowRequestPasswordResetForm.cgi\">%s</a>      <a href=\"dvfmEvsUmlShowWebHelp.cgi\">%s</a>      <a href=\"dvfmEvsUmlShowLicense.cgi\">%s</a>       \n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlLanguageOption, dvfmEvsUmlLanguageSystem), DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlRegister, dvfmEvsUmlLanguageSystem), DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlTemporaryPassword, dvfmEvsUmlLanguageSystem), DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlHelp, dvfmEvsUmlLanguageSystem), DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlUseLicense, dvfmEvsUmlLanguageSystem));
 			printf("                  </pre>\n");
 			printf("            </div>\n");
 			printf("      </body>\n");
@@ -154,7 +155,7 @@ main (int argc, char **argv)
 			printf("<html>\n");
 			printf("      <head>\n");
 			printf("            <title>\n");
-			printf("                  %s\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlSystemName]);
+			printf("                  %s\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlSystemName, dvfmEvsUmlLanguageSystem));
 			printf("                  <meta autores = \"David Vinicius Ferreira Moreira e Ewerton Vieira de Silles\">\n");
 			printf("            </title>\n");
 			printf("      </head>\n");
@@ -162,11 +163,11 @@ main (int argc, char **argv)
 			printf("\n");
 			printf("            <div align = \"center\">\n");
 			printf("                  <font size=\"15\">\n");
-			printf("                  %s\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlSystemName]);
+			printf("                  %s\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlSystemName, dvfmEvsUmlLanguageSystem));
 			printf("                  </font>\n");
 			printf("                  <br><br>\n");
 			printf("                  <font size=\"-10\">\n");
-			printf("                        %s: <br>\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlAuthors]);
+			printf("                        %s: <br>\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlAuthors, dvfmEvsUmlLanguageSystem));
 			printf("                        <a href=\"mailto:davidmoreira@poli.ufrj.br\">David Vinicius Ferreira Moreira</a> <br>\n");
 			printf("                        <a href=\"mailto:ewerton5@poli.ufrj.br\">Ewerton Vieira de Silles</a>\n");
 			printf("                  </font>\n");
@@ -180,7 +181,7 @@ main (int argc, char **argv)
 			printf("                        <table border=\"0\">\n");
 			printf("                              <tr>\n");
 			printf("                                    <td>\n");
-			printf("                                          %s:\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlLogin]);
+			printf("                                          %s:\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlLogin, dvfmEvsUmlLanguageSystem));
 			printf("                                    </td>\n");
 			printf("                                    <td>\n");
 			printf("                                          <input type=\"text\" name=\"dvfmEvsUmlNickname\" max=\"127\"> \n");
@@ -188,7 +189,7 @@ main (int argc, char **argv)
 			printf("                              </tr>\n");
 			printf("                              <tr>\n");
 			printf("                                    <td>\n");
-			printf("                                          %s:\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlPassword]);
+			printf("                                          %s:\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlPassword, dvfmEvsUmlLanguageSystem));
 			printf("                                    </td>\n");
 			printf("                                    <td>\n");
 			printf("                                          <input type=\"password\" name=\"dvfmEvsUmlPassword\" max=\"65\">\n");
@@ -199,7 +200,7 @@ main (int argc, char **argv)
 			printf("\n");
 			printf("                                    </td>\n");
 			printf("                                    <td>\n");
-			printf("                                          <input type=\"submit\" value=\"%s\">\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlConfirm]);
+			printf("                                          <input type=\"submit\" value=\"%s\">\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlConfirm, dvfmEvsUmlLanguageSystem));
 			printf("                                    </td>\n");
 			printf("                              </tr>\n");
 			printf("                              <tr>\n");
@@ -222,7 +223,7 @@ main (int argc, char **argv)
 			printf("                  <br>\n");
 			printf("                  <br>\n");
 			printf("                  <pre>\n");
-			printf("                        <a href=\"dvfmEvsUmlMain.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlPortuguese\">%s</a>      <a href=\"dvfmEvsUmlShowRequestRegistrationForm.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlEnglish\">%s</a>      <a href=\"dvfmEvsUmlShowRequestPasswordResetForm.cgi\">%s</a>      <a href=\"dvfmEvsUmlShowWebHelp.cgi\">%s</a>      <a href=\"dvfmEvsUmlShowLicense.cgi\">%s</a>       \n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlLanguageOption], dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlRegister], dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlTemporaryPassword], dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlHelp], dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlUseLicense]);
+			printf("                        <a href=\"dvfmEvsUmlMain.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlPortuguese\">%s</a>      <a href=\"dvfmEvsUmlShowRequestRegistrationForm.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlEnglish\">%s</a>      <a href=\"dvfmEvsUmlShowRequestPasswordResetForm.cgi\">%s</a>      <a href=\"dvfmEvsUmlShowWebHelp.cgi\">%s</a>      <a href=\"dvfmEvsUmlShowLicense.cgi\">%s</a>       \n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlLanguageOption, dvfmEvsUmlLanguageSystem), DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlRegister, dvfmEvsUmlLanguageSystem), DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlTemporaryPassword, dvfmEvsUmlLanguageSystem), DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlHelp, dvfmEvsUmlLanguageSystem), DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlUseLicense, dvfmEvsUmlLanguageSystem));
 			printf("                  </pre>\n");
 			printf("            </div>\n");
 			printf("      </body>\n");
@@ -235,7 +236,7 @@ main (int argc, char **argv)
 			printf("<html>\n");
 			printf("      <head>\n");
 			printf("            <title>\n");
-			printf("                  %s\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlSystemName]);
+			printf("                  %s\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlSystemName, dvfmEvsUmlLanguageSystem));
 			printf("                  <meta autores = \"David Vinicius Ferreira Moreira e Ewerton Vieira de Silles\">\n");
 			printf("            </title>\n");
 			printf("      </head>\n");
@@ -243,11 +244,11 @@ main (int argc, char **argv)
 			printf("\n");
 			printf("            <div align = \"center\">\n");
 			printf("                  <font size=\"15\">\n");
-			printf("                  %s\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlSystemName]);
+			printf("                  %s\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlSystemName, dvfmEvsUmlLanguageSystem));
 			printf("                  </font>\n");
 			printf("                  <br><br>\n");
 			printf("                  <font size=\"-10\">\n");
-			printf("                        %s: <br>\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlAuthors]);
+			printf("                        %s: <br>\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlAuthors, dvfmEvsUmlLanguageSystem));
 			printf("                        <a href=\"mailto:davidmoreira@poli.ufrj.br\">David Vinicius Ferreira Moreira</a> <br>\n");
 			printf("                        <a href=\"mailto:ewerton5@poli.ufrj.br\">Ewerton Vieira de Silles</a>\n");
 			printf("                  </font>\n");
@@ -261,7 +262,7 @@ main (int argc, char **argv)
 			printf("                        <table border=\"0\">\n");
 			printf("                              <tr>\n");
 			printf("                                    <td>\n");
-			printf("                                          %s:\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlLogin]);
+			printf("                                          %s:\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlLogin, dvfmEvsUmlLanguageSystem));
 			printf("                                    </td>\n");
 			printf("                                    <td>\n");
 			printf("                                          <input type=\"text\" name=\"dvfmEvsUmlNickname\" max=\"127\"> \n");
@@ -269,7 +270,7 @@ main (int argc, char **argv)
 			printf("                              </tr>\n");
 			printf("                              <tr>\n");
 			printf("                                    <td>\n");
-			printf("                                          %s:\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlPassword]);
+			printf("                                          %s:\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlPassword, dvfmEvsUmlLanguageSystem));
 			printf("                                    </td>\n");
 			printf("                                    <td>\n");
 			printf("                                          <input type=\"password\" name=\"dvfmEvsUmlPassword\" max=\"65\">\n");
@@ -280,7 +281,7 @@ main (int argc, char **argv)
 			printf("\n");
 			printf("                                    </td>\n");
 			printf("                                    <td>\n");
-			printf("                                          <input type=\"submit\" value=\"%s\">\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlConfirm]);
+			printf("                                          <input type=\"submit\" value=\"%s\">\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlConfirm, dvfmEvsUmlLanguageSystem));
 			printf("                                    </td>\n");
 			printf("                              </tr>\n");
 			printf("                              <tr>\n");
@@ -303,7 +304,7 @@ main (int argc, char **argv)
 			printf("                  <br>\n");
 			printf("                  <br>\n");
 			printf("                  <pre>\n");
-			printf("                        <a href=\"dvfmEvsUmlMain.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlPortuguese\">%s</a>      <a href=\"dvfmEvsUmlShowRequestRegistrationForm.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlEnglish\">%s</a>      <a href=\"dvfmEvsUmlShowRequestPasswordResetForm.cgi\">%s</a>      <a href=\"dvfmEvsUmlShowWebHelp.cgi\">%s</a>      <a href=\"dvfmEvsUmlShowLicense.cgi\">%s</a>       \n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlLanguageOption], dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlRegister], dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlTemporaryPassword], dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlHelp], dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlUseLicense]);
+			printf("                        <a href=\"dvfmEvsUmlMain.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlPortuguese\">%s</a>      <a href=\"dvfmEvsUmlShowRequestRegistrationForm.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlEnglish\">%s</a>      <a href=\"dvfmEvsUmlShowRequestPasswordResetForm.cgi\">%s</a>      <a href=\"dvfmEvsUmlShowWebHelp.cgi\">%s</a>      <a href=\"dvfmEvsUmlShowLicense.cgi\">%s</a>       \n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlLanguageOption, dvfmEvsUmlLanguageSystem), DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlRegister, dvfmEvsUmlLanguageSystem), DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlTemporaryPassword, dvfmEvsUmlLanguageSystem), DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlHelp, dvfmEvsUmlLanguageSystem), DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlUseLicense, dvfmEvsUmlLanguageSystem));
 			printf("                  </pre>\n");
 			printf("            </div>\n");
 			printf("      </body>\n");
