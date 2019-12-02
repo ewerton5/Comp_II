@@ -55,7 +55,13 @@ char *dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlS
 	"Register",
 	"Temporary password",
 	"Help",
-	"Use license"
+	"Use license",
+	"Electronic mail for request",
+	"Full name",
+	"Confirmation Full Name",
+	"Email",
+	"Confirm Email",
+	"Home page"
  },
 
  {
@@ -68,7 +74,13 @@ char *dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlS
 	"Cadastre -se",
 	"Senha temporaria",
 	"Ajuda",
-	"Licenca de uso"
+	"Licenca de uso",
+	"Correio eletronico para solicitacao",
+	"Nome completo",
+	"Confirmaçao Nome completo",
+	"Correio eletronico",
+	"Confirmar correio eletronico",
+	"Pagina inicial"
  }
 };
 

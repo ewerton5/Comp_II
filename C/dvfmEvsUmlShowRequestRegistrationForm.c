@@ -100,7 +100,7 @@ main (int argc, char **argv)
 			printf("                        <table border=\"0\">\n");
 			printf("                              <tr>\n");
 			printf("                                    <td>\n");
-			printf("                                          %s:\n");
+			printf("                                          %s:\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlEmailRequest]);
 			printf("                                    </td>\n");
 			printf("                                    <td>\n");
 			printf("                                          <input type=\"text\" name=\"dvfmEvsUmlAdimim\" max=\"1024\"> \n");
@@ -108,7 +108,7 @@ main (int argc, char **argv)
 			printf("                              </tr>\n");
 			printf("                              <tr>\n");
 			printf("                                    <td>\n");
-			printf("                                          %s:\n");
+			printf("                                          %s:\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlFullName]);
 			printf("                                    </td>\n");
 			printf("                                    <td>\n");
 			printf("                                          <input type=\"text\" name=\"dvfmEvsUmlUserName\" max=\"256\">\n");
@@ -116,7 +116,7 @@ main (int argc, char **argv)
 			printf("                              </tr>\n");
 			printf("                              <tr>\n");
 			printf("                                    <td>\n");
-			printf("                                          %s:\n");
+			printf("                                          %s:\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlConfirmationFullName]);
 			printf("                                    </td>\n");
 			printf("                                    <td>\n");
 			printf("                                          <input type=\"text\" name=\"dvfmEvsUmlUserNameConfirmation\" max=\"256\">\n");
@@ -124,7 +124,7 @@ main (int argc, char **argv)
 			printf("                              </tr>\n");
 			printf("                              <tr>\n");
 			printf("                                    <td>\n");
-			printf("                                          %s:\n");
+			printf("                                          %s:\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlEmail]);
 			printf("                                    </td>\n");
 			printf("                                    <td>\n");
 			printf("                                          <input type=\"text\" name=\"dvfmEvsUmlEmail\" max=\"1024\">\n");
@@ -132,7 +132,7 @@ main (int argc, char **argv)
 			printf("                              </tr>\n");
 			printf("                              <tr>\n");
 			printf("                                    <td>\n");
-			printf("                                          %s:\n");
+			printf("                                          %s:\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlConfirmationEmail]);
 			printf("                                    </td>\n");
 			printf("                                    <td>\n");
 			printf("                                          <input type=\"text\" name=\"dvfmEvsUmlEmailConfirmation\" max=\"1024\">\n");
@@ -166,7 +166,7 @@ main (int argc, char **argv)
 			printf("                  <br>\n");
 			printf("                  <br>\n");
 			printf("                  <pre>\n");
-			printf("                        <a href=\"dvfmEvsUmlMain.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlEnglish\">%s</a>\n");
+			printf("                        <a href=\"dvfmEvsUmlMain.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlPortuguese\">%s</a>\n", dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageSystem][dvfmEvsUmlHomePage]);
 			printf("                  </pre>\n");
 			printf("            </div>\n");
 			printf("      </body>\n");
