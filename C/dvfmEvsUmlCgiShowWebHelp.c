@@ -12,7 +12,7 @@ $Log$
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "Bibliotecas/mlcgi.h"
+#include "../Libraries/mlcgi.h"
 #include "dvfmEvsUmlUserInterface.h"
 #include "dvfmEvsUmlFunctions.h"
 
