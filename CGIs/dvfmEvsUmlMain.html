@@ -6,6 +6,7 @@
             </title>
             <style type="text/css">
                   body {
+                        text-align: center;
                         font-family: Arial, sans-serif;
                         background-color: #dddddd;
                         color: rgba(0,0,0,1);
@@ -18,12 +19,26 @@
                         padding: 10px;
                   }
                   p {
-                        text-align: justify;
-                        text-indent: 50px;
+                        font-size: 8pt;
                   }
                   a {
                         color: #606060;
                         text-decoration: none;
+                  }
+                  h1 {
+                        font-family: 'FonteLogo', sans-serif;
+                        font-size: 30pt;
+                        color: #606060;
+                        text-shadow: 1px 1px 1px rgba(0,0,0,.6);
+                        padding: 0px;
+                        margin-bottom: 0px;
+                  }
+                  h2 {
+                        font-family: 'Titillium Web', sans-serif;
+                        font-size: 15pt;
+                        color: #888888;
+                        padding: 0px;
+                        margin-top: 0px;
                   }
                   a:hover {
                         text-decoration: underline;
@@ -31,14 +46,7 @@
                   header {
                         border-bottom: 1px #606060 solid;
                         height: 150px;
-                  }
-                  header h1 {
-                        font-family: 'FonteLogo', sans-serif;
-                        font-size: 30pt;
-                        color: #606060;
-                        text-shadow: 1px 1px 1px rgba(0,0,0,.6);
-                        padding: 0px;
-                        margin-bottom: 0px;
+                        margin-bottom: 10px;
                   }
                   table {
                         margin-left: auto;
@@ -50,32 +58,26 @@
                   footer {
                         clear: both;
                         border-top: 1px solid #606060;
-                  }
-                  footer p {
-                        text-align: center;
+                        margin-top: 10px;
+                        padding-top: 20px;
                   }
             </style>
       </head>
-      <body bgcolor = "cyan">
-
-            <header align = "center">
+      <body>
+            <header>
                   <h1>
                   Sistema de gerenciamento de contas
                   </h1>
-                  <br><br>
-                  <font size="-10">
-                        autores: <br>
-                        <a href="mailto:davidmoreira@poli.ufrj.br">David Vinicius Ferreira Moreira</a> <br>
-                        <a href="mailto:ewerton5@poli.ufrj.br">Ewerton Vieira de Silles</a>
-                  </font>
-                  <br>
-                  <br>
-                  <br>
+                        <p>autores:</p>
+                        <p><a href="mailto:davidmoreira@poli.ufrj.br">David Vinicius Ferreira Moreira</a></p>
+                        <p><a href="mailto:ewerton5@poli.ufrj.br">Ewerton Vieira de Silles</a></p>
             </header>
-
             <div>
+                  <h2>
+                  Entrar
+                  </h2>
                   <form action="dvfmEvsUmlLogin.cgi" method="post">
-                        <table border="0">
+                        <table>
                               <tr>
                                     <td>
                                           login:
@@ -113,14 +115,9 @@
                         </table>
                   </form>
             </div>
-
-            <footer align = "center">
-                  <br>
-                  <br>
-                  <br>
-                  <br>
+            <footer>
                   <pre>
-                        <p><a href="dvfmEvsUmlMain.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlEnglish">ingl&ecirc;s</a>      <a href="dvfmEvsUmlShowRequestRegistrationForm.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlPortuguese">cadastre -se</a>      <a href="dvfmEvsUmlShowRequestPasswordResetForm.cgi">senha temporaria</a>      <a href="dvfmEvsUmlShowWebHelp.cgi">ajuda</a>      <a href="dvfmEvsUmlShowLicense.cgi">licen&ccedil;a de uso</a></p>       
+                        <a href="dvfmEvsUmlMain.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlEnglish">ingl&ecirc;s</a>      <a href="dvfmEvsUmlShowRequestRegistrationForm.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlPortuguese">cadastre -se</a>      <a href="dvfmEvsUmlShowRequestPasswordResetForm.cgi">senha temporaria</a>      <a href="dvfmEvsUmlShowWebHelp.cgi">ajuda</a>      <a href="dvfmEvsUmlShowLicense.cgi">licen&ccedil;a de uso</a>
                   </pre>
             </footer>
       </body>
