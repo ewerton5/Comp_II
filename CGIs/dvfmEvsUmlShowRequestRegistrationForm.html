@@ -4,13 +4,64 @@
                   Sistema de gerenciamento de contas
                   <meta autores = "David Vinicius Ferreira Moreira e Ewerton Vieira de Silles">
             </title>
+	      <style type="text/css">
+                  body {
+                        font-family: Arial, sans-serif;
+                        background-color: #dddddd;
+                        color: rgba(0,0,0,1);
+                  }
+                  div {
+                        width: 900px;
+                        background-color: white;
+                        margin: 0px auto 0px auto;
+                        box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+                        padding: 10px;
+                  }
+                  p {
+                        text-align: justify;
+                        text-indent: 50px;
+                  }
+                  a {
+                        color: #606060;
+                        text-decoration: none;
+                  }
+                  a:hover {
+                        text-decoration: underline;
+                  }
+                  header {
+                        border-bottom: 1px #606060 solid;
+                        height: 150px;
+                  }
+                  header h1 {
+                        font-family: 'FonteLogo', sans-serif;
+                        font-size: 30pt;
+                        color: #606060;
+                        text-shadow: 1px 1px 1px rgba(0,0,0,.6);
+                        padding: 0px;
+                        margin-bottom: 0px;
+                  }
+                  table {
+                        margin-left: auto;
+                        margin-right: auto;
+                  }
+                  table td {
+                        padding: 10px;
+                  }
+                  footer {
+                        clear: both;
+                        border-top: 1px solid #606060;
+                  }
+                  footer p {
+                        text-align: center;
+                  }
+            </style>
       </head>
       <body bgcolor = "cyan">
 
-            <div align = "center">
-                  <font size="15">
+            <header align = "center">
+                  <h1>
                   Sistema de gerenciamento de contas
-                  </font>
+                  </h1>
                   <br><br>
                   <font size="-10">
                         autores: <br>
@@ -20,7 +71,7 @@
                   <br>
                   <br>
                   <br>
-            </div>
+            </header>
 
             <div align = "center">
                   <form action="dvfmEvsUmlRequestRegistration.cgi" method="post">
@@ -87,14 +138,14 @@
                   </form>
             </div>
 
-            <div align = "center">
+            <footer>
                   <br>
                   <br>
                   <br>
                   <br>
                   <pre>
-                        <a href="dvfmEvsUmlMain.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlEnglish">Pagina inicial</a>
+                        <p><a href="dvfmEvsUmlMain.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlEnglish">Pagina inicial</a></p>
                   </pre>
-            </div>
+            </footer>
       </body>
 </html>

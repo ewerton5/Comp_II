@@ -1,0 +1,215 @@
+@charset "utf-8";
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+@font-face {
+	font-family: 'FonteLogo';
+	src: url("../_fonts/bubblegum-sans-regular.otf");
+}
+body {
+	font-family: Arial, sans-serif;
+	background-color: #dddddd;
+	color: rgba(0,0,0,1);
+}
+div {
+	width: 900px;
+	background-color: white;
+	margin: 0px auto 0px auto;
+	box-shadow: 0px 0px 10px rgba(0,0,0,.5);
+	padding: 10px;
+}
+p {
+	text-align: justify;
+	text-indent: 50px;
+}
+a {
+	color: #606060;
+	text-decoration: none;
+}
+a:hover {
+	text-decoration: underline;
+}
+header img {
+	position: relative;
+	float: right;
+	margin-top: -50px
+}
+header {
+	border-bottom: 1px #606060 solid;
+	height: 150px;
+	background: url("../_imagens/glass-logo-peq.jpg") no-repeat 0px 80px;
+}
+header h1 {
+	font-family: 'FonteLogo', sans-serif;
+	font-size: 30pt;
+	color: #606060;
+	text-shadow: 1px 1px 1px rgba(0,0,0,.6)
+	padding: 0px;
+	margin-bottom: 0px;
+}
+header h2 {
+	font-family: 'Titillium Web', sans-serif;
+	font-size: 15pt;
+	color: #888888;
+	padding: 0px;
+	margin-top: 0px;
+}
+/* Formatação de imagens com legendas */
+figure {
+	position: relative;
+	border: 8px solid white;
+	box-shadow: 1px 1px 4px black
+}
+figure img {
+	width: 100%;
+	height: 100%;
+}
+figure figcaption {
+	opacity: 0;
+	position: absolute;
+	top: 0px;
+	background-color: rgba(0,0,0,.4);
+	color: white;
+	width: 100%;
+	height: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+	transition: opacity 1s;
+}
+figure.foto-legenda:hover figcaption {
+	opacity: 1;
+}
+/*formatação de vídeo*/
+video {
+	width: 100%;
+	height: 100%;
+}
+/*Formatação do menu*/
+nav {
+	display: block;
+}
+nav ul {
+	list-style: none;
+	text-transform: uppercase;
+	position: relative;
+	margin: -30px 20px 0px 0px;
+	float: right;
+}
+nav li {
+	display: inline-block;
+	background-color: #dddddd;
+	padding: 10px;
+	margin: 2px;
+	transition: background-color 1s;
+}
+nav li:hover {
+	background-color: #606060;
+}
+nav h1 {
+	display: none;
+}
+nav a {
+	color: black;
+	text-decoration: none;
+}
+nav a:hover {
+	color: white;
+	text-decoration: underline;
+}
+/*Formatação da primeira seção*/
+section {
+	display: block;
+	width: 500px;
+	float: left;
+	border-right: 1px solid #606060;
+	padding: 0px 13px 10px 3px;
+}
+article h2 {
+	font-size: 13pt;
+	color: #606060;
+	background-color: #dddddd;
+	padding: 5px 0px 5px 10px;
+	margin: 10px 0px 10px 0px;
+}
+header h1 {
+	font-family: 'FonteLogo', sans-serif;
+	font-size: 20pt;
+	color: #606060;
+	margin-bottom: 0px;
+	margin-top: 0px;
+}
+header h2 {
+	font-size: 13pt;
+	color: #cecece;
+	background-color: white;
+	margin: 0px;
+}
+header h3 {
+	font-size: 12pt;
+	color: #606060;
+}
+.direita {
+	text-align: right;
+}
+/*Formatação da tabela*/
+table {
+	/* border: 1px solid #606060;
+	border-spacing: 0px; */
+	margin-left: auto;
+	margin-right: auto;
+}
+table td {
+	/* border: 1px solid #606060; */
+	padding: 10px;
+}
+table td.ce {
+	color: white;
+	background-color: #606060;
+	vertical-align: top;
+	font-weight: bold;
+	text-align: right;
+}
+table td.cd {
+	background-color: #cecece;
+	text-align: left;
+}
+table caption {
+	color: #888888;
+	font-size: 13pt;
+	font-weight: bolder;
+}
+table caption span {
+	display: block;
+	float: right;
+	color: black;
+	font-size: 8pt;
+	margin-top: 10px;
+}
+/*Formatação seção lateral*/
+aside {
+	display: block;
+	width: 350px;
+	float: right;
+	background-color: #dddddd;
+	padding: 10px;
+	margin-top: 10px;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.5);
+}
+aside  h1 {
+	font-family: 'FonteLogo', sans-serif;
+	font-size: 20pt;
+	color: #606060;
+	margin-top: 0px;
+}
+aside h2{
+	background-color: #606060;
+	font-size: 13pt;
+	color: white;
+	padding: 5px;
+}
+/*Formatação do rodapé*/
+footer {
+	clear: both;
+	border-top: 1px solid #606060;
+}
+footer p {
+	text-align: center;
+}
