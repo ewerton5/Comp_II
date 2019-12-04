@@ -104,21 +104,53 @@
                               </tr>
                               <tr>
                                     <td colspan="2">
-                                          <input type="hidden" name="dvfmEvsUmlConfigurationFileName">
+                                          <input type="hidden" name="dvfmEvsUmlConfigurationFileName" value=dvfmEvsUmlConfigurationFileName> 
                                     </td>
                               </tr>
                               <tr>
                                     <td colspan="2">
-                                          <input type="hidden" name="dvfmEvsUmlLanguage">
+                                          <input type="hidden" name="dvfmEvsUmlLanguage" value=dvfmEvsUmlLanguage>
                                     </td>
                               </tr>
                         </table>
                   </form>
             </div>
             <footer>
-                  <pre>
-                        <a href="dvfmEvsUmlMain.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlEnglish">ingl&ecirc;s</a>      <a href="dvfmEvsUmlShowRequestRegistrationForm.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlPortuguese">cadastre -se</a>      <a href="dvfmEvsUmlShowRequestPasswordResetForm.cgi">senha temporaria</a>      <a href="dvfmEvsUmlShowWebHelp.cgi">ajuda</a>      <a href="dvfmEvsUmlShowLicense.cgi">licen&ccedil;a de uso</a>
-                  </pre>
+                  <form action="dvfmEvsUmlMain.cgi">
+
+                        <input type="hidden" name="dvfmEvsUmlConfigurationFileName" value=dvfmEvsUmlConfigurationFileName>
+                        <input type="hidden" name="dvfmEvsUmlLanguage" value=dvfmEvsUmlPortuguese>
+                        <input type="submit" value="Ingles">
+
+                  </form>
+
+                  <form action="dvfmEvsUmlShowRequestRegistrationForm.cgi">
+
+                        <input type="hidden" name="dvfmEvsUmlConfigurationFileName" value=dvfmEvsUmlConfigurationFileName>
+                        <input type="hidden" name="dvfmEvsUmlLanguage" value=dvfmEvsUmlLanguage>
+                        <input type="submit" value="Cadastre -se">     
+                  </form>
+
+                  <form action="dvfmEvsUmlShowRequestPasswordResetForm.cgi">
+
+                        <input type="hidden" name="dvfmEvsUmlConfigurationFileName" value=dvfmEvsUmlConfigurationFileName>
+                        <input type="hidden" name="dvfmEvsUmlLanguage" value=dvfmEvsUmlLanguage>
+                        <input type="submit" value="Senha temporaria">     
+                  </form>
+
+                  <form action="dvfmEvsUmlShowWebHelp.cgi">
+
+                        <input type="hidden" name="dvfmEvsUmlConfigurationFileName" value=dvfmEvsUmlConfigurationFileName>
+                        <input type="hidden" name="dvfmEvsUmlLanguage" value=dvfmEvsUmlLanguage>
+                        <input type="submit" value="Ajuda">     
+                  </form>
+
+                  <form action="dvfmEvsUmlShowLicense.cgi">
+
+                        <input type="hidden" name="dvfmEvsUmlConfigurationFileName" value=dvfmEvsUmlConfigurationFileName>
+                        <input type="hidden" name="dvfmEvsUmlLanguage" value=dvfmEvsUmlLanguage>
+                        <input type="submit" value="Licenca de uso">     
+                  </form>
             </footer>
       </body>
 </html>
