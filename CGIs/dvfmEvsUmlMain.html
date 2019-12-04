@@ -13,6 +13,7 @@
                   }
                   div {
                         width: 900px;
+                        border-radius: 10pt;
                         background-color: white;
                         margin: 0px auto 0px auto;
                         box-shadow: 0px 0px 10px rgba(0,0,0,.5);
@@ -60,6 +61,20 @@
                         border-top: 1px solid #606060;
                         margin-top: 10px;
                         padding-top: 20px;
+                  }
+                  .button {
+                        display: inline-block;
+                        border-radius: 5pt;
+                        background-color: #dddddd;
+                        box-shadow: 0px 0px 3px rgba(0,0,0,.5);
+                        padding: 10px;
+                        margin: 2px;
+                        transition: background-color 1s;
+                        transition: color 1s;
+                  }
+                  .button:hover {
+                        background-color: #606060;
+                        color: white;
                   }
             </style>
       </head>
@@ -116,6 +131,7 @@
                   </form>
             </div>
             <footer>
+<<<<<<< HEAD
                   <form action="dvfmEvsUmlMain.cgi">
 
                         <input type="hidden" name="dvfmEvsUmlConfigurationFileName" value=dvfmEvsUmlConfigurationFileName>
@@ -151,6 +167,11 @@
                         <input type="hidden" name="dvfmEvsUmlLanguage" value=dvfmEvsUmlLanguage>
                         <input type="submit" value="Licenca de uso">     
                   </form>
+=======
+                  <pre>
+                        <button class="button" href="dvfmEvsUmlMain.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlEnglish">ingl&ecirc;s</button>      <a href="dvfmEvsUmlShowRequestRegistrationForm.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlPortuguese">cadastre -se</a>      <a href="dvfmEvsUmlShowRequestPasswordResetForm.cgi">senha temporaria</a>      <a href="dvfmEvsUmlShowWebHelp.cgi">ajuda</a>      <a href="dvfmEvsUmlShowLicense.cgi">licen&ccedil;a de uso</a>
+                  </pre>
+>>>>>>> 1749eac064f2f80cadebb6a620f19361dd067527
             </footer>
       </body>
 </html>
