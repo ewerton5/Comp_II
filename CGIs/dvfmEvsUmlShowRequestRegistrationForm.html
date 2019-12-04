@@ -143,21 +143,26 @@
                               </tr>
                               <tr>
                                     <td colspan="2">
-                                          <input type="hidden" name="dvfmEvsUmlConfigurationFileName">
+                                          <input type="hidden" name="dvfmEvsUmlConfigurationFileName" value=dvfmEvsUmlConfigurationFileName>
                                     </td>
                               </tr>
                               <tr>
                                     <td colspan="2">
-                                          <input type="hidden" name="dvfmEvsUmlLanguage">
+                                          <input type="hidden" name="dvfmEvsUmlLanguage" value=dvfmEvsUmlLanguage>
                                     </td>
                               </tr>
                         </table>
                   </form>
             </div>
             <footer>
-                  <pre>
-                        <a href="dvfmEvsUmlMain.cgi?dvfmEvsUmlConfigurationFileName=dvfmEvs-uml.cfg&dvfmEvsUmlLanguage=dvfmEvsUmlEnglish">Pagina inicial</a>
-                  </pre>
+
+                  <form action="dvfmEvsUmlMain.cgi">
+
+                        <input type="hidden" name="dvfmEvsUmlConfigurationFileName" value=dvfmEvsUmlConfigurationFileName>
+                        <input type="hidden" name="dvfmEvsUmlLanguage" value="dvfmEvsUmlLanguage">
+                        <input type="submit" value="Pagina inicial">
+
+                  </form>
             </footer>
       </body>
 </html>
