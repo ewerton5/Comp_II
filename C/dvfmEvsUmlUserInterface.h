@@ -31,6 +31,7 @@ typedef enum
     dvfmEvsUmlPassword,
     dvfmEvsUmlConfirm,
     dvfmEvsUmlLanguageOption,
+    dvfmEvsUmlLanguageVariable,
     dvfmEvsUmlRegister,
     dvfmEvsUmlTemporaryPassword,
     dvfmEvsUmlHelp,

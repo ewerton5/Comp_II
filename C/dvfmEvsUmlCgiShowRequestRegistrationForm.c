@@ -13,8 +13,9 @@ $Log$
 #include <stdio.h>
 #include <stdlib.h>
 #include "../Libraries/mlcgi.h"
-#include "dvfmEvsUmlUserInterface.h"
 #include "dvfmEvsUmlFunctions.h"
+#include "dvfmEvsUmlTypes.h"
+#include "dvfmEvsUmlUserInterface.h"
 
 #define DVFM_EVS_UML_OK					0
 #define DVFM_EVS_UML_AMBIENTE_EXECUCAO_INVALIDO		1
@@ -70,11 +71,11 @@ main (int argc, char **argv)
 
 	printf("<html>\n");
 	printf("      <head>\n");
+	printf("            <meta %s = \"David Vinicius Ferreira Moreira e Ewerton Vieira de Silles\">\n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlAuthors, dvfmEvsUmlLanguageSystem));
 	printf("            <title>\n");
-	printf("                  %s\n",  DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlSystemName, dvfmEvsUmlLanguageSystem));
-	printf("                  <meta %s = \"David Vinicius Ferreira Moreira e Ewerton Vieira de Silles\">\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlAuthors, dvfmEvsUmlLanguageSystem));
+	printf("                  %s\n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlSystemName, dvfmEvsUmlLanguageSystem));
 	printf("            </title>\n");
-	printf("            <style type=\"text/css\">\n");
+	printf("	      <style type=\"text/css\">\n");
 	printf("                  body {\n");
 	printf("                        text-align: center;\n");
 	printf("                        font-family: Arial, sans-serif;\n");
@@ -154,32 +155,56 @@ main (int argc, char **argv)
 	printf("      <body>\n");
 	printf("            <header>\n");
 	printf("                  <h1>\n");
-	printf("                  %s\n",  DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlSystemName, dvfmEvsUmlLanguageSystem));
+	printf("                  %s\n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlSystemName, dvfmEvsUmlLanguageSystem));
 	printf("                  </h1>\n");
-	printf("                        <p>%s:</p>\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlAuthors, dvfmEvsUmlLanguageSystem));
+	printf("                        <p>%s:</p> \n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlAuthors, dvfmEvsUmlLanguageSystem));
 	printf("                        <p><a href=\"mailto:davidmoreira@poli.ufrj.br\">David Vinicius Ferreira Moreira</a></p>\n");
 	printf("                        <p><a href=\"mailto:ewerton5@poli.ufrj.br\">Ewerton Vieira de Silles</a></p>\n");
 	printf("            </header>\n");
 	printf("            <div>\n");
 	printf("                  <h2>\n");
-	printf("                  %s\n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlHomePage, dvfmEvsUmlLanguageSystem));
+	printf("                  %s\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlRegister, dvfmEvsUmlLanguageSystem));
 	printf("                  </h2>\n");
-	printf("                  <form action=\"dvfmEvsUmlLogin.cgi\" method=\"post\">\n");
+	printf("                  <form action=\"dvfmEvsUmlRequestRegistration.cgi\" method=\"post\">\n");
 	printf("                        <table>\n");
 	printf("                              <tr>\n");
 	printf("                                    <td>\n");
-	printf("                                          %s:\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlLogin, dvfmEvsUmlLanguageSystem));
+	printf("                                          %s:\n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlEmailRequest, dvfmEvsUmlLanguageSystem));
 	printf("                                    </td>\n");
 	printf("                                    <td>\n");
-	printf("                                          <input type=\"text\" name=\"dvfmEvsUmlNickname\" max=\"127\"> \n");
+	printf("                                          <input type=\"text\" name=\"dvfmEvsUmlAdimim\" max=\"1024\"> \n");
 	printf("                                    </td>\n");
 	printf("                              </tr>\n");
 	printf("                              <tr>\n");
 	printf("                                    <td>\n");
-	printf("                                          %s:\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlPassword, dvfmEvsUmlLanguageSystem));
+	printf("                                          %s:\n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlFullName, dvfmEvsUmlLanguageSystem));
 	printf("                                    </td>\n");
 	printf("                                    <td>\n");
-	printf("                                          <input type=\"password\" name=\"dvfmEvsUmlPassword\" max=\"65\">\n");
+	printf("                                          <input type=\"text\" name=\"dvfmEvsUmlUserName\" max=\"256\">\n");
+	printf("                                    </td>\n");
+	printf("                              </tr>\n");
+	printf("                              <tr>\n");
+	printf("                                    <td>\n");
+	printf("                                          %s:\n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlConfirmationFullName, dvfmEvsUmlLanguageSystem));
+	printf("                                    </td>\n");
+	printf("                                    <td>\n");
+	printf("                                          <input type=\"text\" name=\"dvfmEvsUmlUserNameConfirmation\" max=\"256\">\n");
+	printf("                                    </td>\n");
+	printf("                              </tr>\n");
+	printf("                              <tr>\n");
+	printf("                                    <td>\n");
+	printf("                                          %s:\n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlEmail, dvfmEvsUmlLanguageSystem));
+	printf("                                    </td>\n");
+	printf("                                    <td>\n");
+	printf("                                          <input type=\"text\" name=\"dvfmEvsUmlEmail\" max=\"1024\">\n");
+	printf("                                    </td>\n");
+	printf("                              </tr>\n");
+	printf("                              <tr>\n");
+	printf("                                    <td>\n");
+	printf("                                          %s:\n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlConfirmationEmail, dvfmEvsUmlLanguageSystem));
+	printf("                                    </td>\n");
+	printf("                                    <td>\n");
+	printf("                                          <input type=\"text\" name=\"dvfmEvsUmlEmailConfirmation\" max=\"1024\">\n");
 	printf("                                    </td>\n");
 	printf("                              </tr>\n");
 	printf("                              <tr>\n");
@@ -192,7 +217,7 @@ main (int argc, char **argv)
 	printf("                              </tr>\n");
 	printf("                              <tr>\n");
 	printf("                                    <td colspan=\"2\">\n");
-	printf("                                          <input type=\"hidden\" name=\"dvfmEvsUmlConfigurationFileName\" value=dvfmEvsUmlConfigurationFileName> \n");
+	printf("                                          <input type=\"hidden\" name=\"dvfmEvsUmlConfigurationFileName\" value=dvfmEvsUmlConfigurationFileName>\n");
 	printf("                                    </td>\n");
 	printf("                              </tr>\n");
 	printf("                              <tr>\n");
@@ -204,48 +229,21 @@ main (int argc, char **argv)
 	printf("                  </form>\n");
 	printf("            </div>\n");
 	printf("            <footer>\n");
+	printf("\n");
 	printf("                  <form action=\"dvfmEvsUmlMain.cgi\">\n");
 	printf("\n");
 	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlConfigurationFileName\" value=dvfmEvsUmlConfigurationFileName>\n");
-	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlLanguage\" value=%s>\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlLanguageVariable, dvfmEvsUmlLanguageSystem));
-	printf("                        <input class=\"button\" type=\"submit\" value=\"%s\">\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlLanguageOption, dvfmEvsUmlLanguageSystem));
+	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlLanguage\" value=\"dvfmEvsUmlLanguage\">\n");
+	printf("                        <input class=\"button\" type=\"submit\" value=\"%s\">\n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlHomePage, dvfmEvsUmlLanguageSystem));
 	printf("\n");
-	printf("                  </form>\n");
-	printf("\n");
-	printf("                  <form action=\"dvfmEvsUmlShowRequestRegistrationForm.cgi\">\n");
-	printf("\n");
-	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlConfigurationFileName\" value=dvfmEvsUmlConfigurationFileName>\n");
-	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlLanguage\" value=dvfmEvsUmlLanguage>\n");
-	printf("                        <input class=\"button\" type=\"submit\" value=\"%s\">     \n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlRegister, dvfmEvsUmlLanguageSystem));
-	printf("                  </form>\n");
-	printf("\n");
-	printf("                  <form action=\"dvfmEvsUmlShowRequestPasswordResetForm.cgi\">\n");
-	printf("\n");
-	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlConfigurationFileName\" value=dvfmEvsUmlConfigurationFileName>\n");
-	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlLanguage\" value=dvfmEvsUmlLanguage>\n");
-	printf("                        <input class=\"button\" type=\"submit\" value=\"%s\">     \n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlTemporaryPassword, dvfmEvsUmlLanguageSystem));
-	printf("                  </form>\n");
-	printf("\n");
-	printf("                  <form action=\"dvfmEvsUmlShowWebHelp.cgi\">\n");
-	printf("\n");
-	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlConfigurationFileName\" value=dvfmEvsUmlConfigurationFileName>\n");
-	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlLanguage\" value=dvfmEvsUmlLanguage>\n");
-	printf("                        <input class=\"button\" type=\"submit\" value=\"%s\">     \n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlHelp, dvfmEvsUmlLanguageSystem));
-	printf("                  </form>\n");
-	printf("\n");
-	printf("                  <form action=\"dvfmEvsUmlShowLicense.cgi\">\n");
-	printf("\n");
-	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlConfigurationFileName\" value=dvfmEvsUmlConfigurationFileName>\n");
-	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlLanguage\" value=dvfmEvsUmlLanguage>\n");
-	printf("                        <input class=\"button\" type=\"submit\" value=\"%s\">     \n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlUseLicense, dvfmEvsUmlLanguageSystem));
 	printf("                  </form>\n");
 	printf("            </footer>\n");
 	printf("      </body>\n");
 	printf("</html>\n");
 
-  mlCgiFreeResources ();
+	mlCgiFreeResources ();
 
-  return DVFM_EVS_UML_OK;
+	return DVFM_EVS_UML_OK;
 }
 
 /* $RCSfile$ */
