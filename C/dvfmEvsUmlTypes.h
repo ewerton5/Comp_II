@@ -51,6 +51,12 @@ typedef enum
 	dvfmEvsUmlSha512
 } dvfmEvsUmlCryptAlgorithms;
 
+typedef struct
+{
+	/* Nao sei o q vai aqui */
+}dvfmEvsUmlConfigurationOptionsType;
+
+
 /* ===== end of file code ====== */
 
 #endif
