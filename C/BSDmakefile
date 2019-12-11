@@ -195,4 +195,4 @@ clean-freebsd:
 clean-linux:
 	rm -f *.o $(DVFM_EVS_ALL) *-Linux-*
 
-# $RCSfile: GNUmakefile,v $ 
+# $RCSfile: BSDmakefile,v $ 
