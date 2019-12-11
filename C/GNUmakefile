@@ -97,11 +97,11 @@ DVFM_EVS_PRIMARYFUNCTIONS = getCliErrorMessage\
 
 #===> CGIs
 DVFM_EVS_CGIS = dvfmEvsUmlMain.cgi\
-				dvfmEvsUmlCgiShowRequestRegistrationForm.cgi\
-				dvfmEvsUmlCgiShowRequestPasswordResetForm.cgi\
-				dvfmEvsUmlCgiShowWebHelp.cgi\
-				dvfmEvsUmlCgiShowLicense.cgi\
-				dvfmEvsUmlCgiShowAddUserForm.cgi
+				dvfmEvsUmlShowRequestRegistrationForm.cgi\
+				dvfmEvsUmlShowRequestPasswordResetForm.cgi\
+				dvfmEvsUmlShowWebHelp.cgi\
+				dvfmEvsUmlShowLicense.cgi\
+				dvfmEvsUmlShowAddUserForm.cgi
 
 DVFM_EVS_ALL = $(DVFM_EVS_SECUNDARYFUNCTIONS)\
 			   $(DVFM_EVS_PRIMARYFUNCTIONS)\
@@ -195,23 +195,23 @@ dvfmEvsUmlMain.cgi: $(DVFM_EVS_CGIMAINOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGIMAINOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
-dvfmEvsUmlCgiShowRequestRegistrationForm.cgi: $(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS)
+dvfmEvsUmlShowRequestRegistrationForm.cgi: $(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGIMAINOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
-dvfmEvsUmlCgiShowRequestPasswordResetForm.cgi: $(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS)
+dvfmEvsUmlShowRequestPasswordResetForm.cgi: $(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
-dvfmEvsUmlCgiShowWebHelp.cgi: $(DVFM_EVS_CGISHOWWEBHELPOBJS)
+dvfmEvsUmlShowWebHelp.cgi: $(DVFM_EVS_CGISHOWWEBHELPOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWWEBHELPOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
-dvfmEvsUmlCgiShowLicense.cgi: $(DVFM_EVS_CGISHOWLICENSEOBJS)
+dvfmEvsUmlShowLicense.cgi: $(DVFM_EVS_CGISHOWLICENSEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWLICENSEOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
-dvfmEvsUmlCgiShowAddUserForm.cgi: $(DVFM_EVS_CGISHOWADDUSERFORMOBJS)
+dvfmEvsUmlShowAddUserForm.cgi: $(DVFM_EVS_CGISHOWADDUSERFORMOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWADDUSERFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
