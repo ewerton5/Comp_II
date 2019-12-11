@@ -66,7 +66,12 @@ DVFM_EVS_GETNCURSESUSERINTERFACEMESSAGEOBJS = dvfmEvsUmlUserInterface.o dvfmEvsU
 DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS = dvfmEvsUmlUserInterface.o dvfmEvsUmlGetWebUserInterfaceMessage.o
 
 #===> CGIs
-DVFM_EVS_CGIMAINOBJS = dvfmEvsUmlCgiMain.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
+DVFM_EVS_CGIMAINOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiMain.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
+DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowRequestRegistrationForm.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
+DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowRequestPasswordResetForm.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
+DVFM_EVS_CGISHOWWEBHELPOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowWebHelp.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
+DVFM_EVS_CGISHOWLICENSEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowLicense.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
+DVFM_EVS_CGISHOWADDUSERFORMOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowAddUserForm.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
 
 # shortcut
 #===> funcoes secundarias
@@ -91,7 +96,12 @@ DVFM_EVS_PRIMARYFUNCTIONS = getCliErrorMessage\
 							getWebUserInterfaceMessage
 
 #===> CGIs
-DVFM_EVS_CGIS = dvfmEvsUmlMain.cgi
+DVFM_EVS_CGIS = dvfmEvsUmlMain.cgi\
+				dvfmEvsUmlCgiShowRequestRegistrationForm.cgi\
+				dvfmEvsUmlCgiShowRequestPasswordResetForm.cgi\
+				dvfmEvsUmlCgiShowWebHelp.cgi\
+				dvfmEvsUmlCgiShowLicense.cgi\
+				dvfmEvsUmlCgiShowAddUserForm.cgi
 
 DVFM_EVS_ALL = $(DVFM_EVS_SECUNDARYFUNCTIONS)\
 			   $(DVFM_EVS_PRIMARYFUNCTIONS)\
@@ -183,6 +193,26 @@ getWebUserInterfaceMessage: $(DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS)
 
 dvfmEvsUmlMain.cgi: $(DVFM_EVS_CGIMAINOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGIMAINOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
+	cp $@ $@-$(OS)-$(CC)
+
+dvfmEvsUmlCgiShowRequestRegistrationForm.cgi: $(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGIMAINOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
+	cp $@ $@-$(OS)-$(CC)
+
+dvfmEvsUmlCgiShowRequestPasswordResetForm.cgi: $(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
+	cp $@ $@-$(OS)-$(CC)
+
+dvfmEvsUmlCgiShowWebHelp.cgi: $(DVFM_EVS_CGISHOWWEBHELPOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWWEBHELPOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
+	cp $@ $@-$(OS)-$(CC)
+
+dvfmEvsUmlCgiShowLicense.cgi: $(DVFM_EVS_CGISHOWLICENSEOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWLICENSEOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
+	cp $@ $@-$(OS)-$(CC)
+
+dvfmEvsUmlCgiShowAddUserForm.cgi: $(DVFM_EVS_CGISHOWADDUSERFORMOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWADDUSERFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
 clean:
