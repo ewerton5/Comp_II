@@ -207,7 +207,7 @@ main (int argc, char **argv)
 	printf("                  <form action=\"dvfmEvsUmlMain.cgi\">\n");
 	printf("\n");
 	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlConfigurationFileName\" value=\"%s\">\n", dvfmEvsUmlConfigurationFileName);
-	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlLanguage\" value=\"%s\">\n", dvfmEvsUmlLanguage);
+	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlLanguage\" value=%s>\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlLanguageVariable, dvfmEvsUmlLanguageSystem));
 	printf("                        <input class=\"button\" type=\"submit\" value=\"%s\">\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlLanguageOption, dvfmEvsUmlLanguageSystem));
 	printf("\n");
 	printf("                  </form>\n");
