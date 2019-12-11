@@ -91,7 +91,7 @@ DVFM_EVS_PRIMARYFUNCTIONS = getCliErrorMessage\
 							getWebUserInterfaceMessage
 
 #===> CGIs
-DVFM_EVS_CGIS = cgiMain.cgi
+DVFM_EVS_CGIS = dvfmEvsUmlMain.cgi
 
 DVFM_EVS_ALL = $(DVFM_EVS_SECUNDARYFUNCTIONS)\
 			   $(DVFM_EVS_PRIMARYFUNCTIONS)\
@@ -181,7 +181,7 @@ getWebUserInterfaceMessage: $(DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS)
 
 #===> CGIs
 
-cgiMain.cgi: $(DVFM_EVS_CGIMAINOBJS)
+dvfmEvsUmlMain.cgi: $(DVFM_EVS_CGIMAINOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGIMAINOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
