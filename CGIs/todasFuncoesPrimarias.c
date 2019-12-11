@@ -16,5 +16,5 @@ DvfmEvsUmlShowCliHelp ( dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlLanguage
 void
 DvfmEvsUmlShowCliHelp ( dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlFileNameConfiguration, dvfmEvsUmlLanguageType dvfmEvsUmlLanguage)
 {
-    
+    /* nao sei como fazer pq nao sei como e esse tipo 
 }
