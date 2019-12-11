@@ -92,18 +92,83 @@
             </header>
             <div>
                   <h2>
-                  Cadastro
+                        Adicionar usuario permanente
                   </h2>
-                  <form action="dvfmEvsUmlRequestRegistration.cgi" method="post">
+                  <form action="?????" method="post">
                         <table>
                               <tr>
                                     <td>
-                                          Correio eletronico para solicitaçao:
+                                          Nome completo:
                                     </td>
                                     <td>
-                                          <input type="text" name="dvfmEvsUmlAdimim" max="1024"> 
+                                          <input type="text" name="dvfmEvsUmlUserName" max="256">
                                     </td>
                               </tr>
+                              <tr>
+                                    <td>
+                                          Confirmar nome completo:
+                                    </td>
+                                    <td>
+                                          <input type="text" name="dvfmEvsUmlUserNameConfirmation" max="256">
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          Correio eletronico:
+                                    </td>
+                                    <td>
+                                          <input type="text" name="dvfmEvsUmlEmail" max="1024">
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          Confirmar Correio eletronico:
+                                    </td>
+                                    <td>
+                                          <input type="text" name="dvfmEvsUmlEmailConfirmation" max="1024">
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          senha:
+                                    </td>
+                                    <td>
+                                          <input type="password" name="dvfmEvsUmlPassword" max="65">
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+                                          Confirmar senha:
+                                    </td>
+                                    <td>
+                                          <input type="password" name="dvfmEvsUmlPasswordConfirmation" max="65">
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td>
+
+                                    </td>
+                                    <td>
+                                          <input type="submit" value="adicionar">
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td colspan="2">
+                                          <input type="hidden" name="dvfmEvsUmlConfigurationFileName" value=dvfmEvsUmlConfigurationFileName>
+                                    </td>
+                              </tr>
+                              <tr>
+                                    <td colspan="2">
+                                          <input type="hidden" name="dvfmEvsUmlLanguage" value=dvfmEvsUmlLanguage>
+                                    </td>
+                              </tr>
+                        </table>
+                  </form>
+                  <h2>
+                        Adicionar usuario temporario
+                  </h2>
+                  <form action="?????" method="post">
+                        <table>
                               <tr>
                                     <td>
                                           Nome completo:
@@ -141,7 +206,7 @@
 
                                     </td>
                                     <td>
-                                          <input type="submit" value="Registar -se">
+                                          <input type="submit" value="adicionar">
                                     </td>
                               </tr>
                               <tr>

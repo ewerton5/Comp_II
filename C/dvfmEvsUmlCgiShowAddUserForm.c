@@ -13,8 +13,9 @@ $Log$
 #include <stdio.h>
 #include <stdlib.h>
 #include "../Libraries/mlcgi.h"
-#include "dvfmEvsUmlUserInterface.h"
 #include "dvfmEvsUmlFunctions.h"
+#include "dvfmEvsUmlTypes.h"
+#include "dvfmEvsUmlUserInterface.h"
 
 #define DVFM_EVS_UML_OK					0
 #define DVFM_EVS_UML_AMBIENTE_EXECUCAO_INVALIDO		1
@@ -58,7 +59,7 @@ main (int argc, char **argv)
 
 	dvfmEvsUmlReturnCode = mlCgiGetFormStringNoNewLines ("Language", dvfmEvsUmlLanguage, DVFM_EVS_UML_CONFIGURATION_FILE_NAME_LENGTH);
 
-	if (dvfmEvsUmlReturnCode == ML_CGI_INVALID_FORM_LENGTH)
+	if (dvfmEvsUmlReturnCode != ML_CGI_OK)
 	{
 		/* exibir uma pagina HTML de erro */
 		printf ("<html>\nError #%u\n...</html>\n", dvfmEvsUmlReturnCode);
@@ -68,11 +69,13 @@ main (int argc, char **argv)
 
 	dvfmEvsUmlLanguageSystem = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlLanguage);
 
-	/*html com a ajuda explicando todo o sistema falta terminar de fazer*/
+	/*falta botar o html certo*/
+	/*eu acho q ele quer q faça ago aqui */
+	/*sao 2 html?*/
 
-  mlCgiFreeResources ();
+	mlCgiFreeResources ();
 
-  return DVFM_EVS_UML_OK;
+	return DVFM_EVS_UML_OK;
 }
 
 /* $RCSfile$ */

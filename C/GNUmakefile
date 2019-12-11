@@ -65,6 +65,9 @@ DVFM_EVS_GETCLIUSERINTERFACEMESSAGEOBJS = dvfmEvsUmlUserInterface.o dvfmEvsUmlGe
 DVFM_EVS_GETNCURSESUSERINTERFACEMESSAGEOBJS = dvfmEvsUmlUserInterface.o dvfmEvsUmlGetNcursesUserInterfaceMessage.o
 DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS = dvfmEvsUmlUserInterface.o dvfmEvsUmlGetWebUserInterfaceMessage.o
 
+#===> CGIs
+DVFM_EVS_CGIMAINOBJS = dvfmEvsUmlCgiMain.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
+
 # shortcut
 #===> funcoes secundarias
 DVFM_EVS_SECUNDARYFUNCTIONS = getLanguageIndex\
@@ -170,6 +173,10 @@ getNcursesUserInterfaceMessage: $(DVFM_EVS_GETNCURSESUSERINTERFACEMESSAGEOBJS)
 
 getWebUserInterfaceMessage: $(DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS)
+	cp $@ $@-$(OS)-$(CC)
+
+cgiMain.cgi: $(DVFM_EVS_CGIMAINOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGIMAINOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
 clean:

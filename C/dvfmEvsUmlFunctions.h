@@ -253,6 +253,26 @@ DvfmEvsUmlEncodePasswordWithSpecificSalt (char *, char *, char *);
 dvfmEvsUmlErrorType
 DvfmEvsUmlCheckPassword (char *, char *);
 
+/*
+ * dvfmEvsUmlErrorType
+ * DvfmEvsUmlGetConfigurationOptionsValues (char *, dvfmEvsUmlConfigurationOptionsType *);
+ *
+ *
+ * Arguments:
+ * char * - name of the configuration file (I)
+ * dvfmEvsUmlConfigurationOptionsType * - the address of a local variable of type dvfmEvsUmlConfigurationOptionsType (I)
+ *
+ * Returned code:
+ * 
+ * dvfmEvsUmlOk - if the flat password is compatible with the encrypted one.
+ * 
+ * Description:
+ * Fills the structure with the configuration information.
+ */
+
+dvfmEvsUmlErrorType
+DvfmEvsUmlGetConfigurationOptionsValues ( char *, dvfmEvsUmlConfigurationOptionsType *);
+
 /* ===== end of file code ====== */
 
 #endif

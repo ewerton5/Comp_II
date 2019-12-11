@@ -68,7 +68,7 @@ main (int argc, char **argv)
 
 	dvfmEvsUmlLanguageSystem = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlLanguage);
 
-	/*html com a ajuda explicando todo o sistema falta terminar de fazer*/
+	/*html com a licenca de uso do sistema falta terminar de fazer*/
 
   mlCgiFreeResources ();
 
