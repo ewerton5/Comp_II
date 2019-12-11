@@ -33,7 +33,13 @@ char *dvfmEvsUmlCliUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlS
 	"Register",
 	"Temporary password",
 	"Help",
-	"Use license"
+	"Use license",
+	"Electronic mail for request",
+	"Full name",
+	"Confirmation Full Name",
+	"Email",
+	"Confirm Email",
+	"Home page"
  },
 
  {
@@ -43,10 +49,16 @@ char *dvfmEvsUmlCliUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlS
 	"Senha",
 	"Confirmar",
 	"Ingles",
-	"Cadastre -se",
+	"Cadastro",
 	"Senha temporaria",
 	"Ajuda",
-	"Licenca de uso"
+	"Licenca de uso",
+	"Correio eletronico para solicitacao",
+	"Nome completo",
+	"Confirmaçao Nome completo",
+	"Correio eletronico",
+	"Confirmar correio eletronico",
+	"Pagina inicial"
  }
 };
 
@@ -59,36 +71,6 @@ char *dvfmEvsUmlNcursesUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvs
 	"Password",
 	"Confirm",
 	"Portuguese",
-	"Register",
-	"Temporary password",
-	"Help",
-	"Use license"
- },
-
- {
-	"Sistema de Gerenciamento de Contas",
-	"Autores",
-	"Login",
-	"Senha",
-	"Confirmar",
-	"Ingles",
-	"Cadastre -se",
-	"Senha temporaria",
-	"Ajuda",
-	"Licenca de uso"
- }
-};
-
-char *dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeUserInterfaceMessageNumberType]=
-{
- {
-	"Account Management System",
-	"Authors",
-	"Login",
-	"Password",
-	"Confirm",
-	"Portuguese",
-	"dvfmEvsUmlPortuguese",
 	"Register",
 	"Temporary password",
 	"Help",
@@ -108,7 +90,47 @@ char *dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlS
 	"Senha",
 	"Confirmar",
 	"Ingles",
-	"dvfmEvsUmlEnglish",
+	"Cadastro",
+	"Senha temporaria",
+	"Ajuda",
+	"Licenca de uso",
+	"Correio eletronico para solicitacao",
+	"Nome completo",
+	"Confirmaçao Nome completo",
+	"Correio eletronico",
+	"Confirmar correio eletronico",
+	"Pagina inicial"
+ }
+};
+
+char *dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeUserInterfaceMessageNumberType]=
+{
+ {
+	"Account Management System",
+	"Authors",
+	"Login",
+	"Password",
+	"Confirm",
+	"Portuguese",
+	"Register",
+	"Temporary password",
+	"Help",
+	"Use license",
+	"Electronic mail for request",
+	"Full name",
+	"Confirmation Full Name",
+	"Email",
+	"Confirm Email",
+	"Home page"
+ },
+
+ {
+	"Sistema de Gerenciamento de Contas",
+	"Autores",
+	"Login",
+	"Senha",
+	"Confirmar",
+	"Ingles",
 	"Cadastro",
 	"Senha temporaria",
 	"Ajuda",

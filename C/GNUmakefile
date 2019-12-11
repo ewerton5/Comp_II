@@ -196,7 +196,7 @@ dvfmEvsUmlMain.cgi: $(DVFM_EVS_CGIMAINOBJS)
 	cp $@ $@-$(OS)-$(CC)
 
 dvfmEvsUmlShowRequestRegistrationForm.cgi: $(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGIMAINOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
 dvfmEvsUmlShowRequestPasswordResetForm.cgi: $(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS)
