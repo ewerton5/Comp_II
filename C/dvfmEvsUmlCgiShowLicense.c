@@ -46,7 +46,7 @@ main (int argc, char **argv)
 	mlCgiBeginHttpHeader ("text/html");
 	mlCgiEndHttpHeader ();
 
-	dvfmEvsUmlReturnCode = mlCgiGetFormStringNoNewLines ("FileNameConfig", dvfmEvsUmlConfigurationFileName, DVFM_EVS_UML_CONFIGURATION_FILE_NAME_LENGTH);
+	dvfmEvsUmlReturnCode = mlCgiGetFormStringNoNewLines ("dvfmEvsUmlConfigurationFileName", dvfmEvsUmlConfigurationFileName, DVFM_EVS_UML_CONFIGURATION_FILE_NAME_LENGTH);
 
 	if (dvfmEvsUmlReturnCode != ML_CGI_OK)
 	{
@@ -56,7 +56,7 @@ main (int argc, char **argv)
 		exit (DVFM_EVS_UML_OK);
 	}
 
-	dvfmEvsUmlReturnCode = mlCgiGetFormStringNoNewLines ("Language", dvfmEvsUmlLanguage, DVFM_EVS_UML_CONFIGURATION_FILE_NAME_LENGTH);
+	dvfmEvsUmlReturnCode = mlCgiGetFormStringNoNewLines ("dvfmEvsUmlLanguage", dvfmEvsUmlLanguage, DVFM_EVS_UML_CONFIGURATION_FILE_NAME_LENGTH);
 
 	if (dvfmEvsUmlReturnCode == ML_CGI_INVALID_FORM_LENGTH)
 	{
