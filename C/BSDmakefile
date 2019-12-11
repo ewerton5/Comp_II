@@ -63,6 +63,9 @@ DVFM_EVS_GETCLIUSERINTERFACEMESSAGEOBJS = dvfmEvsUmlUserInterface.o dvfmEvsUmlGe
 DVFM_EVS_GETNCURSESUSERINTERFACEMESSAGEOBJS = dvfmEvsUmlUserInterface.o dvfmEvsUmlGetNcursesUserInterfaceMessage.o
 DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS = dvfmEvsUmlUserInterface.o dvfmEvsUmlGetWebUserInterfaceMessage.o
 
+#===> CGIs
+DVFM_EVS_CGIMAINOBJS = dvfmEvsUmlCgiMain.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
+
 # shortcut
 #===> funcoes secundarias
 DVFM_EVS_SECUNDARYFUNCTIONS = getLanguageIndex\
@@ -85,8 +88,12 @@ DVFM_EVS_PRIMARYFUNCTIONS = getCliErrorMessage\
 							getNcursesUserInterfaceMessage\
 							getWebUserInterfaceMessage
 
+#===> CGIs
+DVFM_EVS_CGIS = cgiMain.cgi
+
 DVFM_EVS_ALL = $(DVFM_EVS_SECUNDARYFUNCTIONS)\
-					$(DVFM_EVS_PRIMARYFUNCTIONS)
+			   $(DVFM_EVS_PRIMARYFUNCTIONS)\
+			   $(DVFM_EVS_CGIS)
 
 # implicit rule
 .c.o:
@@ -170,6 +177,12 @@ getWebUserInterfaceMessage: $(DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS)
 	cp $@ $@-$(OS)-$(CC)
 
+#===> CGIs
+
+cgiMain.cgi: $(DVFM_EVS_CGIMAINOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGIMAINOBJS) -lcrypt -L./../Libraries/FreeBSD -lmlcgi
+	cp $@ $@-$(OS)-$(CC)
+
 clean:
 	rm -f *.o $(DVFM_EVS_ALL)
 
@@ -182,4 +195,4 @@ clean-freebsd:
 clean-linux:
 	rm -f *.o $(DVFM_EVS_ALL) *-Linux-*
 
-# $RCSfile: BSDmakefile,v $ 
+# $RCSfile: GNUmakefile,v $ 

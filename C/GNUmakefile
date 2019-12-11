@@ -90,8 +90,12 @@ DVFM_EVS_PRIMARYFUNCTIONS = getCliErrorMessage\
 							getNcursesUserInterfaceMessage\
 							getWebUserInterfaceMessage
 
+#===> CGIs
+DVFM_EVS_CGIS = cgiMain.cgi
+
 DVFM_EVS_ALL = $(DVFM_EVS_SECUNDARYFUNCTIONS)\
-					$(DVFM_EVS_PRIMARYFUNCTIONS)
+			   $(DVFM_EVS_PRIMARYFUNCTIONS)\
+			   $(DVFM_EVS_CGIS)
 
 # implicit rule
 .c.o:
@@ -174,6 +178,8 @@ getNcursesUserInterfaceMessage: $(DVFM_EVS_GETNCURSESUSERINTERFACEMESSAGEOBJS)
 getWebUserInterfaceMessage: $(DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS)
 	cp $@ $@-$(OS)-$(CC)
+
+#===> CGIs
 
 cgiMain.cgi: $(DVFM_EVS_CGIMAINOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGIMAINOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
