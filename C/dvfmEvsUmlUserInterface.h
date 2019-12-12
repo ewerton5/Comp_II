@@ -42,6 +42,10 @@ typedef enum
     dvfmEvsUmlEmail,
     dvfmEvsUmlConfirmationEmail,
     dvfmEvsUmlHomePage,
+    dvfmEvsUmlAddPermanentUser,
+    dvfmEvsUmlConfirmationPassword,
+    dvfmEvsUmlAdd,
+    dvfmEvsUmlAddTemporaryUser,
     dvfmEvsUmlSizeUserInterfaceMessageNumberType
 } dvfmEvsUmlUserInterfaceMessageNumberType;
 
