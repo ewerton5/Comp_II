@@ -44,9 +44,22 @@ typedef enum
 
 typedef struct dvfmEvsUmlConfigurationOptions
 {
-	char *dvfmEvsUmlNameSettings;
-	char *dvfmEvsUmlSettings;
-	struct dvfmEvsUmlConfigurationOptions *dvfmEvsUmlNextSettings;
+	char *dvfmEvsUmlAdministratorUserIdentifier;
+	char *dvfmEvsUmlAdministratorUserIdentifierName;
+	char *dvfmEvsUmlPrivateRootDirectory;
+	char *dvfmEvsUmlPrivateRootDirectoryName;
+	char *dvfmEvsUmlDataDirectory;
+	char *dvfmEvsUmlDataDirectoryName;
+	char *dvfmEvsUmlCookiesDirectory;
+	char *dvfmEvsUmlCookiesDirectoryName;
+	char *dvfmEvsUmlUsersDataFilename;
+	char *dvfmEvsUmlUsersDataFilenameName;
+	char *dvfmEvsUmlInvitedUsersDataFilename;
+	char *dvfmEvsUmlInvitedUsersDataFilenameName;
+	char *dvfmEvsUmlRequestingUsersDataFilename;
+	char *dvfmEvsUmlRequestingUsersDataFilenameName;
+	char *dvfmEvsUmlLockedUsersDataFilename;
+	char *dvfmEvsUmlLockedUsersDataFilenameName;
 } dvfmEvsUmlConfigurationOptionsType;
 
 /* ===== end of file code ====== */

@@ -64,6 +64,8 @@ typedef enum
 	dvfmEvsUmlLongEncryptedPassword,
 	dvfmEvsUmlIncompatibleFlatPassword,
 	dvfmEvsUmlInvalidSalt,
+	dvfmEvsUmlCantOpenFile,
+	dvfmEvsUmlReadError,
 	dvfmEvsUmlSizeErrorType, 
 } dvfmEvsUmlErrorType;
 

@@ -62,7 +62,9 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Invalid encrypted password",
 		"The encrypted password is too long",
 		"Incompatible password",
-		"Invalid salt"
+		"Invalid salt",
+		"Can't Open file"
+		"Error reading the file"
 	},
 
 	{
@@ -99,7 +101,9 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Senha criptografada invalida",
 		"A senha criptografada e muito longa",
 		"Senha incompativel"
-		"Tempero invalido"
+		"Tempero invalido",
+		"O arqivo nao pode ser aberto"
+		"Erro na leitura do arquivo"
 	}
 };
 
@@ -141,7 +145,9 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Invalid encrypted password",
 		"The encrypted password is too long",
 		"Incompatible password",
-		"Invalid salt"
+		"Invalid salt",
+		"Can't Open file"
+		"Error reading the file"
 	},
 
 	{
@@ -178,7 +184,9 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Senha criptografada invalida",
 		"A senha criptografada e muito longa",
 		"Senha incompativel"
-		"Tempero invalido"
+		"Tempero invalido",
+		"O arqivo nao pode ser aberto"
+		"Erro na leitura do arquivo"
 	}
 };
 
@@ -220,7 +228,9 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Invalid encrypted password",
 		"The encrypted password is too long",
 		"Incompatible password",
-		"Invalid salt"
+		"Invalid salt",
+		"Can't Open file"
+		"Error reading the file"
 	},
 
 	{
@@ -257,7 +267,9 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Senha criptografada invalida",
 		"A senha criptografada e muito longa",
 		"Senha incompativel"
-		"Tempero invalido"
+		"Tempero invalido",
+		"O arqivo nao pode ser aberto"
+		"Erro na leitura do arquivo"
 	}
 };
 

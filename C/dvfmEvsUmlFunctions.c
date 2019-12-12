@@ -32,6 +32,7 @@ Initial revision
 #include	"dvfmEvsUmlFunctions.h"
 #include	"dvfmEvsUmlConst.h"
 #include	"dvfmEvsUmlTypes.h"
+#include	"dvfmEvsUmlConfig.h"
 
 /*
  * dvfmEvsUmlLanguageType
@@ -699,6 +700,88 @@ DvfmEvsUmlCheckPassword (char *dvfmEvsUmlFlatPassword, char *dvfmEvsUmlEncrypted
 dvfmEvsUmlErrorType
 DvfmEvsUmlGetConfigurationOptionsValues ( char *dvfmEvsUmlNameConfigurationFile, dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings)
 {
+	FILE *dvfmEvsUmlRead;
+	char dvfmEvsUmlBuffer[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE + 1];
+	char dvfmEvsUmlSettingValue[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char FdvfmEvsUmlSettingName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	unsigned dvfmEvsUmlIndex;
+	unsigned dvfmEvsUmlIndexBuffer;
+
+	if(!dvfmEvsUmlSettings)
+		return dvfmEvsUmlSecondEmptyPointer;
+
+	dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifier = DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER;
+	dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifierName = DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER_NAME;
+	dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectory = DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY;
+	dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectoryName = DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY_NAME;
+	dvfmEvsUmlSettings->dvfmEvsUmlDataDirectory = DVFM_EVS_UML_DATA_DIRECTORY;
+	dvfmEvsUmlSettings->dvfmEvsUmlDataDirectoryName = DVFM_EVS_UML_DATA_DIRECTORY_NAME;
+	dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectory = DVFM_EVS_UML_COOKIES_DIRECTORY;
+	dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectoryName = DVFM_EVS_UML_COOKIES_DIRECTORY_NAME;
+	dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename = DVFM_EVS_UML_USERS_DATA_FILENAME;
+	dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilenameName = DVFM_EVS_UML_USERS_DATA_FILENAME_NAME;
+	dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilename = DVFM_EVS_UML_INVITED_USERS_DATA_FILENAME;
+	dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilenameName = DVFM_EVS_UML_INVITED_USERS_DATA_FILENAME_NAME;
+	dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilename = DVFM_EVS_UML_REQUESTING_USERS_DATA_FILENAME;
+	dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilenameName = DVFM_EVS_UML_REQUESTING_USERS_DATA_FILENAME_NAME;
+	dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilename = DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME;
+	dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilenameName = DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME_NAME;
+
+	if(dvfmEvsUmlNameConfigurationFile)
+	{
+		if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlNameConfigurationFile, "r")))
+			return dvfmEvsUmlCantOpenFile;
+		
+		while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE, dvfmEvsUmlRead))
+			if(dvfmEvsUmlBuffer[0] != '#')
+			{
+				for (dvfmEvsUmlIndex = 0, dvfmEvsUmlIndexBuffer = 0; dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer] != ' ' &&
+				     dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer] != '='; dvfmEvsUmlIndex++, dvfmEvsUmlIndexBuffer++)
+					FdvfmEvsUmlSettingName[dvfmEvsUmlIndex] = dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer];
+				FdvfmEvsUmlSettingName[dvfmEvsUmlIndex] = '\0';
+
+				for (; dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer] == ' ' &&
+				     dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer] == '='; dvfmEvsUmlIndexBuffer++);
+
+				for (dvfmEvsUmlIndex = 0; dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer] == ' ' &&
+				     dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer] == '\n' &&
+				     dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer] == '\0'; dvfmEvsUmlIndex++, dvfmEvsUmlIndexBuffer++)
+					dvfmEvsUmlSettingValue[dvfmEvsUmlIndex] = dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer];
+				dvfmEvsUmlSettingValue[dvfmEvsUmlIndex] = '\0';
+
+				if(strcmp(FdvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifierName))
+					dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifier = dvfmEvsUmlSettingValue;
+				
+				if(strcmp(FdvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectoryName))
+					dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectory = dvfmEvsUmlSettingValue;
+				
+				if(strcmp(FdvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlDataDirectoryName))
+					dvfmEvsUmlSettings->dvfmEvsUmlDataDirectory = dvfmEvsUmlSettingValue;
+				
+				if(strcmp(FdvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectoryName))
+					dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectory = dvfmEvsUmlSettingValue;
+				
+				if(strcmp(FdvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilenameName))
+					dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename = dvfmEvsUmlSettingValue;
+				
+				if(strcmp(FdvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilenameName))
+					dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilename = dvfmEvsUmlSettingValue;
+				
+				if(strcmp(FdvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilenameName))
+					dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilename = dvfmEvsUmlSettingValue;
+				
+				if(strcmp(FdvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilenameName))
+					dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilename = dvfmEvsUmlSettingValue;
+			}
+	}
+
+	if(ferror(dvfmEvsUmlRead))
+	{
+		fclose(dvfmEvsUmlRead);
+		return dvfmEvsUmlReadError;
+	}
+
+	fclose(dvfmEvsUmlRead);
 	return dvfmEvsUmlOk;
 }
 /* $RCSfile: dvfmEvsUmlFunctions.c,v $ */
