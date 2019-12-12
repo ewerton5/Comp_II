@@ -56,6 +56,7 @@ DVFM_EVS_GETCRYPTALGORITHMOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEv
 DVFM_EVS_ENCODEPASSWORDWITHSPECIFICALGORITHMOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlEncodePasswordWithSpecificAlgorithm.o
 DVFM_EVS_ENCODEPASSWORDWITHSPECIFICSALTOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlEncodePasswordWithSpecificSalt.o
 DVFM_EVS_CHECKPASSWORDOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlCheckPassword.o
+DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlGetConfigurationOptionsValues.o
 
 #===> funcoes primarias
 DVFM_EVS_GETCLIERRORMESSAGEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlGetCliErrorMessage.o
@@ -85,7 +86,8 @@ DVFM_EVS_SECUNDARYFUNCTIONS = getLanguageIndex\
 							  getCryptAlgorithm\
 							  encodePasswordWithSpecificAlgorithm\
 							  encodePasswordWithSpecificSalt\
-							  checkPassword
+							  checkPassword\
+							  getWebUserInterfaceMessage
 
 #===> funcoes primarias
 DVFM_EVS_PRIMARYFUNCTIONS = getCliErrorMessage\
@@ -161,6 +163,10 @@ encodePasswordWithSpecificSalt: $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICSALTOBJS)
 
 checkPassword: $(DVFM_EVS_CHECKPASSWORDOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKPASSWORDOBJS) -lcrypt
+	cp $@ $@-$(OS)-$(CC)
+
+getWebUserInterfaceMessage: $(DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS) -lcrypt
 	cp $@ $@-$(OS)-$(CC)
 
 #===> funcoes primarias

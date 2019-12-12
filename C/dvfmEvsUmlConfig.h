@@ -30,13 +30,13 @@
 //#define DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER    "31119" //dvfm
 #define DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER_NAME      "dvfm-evs-uml-administrator-user-identifier"
 
-#define DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY			~/private/EEL270/2019-2/DVFM_EVS/
+#define DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY			"~/private/EEL270/2019-2/DVFM_EVS/"
 #define DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY_NAME	"dvfm-evs-uml-private-root-directory"
 
-#define DVFM_EVS_UML_DATA_DIRECTORY				    ~/private/EEL270/2019-2/DVFM_EVS/Data/
+#define DVFM_EVS_UML_DATA_DIRECTORY				    "~/private/EEL270/2019-2/DVFM_EVS/Data/"
 #define DVFM_EVS_UML_DATA_DIRECTORY_NAME		    "dvfm-evs-uml-data-directory"
 
-#define DVFM_EVS_UML_COOKIES_DIRECTORY			    ~/private/EEL270/2019-2/DVFM_EVS/Data/Cookies/
+#define DVFM_EVS_UML_COOKIES_DIRECTORY			    "~/private/EEL270/2019-2/DVFM_EVS/Data/Cookies/"
 #define DVFM_EVS_UML_COOKIES_DIRECTORY_NAME		        "dvfm-evs-uml-cookies-directory"
 
 #define DVFM_EVS_UML_USERS_DATA_FILENAME			    "users"

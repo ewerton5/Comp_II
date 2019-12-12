@@ -27,6 +27,8 @@
 #define DVFM_EVS_UML_MINIMUM_LENGTH_NICKNAME    	3
 #define DVFM_EVS_UML_MAXIMUM_LENGTH_NICKNAME    	65
 
+#define DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE     2049
+
 /* ===== end of file code ====== */
 
 #endif
