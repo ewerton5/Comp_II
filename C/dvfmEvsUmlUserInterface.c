@@ -23,7 +23,7 @@ Initial revision
 
 char *dvfmEvsUmlCliUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeUserInterfaceMessageNumberType]=
 {
- {
+{
 	"Account Management System",
 	"Authors",
 	"Login",
@@ -40,7 +40,11 @@ char *dvfmEvsUmlCliUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlS
 	"Confirmation Full Name",
 	"Email",
 	"Confirm Email",
-	"Home page"
+	"Home page",
+	"Add permanent user",
+	"Confirm password",
+	"Add",
+	"Add temporary user"
  },
 
  {
@@ -60,13 +64,17 @@ char *dvfmEvsUmlCliUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlS
 	"Confirmaçao Nome completo",
 	"Correio eletronico",
 	"Confirmar correio eletronico",
-	"Pagina inicial"
+	"Pagina inicial",
+	"Adicionar usuario permanente",
+	"Confirmar senha",
+	"Adicionar",
+	"Adicionar usuario temporario"
  }
 };
 
 char *dvfmEvsUmlNcursesUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeUserInterfaceMessageNumberType]=
 {
- {
+{
 	"Account Management System",
 	"Authors",
 	"Login",
@@ -83,7 +91,11 @@ char *dvfmEvsUmlNcursesUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvs
 	"Confirmation Full Name",
 	"Email",
 	"Confirm Email",
-	"Home page"
+	"Home page",
+	"Add permanent user",
+	"Confirm password",
+	"Add",
+	"Add temporary user"
  },
 
  {
@@ -103,7 +115,11 @@ char *dvfmEvsUmlNcursesUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvs
 	"Confirmaçao Nome completo",
 	"Correio eletronico",
 	"Confirmar correio eletronico",
-	"Pagina inicial"
+	"Pagina inicial",
+	"Adicionar usuario permanente",
+	"Confirmar senha",
+	"Adicionar",
+	"Adicionar usuario temporario"
  }
 };
 
@@ -126,7 +142,11 @@ char *dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlS
 	"Confirmation Full Name",
 	"Email",
 	"Confirm Email",
-	"Home page"
+	"Home page",
+	"Add permanent user",
+	"Confirm password",
+	"Add",
+	"Add temporary user"
  },
 
  {
@@ -146,7 +166,11 @@ char *dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlS
 	"Confirmaçao Nome completo",
 	"Correio eletronico",
 	"Confirmar correio eletronico",
-	"Pagina inicial"
+	"Pagina inicial",
+	"Adicionar usuario permanente",
+	"Confirmar senha",
+	"Adicionar",
+	"Adicionar usuario temporario"
  }
 };
 
