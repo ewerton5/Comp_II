@@ -37,7 +37,7 @@ main (int argc, char **argv)
 	if (dvfmEvsUmlReturnCode != ML_CGI_OK)
 		exit (DVFM_EVS_UML_OK);
 
-	if (dvfmEvsUmlExecutionEnvironment ==  ML_CGI_FALSE)
+	if (dvfmEvsUmlExecutionEnvironment ==  commandLine)
 	{
 		printf ("Invalid execution environment\n");
 		printf ("Ambiente de execucao invalido\n");
