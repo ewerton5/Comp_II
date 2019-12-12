@@ -702,6 +702,6 @@ DvfmEvsUmlCheckPassword (char *dvfmEvsUmlFlatPassword, char *dvfmEvsUmlEncrypted
 dvfmEvsUmlErrorType
 DvfmEvsUmlGetConfigurationOptionsValues ( char *dvfmEvsUmlNameConfigurationFile, dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings)
 {
-	return NULL;
+	return dvfmEvsUmlOk;
 }
 /* $RCSfile: dvfmEvsUmlFunctions.c,v $ */
