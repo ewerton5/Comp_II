@@ -71,7 +71,7 @@ main (int argc, char **argv)
 
 	printf("<html>\n");
 	printf("      <head>\n");
-	printf("            <meta autores = \"David Vinicius Ferreira Moreira e Ewerton Vieira de Silles\">\n");
+	printf("            <meta charset=\"utf-8\" autores = \"David Vinicius Ferreira Moreira e Ewerton Vieira de Silles\">\n");
 	printf("            <title>\n");
 	printf("                  Sistema de gerenciamento de contas\n");
 	printf("            </title>\n");
@@ -185,12 +185,12 @@ main (int argc, char **argv)
 	printf("                              </tr>\n");
 	printf("                              <tr>\n");
 	printf("                                    <td colspan=\"2\">\n");
-	printf("                                          <input type=\"hidden\" name=\"dmlConfinFrationFileNameileName\" value=dvfmEvsUmlConfigurationFileName>\n");
+	printf("                        				<input type=\"hidden\" name=\"dvfmEvsUmlConfigurationFileName\" value=\"%s\">\n", dvfmEvsUmlConfigurationFileName);
 	printf("                                    </td>\n");
 	printf("                              </tr>\n");
 	printf("                              <tr>\n");
 	printf("                                    <td colspan=\"2\">\n");
-	printf("                                          <input type=\"hidden\" name=\"dmlLangulue\" value=dvfmEe=dvfmEvsUmlLanguage>\n");
+	printf("				                        <input type=\"hidden\" name=\"dvfmEvsUmlLanguage\" value=\"%s\">\n", dvfmEvsUmlLanguage);
 	printf("                                    </td>\n");
 	printf("                              </tr>\n");
 	printf("                        </table>\n");
@@ -200,8 +200,8 @@ main (int argc, char **argv)
 	printf("\n");
 	printf("                  <form action=\"dvfmEvsUmlMain.cgi\">\n");
 	printf("\n");
-	printf("                        <input type=\"hidden\" name=\"dmlConfinFrationFileNameileName\" value=dvfmEvsUmlConfigurationFileName>\n");
-	printf("                        <input type=\"hidden\" name=\"dmlLangulue\" vadvfmEvsUmlLanguaEvsUmlLanguage\">\n");
+	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlConfigurationFileName\" value=\"%s\">\n", dvfmEvsUmlConfigurationFileName);
+	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlLanguage\" value=\"%s\">\n", dvfmEvsUmlLanguage);
 	printf("                        <input class=\"button\" type=\"submit\" value=\"Pagina inicial\">\n");
 	printf("\n");
 	printf("                  </form>\n");
