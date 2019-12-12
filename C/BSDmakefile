@@ -85,7 +85,7 @@ DVFM_EVS_SECUNDARYFUNCTIONS = getLanguageIndex\
 							  encodePasswordWithSpecificAlgorithm\
 							  encodePasswordWithSpecificSalt\
 							  checkPassword\
-							  getWebUserInterfaceMessage
+							  getConfigurationOptionsValues
 
 #===> funcoes primarias
 DVFM_EVS_PRIMARYFUNCTIONS = getCliErrorMessage\
@@ -163,7 +163,7 @@ checkPassword: $(DVFM_EVS_CHECKPASSWORDOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKPASSWORDOBJS) -lcrypt
 	cp $@ $@-$(OS)-$(CC)
 
-getWebUserInterfaceMessage: $(DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS)
+getConfigurationOptionsValues: $(DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS) -lcrypt
 	cp $@ $@-$(OS)-$(CC)
 
@@ -196,27 +196,27 @@ getWebUserInterfaceMessage: $(DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS)
 #===> CGIs
 
 dvfmEvsUmlMain.cgi: $(DVFM_EVS_CGIMAINOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGIMAINOBJS) -lcrypt -L./../Libraries/FreeBSD -lmlcgi
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGIMAINOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
 dvfmEvsUmlShowRequestRegistrationForm.cgi: $(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS) -lcrypt -L./../Libraries/FreeBSD -lmlcgi
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
 dvfmEvsUmlShowRequestPasswordResetForm.cgi: $(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS) -lcrypt -L./../Libraries/FreeBSD -lmlcgi
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
 dvfmEvsUmlShowWebHelp.cgi: $(DVFM_EVS_CGISHOWWEBHELPOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWWEBHELPOBJS) -lcrypt -L./../Libraries/FreeBSD -lmlcgi
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWWEBHELPOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
 dvfmEvsUmlShowLicense.cgi: $(DVFM_EVS_CGISHOWLICENSEOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWLICENSEOBJS) -lcrypt -L./../Libraries/FreeBSD -lmlcgi
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWLICENSEOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
 dvfmEvsUmlShowAddUserForm.cgi: $(DVFM_EVS_CGISHOWADDUSERFORMOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWADDUSERFORMOBJS) -lcrypt -L./../Libraries/FreeBSD -lmlcgi
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWADDUSERFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
 clean:

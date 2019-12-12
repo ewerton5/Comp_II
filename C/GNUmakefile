@@ -87,7 +87,7 @@ DVFM_EVS_SECUNDARYFUNCTIONS = getLanguageIndex\
 							  encodePasswordWithSpecificAlgorithm\
 							  encodePasswordWithSpecificSalt\
 							  checkPassword\
-							  getWebUserInterfaceMessage
+							  getConfigurationOptionsValues
 
 #===> funcoes primarias
 DVFM_EVS_PRIMARYFUNCTIONS = getCliErrorMessage\
@@ -165,7 +165,7 @@ checkPassword: $(DVFM_EVS_CHECKPASSWORDOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKPASSWORDOBJS) -lcrypt
 	cp $@ $@-$(OS)-$(CC)
 
-getWebUserInterfaceMessage: $(DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS)
+getConfigurationOptionsValues: $(DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS) -lcrypt
 	cp $@ $@-$(OS)-$(CC)
 
