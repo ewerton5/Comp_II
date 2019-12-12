@@ -680,5 +680,28 @@ DvfmEvsUmlCheckPassword (char *dvfmEvsUmlFlatPassword, char *dvfmEvsUmlEncrypted
 		return dvfmEvsUmlIncompatibleFlatPassword;
 
 	return dvfmEvsUmlOk;
+
+/*
+ * dvfmEvsUmlErrorType
+ * DvfmEvsUmlGetConfigurationOptionsValues (char *, dvfmEvsUmlConfigurationOptionsType *);
+ *
+ *
+ * Arguments:
+ * char * - name of the configuration file (I)
+ * dvfmEvsUmlConfigurationOptionsType * - the address of a local variable of type dvfmEvsUmlConfigurationOptionsType (I)
+ *
+ * Returned code:
+ * 
+ * dvfmEvsUmlOk - if the flat password is compatible with the encrypted one.
+ * 
+ * Description:
+ * Fills the structure with the configuration information.
+ */
+
+dvfmEvsUmlErrorType
+DvfmEvsUmlGetConfigurationOptionsValues ( char *dvfmEvsUmlNameConfigurationFile, dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings)
+{
+	
+}
 }
 /* $RCSfile: dvfmEvsUmlFunctions.c,v $ */
