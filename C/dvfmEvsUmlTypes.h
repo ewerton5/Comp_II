@@ -53,7 +53,8 @@ typedef enum
 
 typedef struct
 {
-	/* Nao sei o q vai aqui */
+	char dvfmEvsUmlNameSettings[];
+	char dvfmEvsUmlSettings[]
 }dvfmEvsUmlConfigurationOptionsType;
 
 
