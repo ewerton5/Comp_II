@@ -17,9 +17,6 @@
  * Revision 1.1  2019/11/07 17:17:27  ewerton.silles
  * Initial revision
  *
- * Revision 1.1  2019/11/07 16:49:23  ewerton.silles
- * Initial revision
- * 
 */
 
 #ifndef DVFM_EVS_UML_TYPES_H
@@ -54,7 +51,7 @@ typedef enum
 typedef struct
 {
 	/* Nao sei o q vai aqui */
-}dvfmEvsUmlConfigurationOptionsType;
+} dvfmEvsUmlConfigurationOptionsType;
 
 
 /* ===== end of file code ====== */

@@ -680,6 +680,7 @@ DvfmEvsUmlCheckPassword (char *dvfmEvsUmlFlatPassword, char *dvfmEvsUmlEncrypted
 		return dvfmEvsUmlIncompatibleFlatPassword;
 
 	return dvfmEvsUmlOk;
+}
 
 /*
  * dvfmEvsUmlErrorType
@@ -701,7 +702,6 @@ DvfmEvsUmlCheckPassword (char *dvfmEvsUmlFlatPassword, char *dvfmEvsUmlEncrypted
 dvfmEvsUmlErrorType
 DvfmEvsUmlGetConfigurationOptionsValues ( char *dvfmEvsUmlNameConfigurationFile, dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings)
 {
-	
-}
+	return NULL;
 }
 /* $RCSfile: dvfmEvsUmlFunctions.c,v $ */
