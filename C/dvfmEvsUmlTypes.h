@@ -36,12 +36,6 @@ typedef unsigned long long dvfmEvsUmlUserProfileType;
 
 typedef enum
 {
-	dvfmEvsUmlFalse,
-	dvfmEvsUmlTrue
-} dvfmEvsUmlbool;
-
-typedef enum
-{
 	dvfmEvsUmlDes,
 	dvfmEvsUmlMd5,
 	dvfmEvsUmlSha256,
