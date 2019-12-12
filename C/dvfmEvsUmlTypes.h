@@ -36,9 +36,9 @@ typedef unsigned long long dvfmEvsUmlUserProfileType;
 
 typedef enum
 {
-	false,
-	true
-} boolean;
+	dvfmEvsUmlFalse,
+	dvfmEvsUmlTrue
+} dvfmEvsUmlbool;
 
 typedef enum
 {
@@ -48,10 +48,11 @@ typedef enum
 	dvfmEvsUmlSha512
 } dvfmEvsUmlCryptAlgorithms;
 
-typedef struct
+typedef struct dvfmEvsUmlConfigurationOptions
 {
-	char dvfmEvsUmlNameSettings[50];
-	char dvfmEvsUmlSettings[50];
+	char *dvfmEvsUmlNameSettings;
+	char *dvfmEvsUmlSettings;
+	struct dvfmEvsUmlConfigurationOptions *dvfmEvsUmlNextSettings;
 } dvfmEvsUmlConfigurationOptionsType;
 
 /* ===== end of file code ====== */
