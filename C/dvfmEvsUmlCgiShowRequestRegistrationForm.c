@@ -71,7 +71,7 @@ main (int argc, char **argv)
 
 	printf("<html>\n");
 	printf("      <head>\n");
-	printf("            <meta charset=\"utf-8\" %s = \"David Vinicius Ferreira Moreira e Ewerton Vieira de Silles\">\n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlAuthors, dvfmEvsUmlLanguageSystem));
+	printf("            <meta %s = \"David Vinicius Ferreira Moreira e Ewerton Vieira de Silles\">\n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlAuthors, dvfmEvsUmlLanguageSystem));
 	printf("            <title>\n");
 	printf("                  %s\n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlSystemName, dvfmEvsUmlLanguageSystem));
 	printf("            </title>\n");

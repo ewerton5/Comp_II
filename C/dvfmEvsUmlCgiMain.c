@@ -70,9 +70,9 @@ main (int argc, char **argv)
 
 	printf("<html>\n");
 	printf("      <head>\n");
+	printf("            <meta %s = \"David Vinicius Ferreira Moreira e Ewerton Vieira de Silles\">\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlAuthors, dvfmEvsUmlLanguageSystem));
 	printf("            <title>\n");
 	printf("                  %s\n",  DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlSystemName, dvfmEvsUmlLanguageSystem));
-	printf("                  <meta charset=\"utf-8\" %s = \"David Vinicius Ferreira Moreira e Ewerton Vieira de Silles\">\n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlAuthors, dvfmEvsUmlLanguageSystem));
 	printf("            </title>\n");
 	printf("            <style type=\"text/css\">\n");
 	printf("                  body {\n");
@@ -223,7 +223,7 @@ main (int argc, char **argv)
 	printf("\n");
 	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlConfigurationFileName\" value=\"%s\">\n", dvfmEvsUmlConfigurationFileName);
 	printf("                        <input type=\"hidden\" name=\"dvfmEvsUmlLanguage\" value=\"%s\">\n", dvfmEvsUmlLanguage);
-	printf("                        <input class=\"button\" type=\"submit\" value=\"%s\">     \n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlTemporaryPassword, dvfmEvsUmlLanguageSystem));
+	printf("                        <input class=\"button\" type=\"submit\" value=\"%s\">     \n", DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlResetPassword, dvfmEvsUmlLanguageSystem));
 	printf("                  </form>\n");
 	printf("\n");
 	printf("                  <form action=\"dvfmEvsUmlShowWebHelp.cgi\">\n");
