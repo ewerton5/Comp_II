@@ -50,9 +50,9 @@ typedef enum
 
 typedef struct
 {
-	/* Nao sei o q vai aqui */
+	char dvfmEvsUmlNameSettings[50];
+	char dvfmEvsUmlSettings[50];
 } dvfmEvsUmlConfigurationOptionsType;
-
 
 /* ===== end of file code ====== */
 

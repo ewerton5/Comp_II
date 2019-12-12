@@ -28,15 +28,28 @@
 
 #define DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER      31122 //evs
 //#define DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER    31119 //dvfm
+#define DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER_NAME      "dvfm-evs-uml-administrator-user-identifier"
 
 #define DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY			~/private/EEL270/2019-2/DVFM_EVS/
-#define DVFM_EVS_UML_DATA_DIRECTORY				~/private/EEL270/2019-2/DVFM_EVS/Data/
-#define DVFM_EVS_UML_COOKIES_DIRECTORY				~/private/EEL270/2019-2/DVFM_EVS/Data/Cookies/
+#define DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY_NAME	"dvfm-evs-uml-private-root-directory"
+
+#define DVFM_EVS_UML_DATA_DIRECTORY				    ~/private/EEL270/2019-2/DVFM_EVS/Data/
+#define DVFM_EVS_UML_DATA_DIRECTORY_NAME		    "dvfm-evs-uml-data-directory"
+
+#define DVFM_EVS_UML_COOKIES_DIRECTORY			    ~/private/EEL270/2019-2/DVFM_EVS/Data/Cookies/
+#define DVFM_EVS_UML_COOKIES_DIRECTORY_NAME		        "dvfm-evs-uml-cookies-directory"
 
 #define DVFM_EVS_UML_USERS_DATA_FILENAME			    "users"
+#define DVFM_EVS_UML_USERS_DATA_FILENAME_NAME           "dvfm-evs-uml-users-data-filename"
+
 #define DVFM_EVS_UML_INVITED_USERS_DATA_FILENAME		"invited.users"
+#define DVFM_EVS_UML_INVITED_USERS_DATA_FILENAME_NAME   "dvfm-evs-uml-invited-users-data-filename"
+
 #define DVFM_EVS_UML_REQUESTING_USERS_DATA_FILENAME		"requesting.users"
+#define DVFM_EVS_UML_REQUESTING_USERS_DATA_FILENAME_NAME    "dvfm-evs-uml-requesting-users-data-filename"
+
 #define DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME			"locked.users"
+#define DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME_NAME    "dvfm-evs-uml-loked-users-data-filename"
 
 /* ===== end of file code ====== */
 
