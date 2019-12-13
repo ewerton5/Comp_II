@@ -24,6 +24,8 @@
 
 /* ===== beginning of file code ===== */
 
+#include	"dvfmEvsUmlConst.h"
+
 typedef enum
 {
 	dvfmEvsUmlEnglish = 0, 
@@ -44,24 +46,24 @@ typedef enum
 
 typedef struct dvfmEvsUmlConfigurationOptions
 {
-	char *dvfmEvsUmlWebServerUrl;
-	char *dvfmEvsUmlWebServerUrlName;
-	char *dvfmEvsUmlAdministratorUserIdentifier;
-	char *dvfmEvsUmlAdministratorUserIdentifierName;
-	char *dvfmEvsUmlPrivateRootDirectory;
-	char *dvfmEvsUmlPrivateRootDirectoryName;
-	char *dvfmEvsUmlDataDirectory;
-	char *dvfmEvsUmlDataDirectoryName;
-	char *dvfmEvsUmlCookiesDirectory;
-	char *dvfmEvsUmlCookiesDirectoryName;
-	char *dvfmEvsUmlUsersDataFilename;
-	char *dvfmEvsUmlUsersDataFilenameName;
-	char *dvfmEvsUmlInvitedUsersDataFilename;
-	char *dvfmEvsUmlInvitedUsersDataFilenameName;
-	char *dvfmEvsUmlRequestingUsersDataFilename;
-	char *dvfmEvsUmlRequestingUsersDataFilenameName;
-	char *dvfmEvsUmlLockedUsersDataFilename;
-	char *dvfmEvsUmlLockedUsersDataFilenameName;
+	char dvfmEvsUmlWebServerUrl[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlWebServerUrlName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlAdministratorUserIdentifier[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlAdministratorUserIdentifierName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlPrivateRootDirectory[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlPrivateRootDirectoryName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlDataDirectory[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlDataDirectoryName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlCookiesDirectory[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlCookiesDirectoryName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlUsersDataFilename[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlUsersDataFilenameName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlInvitedUsersDataFilename[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlInvitedUsersDataFilenameName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlRequestingUsersDataFilename[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlRequestingUsersDataFilenameName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlLockedUsersDataFilename[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlLockedUsersDataFilenameName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
 } dvfmEvsUmlConfigurationOptionsType;
 
 /* ===== end of file code ====== */
