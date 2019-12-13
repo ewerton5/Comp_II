@@ -24,20 +24,28 @@ int
 main(int argc,char *argv[ ]) 
 {
     dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
-    dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings;
+    dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings = malloc(sizeof(dvfmEvsUmlConfigurationOptionsType));
 	if (argc != DVFM_EVS_NUMBER_ARGUMENTS) 
 	{
 		printf("use: %s <filename>\n", argv[0]);
 		exit(DVFM_EVS_NUMBER_ARGUMENTS_INVALID);
 	}
 
-    dvfmEvsUmlErrorCode = DvfmEvsUmlGetConfigurationOptionsValues(argv[1], &dvfmEvsUmlSettings);
+    dvfmEvsUmlErrorCode = DvfmEvsUmlGetConfigurationOptionsValues(argv[1], dvfmEvsUmlSettings);
 	if (dvfmEvsUmlErrorCode)
     {
         printf("%s\n", DvfmEvsUmlGetCliErrorMessage(dvfmEvsUmlErrorCode, dvfmEvsUmlEnglish));
         exit(DVFM_EVS_OK);
     }
-    printf("First option value: \"%s\".\n", dvfmEvsUmlSettings->dvfmEvsUmlDataDirectory);
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlWebServerUrlName, dvfmEvsUmlSettings->dvfmEvsUmlWebServerUrl);
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifierName, dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifier);
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectoryName, dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectory);
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlDataDirectoryName, dvfmEvsUmlSettings->dvfmEvsUmlDataDirectory);
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectoryName, dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectory);
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilenameName, dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename);
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilenameName, dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilename);
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilenameName, dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilename);
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilenameName, dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilename);
     
 	return DVFM_EVS_OK;
 }

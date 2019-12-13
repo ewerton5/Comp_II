@@ -44,6 +44,8 @@ typedef enum
 
 typedef struct dvfmEvsUmlConfigurationOptions
 {
+	char *dvfmEvsUmlWebServerUrl;
+	char *dvfmEvsUmlWebServerUrlName;
 	char *dvfmEvsUmlAdministratorUserIdentifier;
 	char *dvfmEvsUmlAdministratorUserIdentifierName;
 	char *dvfmEvsUmlPrivateRootDirectory;
