@@ -157,7 +157,7 @@ main (int argc, char *argv[])
 
     switch (dvfmEvsUmlCurrentOption)
     {
-    case 'h':
+        case 'h':
         
             /* DvfmEvsUmlShowCliHelp */
 
@@ -206,7 +206,7 @@ main (int argc, char *argv[])
         
         break;
 
-    case 'o':
+        case 'o':
         
             /* DvfmEvsUmlShowConfigurationValues */
 
@@ -256,7 +256,7 @@ main (int argc, char *argv[])
         
         break;
 
-    case 'N':
+        case 'N':
 
             /* DvfmEvsUmlRunNcursesInterface */  
 
@@ -312,7 +312,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'C':
+        case 'C':
 
             /* DvfmEvsUmlAddUser */ 
 
@@ -405,7 +405,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'a':
+        case 'a':
         
             /* DvfmEvsUmlAddUser */
 
@@ -508,7 +508,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'i':
+        case 'i':
         
             /* DvfmEvsUmlAddUser */
 
@@ -611,7 +611,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 't':
+        case 't':
         
             /* DvfmEvsUmlAcceptInvite */
 
@@ -669,7 +669,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'j':
+        case 'j':
         
             /* DvfmEvsUmlRejectInvite */
 
@@ -727,7 +727,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'n':
+        case 'n':
         
             /* DvfmEvsUmlRequestRegistration */
 
@@ -817,7 +817,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'q':
+        case 'q':
         
             /* DvfmEvsUmlGetPendingRegistrationRequestsPerUser */
 
@@ -875,7 +875,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'Q':
+        case 'Q':
         
             /* DvfmEvsUmlGetPendingRegistrationRequests */
 
@@ -933,7 +933,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'v':
+        case 'v':
         
             /* DvfmEvsUmlApproveRegistrationRequest */
 
@@ -999,7 +999,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'd':
+        case 'd':
         
             /* DvfmEvsUmlDisapproveRegistrationRequest */
 
@@ -1066,7 +1066,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'U':
+        case 'U':
         
             /* DvfmEvsUmlGetUnlockingRequests */
 
@@ -1125,7 +1125,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'l':
+        case 'l':
         
             /* DvfmEvsUmlLockUserAccount */
 
@@ -1189,7 +1189,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'u':
+        case 'u':
         
             /* DvfmEvsUmlUnlockUserAccount */
 
@@ -1247,7 +1247,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'p':
+        case 'p':
         
             /* DvfmEvsUmlChangeUserPassword */
 
@@ -1311,7 +1311,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'r':
+        case 'r':
         
             /* DvfmEvsUmlResetUserPassword */
 
@@ -1369,7 +1369,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'm':
+        case 'm':
         
             /* DvfmEvsUmlChangeUserName */
 
@@ -1449,7 +1449,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'e':
+        case 'e':
         
             /* DvfmEvsUmlChangeUserEmail */
 
@@ -1529,7 +1529,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'c':
+        case 'c':
         
             /* DvfmEvsUmlConfirmEmailChange */
 
@@ -1600,7 +1600,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'g':
+        case 'g':
         
             /* DvfmEvsUmlChangeUserProfile */
 
@@ -1679,7 +1679,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 's':
+        case 's':
         
             /* DvfmEvsUmlGetUsers */
 
@@ -1729,7 +1729,7 @@ main (int argc, char *argv[])
         
         break;
         
-    case 'S':
+        case 'S':
         
             /* DvfmEvsUmlSearchUsers */
 
@@ -1802,7 +1802,7 @@ main (int argc, char *argv[])
         
         break;
         
-    default:
+        default:
 
             /* erro */
 
