@@ -75,7 +75,7 @@ DVFM_EVS_CGISHOWLICENSEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowLicense.o dvfm
 DVFM_EVS_CGISHOWADDUSERFORMOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowAddUserForm.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
 
 #===> arquivos principais
-DVFM_EVS_DVFMEVSUMLOBJS = dvfmEvsUml.o dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o
+DVFM_EVS_DVFMEVSUMLOBJS = dvfmEvsUml.o dvfmEvsUmlErrors.o
 
 # shortcut
 #===> funcoes secundarias
