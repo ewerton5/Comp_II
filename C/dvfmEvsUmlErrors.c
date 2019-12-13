@@ -229,8 +229,15 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"The encrypted password is too long",
 		"Incompatible password",
 		"Invalid salt",
-		"Can't Open file"
-		"Error reading the file"
+		"Can't Open file",
+		"Error reading the file",
+		"The argument is too short",
+		"The argument is too Long",
+		"Invalid option position",
+		"Few sub options",
+		"Invalid sub option",
+		"Missing any required argument",
+		"Short or long invalid option"
 	},
 
 	{
@@ -269,7 +276,14 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Senha incompativel"
 		"Tempero invalido",
 		"O arqivo nao pode ser aberto"
-		"Erro na leitura do arquivo"
+		"Erro na leitura do arquivo",
+		"O argumento e muito curto",
+		"O argumento e muito longo",
+		"Posicao da opcao invalida",
+		"Poucas sub opcoes",
+		"Sub opcao invalida",
+		"Faltou algum argumento obrigatrio",
+		"Opcao curta ou longa invalida"
 	}
 };
 
