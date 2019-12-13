@@ -66,6 +66,13 @@ typedef enum
 	dvfmEvsUmlInvalidSalt,
 	dvfmEvsUmlCantOpenFile,
 	dvfmEvsUmlReadError,
+	dvfmEvsUmlShortArgument,
+	dvfmEvsUmlLongtArgument,
+	dvfmEvsUmlInvalidPositionOptions,
+	dvfmEvsUmlFewSubOptions,
+	dvfmEvsUmlInvalidSubOption,
+	dvfmEvsUmlLackCompulsorySubOption,
+	dvfmEvsUmlInvalidOptions,
 	dvfmEvsUmlSizeErrorType, 
 } dvfmEvsUmlErrorType;
 
