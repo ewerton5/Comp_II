@@ -74,6 +74,9 @@ DVFM_EVS_CGISHOWWEBHELPOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowWebHelp.o dvfm
 DVFM_EVS_CGISHOWLICENSEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowLicense.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
 DVFM_EVS_CGISHOWADDUSERFORMOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowAddUserForm.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
 
+#===> arquivos principais
+DVFM_EVS_DVFMEVSUMLOBJS = dvfmEvsUml.o dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o
+
 # shortcut
 #===> funcoes secundarias
 DVFM_EVS_SECUNDARYFUNCTIONS = getLanguageIndex\
@@ -219,6 +222,12 @@ dvfmEvsUmlShowLicense.cgi: $(DVFM_EVS_CGISHOWLICENSEOBJS)
 
 dvfmEvsUmlShowAddUserForm.cgi: $(DVFM_EVS_CGISHOWADDUSERFORMOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWADDUSERFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
+	cp $@ $@-$(OS)-$(CC)
+
+#===> arquivos principais
+
+dvfmEvsUml: $(DVFM_EVS_DVFMEVSUMLOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_DVFMEVSUMLOBJS) -lcrypt
 	cp $@ $@-$(OS)-$(CC)
 
 clean:
