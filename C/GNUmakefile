@@ -44,7 +44,7 @@ CFLAGS = -Wall -std=c11
 LFLAGS = -Wall -std=c11
 
 #  object files
-#===> funcoes secundarias
+#===> secundary functions
 DVFM_EVS_GETLANGUAGEINDEXOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlGetLanguageIndex.o
 DVFM_EVS_GETABSOLUTEFILENAMEOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlGetAbsoluteFileName.o
 DVFM_EVS_CHECKSTRINGFIELDOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlCheckStringField.o
@@ -58,7 +58,7 @@ DVFM_EVS_ENCODEPASSWORDWITHSPECIFICSALTOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlEr
 DVFM_EVS_CHECKPASSWORDOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlCheckPassword.o
 DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlGetConfigurationOptionsValues.o
 
-#===> funcoes primarias
+#===> primary functions
 DVFM_EVS_GETCLIERRORMESSAGEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlGetCliErrorMessage.o
 DVFM_EVS_GETNCURSESERRORMESSAGEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlGetNcursesErrorMessage.o
 DVFM_EVS_GETWEBERRORMESSAGEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlGetWebErrorMessage.o
@@ -74,11 +74,11 @@ DVFM_EVS_CGISHOWWEBHELPOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowWebHelp.o dvfm
 DVFM_EVS_CGISHOWLICENSEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowLicense.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
 DVFM_EVS_CGISHOWADDUSERFORMOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowAddUserForm.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
 
-#===> arquivos principais
+#===> primary files
 DVFM_EVS_DVFMEVSUMLOBJS = dvfmEvsUml.o dvfmEvsUmlErrors.o
 
 # shortcut
-#===> funcoes secundarias
+#===> secundary functions
 DVFM_EVS_SECUNDARYFUNCTIONS = getLanguageIndex\
 							  getAbsoluteFileName\
 							  checkStringField\
@@ -92,7 +92,7 @@ DVFM_EVS_SECUNDARYFUNCTIONS = getLanguageIndex\
 							  checkPassword\
 							  getConfigurationOptionsValues
 
-#===> funcoes primarias
+#===> primary functions
 DVFM_EVS_PRIMARYFUNCTIONS = getCliErrorMessage\
 							getNcursesErrorMessage\
 							getWebErrorMessage\
@@ -108,9 +108,13 @@ DVFM_EVS_CGIS = dvfmEvsUmlMain.cgi\
 				dvfmEvsUmlShowLicense.cgi\
 				dvfmEvsUmlShowAddUserForm.cgi
 
+#===> primary files
+DVFM_EVS_PRIMARYFILES = dvfmEvsUml
+
 DVFM_EVS_ALL = $(DVFM_EVS_SECUNDARYFUNCTIONS)\
 			   $(DVFM_EVS_PRIMARYFUNCTIONS)\
-			   $(DVFM_EVS_CGIS)
+			   $(DVFM_EVS_CGIS)\
+			   $(DVFM_EVS_PRIMARYFILES)
 
 # implicit rule
 .c.o:
@@ -123,7 +127,7 @@ secundaryFunctions: $(DVFM_EVS_SECUNDARYFUNCTIONS)
 
 primaryFunctions: $(DVFM_EVS_PRIMARYFUNCTIONS)
 
-#===> funcoes secundarias
+#===> secundary functions
 getLanguageIndex: $(DVFM_EVS_GETLANGUAGEINDEXOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETLANGUAGEINDEXOBJS) -lcrypt
 	cp $@ $@-$(OS)-$(CC)
@@ -172,7 +176,7 @@ getConfigurationOptionsValues: $(DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS) -lcrypt
 	cp $@ $@-$(OS)-$(CC)
 
-#===> funcoes primarias
+#===> primary functions
 
 getCliErrorMessage: $(DVFM_EVS_GETCLIERRORMESSAGEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETCLIERRORMESSAGEOBJS)
@@ -224,7 +228,7 @@ dvfmEvsUmlShowAddUserForm.cgi: $(DVFM_EVS_CGISHOWADDUSERFORMOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWADDUSERFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
 	cp $@ $@-$(OS)-$(CC)
 
-#===> arquivos principais
+#===> primary files
 
 dvfmEvsUml: $(DVFM_EVS_DVFMEVSUMLOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_DVFMEVSUMLOBJS) -lcrypt
