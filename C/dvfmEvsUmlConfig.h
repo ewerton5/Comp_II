@@ -23,49 +23,51 @@
 /* ===== beginning of file code ===== */
 
 #ifndef DVFM_EVS_UML_WEB_SERVER_URL
-#define DVFM_EVS_UML_WEB_SERVER_URL "http://www02.del.ufrj.br/~ewerton.silles/CGIs/"
-#endif /* #ifndef DVFM_EVS_UML_WEB_SERVER_URL */
+#define DVFM_EVS_UML_WEB_SERVER_URL "http://www02.del.ufrj.br/~ewerton.silles/CGIs/"    //evs
+//#define DVFM_EVS_UML_WEB_SERVER_URL "http://www02.del.ufrj.br/~david.moreira/CGIs/"   //dvfm
+#endif
+#define DVFM_EVS_UML_WEB_SERVER_URL_NAME "dvfm-evs-uml-web-server-url"
 
 #ifndef DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER
 #define DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER      "31122" //evs
 //#define DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER    "31119" //dvfm
-#define DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER_NAME      "dvfm-evs-uml-administrator-user-identifier"
 #endif
+#define DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER_NAME      "dvfm-evs-uml-administrator-user-identifier"
 
 #ifndef DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY
 #define DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY			"~/private/EEL270/2019-2/DVFM_EVS/"
-#define DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY_NAME	"dvfm-evs-uml-private-root-directory"
 #endif
+#define DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY_NAME	"dvfm-evs-uml-private-root-directory"
 
 #ifndef DVFM_EVS_UML_DATA_DIRECTORY
 #define DVFM_EVS_UML_DATA_DIRECTORY				    "~/private/EEL270/2019-2/DVFM_EVS/Data/"
-#define DVFM_EVS_UML_DATA_DIRECTORY_NAME		    "dvfm-evs-uml-data-directory"
 #endif
+#define DVFM_EVS_UML_DATA_DIRECTORY_NAME		    "dvfm-evs-uml-data-directory"
 
 #ifndef DVFM_EVS_UML_COOKIES_DIRECTORY
 #define DVFM_EVS_UML_COOKIES_DIRECTORY			    "~/private/EEL270/2019-2/DVFM_EVS/Data/Cookies/"
-#define DVFM_EVS_UML_COOKIES_DIRECTORY_NAME		        "dvfm-evs-uml-cookies-directory"
 #endif
+#define DVFM_EVS_UML_COOKIES_DIRECTORY_NAME		        "dvfm-evs-uml-cookies-directory"
 
 #ifndef DVFM_EVS_UML_USERS_DATA_FILENAME
 #define DVFM_EVS_UML_USERS_DATA_FILENAME			    "users"
-#define DVFM_EVS_UML_USERS_DATA_FILENAME_NAME           "dvfm-evs-uml-users-data-filename"
 #endif
+#define DVFM_EVS_UML_USERS_DATA_FILENAME_NAME           "dvfm-evs-uml-users-data-filename"
 
 #ifndef DVFM_EVS_UML_INVITED_USERS_DATA_FILENAME
 #define DVFM_EVS_UML_INVITED_USERS_DATA_FILENAME		"invited.users"
-#define DVFM_EVS_UML_INVITED_USERS_DATA_FILENAME_NAME   "dvfm-evs-uml-invited-users-data-filename"
 #endif
+#define DVFM_EVS_UML_INVITED_USERS_DATA_FILENAME_NAME   "dvfm-evs-uml-invited-users-data-filename"
 
 #ifndef DVFM_EVS_UML_REQUESTING_USERS_DATA_FILENAME
 #define DVFM_EVS_UML_REQUESTING_USERS_DATA_FILENAME		"requesting.users"
-#define DVFM_EVS_UML_REQUESTING_USERS_DATA_FILENAME_NAME    "dvfm-evs-uml-requesting-users-data-filename"
 #endif
+#define DVFM_EVS_UML_REQUESTING_USERS_DATA_FILENAME_NAME    "dvfm-evs-uml-requesting-users-data-filename"
 
 #ifndef DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME
 #define DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME			"locked.users"
-#define DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME_NAME    "dvfm-evs-uml-loked-users-data-filename"
 #endif
+#define DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME_NAME    "dvfm-evs-uml-loked-users-data-filename"
 
 /* ===== end of file code ====== */
 
