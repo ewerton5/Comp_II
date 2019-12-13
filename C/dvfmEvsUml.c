@@ -13,8 +13,8 @@ $Log$
 #include                            <stdlib.h>
 #include                            <getopt.h>
 #include                            <string.h>
+#include                            <stdio.h>
 #include                           "dvfmEvsUmlTypes.h"
-#include                           "dvfmEvsUmlFunctions.h"
 #include                           "dvfmEvsUmlErrors.h"
 
 #define DVFM_EVS_UML_MINIMUM_NUMBER_ARGUMENTS   2
@@ -54,7 +54,7 @@ $Log$
 #define DVFM_EVS_UML_INVALID_SUB_OPTIONS                                5
 #define DVFM_EVS_UML_LACK_COMPULSORY_SUBOPTION                          6
 #define DVFM_EVS_UML_INVALID_OPTIONS                                    7
-
+#define DVFM_EVS_UML_INVALID_SUB_OPTIONS                                8
 int
 main (int argc, char *argv[])
 {
@@ -122,7 +122,7 @@ main (int argc, char *argv[])
     char *dvfmEvsUmlKey = "";
    
 
-    char dvfmEvsUmlSubOption [dvfmEvsUmlSizeSubOption + 1] = 
+    char *dvfmEvsUmlSubOption [dvfmEvsUmlSizeSubOption + 1] = 
     {
         "configuration",
         "language",
@@ -140,7 +140,6 @@ main (int argc, char *argv[])
 
     int dvfmEvsUmlIndexArgument, dvfmEvsUmlIndexNameSubOption;
     char *dvfmEvsUmlCurrentArgument;
-    char *dvfmEvsUmlNameSubOption;
     char *dvfmEvsUmlValueSubOption;
 
     int dvfmEvsUmlMandatorySubOptionOccurs = 0;
@@ -198,20 +197,26 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
 
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
-                    
-                    dvfmEvsUmlLanguage = dvfmEvsUmlValueSubOption;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -253,20 +258,26 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
 
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
 
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -309,14 +320,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -328,7 +343,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -371,14 +388,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -413,23 +434,12 @@ main (int argc, char *argv[])
                     dvfmEvsUmlConfirmEmail = dvfmEvsUmlValueSubOption;
 
                     break;
-
-                case dvfmEvsUmlIndexProfile:
-
-                    if(dvfmEvsUmlValueSubOption != "administrator" && dvfmEvsUmlValueSubOption != "professor" && dvfmEvsUmlValueSubOption != "student" && dvfmEvsUmlValueSubOption != "administrador-professor" && dvfmEvsUmlValueSubOption != "administrador-student" && dvfmEvsUmlValueSubOption != "professor-student" && dvfmEvsUmlValueSubOption != "administrador-professor-student")
-                    {
-                        /* erro */
-                        printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
-                        exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
-                    }
-                    
-                    dvfmEvsUmlProfile = dvfmEvsUmlValueSubOption;
-
-                    break;
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -472,14 +482,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -527,7 +541,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    if(dvfmEvsUmlValueSubOption != "administrator" && dvfmEvsUmlValueSubOption != "professor" && dvfmEvsUmlValueSubOption != "student")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "administrator") != 0 && strcmp( dvfmEvsUmlValueSubOption, "professor") != 0 && strcmp( dvfmEvsUmlValueSubOption, "student") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -540,7 +554,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -583,14 +599,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -638,7 +658,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    if(dvfmEvsUmlValueSubOption != "administrator" && dvfmEvsUmlValueSubOption != "professor" && dvfmEvsUmlValueSubOption != "student")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "administrator") != 0 && strcmp( dvfmEvsUmlValueSubOption, "professor") != 0 && strcmp( dvfmEvsUmlValueSubOption, "student") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -651,7 +671,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -694,14 +716,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
                 
@@ -715,7 +741,9 @@ main (int argc, char *argv[])
 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -758,14 +786,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -779,7 +811,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -822,14 +856,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -875,7 +913,9 @@ main (int argc, char *argv[])
 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -918,14 +958,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -939,7 +983,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -982,14 +1028,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -1003,7 +1053,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -1013,7 +1065,7 @@ main (int argc, char *argv[])
             if(dvfmEvsUmlMandatorySubOptionOccurs < DVFM_EVS_UML_REQUIRED_SUBOPTION_GET_PENDING_REGISTRATION_REQUESTS_Q)
             {
                 /* erro */
-                printf("%s\n", DvfmEvsUlGetCliUserInterfaceMessage ( dvfmEvsUmlLackCompulsorySubOption, dvfmEvsUmlLanguage));
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlLackCompulsorySubOption, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_LACK_COMPULSORY_SUBOPTION);
             }
         
@@ -1046,14 +1098,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -1075,7 +1131,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -1119,14 +1177,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -1148,7 +1210,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -1192,14 +1256,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -1213,7 +1281,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -1256,14 +1326,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -1283,7 +1357,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -1326,14 +1402,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -1347,7 +1427,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -1390,14 +1472,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -1417,7 +1503,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -1460,14 +1548,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -1481,7 +1573,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -1524,14 +1618,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -1567,7 +1665,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -1610,14 +1710,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -1653,7 +1757,9 @@ main (int argc, char *argv[])
 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -1696,14 +1802,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
                     break;
 
                 case dvfmEvsUmlIndexUser:
@@ -1730,7 +1840,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -1773,14 +1885,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -1804,7 +1920,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    if(dvfmEvsUmlValueSubOption != "administrator" && dvfmEvsUmlValueSubOption != "professor" && dvfmEvsUmlValueSubOption != "student")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "administrator") != 0 && strcmp( dvfmEvsUmlValueSubOption, "professor") != 0 && strcmp( dvfmEvsUmlValueSubOption, "student") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -1817,7 +1933,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -1860,20 +1978,26 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -1916,14 +2040,18 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(dvfmEvsUmlValueSubOption != "portuguese" && dvfmEvsUmlValueSubOption != "english")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
                         exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
                     }
                     
-                    dvfmEvsUmlLanguage = DvfmEvsUmlGetLanguageIndex(dvfmEvsUmlValueSubOption);
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlPortuguese;
+
+                    if(strcmp( dvfmEvsUmlValueSubOption, "english") == 0)
+                        dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
 
                     break;
 
@@ -1941,7 +2069,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexProfile:
                     
-                    if(dvfmEvsUmlValueSubOption != "administrator" && dvfmEvsUmlValueSubOption != "professor" && dvfmEvsUmlValueSubOption != "student" && dvfmEvsUmlValueSubOption != "administrador-professor" && dvfmEvsUmlValueSubOption != "administrador-student" && dvfmEvsUmlValueSubOption != "professor-student" && dvfmEvsUmlValueSubOption != "administrador-professor-student")
+                    if(strcmp( dvfmEvsUmlValueSubOption, "administrator") != 0 && strcmp( dvfmEvsUmlValueSubOption, "professor") != 0 && strcmp( dvfmEvsUmlValueSubOption, "student") != 0 && strcmp( dvfmEvsUmlValueSubOption, "administrador-professor") != 0 && strcmp( dvfmEvsUmlValueSubOption, "administrador-student") != 0 && strcmp( dvfmEvsUmlValueSubOption, "professor-student") != 0 && strcmp( dvfmEvsUmlValueSubOption, "administrador-professor-student") != 0)
                     {
                         /* erro */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -1954,7 +2082,9 @@ main (int argc, char *argv[])
                 
                 default:
 
-                    /* menssagem de erro para opcao curta inexistente? */
+                    /* erro */
+                    printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlMissingSubOptions, dvfmEvsUmlLanguage));
+                    exit(DVFM_EVS_UML_INVALID_SUB_OPTIONS);
 
                     break;
                 }
@@ -1977,7 +2107,20 @@ main (int argc, char *argv[])
             exit(DVFM_EVS_UML_INVALID_OPTIONS);
 
         break;
+
     }
+    printf("configuration = %s\n", dvfmEvsUmlConfiguration);
+    printf("language = %u\n", dvfmEvsUmlLanguage);
+    printf("user = %s\n", dvfmEvsUmlUser);
+    printf("username = %s\n", dvfmEvsUmlUsername);
+    printf("confirm-username = %s\n", dvfmEvsUmlConfirmUsername);
+    printf("email = %s\n", dvfmEvsUmlEmail);
+    printf("confirm-email = %s\n", dvfmEvsUmlConfirmEmail);
+    printf("profile = %s\n", dvfmEvsUmlProfile);
+    printf("friend-email = %s\n", dvfmEvsUmlFriendEmail);
+    printf("nickname = %s\n", dvfmEvsUmlNickname);
+    printf("key = %s\n", dvfmEvsUmlKey);
+
 }
 
 /* $RCSfile$ */

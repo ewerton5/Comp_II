@@ -71,7 +71,8 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Few sub options",
 		"Invalid sub option",
 		"Missing any required argument",
-		"Short or long invalid option"
+		"Short or long invalid option",
+		"Missing sub option"
 	},
 
 	{
@@ -117,7 +118,8 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Poucas sub opcoes",
 		"Sub opcao invalida",
 		"Faltou algum argumento obrigatorio",
-		"Opcao curta ou longa invalida"
+		"Opcao curta ou longa invalida",
+		"Sub opcao curta ou longa invalida"
 	}
 };
 
@@ -168,7 +170,8 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Few sub options",
 		"Invalid sub option",
 		"Missing any required argument",
-		"Short or long invalid option"
+		"Short or long invalid option",
+		"Missing sub option"
 	},
 
 	{
@@ -204,9 +207,9 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Palavra vazia",
 		"Senha criptografada invalida",
 		"A senha criptografada e muito longa",
-		"Senha incompativel"
+		"Senha incompativel",
 		"Salt invalido",
-		"O arquivo nao pode ser aberto"
+		"O arquivo nao pode ser aberto",
 		"Erro na leitura do arquivo",
 		"O argumento e muito curto",
 		"O argumento e muito longo",
@@ -214,7 +217,8 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Poucas sub opcoes",
 		"Sub opcao invalida",
 		"Faltou algum argumento obrigatorio",
-		"Opcao curta ou longa invalida"
+		"Opcao curta ou longa invalida",
+		"Sub opcao curta ou longa invalida"
 	}
 };
 
@@ -265,7 +269,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Few sub options",
 		"Invalid sub option",
 		"Missing any required argument",
-		"Short or long invalid option"
+		"Short or long invalid option",
+		"Missing sub option"
 	},
 
 	{
@@ -301,7 +306,7 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Palavra vazia",
 		"Senha criptografada inv&aacute;lida",
 		"A senha criptografada &eacute; muito longa",
-		"Senha incompat&iacute;vel"
+		"Senha incompat&iacute;vel",
 		"Salt inv&aacute;lido",
 		"O arquivo n&atilde;o pode ser aberto"
 		"Erro na leitura do arquivo",
@@ -311,7 +316,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Poucas sub op&ccidil;&otilde;es",
 		"Sub op&ccidil;&atilde;o inv&aacute;lida",
 		"Faltou algum argumento obrigat&oacute;rio",
-		"Op&ccidil;&atilde;o curta ou longa inv&aacute;lida"
+		"Op&ccidil;&atilde;o curta ou longa inv&aacute;lida",
+		"Sub op&ccidil;&atilde;o inexistente"
 	}
 };
 
