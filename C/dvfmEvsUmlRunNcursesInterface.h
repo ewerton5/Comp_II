@@ -27,7 +27,7 @@
  * Arguments:
  * dvfmEvsUmlConfigurationOptionsType * - Configuration options (I)
  * char * - User nickname (I)
- * dvfmEvsUmlLanguageType - Language (I)
+ * dvfmEvsUmlLanguageType - integer that corrects a language type enum (I)
  *
  * Returned code:
  * 

@@ -13,7 +13,6 @@ $Log$
 #include					<stdio.h>
 #include					<stdlib.h>
 #include					"dvfmEvsUmlFunctions.h"
-#include					"dvfmEvsUmlConst.h"
 
 #define DVFM_EVS_NUMBER_ARGUMENTS			    		2
 
@@ -24,7 +23,7 @@ int
 main(int argc,char *argv[ ]) 
 {
     dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
-    dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings = malloc(sizeof(dvfmEvsUmlConfigurationOptionsType));
+    dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings = (dvfmEvsUmlConfigurationOptionsType *) malloc(sizeof(dvfmEvsUmlConfigurationOptionsType));
 	if (argc != DVFM_EVS_NUMBER_ARGUMENTS) 
 	{
 		printf("use: %s <filename>\n", argv[0]);
