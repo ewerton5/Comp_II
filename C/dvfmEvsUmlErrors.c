@@ -332,8 +332,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
  * DvfmEvsUmlGetCliErrorMessage (dvfmEvsUmlErrorType, dvfmEvsUmlLanguageType);
  *
  * Arguments:
- * dvfmEvsUmlLanguageType - integer that corrects a language type enum (I)
  * dvfmEvsUmlErrorType - integer that corrects a error type enum (I)
+ * dvfmEvsUmlLanguageType - integer that corrects a language type enum (I)
  *
  * Returned code:
  * char * - error message

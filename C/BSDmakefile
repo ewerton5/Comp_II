@@ -75,6 +75,9 @@ DVFM_EVS_CGISHOWADDUSERFORMOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowAddUserFor
 #===> primary files
 DVFM_EVS_DVFMEVSUMLOBJS = dvfmEvsUml.o dvfmEvsUmlErrors.o
 
+#===> Ncurses
+DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS = dvfmEvsUmlRunNcursesInterface.o dvfmEvsUmlErrors.o dvfmEvsUmlRunNcursesInterfaceTestFile.o
+
 # shortcut
 #===> secundary functions
 DVFM_EVS_SECUNDARYFUNCTIONS = getLanguageIndex\
@@ -109,10 +112,14 @@ DVFM_EVS_CGIS = dvfmEvsUmlMain.cgi\
 #===> primary files
 DVFM_EVS_PRIMARYFILES = dvfmEvsUml
 
+#===> Ncurses
+DVFM_EVS_NCURSES = dvfmEvsUmlRunNcursesInterface
+
 DVFM_EVS_ALL = $(DVFM_EVS_SECUNDARYFUNCTIONS)\
 			   $(DVFM_EVS_PRIMARYFUNCTIONS)\
 			   $(DVFM_EVS_CGIS)\
-			   $(DVFM_EVS_PRIMARYFILES)
+			   $(DVFM_EVS_PRIMARYFILES)\
+			   $(DVFM_EVS_NCURSES)
 
 # implicit rule
 .c.o:
@@ -230,6 +237,12 @@ dvfmEvsUmlShowAddUserForm.cgi: $(DVFM_EVS_CGISHOWADDUSERFORMOBJS)
 
 dvfmEvsUml: $(DVFM_EVS_DVFMEVSUMLOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_DVFMEVSUMLOBJS) -lcrypt
+	cp $@ $@-$(OS)-$(CC)
+
+#===> Ncurses
+
+dvfmEvsUmlRunNcursesInterface: $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS) -lncurses
 	cp $@ $@-$(OS)-$(CC)
 
 clean:

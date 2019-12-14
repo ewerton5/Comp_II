@@ -39,7 +39,7 @@
  *
  * Returned code:
  * 
- * dvfmEvsUmlErrorType - integer that correspond a language
+ * dvfmEvsUmlLanguageType - integer that correspond a language
  * 
  * Description:
  * This function returns the number corresponding to language, 0 for english and 1 for portuguese
@@ -169,7 +169,7 @@ DvfmEvsUmlCreateRandomString (char *, size_t, char *);
  */
 
 dvfmEvsUmlErrorType
-DvfmEvsUmlCreateNickname (char *dvfmEvsUmlName, char *dvfmEvsUmlFirstNickname, char *dvfmEvsUmlSecondNickname);
+DvfmEvsUmlCreateNickname (char *, char *, char *);
 
 /*
  * dvfmEvsUmlErrorType
