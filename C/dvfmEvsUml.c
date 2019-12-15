@@ -2116,17 +2116,6 @@ main (int argc, char *argv[])
         break;
 
     }
-    printf("configuration = %s\n", dvfmEvsUmlConfiguration);
-    printf("language = %u\n", dvfmEvsUmlLanguage);
-    printf("user = %s\n", dvfmEvsUmlUser);
-    printf("username = %s\n", dvfmEvsUmlUsername);
-    printf("confirm-username = %s\n", dvfmEvsUmlConfirmUsername);
-    printf("email = %s\n", dvfmEvsUmlEmail);
-    printf("confirm-email = %s\n", dvfmEvsUmlConfirmEmail);
-    printf("profile = %s\n", dvfmEvsUmlProfile);
-    printf("friend-email = %s\n", dvfmEvsUmlFriendEmail);
-    printf("nickname = %s\n", dvfmEvsUmlNickname);
-    printf("key = %s\n", dvfmEvsUmlKey);
 
 }
 
