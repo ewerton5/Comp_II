@@ -80,6 +80,18 @@ DVFM_EVS_DVFMEVSUMLOBJS = dvfmEvsUml.o dvfmEvsUmlErrors.o
 #===> Ncurses
 DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlRunNcursesInterface.o dvfmEvsUmlUserInterface.o dvfmEvsUmlRunNcursesInterfaceTestFile.o
 
+#===> Index html
+DVFM_EVS_INDEXHTMLOBJS = index_en-us.html index_pt-br.html
+
+#===> Install
+DVFM_EVS_INSTALLOBJS =  $(DVFM_EVS_CGIMAINOBJS)\
+						$(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS)\
+						$(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS)\
+						$(DVFM_EVS_CGISHOWWEBHELPOBJS)\
+						$(DVFM_EVS_CGISHOWLICENSEOBJS)\
+						$(DVFM_EVS_CGISHOWADDUSERFORMOBJS)\
+						$(DVFM_EVS_INDEXHTMLOBJS)
+
 # shortcut
 #===> secundary functions
 DVFM_EVS_SECUNDARYFUNCTIONS = getLanguageIndex\
@@ -246,6 +258,24 @@ dvfmEvsUml: $(DVFM_EVS_DVFMEVSUMLOBJS)
 dvfmEvsUmlRunNcursesInterface: $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS) -lncurses
 	cp $@ $@-$(OS)-$(CC)
+
+#===> Install
+
+make install: $(DVFM_EVS_INSTALLOBJS)
+	mkdir ~/public ~/public/EEL270 ~/public/EEL270/2019-2 ~/public/EEL270/2019-2/DVFM_EVS ~/public/EEL270/2019-2/DVFM_EVS/CGIs
+	cp index-*.html ~/public/EEL270/2019-2/DVFM_EVS
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGIMAINOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
+	cp dvfmEvsUmlMain.cgi ~/public/EEL270/2019-2/DVFM_EVS/CGIs
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
+	cp dvfmEvsUmlShowRequestRegistrationForm.cgi ~/public/EEL270/2019-2/DVFM_EVS/CGIs
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
+	cp dvfmEvsUmlShowRequestPasswordResetForm.cgi ~/public/EEL270/2019-2/DVFM_EVS/CGIs
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWWEBHELPOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
+	cp dvfmEvsUmlShowWebHelp.cgi ~/public/EEL270/2019-2/DVFM_EVS/CGIs
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWLICENSEOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
+	cp dvfmEvsUmlShowWebHelp.cgi ~/public/EEL270/2019-2/DVFM_EVS/CGIs
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWADDUSERFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
+	cp dvfmEvsUmlShowAddUserForm.cgi ~/public/EEL270/2019-2/DVFM_EVS/CGIs
 
 clean:
 	rm -f *.o $(DVFM_EVS_ALL)
