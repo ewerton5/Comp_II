@@ -20,6 +20,7 @@ $Log$
 #define DVFM_EVS_UML_MINIMUM_NUMBER_ARGUMENTS   2
 #define DVFM_EVS_UML_MAXIMUM_NUMBER_ARGUMENTS   10
 #define DVFM_EVS_UML_QUANTITY_OPTIONS       24
+#define DVFM_EVS_UML_START_SUB_OPTIONS             2
 
 #define DVFM_EVS_UML_REQUIRED_SUBOPTION_SHOW_CLI_HELP_H                                 0
 #define DVFM_EVS_UML_REQUIRED_SUBOPTION_SHOW_CONFIGURATION_VALUES_O                     0
@@ -88,7 +89,7 @@ main (int argc, char *argv[])
         {"group", 1, NULL, 'g'},
         {"show", 2, NULL, 's'},
         {"Search", 2, NULL, 'S'},
-        {NULL, 0, NULL, 0},
+        {NULL, 0, NULL, 0}
 	};
 
     int dvfmEvsUmlCurrentOption;
@@ -165,6 +166,12 @@ main (int argc, char *argv[])
         exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
     }
 
+    if(argv[1][1] == '-' && strlen(argv[1]) == 3)
+    {
+        /* erro */
+        printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+        exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
+    }
 
     dvfmEvsUmlCurrentOption = getopt_long(argc, argv, dvfmEvsUmlShortOption, dvfmEvsUmlLongOption, NULL);
 
@@ -181,7 +188,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -242,7 +249,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -304,7 +311,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -372,7 +379,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -466,7 +473,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -583,7 +590,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -700,7 +707,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -770,7 +777,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -840,7 +847,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -942,7 +949,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -1012,7 +1019,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -1082,7 +1089,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -1161,7 +1168,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -1240,7 +1247,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -1310,7 +1317,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -1386,7 +1393,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -1456,7 +1463,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -1532,7 +1539,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -1602,7 +1609,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -1694,7 +1701,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -1786,7 +1793,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -1869,7 +1876,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -1962,7 +1969,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
@@ -2024,7 +2031,7 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            for(dvfmEvsUmlIndexArgument = (argv[1][1] == '-') ? optind - 1 : optind; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
+            for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
 
