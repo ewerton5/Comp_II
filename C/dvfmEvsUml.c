@@ -110,7 +110,7 @@ main (int argc, char *argv[])
         dvfmEvsUmlSizeSubOption
     };
 
-    char *dvfmEvsUmlConfiguration = "";
+    char *dvfmEvsUmlConfiguration = "dvfmEvsUmlConfig.h";
     dvfmEvsUmlLanguageType dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
     char *dvfmEvsUmlUser = "";
     char *dvfmEvsUmlUsername = "";
