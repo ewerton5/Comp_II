@@ -78,7 +78,7 @@ DVFM_EVS_CGISHOWADDUSERFORMOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowAddUserFor
 DVFM_EVS_DVFMEVSUMLOBJS = dvfmEvsUml.o dvfmEvsUmlErrors.o
 
 #===> Ncurses
-DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS = dvfmEvsUmlRunNcursesInterface.o dvfmEvsUmlErrors.o dvfmEvsUmlRunNcursesInterfaceTestFile.o
+DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlRunNcursesInterface.o dvfmEvsUmlUserInterface.o dvfmEvsUmlRunNcursesInterfaceTestFile.o
 
 # shortcut
 #===> secundary functions
