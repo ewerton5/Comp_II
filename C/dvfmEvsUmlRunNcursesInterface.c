@@ -13,6 +13,7 @@
 #include	<curses.h>
 #include	<string.h>
 #include	"dvfmEvsUmlRunNcursesInterface.h"
+#include	"dvfmEvsUmlUserInterface.h"
 
 /*
  * dvfmEvsUmlErrorType
@@ -39,6 +40,8 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
                               char *dvfmEvsUmlNickname,
                               dvfmEvsUmlLanguageType dvfmEvsUmlLanguage)
 {
+    unsigned short dvfmEvsCursor = 0;
+    unsigned short dvfmEvsScreen = 1;
     if(!dvfmEvsUmlSettings)
         return dvfmEvsUmlFirstEmptyPointer;
     
@@ -47,16 +50,63 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
     init_pair(1,COLOR_WHITE,COLOR_BLACK);
     init_pair(2,COLOR_BLACK,COLOR_WHITE);
     bkgd(COLOR_PAIR(1));
-    attron(COLOR_PAIR(2));
-    move(2,1);
-    printw("Titulo");
-    attroff(COLOR_PAIR(3));
-    attron(COLOR_PAIR(2));  
-    move(3,1);
-    printw("Texto");
-    attroff(COLOR_PAIR(2));
-    refresh();
-    getch();
+
+    while(dvfmEvsScreen)
+    {
+        move(2,2);
+        printw("%s\tCursor:%u\tScreen:%u",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlSystemName, dvfmEvsUmlLanguage), dvfmEvsCursor, dvfmEvsScreen);
+        
+        move(4,2);
+        printw("%s:",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlAuthors, dvfmEvsUmlLanguage));
+        
+        move(5,2);
+        printw("David Vinicius Ferreira Moreira");
+        
+        move(6,2);
+        printw("Ewerton Vieira de Silles");
+
+        if(!dvfmEvsCursor)
+            attron(COLOR_PAIR(2));
+        move(8,2);
+        printw("%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlLogin, dvfmEvsUmlLanguage));
+        if(!dvfmEvsCursor)
+            attroff(COLOR_PAIR(2));
+
+        if(dvfmEvsCursor == 1)
+            attron(COLOR_PAIR(2));
+        move(9,2);
+        printw("%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlRegister, dvfmEvsUmlLanguage));
+        if(dvfmEvsCursor == 1)
+            attroff(COLOR_PAIR(2));
+        
+        if(dvfmEvsCursor == 2)
+            attron(COLOR_PAIR(2));
+        move(10,2);
+        printw("%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlHelp, dvfmEvsUmlLanguage));
+        if(dvfmEvsCursor == 2)
+            attroff(COLOR_PAIR(2));
+        
+        switch(getch())
+        {
+            case 65:
+                if(dvfmEvsCursor > 0)
+                    dvfmEvsCursor--;
+                break;
+            case 66:
+                if(dvfmEvsCursor < 2)
+                    dvfmEvsCursor++;
+                break;
+            case 67:
+            case 10:
+            case 32:
+                dvfmEvsScreen++;
+                break;
+            case 68:
+            case 127:
+                dvfmEvsScreen--;
+        }
+    }
+
 
     if(dvfmEvsUmlNickname)
 		if(strlen(dvfmEvsUmlNickname) != 0)
