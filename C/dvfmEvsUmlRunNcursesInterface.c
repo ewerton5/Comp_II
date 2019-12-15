@@ -51,20 +51,22 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
     init_pair(2,COLOR_BLACK,COLOR_WHITE);
     bkgd(COLOR_PAIR(1));
 
+    move(2,2);
+    printw("%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlSystemName, dvfmEvsUmlLanguage));
+    
+    move(4,2);
+    printw("%s:",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlAuthors, dvfmEvsUmlLanguage));
+    
+    move(5,2);
+    printw("David Vinicius Ferreira Moreira");
+    
+    move(6,2);
+    printw("Ewerton Vieira de Silles");
+
     while(dvfmEvsScreen)
     {
-        move(2,2);
-        printw("%s\tCursor:%u\tScreen:%u",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlSystemName, dvfmEvsUmlLanguage), dvfmEvsCursor, dvfmEvsScreen);
-        
-        move(4,2);
-        printw("%s:",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlAuthors, dvfmEvsUmlLanguage));
-        
-        move(5,2);
-        printw("David Vinicius Ferreira Moreira");
-        
-        move(6,2);
-        printw("Ewerton Vieira de Silles");
-
+        move(7,2);
+        printw("\t\t\t\t\t\t\t\tCursor:%u\tScreen:%u", dvfmEvsCursor, dvfmEvsScreen);
         if(!dvfmEvsCursor)
             attron(COLOR_PAIR(2));
         move(8,2);
