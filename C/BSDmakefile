@@ -37,6 +37,10 @@ LD = gcc
 AR = ar
 AFLAGS = -r
 
+LCRYPT = -lcrypt
+LMLCGI = -L./../Libraries/FreeBSD -lmlcgi
+LNCURSES = -lncurses
+
 #  Options
 CFLAGS = -Wall -std=c11
 LFLAGS = -Wall -std=c11
@@ -78,6 +82,26 @@ DVFM_EVS_DVFMEVSUMLOBJS = dvfmEvsUml.o dvfmEvsUmlErrors.o
 #===> Ncurses
 DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlRunNcursesInterface.o dvfmEvsUmlUserInterface.o dvfmEvsUmlRunNcursesInterfaceTestFile.o
 
+#===> Index html
+DVFM_EVS_INDEXHTMLFILE = ../HTML/index_en-us.html ../HTML/index_pt-br.html
+
+#===> Install
+DVFM_EVS_INSTALLOBJS =  $(DVFM_EVS_CGIMAINOBJS)\
+						$(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS)\
+						$(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS)\
+						$(DVFM_EVS_CGISHOWWEBHELPOBJS)\
+						$(DVFM_EVS_CGISHOWLICENSEOBJS)\
+						$(DVFM_EVS_CGISHOWADDUSERFORMOBJS)
+
+#===> Path
+DVFM_EVS_MAKE_DIRECTORY = 	~/private/EEL270/2019-2/DVFM_EVS/Binaries \
+							~/private/EEL270/2019-2/DVFM_EVS/Data/Cookies \
+							~/public/EEL270/2019-2/DVFM_EVS/CGIs
+
+DVFM_EVS_CGIS_DIRECTORY = ~/public/EEL270/2019-2/DVFM_EVS/CGIs
+
+DVFM_EVS_BINARIES_DIRECTORY = ~/private/EEL270/2019-2/DVFM_EVS/Binaries
+
 # shortcut
 #===> secundary functions
 DVFM_EVS_SECUNDARYFUNCTIONS = getLanguageIndex\
@@ -102,11 +126,11 @@ DVFM_EVS_PRIMARYFUNCTIONS = getCliErrorMessage\
 							getWebUserInterfaceMessage
 
 #===> CGIs
-DVFM_EVS_CGIS = dvfmEvsUmlMain.cgi\
-				dvfmEvsUmlShowRequestRegistrationForm.cgi\
-				dvfmEvsUmlShowRequestPasswordResetForm.cgi\
-				dvfmEvsUmlShowWebHelp.cgi\
-				dvfmEvsUmlShowLicense.cgi\
+DVFM_EVS_CGIS = dvfmEvsUmlMain.cgi \
+				dvfmEvsUmlShowRequestRegistrationForm.cgi \
+				dvfmEvsUmlShowRequestPasswordResetForm.cgi \
+				dvfmEvsUmlShowWebHelp.cgi \
+				dvfmEvsUmlShowLicense.cgi \
 				dvfmEvsUmlShowAddUserForm.cgi
 
 #===> primary files
@@ -115,11 +139,24 @@ DVFM_EVS_PRIMARYFILES = dvfmEvsUml
 #===> Ncurses
 DVFM_EVS_NCURSES = dvfmEvsUmlRunNcursesInterface
 
+#===>index html
+DVFM_EVS_INDEXHTM = indexHtml
+
+#===> Install
+DVFM_EVS_CLEAN_ALL = clean-all
+
+DVFM_EVS_INSTALL =  $(DVFM_EVS_CGIS) \
+					$(DVFM_EVS_NCURSES) \
+					$(DVFM_EVS_PRIMARYFILES) \
+					$(DVFM_EVS_INDEXHTM)
+
+#===> All
 DVFM_EVS_ALL = $(DVFM_EVS_SECUNDARYFUNCTIONS)\
 			   $(DVFM_EVS_PRIMARYFUNCTIONS)\
 			   $(DVFM_EVS_CGIS)\
 			   $(DVFM_EVS_PRIMARYFILES)\
-			   $(DVFM_EVS_NCURSES)
+			   $(DVFM_EVS_NCURSES)\
+			   $(DVFM_EVS_INDEXHTM)
 
 # implicit rule
 .c.o:
@@ -134,51 +171,51 @@ primaryFunctions: $(DVFM_EVS_PRIMARYFUNCTIONS)
 
 #===> secundary functions
 getLanguageIndex: $(DVFM_EVS_GETLANGUAGEINDEXOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETLANGUAGEINDEXOBJS) -lcrypt
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETLANGUAGEINDEXOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
 getAbsoluteFileName: $(DVFM_EVS_GETABSOLUTEFILENAMEOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETABSOLUTEFILENAMEOBJS) -lcrypt
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETABSOLUTEFILENAMEOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
 checkStringField: $(DVFM_EVS_CHECKSTRINGFIELDOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKSTRINGFIELDOBJS) -lcrypt
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKSTRINGFIELDOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
 checkNickname: $(DVFM_EVS_CHECKNICKNAMEOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKNICKNAMEOBJS) -lcrypt
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKNICKNAMEOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
 checkEmail: $(DVFM_EVS_CHECKEMAILOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKEMAILOBJS) -lcrypt
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKEMAILOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
 createRandomString: $(DVFM_EVS_CREATERANDOMSTRINGOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CREATERANDOMSTRINGOBJS) -lcrypt
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CREATERANDOMSTRINGOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
 createNickname: $(DVFM_EVS_CREATENICKNAMEOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CREATENICKNAMEOBJS) -lcrypt
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CREATENICKNAMEOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
 getCryptAlgorithm: $(DVFM_EVS_GETCRYPTALGORITHMOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETCRYPTALGORITHMOBJS) -lcrypt
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETCRYPTALGORITHMOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
 encodePasswordWithSpecificAlgorithm: $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICALGORITHMOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICALGORITHMOBJS) -lcrypt
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICALGORITHMOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
 encodePasswordWithSpecificSalt: $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICSALTOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICSALTOBJS) -lcrypt
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICSALTOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
 checkPassword: $(DVFM_EVS_CHECKPASSWORDOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKPASSWORDOBJS) -lcrypt
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKPASSWORDOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
 getConfigurationOptionsValues: $(DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS) -lcrypt
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
 #===> primary functions
@@ -210,40 +247,51 @@ getWebUserInterfaceMessage: $(DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS)
 #===> CGIs
 
 dvfmEvsUmlMain.cgi: $(DVFM_EVS_CGIMAINOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGIMAINOBJS) -lcrypt -L./../Libraries/FreeBSD -lmlcgi
-	cp $@ $@-$(OS)-$(CC)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGIMAINOBJS) $(LCRYPT) $(LMLCGI)
+	cp $@ $(DVFM_EVS_CGIS_DIRECTORY)
 
 dvfmEvsUmlShowRequestRegistrationForm.cgi: $(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS) -lcrypt -L./../Libraries/FreeBSD -lmlcgi
-	cp $@ $@-$(OS)-$(CC)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS) $(LCRYPT) $(LMLCGI)
+	cp $@ $(DVFM_EVS_CGIS_DIRECTORY)
 
 dvfmEvsUmlShowRequestPasswordResetForm.cgi: $(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS) -lcrypt -L./../Libraries/FreeBSD -lmlcgi
-	cp $@ $@-$(OS)-$(CC)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS) $(LCRYPT) $(LMLCGI)
+	cp $@ $(DVFM_EVS_CGIS_DIRECTORY)
 
 dvfmEvsUmlShowWebHelp.cgi: $(DVFM_EVS_CGISHOWWEBHELPOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWWEBHELPOBJS) -lcrypt -L./../Libraries/FreeBSD -lmlcgi
-	cp $@ $@-$(OS)-$(CC)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWWEBHELPOBJS) $(LCRYPT) $(LMLCGI)
+	cp $@ $(DVFM_EVS_CGIS_DIRECTORY)
 
 dvfmEvsUmlShowLicense.cgi: $(DVFM_EVS_CGISHOWLICENSEOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWLICENSEOBJS) -lcrypt -L./../Libraries/FreeBSD -lmlcgi
-	cp $@ $@-$(OS)-$(CC)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWLICENSEOBJS) $(LCRYPT) $(LMLCGI)
+	cp $@ $(DVFM_EVS_CGIS_DIRECTORY)
 
 dvfmEvsUmlShowAddUserForm.cgi: $(DVFM_EVS_CGISHOWADDUSERFORMOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWADDUSERFORMOBJS) -lcrypt -L./../Libraries/FreeBSD -lmlcgi
-	cp $@ $@-$(OS)-$(CC)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWADDUSERFORMOBJS) $(LCRYPT) $(LMLCGI)
+	cp $@ $(DVFM_EVS_CGIS_DIRECTORY)
 
 #===> primary files
 
 dvfmEvsUml: $(DVFM_EVS_DVFMEVSUMLOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_DVFMEVSUMLOBJS) -lcrypt
-	cp $@ $@-$(OS)-$(CC)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_DVFMEVSUMLOBJS) $(LCRYPT)
+	cp $@ $(DVFM_EVS_BINARIES_DIRECTORY)
+
 
 #===> Ncurses
 
 dvfmEvsUmlRunNcursesInterface: $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS) -lncurses
-	cp $@ $@-$(OS)-$(CC)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS) $(LNCURSES)
+	cp $@ $(DVFM_EVS_BINARIES_DIRECTORY)
+
+#===> Install
+
+indexHtml: $(DVFM_EVS_INDEXHTMLFILE)
+	cd ../HTML && cp index_*.html ~/public/EEL270/2019-2/DVFM_EVS
+
+install: $(DVFM_EVS_INSTALLOBJS)
+	mkdir -p $(DVFM_EVS_MAKE_DIRECTORY)
+	make $(DVFM_EVS_CLEAN_ALL)
+	make $(DVFM_EVS_INSTALL)
 
 clean:
 	rm -f *.o $(DVFM_EVS_ALL)

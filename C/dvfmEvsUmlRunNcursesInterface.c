@@ -40,18 +40,23 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
                               char *dvfmEvsUmlNickname,
                               dvfmEvsUmlLanguageType dvfmEvsUmlLanguage)
 {
-    unsigned short dvfmEvsCursor = 0;
-    unsigned short dvfmEvsScreen = 1;
+    WINDOW * dvfmEvsUmlWindow [3];
+    unsigned short dvfmEvsCursor = 1;
+    unsigned short dvfmEvsScreen;
     if(!dvfmEvsUmlSettings)
         return dvfmEvsUmlFirstEmptyPointer;
     
+    for (dvfmEvsScreen = 1; dvfmEvsScreen < 3; dvfmEvsScreen++)
+        dvfmEvsUmlWindow [dvfmEvsScreen] = newwin(1000, 1000, 0, 0);
+
     initscr();
     start_color();
     init_pair(1,COLOR_WHITE,COLOR_BLACK);
     init_pair(2,COLOR_BLACK,COLOR_WHITE);
     bkgd(COLOR_PAIR(1));
 
-    move(2,2);
+    dvfmEvsScreen = 1
+    wmove(dvfmEvsUmlWindow[1], 2,2);
     printw("%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlSystemName, dvfmEvsUmlLanguage));
     
     move(4,2);
