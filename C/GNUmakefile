@@ -104,6 +104,8 @@ DVFM_EVS_CGIS_DIRECTORY = ~/public/EEL270/2019-2/DVFM_EVS/CGIs
 
 DVFM_EVS_BINARIES_DIRECTORY = ~/private/EEL270/2019-2/DVFM_EVS/Binaries
 
+DVFM_EVS_DVFM_EVS_DIRECTORY = ~/public/EEL270/2019-2/DVFM_EVS
+
 # shortcut
 #===> secundary functions
 DVFM_EVS_SECUNDARYFUNCTIONS = getLanguageIndex\
@@ -288,7 +290,8 @@ dvfmEvsUmlRunNcursesInterface: $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS)
 #===> Install
 
 indexHtml: $(DVFM_EVS_INDEXHTMLFILE)
-	cd ../HTML && cp index_*.html ~/public/EEL270/2019-2/DVFM_EVS
+	cd ../HTML && cp index_*.html $(DVFM_EVS_DVFM_EVS_DIRECTORY)
+	cd $(DVFM_EVS_DVFM_EVS_DIRECTORY) && ln -s index-en.html index.html
 
 install: $(DVFM_EVS_INSTALLOBJS)
 	mkdir -p $(DVFM_EVS_MAKE_DIRECTORY)
