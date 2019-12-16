@@ -55,6 +55,7 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
     init_pair(2,COLOR_BLACK,COLOR_WHITE);
     bkgd(COLOR_PAIR(1));
 
+    dvfmEvsScreen = 1
     wmove(dvfmEvsUmlWindow[1], 2,2);
     printw("%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlSystemName, dvfmEvsUmlLanguage));
     
