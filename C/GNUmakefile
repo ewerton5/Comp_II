@@ -81,7 +81,7 @@ DVFM_EVS_DVFMEVSUMLOBJS = dvfmEvsUml.o dvfmEvsUmlErrors.o
 DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlRunNcursesInterface.o dvfmEvsUmlUserInterface.o dvfmEvsUmlRunNcursesInterfaceTestFile.o
 
 #===> Index html
-DVFM_EVS_INDEXHTMLOBJS = index_en-us.html index_pt-br.html
+DVFM_EVS_INDEXHTMLFILE = ../HTML/index_en-us.html ../HTML/index_pt-br.html
 
 #===> Install
 DVFM_EVS_INSTALLOBJS =  $(DVFM_EVS_CGIMAINOBJS)\
@@ -89,8 +89,16 @@ DVFM_EVS_INSTALLOBJS =  $(DVFM_EVS_CGIMAINOBJS)\
 						$(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS)\
 						$(DVFM_EVS_CGISHOWWEBHELPOBJS)\
 						$(DVFM_EVS_CGISHOWLICENSEOBJS)\
-						$(DVFM_EVS_CGISHOWADDUSERFORMOBJS)\
-						$(DVFM_EVS_INDEXHTMLOBJS)
+						$(DVFM_EVS_CGISHOWADDUSERFORMOBJS)
+
+#===> Path
+DVFM_EVS_MAKE_DIRECTORY = 	~/private/EEL270/2019-2/DVFM_EVS/Binaries \
+							~/private/EEL270/2019-2/DVFM_EVS/Data/Cookies \
+							~/public/EEL270/2019-2/DVFM_EVS/CGIs
+
+DVFM_EVS_CGIS_DIRECTORY = ~/public/EEL270/2019-2/DVFM_EVS/CGIs
+
+DVFM_EVS_BINARIES_DIRECTORY = ~/private/EEL270/2019-2/DVFM_EVS/Binaries
 
 # shortcut
 #===> secundary functions
@@ -116,11 +124,11 @@ DVFM_EVS_PRIMARYFUNCTIONS = getCliErrorMessage\
 							getWebUserInterfaceMessage
 
 #===> CGIs
-DVFM_EVS_CGIS = dvfmEvsUmlMain.cgi\
-				dvfmEvsUmlShowRequestRegistrationForm.cgi\
-				dvfmEvsUmlShowRequestPasswordResetForm.cgi\
-				dvfmEvsUmlShowWebHelp.cgi\
-				dvfmEvsUmlShowLicense.cgi\
+DVFM_EVS_CGIS = dvfmEvsUmlMain.cgi \
+				dvfmEvsUmlShowRequestRegistrationForm.cgi \
+				dvfmEvsUmlShowRequestPasswordResetForm.cgi \
+				dvfmEvsUmlShowWebHelp.cgi \
+				dvfmEvsUmlShowLicense.cgi \
 				dvfmEvsUmlShowAddUserForm.cgi
 
 #===> primary files
@@ -129,11 +137,24 @@ DVFM_EVS_PRIMARYFILES = dvfmEvsUml
 #===> Ncurses
 DVFM_EVS_NCURSES = dvfmEvsUmlRunNcursesInterface
 
+#===>index html
+DVFM_EVS_INDEXHTM = indexHtml
+
+#===> Install
+DVFM_EVS_CLEAN_ALL = clean-all
+
+DVFM_EVS_INSTALL =  $(DVFM_EVS_CGIS) \
+					$(DVFM_EVS_NCURSES) \
+					$(DVFM_EVS_PRIMARYFILES) \
+					$(DVFM_EVS_INDEXHTM)
+
+#===> All
 DVFM_EVS_ALL = $(DVFM_EVS_SECUNDARYFUNCTIONS)\
 			   $(DVFM_EVS_PRIMARYFUNCTIONS)\
 			   $(DVFM_EVS_CGIS)\
 			   $(DVFM_EVS_PRIMARYFILES)\
-			   $(DVFM_EVS_NCURSES)
+			   $(DVFM_EVS_NCURSES)\
+			   $(DVFM_EVS_INDEXHTM)
 
 # implicit rule
 .c.o:
@@ -225,57 +246,50 @@ getWebUserInterfaceMessage: $(DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS)
 
 dvfmEvsUmlMain.cgi: $(DVFM_EVS_CGIMAINOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGIMAINOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
-	cp $@ $@-$(OS)-$(CC)
+	cp $@ $(DVFM_EVS_CGIS_DIRECTORY)
 
 dvfmEvsUmlShowRequestRegistrationForm.cgi: $(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
-	cp $@ $@-$(OS)-$(CC)
+	cp $@ $(DVFM_EVS_CGIS_DIRECTORY)
 
 dvfmEvsUmlShowRequestPasswordResetForm.cgi: $(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
-	cp $@ $@-$(OS)-$(CC)
+	cp $@ $(DVFM_EVS_CGIS_DIRECTORY)
 
 dvfmEvsUmlShowWebHelp.cgi: $(DVFM_EVS_CGISHOWWEBHELPOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWWEBHELPOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
-	cp $@ $@-$(OS)-$(CC)
+	cp $@ $(DVFM_EVS_CGIS_DIRECTORY)
 
 dvfmEvsUmlShowLicense.cgi: $(DVFM_EVS_CGISHOWLICENSEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWLICENSEOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
-	cp $@ $@-$(OS)-$(CC)
+	cp $@ $(DVFM_EVS_CGIS_DIRECTORY)
 
 dvfmEvsUmlShowAddUserForm.cgi: $(DVFM_EVS_CGISHOWADDUSERFORMOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWADDUSERFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
-	cp $@ $@-$(OS)-$(CC)
+	cp $@ $(DVFM_EVS_CGIS_DIRECTORY)
 
 #===> primary files
 
 dvfmEvsUml: $(DVFM_EVS_DVFMEVSUMLOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_DVFMEVSUMLOBJS) -lcrypt
-	cp $@ $@-$(OS)-$(CC)
+	cp $@ $(DVFM_EVS_BINARIES_DIRECTORY)
+
 
 #===> Ncurses
 
 dvfmEvsUmlRunNcursesInterface: $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS) -lncurses
-	cp $@ $@-$(OS)-$(CC)
+	cp $@ $(DVFM_EVS_BINARIES_DIRECTORY)
 
 #===> Install
 
-make install: $(DVFM_EVS_INSTALLOBJS)
-	mkdir ~/public ~/public/EEL270 ~/public/EEL270/2019-2 ~/public/EEL270/2019-2/DVFM_EVS ~/public/EEL270/2019-2/DVFM_EVS/CGIs
-	cp index-*.html ~/public/EEL270/2019-2/DVFM_EVS
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGIMAINOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
-	cp dvfmEvsUmlMain.cgi ~/public/EEL270/2019-2/DVFM_EVS/CGIs
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTREGISTRATIONFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
-	cp dvfmEvsUmlShowRequestRegistrationForm.cgi ~/public/EEL270/2019-2/DVFM_EVS/CGIs
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWREQUESTPASSWORDRESETFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
-	cp dvfmEvsUmlShowRequestPasswordResetForm.cgi ~/public/EEL270/2019-2/DVFM_EVS/CGIs
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWWEBHELPOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
-	cp dvfmEvsUmlShowWebHelp.cgi ~/public/EEL270/2019-2/DVFM_EVS/CGIs
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWLICENSEOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
-	cp dvfmEvsUmlShowWebHelp.cgi ~/public/EEL270/2019-2/DVFM_EVS/CGIs
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CGISHOWADDUSERFORMOBJS) -lcrypt -L./../Libraries/CentOS -lmlcgi
-	cp dvfmEvsUmlShowAddUserForm.cgi ~/public/EEL270/2019-2/DVFM_EVS/CGIs
+indexHtml: $(DVFM_EVS_INDEXHTMLFILE)
+	cd ../HTML && cp index_*.html ~/public/EEL270/2019-2/DVFM_EVS
+
+install: $(DVFM_EVS_INSTALLOBJS)
+	mkdir -p $(DVFM_EVS_MAKE_DIRECTORY)
+	$(DVFM_EVS_CLEAN_ALL)
+	$(DVFM_EVS_INSTALL)
 
 clean:
 	rm -f *.o $(DVFM_EVS_ALL)
