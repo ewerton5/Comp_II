@@ -261,6 +261,8 @@ main (int argc, char *argv[])
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlLackCompulsorySubOption, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_LACK_COMPULSORY_SUBOPTION);
             }
+
+            DvfmEvsUmlShowCliHelp ( NULL, dvfmEvsUmlLanguage);
         
         break;
 
