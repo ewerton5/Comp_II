@@ -75,6 +75,8 @@ typedef enum
 	dvfmEvsUmlLackCompulsorySubOption,
 	dvfmEvsUmlInvalidOptions,
 	dvfmEvsUmlMissingSubOptions,
+	dvfmEvsUmlConvertAdmimId,
+	dvfmEvsUmlInvalidId,
 	dvfmEvsUmlSizeErrorType
 } dvfmEvsUmlErrorType;
 
