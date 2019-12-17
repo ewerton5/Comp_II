@@ -172,7 +172,7 @@ main (int argc, char **argv)
 	printf("                                          %s:\n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlEmailRequest, dvfmEvsUmlLanguageSystem));
 	printf("                                    </td>\n");
 	printf("                                    <td>\n");
-	printf("                                          <input type=\"text\" name=\"dvfmEvsUmlAdimim\" max=\"1024\"> \n");
+	printf("                                          <input type=\"email\" name=\"dvfmEvsUmlAdmin\" max=\"1024\"> \n");
 	printf("                                    </td>\n");
 	printf("                              </tr>\n");
 	printf("                              <tr>\n");
@@ -196,7 +196,7 @@ main (int argc, char **argv)
 	printf("                                          %s:\n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlEmail, dvfmEvsUmlLanguageSystem));
 	printf("                                    </td>\n");
 	printf("                                    <td>\n");
-	printf("                                          <input type=\"text\" name=\"dvfmEvsUmlEmail\" max=\"1024\">\n");
+	printf("                                          <input type=\"email\" name=\"dvfmEvsUmlEmail\" max=\"1024\">\n");
 	printf("                                    </td>\n");
 	printf("                              </tr>\n");
 	printf("                              <tr>\n");
@@ -204,7 +204,7 @@ main (int argc, char **argv)
 	printf("                                          %s:\n", DvfmEvsUmlGetWebUserInterfaceMessage(dvfmEvsUmlConfirmationEmail, dvfmEvsUmlLanguageSystem));
 	printf("                                    </td>\n");
 	printf("                                    <td>\n");
-	printf("                                          <input type=\"text\" name=\"dvfmEvsUmlEmailConfirmation\" max=\"1024\">\n");
+	printf("                                          <input type=\"email\" name=\"dvfmEvsUmlEmailConfirmation\" max=\"1024\">\n");
 	printf("                                    </td>\n");
 	printf("                              </tr>\n");
 	printf("                              <tr>\n");
