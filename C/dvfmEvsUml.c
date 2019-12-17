@@ -24,6 +24,7 @@ $Log$
 #include                           "dvfmEvsUmlErrors.h"
 #include                           "dvfmEvsUmlConfig.h"
 #include                           "dvfmEvsUmlUserInterface.h"
+#include                           "dvfmEvsUmlConst.h"
 
 #ifdef __linux__
 #define _XOPEN_SOURCE 600
@@ -34,8 +35,7 @@ $Log$
 #define DVFM_EVS_UML_QUANTITY_OPTIONS               24
 #define DVFM_EVS_UML_START_SUB_OPTIONS              2
 #define DVFM_EVS_UML_EOS                            '\0'
-#define DVFM_EVS_UML_MAX_SIZE_PASSWORD              127
-#define DVFM_EVS_UML_PASSWORD_BUFFER_SIZE           DVFM_EVS_UML_MAX_SIZE_PASSWORD + 1
+
 
 #define DVFM_EVS_UML_REQUIRED_SUBOPTION_SHOW_CLI_HELP_H                                 0
 #define DVFM_EVS_UML_REQUIRED_SUBOPTION_SHOW_CONFIGURATION_VALUES_O                     0
@@ -167,6 +167,9 @@ main (int argc, char *argv[])
     char dvfmEvsUmlAdimimPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
     char dvfmEvsUmlConfirmAdimimPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
     char *dvfmEvsUmlPointerPassword;
+
+    dvfmEvsUmlUserDataType  dvfmEvsUmlDataUser;
+    dvfmEvsUmlErrorType dvfmEvsUmlReturnCode;
 
     if(argc < DVFM_EVS_UML_MINIMUM_NUMBER_ARGUMENTS)
     {
@@ -514,6 +517,20 @@ main (int argc, char *argv[])
             memset( dvfmEvsUmlPointerPassword, 0x00, DVFM_EVS_UML_MAX_SIZE_PASSWORD);
 
             /* colocar as informacoes em uma struct e passar para a funcao */
+
+            dvfmEvsUmlDataUser.dvfmEvsUmlStructUsername = dvfmEvsUmlUsername;
+            dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmUsername = dvfmEvsUmlConfirmUsername;
+            dvfmEvsUmlDataUser.dvfmEvsUmlStructEmail = dvfmEvsUmlEmail;
+            dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmEmail = dvfmEvsUmlConfirmEmail;
+
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructPassword, dvfmEvsUmlAdimimPassword);
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmPassword, dvfmEvsUmlConfirmAdimimPassword);
+
+            /* faltou prencher os outros campos com NULL ou 0 ou '\0' porem como nao sei quais sao nao defini */
+            
+            /* Call function */
+
+            /*dvfmEvsUmlReturnCode = DvfmEvsUmlAddUser (nao sei , &dvfmEvsUmlDataUser);*/
 
         break;
         

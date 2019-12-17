@@ -29,6 +29,9 @@
 
 #define DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE     2049
 
+#define DVFM_EVS_UML_MAX_SIZE_PASSWORD              127
+#define DVFM_EVS_UML_PASSWORD_BUFFER_SIZE           DVFM_EVS_UML_MAX_SIZE_PASSWORD + 1
+
 /* ===== end of file code ====== */
 
 #endif

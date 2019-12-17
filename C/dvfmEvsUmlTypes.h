@@ -66,6 +66,18 @@ typedef struct dvfmEvsUmlConfigurationOptions
 	char dvfmEvsUmlLockedUsersDataFilenameName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
 } dvfmEvsUmlConfigurationOptionsType;
 
+typedef struct dvfmEvsUmlUserData
+{
+	
+	char *dvfmEvsUmlStructUsername;
+	char *dvfmEvsUmlStructConfirmUsername;
+	char *dvfmEvsUmlStructEmail;
+	char *dvfmEvsUmlStructConfirmEmail;
+	char dvfmEvsUmlStructPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
+	char dvfmEvsUmlStructConfirmPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
+
+} dvfmEvsUmlUserDataType;
+
 /* ===== end of file code ====== */
 
 #endif
