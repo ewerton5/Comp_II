@@ -73,7 +73,9 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Invalid sub option",
 		"Missing any required argument",
 		"Short or long invalid option",
-		"Missing sub option"
+		"Missing sub option",
+		"Admin id conversion failed",
+		"Only the administrator can perform this option"
 	},
 
 	{
@@ -123,7 +125,9 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Sub opcao invalida",
 		"Faltou algum argumento obrigatorio",
 		"Opcao curta ou longa invalida",
-		"Sub opcao curta ou longa invalida"
+		"Sub opcao curta ou longa invalida",
+		"Falha na conversao do id do administrador",
+		"Somente o adiministrador pode executar essa opcao"
 	}
 };
 
@@ -176,7 +180,9 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Invalid sub option",
 		"Missing any required argument",
 		"Short or long invalid option",
-		"Missing sub option"
+		"Missing sub option",
+		"Admin id conversion failed",
+		"Only the administrator can perform this option"
 	},
 
 	{
@@ -226,7 +232,9 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Sub opcao invalida",
 		"Faltou algum argumento obrigatorio",
 		"Opcao curta ou longa invalida",
-		"Sub opcao curta ou longa invalida"
+		"Sub opcao curta ou longa invalida",
+		"Falha na conversao do id do administrador",
+		"Somente o adiministrador pode executar essa opcao"
 	}
 };
 
@@ -279,7 +287,9 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Invalid sub option",
 		"Missing any required argument",
 		"Short or long invalid option",
-		"Missing sub option"
+		"Missing sub option",
+		"Admin id conversion failed",
+		"Only the administrator can perform this option"
 	},
 
 	{
@@ -329,7 +339,9 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Sub op&ccidil;&atilde;o inv&aacute;lida",
 		"Faltou algum argumento obrigat&oacute;rio",
 		"Op&ccidil;&atilde;o curta ou longa inv&aacute;lida",
-		"Sub op&ccidil;&atilde;o inexistente"
+		"Sub op&ccidil;&atilde;o inexistente",
+		"Falha na convers;&atilde;o do id do administrador",
+		"Somente o adiministrador pode executar essa op&ccidil;&atilde;o"
 	}
 };
 
