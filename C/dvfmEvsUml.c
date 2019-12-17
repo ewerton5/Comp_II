@@ -22,18 +22,20 @@ $Log$
 #include                            <sys/types.h>
 #include                           "dvfmEvsUmlTypes.h"
 #include                           "dvfmEvsUmlErrors.h"
-#include                            "dvfmEvsUmlConfig.h"
+#include                           "dvfmEvsUmlConfig.h"
+#include                           "dvfmEvsUmlUserInterface.h"
 
 #ifdef __linux__
-#define _BSD_SOURCE
+#define _XOPEN_SOURCE 600
 #endif
 
 #define DVFM_EVS_UML_MINIMUM_NUMBER_ARGUMENTS       2
 #define DVFM_EVS_UML_MAXIMUM_NUMBER_ARGUMENTS       10
 #define DVFM_EVS_UML_QUANTITY_OPTIONS               24
 #define DVFM_EVS_UML_START_SUB_OPTIONS              2
-
-#define EOS                                         '\0'
+#define DVFM_EVS_UML_EOS                            '\0'
+#define DVFM_EVS_UML_MAX_SIZE_PASSWORD              127
+#define DVFM_EVS_UML_PASSWORD_BUFFER_SIZE           DVFM_EVS_UML_MAX_SIZE_PASSWORD + 1
 
 #define DVFM_EVS_UML_REQUIRED_SUBOPTION_SHOW_CLI_HELP_H                                 0
 #define DVFM_EVS_UML_REQUIRED_SUBOPTION_SHOW_CONFIGURATION_VALUES_O                     0
@@ -68,9 +70,8 @@ $Log$
 #define DVFM_EVS_UML_INVALID_SUB_OPTIONS                                5
 #define DVFM_EVS_UML_LACK_COMPULSORY_SUBOPTION                          6
 #define DVFM_EVS_UML_INVALID_OPTIONS                                    7
-#define DVFM_EVS_UML_INVALID_SUB_OPTIONS                                8
-#define DVFM_EVS_UML_CONVERT_ADMINISTRATOR_ID                           9
-#define DVFM_EVS_UML_INVALID_ID                                         10
+#define DVFM_EVS_UML_CONVERT_ADMINISTRATOR_ID                           8
+#define DVFM_EVS_UML_INVALID_ID                                         9
 
 int
 main (int argc, char *argv[])
@@ -163,6 +164,9 @@ main (int argc, char *argv[])
 
     char *dvfmEvsUmlValidation;
     unsigned long dvfmEvsUmlIdAdmim;
+    char dvfmEvsUmlAdimimPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
+    char dvfmEvsUmlConfirmAdimimPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
+    char *dvfmEvsUmlPointerPassword;
 
     if(argc < DVFM_EVS_UML_MINIMUM_NUMBER_ARGUMENTS)
     {
@@ -483,7 +487,7 @@ main (int argc, char *argv[])
         
             dvfmEvsUmlIdAdmim = strtoul( DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER, &dvfmEvsUmlValidation, 10);
 
-            if(*dvfmEvsUmlValidation != EOS)
+            if(*dvfmEvsUmlValidation != DVFM_EVS_UML_EOS)
             {
                 /* error */
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlConvertAdmimId, dvfmEvsUmlLanguage));
@@ -498,12 +502,18 @@ main (int argc, char *argv[])
             }
 
             /* get password */
-            
-            printf("%s:", /*fucao interface com usuario */);
 
-            strcpy( dvfmEvsUmlPassword, dvfmEvsUmlPointerPassword = getpass());
+            printf("%s:", DvfmEvsUmlGetCliUserInterfaceMessage ( dvfmEvsUmlPassword, dvfmEvsUmlLanguage));
 
-            memset( dvfmEvsUmlPointerPassword, 0x00, /*comprimento maximo senha +1*/);
+            strcpy (dvfmEvsUmlAdimimPassword, (dvfmEvsUmlPointerPassword = getpass ("")));
+
+            printf("%s:", DvfmEvsUmlGetCliUserInterfaceMessage ( dvfmEvsUmlConfirmationPassword, dvfmEvsUmlLanguage));
+
+            strcpy( dvfmEvsUmlConfirmAdimimPassword, (dvfmEvsUmlPointerPassword = getpass("")));
+
+            memset( dvfmEvsUmlPointerPassword, 0x00, DVFM_EVS_UML_MAX_SIZE_PASSWORD);
+
+            /* colocar as informacoes em uma struct e passar para a funcao */
 
         break;
         
