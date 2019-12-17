@@ -169,6 +169,7 @@ main (int argc, char *argv[])
     char *dvfmEvsUmlPointerPassword;
 
     dvfmEvsUmlUserDataType  dvfmEvsUmlDataUser;
+    dvfmEvsUmlConfigurationOptionsType dvfmEvsUmlSettings;
     dvfmEvsUmlErrorType dvfmEvsUmlReturnCode;
 
     if(argc < DVFM_EVS_UML_MINIMUM_NUMBER_ARGUMENTS)
@@ -518,7 +519,7 @@ main (int argc, char *argv[])
 
             memset( dvfmEvsUmlPointerPassword, 0x00, DVFM_EVS_UML_MAX_SIZE_PASSWORD);
 
-            /* colocar as informacoes em uma struct e passar para a funcao */
+            /* put user information in a struct to pass to the function */
 
             dvfmEvsUmlDataUser.dvfmEvsUmlStructUsername = dvfmEvsUmlUsername;
             dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmUsername = dvfmEvsUmlConfirmUsername;
@@ -529,10 +530,28 @@ main (int argc, char *argv[])
             strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmPassword, dvfmEvsUmlConfirmAdimimPassword);
 
             /* faltou prencher os outros campos com NULL ou 0 ou '\0' porem como nao sei quais sao nao defini */
+
+            /* Populates the structure with the configuration information */
+
+            dvfmEvsUmlReturnCode = DvfmEvsUmlGetConfigurationOptionsValues ( dvfmEvsUmlConfiguration, &dvfmEvsUmlSettings);
             
+            if(dvfmEvsUmlReturnCode)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( ????, dvfmEvsUmlLanguage));
+                exit(MACRO);
+            }
+
             /* Call function */
 
-            /*dvfmEvsUmlReturnCode = DvfmEvsUmlAddUser (nao sei , &dvfmEvsUmlDataUser);*/
+            dvfmEvsUmlReturnCode = DvfmEvsUmlAddUser ( &dvfmEvsUmlSettings, &dvfmEvsUmlDataUser);
+
+            if(dvfmEvsUmlReturnCode)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( ?????, dvfmEvsUmlLanguage));
+                exit(MACRO);
+            }
 
         break;
         
