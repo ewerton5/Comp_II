@@ -273,6 +273,26 @@ DvfmEvsUmlCheckPassword (char *, char *);
 dvfmEvsUmlErrorType
 DvfmEvsUmlGetConfigurationOptionsValues ( char *, dvfmEvsUmlConfigurationOptionsType *);
 
+/*
+ * void
+ * DvfmEvsUmlShowCliHelp (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlLanguageType);
+ *
+ *
+ * Arguments:
+ * dvfmEvsUmlConfigurationOptionsType * - the address of a local variable of type dvfmEvsUmlConfigurationOptionsType (I)
+ * dvfmEvsUmlLanguageType - name of the configuration file (I)
+ * 
+ * Returned code:
+ * 
+ * void
+ * 
+ * Description:
+ * This function shows help in the CLI environment.
+ */
+
+void
+DvfmEvsUmlShowCliHelp (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlLanguageType);
+
 /* ===== end of file code ====== */
 
 #endif
