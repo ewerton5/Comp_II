@@ -84,6 +84,8 @@ typedef struct dvfmEvsUmlUserData
 
 } dvfmEvsUmlUserDataType;
 
+typedef unsigned long long dvfmEvsUmlUserIdentifierType;
+
 /* ===== end of file code ====== */
 
 #endif
