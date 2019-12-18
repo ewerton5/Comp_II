@@ -77,6 +77,10 @@ typedef enum
 	dvfmEvsUmlMissingSubOptions,
 	dvfmEvsUmlConvertAdmimId,
 	dvfmEvsUmlInvalidId,
+	dvfmEvsUmlDifferentUsernameConfirmation,
+	dvfmEvsUmlDifferentEmailConfirmation,
+	dvfmEvsUmlDifferentPasswordConfirmation,
+	dvfmEvsUmlCorruptedFile,
 	dvfmEvsUmlSizeErrorType
 } dvfmEvsUmlErrorType;
 

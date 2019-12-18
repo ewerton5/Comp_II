@@ -1089,13 +1089,13 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 	/* variation if the information is valid */
 
 	if(strcmp( dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername, dvfmEvsUmlDataUser->dvfmEvsUmlStructConfirmUsername))
-		return erro;
+		return dvfmEvsUmlDifferentUsernameConfirmation;
 
 	if(strcmp( dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail, dvfmEvsUmlDataUser->dvfmEvsUmlStructConfirmEmail))
-		return erro;
+		return dvfmEvsUmlDifferentEmailConfirmation;
 
 	if(strcmp( dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword, dvfmEvsUmlDataUser->dvfmEvsUmlStructConfirmPassword))
-		return erro;
+		return dvfmEvsUmlDifferentPasswordConfirmation;
 
 	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckStringField ( dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername, DVFM_EVS_UML_VALID_CHARACTERS_USER_NAME, DVFM_EVS_UML_MINIMUM_SIZE_USER_NAME, DVFM_EVS_UML_MAX_SIZE_USER_NAME)))
 		return dvfmEvsUmlReturnCode;
@@ -1157,7 +1157,7 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 		/* writing the data in the file */
 
 		if(!(dvfmEvsUmlUsersFile = fopen (dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "w")))
-			return erro;
+			return dvfmEvsUmlCantOpenFile;
 
 		fprintf( dvfmEvsUmlUsersFile, "0:%s:%s:1:%s:%s", dvfmEvsUmlFirstNickname, dvfmEvsUmlEncryptedPassword, dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
 
@@ -1190,14 +1190,14 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 				{
 					/* error */
 					fclose (dvfmEvsUmlUsersFile);
-					return erro arquivo corrompido;
+					return dvfmEvsUmlCorruptedFile;
 				}
 
 				if(strlen (dvfmEvsUmlBuffer) == 1 && dvfmEvsUmlBuffer [strlen (dvfmEvsUmlBuffer) - 1] == '\n')
 				{
 					/* error */
 					fclose (dvfmEvsUmlUsersFile);
-					return erro arquivo corrompido;
+					return dvfmEvsUmlCorruptedFile;
 				}
 
 				if (dvfmEvsUmlBuffer [strlen (dvfmEvsUmlBuffer) - 1] != '\n')
@@ -1210,7 +1210,7 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 			{
 					/* error */
 					fclose (dvfmEvsUmlUsersFile);
-					return erro leitura arquivo;
+					return dvfmEvsUmlReadError;
 			}
 
 			fclose (dvfmEvsUmlUsersFile);
@@ -1218,7 +1218,7 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 			/* checking if nickname already exists */
 
 			if(!(dvfmEvsUmlUsersFile = fopen (dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "r")))
-				return erro abrir arquivo;
+				return dvfmEvsUmlCantOpenFile;
 
 			while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_BUFFER_SIZE_LINE_CONFIG_FILE, dvfmEvsUmlUsersFile))
 			{
@@ -1250,7 +1250,7 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 					dvfmEvsUmlExistFirstNickname = dvfmEvsUmlTrue;
 
 				if(dvfmEvsUmlTwoPointCounter != 5)
-					return erro no formato das informacoes;
+					return dvfmEvsUmlCorruptedFile;
 			}
 
 			
@@ -1258,7 +1258,7 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 			/* adding the user */
 
 			if(!(dvfmEvsUmlUsersFile = fopen (dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "r+")))
-				return erro abrir arquivo;
+				return dvfmEvsUmlCantOpenFile;
 
 			dvfmEvsUmlUserIdentifierPrevious = 0;
 
@@ -1301,7 +1301,7 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 				dvfmEvsUmlFirstNumber = dvfmEvsUmlTrue;
 
 				if(dvfmEvsUmlTwoPointCounter != 5)
-					return erro no formato das informacoes;
+					return dvfmEvsUmlCorruptedFile;
 
 				/* comparing current id with previous id */
 
@@ -1309,7 +1309,7 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 				{
 					/* error */
 					fclose (dvfmEvsUmlUsersFile);
-					return erro informacoes nao ordenadas;
+					return dvfmEvsUmlCorruptedFile;
 				}
 				
 				if(dvfmEvsUmlUserIdentifierPresent != dvfmEvsUmlUserIdentifierPrevious + 1)
@@ -1363,14 +1363,14 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 			{
 					/* error */
 					fclose (dvfmEvsUmlUsersFile);
-					return erro leitura arquivo;
+					return dvfmEvsUmlReadError;
 			}
 
 			fclose (dvfmEvsUmlUsersFile);
 
 			/* sending email to added user */
 
-			
+
 
 		}
 		else
