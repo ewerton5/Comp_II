@@ -48,6 +48,10 @@ typedef enum
     dvfmEvsUmlConfirmationPassword,
     dvfmEvsUmlAdd,
     dvfmEvsUmlAddTemporaryUser,
+    dvfmEvsUmlExit,
+    dvfmEvsUmlBack,
+    dvfmEvsUmlIncorrectPassword,
+    dvfmEvsUmlExiting,
     dvfmEvsUmlSizeUserInterfaceMessageNumberType
 } dvfmEvsUmlUserInterfaceMessageNumberType;
 

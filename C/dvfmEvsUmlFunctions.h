@@ -260,7 +260,7 @@ DvfmEvsUmlCheckPassword (char *, char *);
  *
  * Arguments:
  * char * - name of the configuration file (I)
- * dvfmEvsUmlConfigurationOptionsType * - the address of a local variable of type dvfmEvsUmlConfigurationOptionsType (I)
+ * dvfmEvsUmlConfigurationOptionsType * - the address of a local variable of type dvfmEvsUmlConfigurationOptionsType (O)
  *
  * Returned code:
  * 

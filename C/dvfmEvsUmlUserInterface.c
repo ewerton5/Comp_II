@@ -46,7 +46,11 @@ char *dvfmEvsUmlCliUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlS
 		"Add permanent user",
 		"Confirm password",
 		"Add",
-		"Add temporary user"
+		"Add temporary user",
+		"Exit",
+		"Back",
+		"Incorrect nickname or password",
+		"You are leaving"
 	},
 
 	{
@@ -72,7 +76,11 @@ char *dvfmEvsUmlCliUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlS
 		"Adicionar usuario permanente",
 		"Confirmar senha",
 		"Adicionar",
-		"Adicionar usuario temporario"
+		"Adicionar usuario temporario",
+		"Sair",
+		"Voltar",
+		"Apelido ou senha incorretos",
+		"Voce esta saindo"
 	}
 };
 
@@ -96,12 +104,16 @@ char *dvfmEvsUmlNcursesUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvs
 		"Email",
 		"Confirm Email",
 		"Home page",
-		"Help text",
+		"Use the directional arrows to move the cursor and press 'Enter' to select options",
 		"Use license text",
 		"Add permanent user",
 		"Confirm password",
 		"Add",
-		"Add temporary user"
+		"Add temporary user",
+		"Exit",
+		"Back",
+		"Incorrect nickname or password",
+		"You are leaving the program, press any key to continue"
 	},
 
 	{
@@ -122,12 +134,16 @@ char *dvfmEvsUmlNcursesUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvs
 		"Correio eletronico",
 		"Confirmar correio eletronico",
 		"Pagina inicial",
-		"texto de ajuda",
+		"Utilize as setas direcionais para mover o cusor e aperte 'Enter' para selecionar as opcoes",
 		"texto de licenca de uso",
 		"Adicionar usuario permanente",
 		"Confirmar senha",
 		"Adicionar",
-		"Adicionar usuario temporario"
+		"Adicionar usuario temporario",
+		"Sair",
+		"Voltar",
+		"Apelido ou senha incorretos",
+		"Voce esta saindo do programa, precione qualquer tecla para continuar"
 	}
 };
 
@@ -156,7 +172,11 @@ char *dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlS
 		"Add permanent user",
 		"Confirm password",
 		"Add",
-		"Add temporary user"
+		"Add temporary user",
+		"Exit",
+		"Back",
+		"Incorrect nickname or password",
+		"You are leaving"
 	},
 
  	{
@@ -182,7 +202,11 @@ char *dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlS
 		"Adicionar usu&aacute;rio permanente",
 		"Confirmar senha",
 		"Adicionar",
-		"Adicionar usu&aacute;rio tempor&aacute;rio"
+		"Adicionar usu&aacute;rio tempor&aacute;rio",
+		"Sair",
+		"Voltar",
+		"Apelido ou senha incorretos",
+		"Voc&ecirc; est&aacute; saindo"
  	}
 };
 
