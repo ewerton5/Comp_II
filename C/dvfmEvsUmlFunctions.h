@@ -293,6 +293,26 @@ DvfmEvsUmlGetConfigurationOptionsValues ( char *, dvfmEvsUmlConfigurationOptions
 void
 DvfmEvsUmlShowCliHelp (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlLanguageType);
 
+/*
+ * dvfmEvsUmlErrorType
+ * DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlUserDataType *);
+ *
+ *
+ * Arguments:
+ * dvfmEvsUmlConfigurationOptionsType * - configuration options (I)
+ * dvfmEvsUmlUserDataType * - struct user information (I)
+ * 
+ * Returned code:
+ * 
+ * dvfmEvsUmlOk - all right
+ * 
+ * Description:
+ * Permanently or temporarily add new user data to the system
+ */
+
+dvfmEvsUmlErrorType
+DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlUserDataType *);
+
 /* ===== end of file code ====== */
 
 #endif

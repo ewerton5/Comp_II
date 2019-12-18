@@ -25,6 +25,7 @@ $Log$
 #include                           "dvfmEvsUmlConfig.h"
 #include                           "dvfmEvsUmlUserInterface.h"
 #include                           "dvfmEvsUmlConst.h"
+#include                           "dvfmEvsUmlFunctions.h"
 
 #ifdef __linux__
 #define _XOPEN_SOURCE 600
@@ -72,6 +73,8 @@ $Log$
 #define DVFM_EVS_UML_INVALID_OPTIONS                                    7
 #define DVFM_EVS_UML_CONVERT_ADMINISTRATOR_ID                           8
 #define DVFM_EVS_UML_INVALID_ID                                         9
+#define DVFM_EVS_UML_ERROR_FUNCTION_CONFIGURATION_OPTIONS               10
+#define DVFM_EVS_UML_ERROR_FUNCTION_ADD_USER                            11
 
 int
 main (int argc, char *argv[])
@@ -127,7 +130,7 @@ main (int argc, char *argv[])
         dvfmEvsUmlSizeSubOption
     };
 
-    char *dvfmEvsUmlConfiguration = "dvfmEvsUmlConfig.h";
+    char *dvfmEvsUmlConfiguration = "";
     dvfmEvsUmlLanguageType dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
     char *dvfmEvsUmlUser = "";
     char *dvfmEvsUmlUsername = "";
@@ -538,8 +541,8 @@ main (int argc, char *argv[])
             if(dvfmEvsUmlReturnCode)
             {
                 /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( ????, dvfmEvsUmlLanguage));
-                exit(MACRO);
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlReturnCode, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_ERROR_FUNCTION_CONFIGURATION_OPTIONS);
             }
 
             /* Call function */
@@ -549,8 +552,8 @@ main (int argc, char *argv[])
             if(dvfmEvsUmlReturnCode)
             {
                 /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( ?????, dvfmEvsUmlLanguage));
-                exit(MACRO);
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlReturnCode, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_ERROR_FUNCTION_ADD_USER);
             }
 
         break;
@@ -2169,7 +2172,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexProfile:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "administrator") != 0 && strcmp( dvfmEvsUmlValueSubOption, "professor") != 0 && strcmp( dvfmEvsUmlValueSubOption, "student") != 0 && strcmp( dvfmEvsUmlValueSubOption, "administrador-professor") != 0 && strcmp( dvfmEvsUmlValueSubOption, "administrador-student") != 0 && strcmp( dvfmEvsUmlValueSubOption, "professor-student") != 0 && strcmp( dvfmEvsUmlValueSubOption, "administrador-professor-student") != 0)
+                    if(strcmp( dvfmEvsUmlValueSubOption, "administrator") != 0 && strcmp( dvfmEvsUmlValueSubOption, "professor") != 0 && strcmp( dvfmEvsUmlValueSubOption, "student") != 0 && strcmp( dvfmEvsUmlValueSubOption, "administrator-professor") != 0 && strcmp( dvfmEvsUmlValueSubOption, "administrator-student") != 0 && strcmp( dvfmEvsUmlValueSubOption, "professor-student") != 0 && strcmp( dvfmEvsUmlValueSubOption, "administrator-professor-student") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
