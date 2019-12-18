@@ -81,10 +81,18 @@ typedef struct dvfmEvsUmlUserData
 	char *dvfmEvsUmlStructConfirmEmail;
 	char dvfmEvsUmlStructPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
 	char dvfmEvsUmlStructConfirmPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
+	char dvfmEvsUmlStructProfile [DVFM_EVS_UML_PROFILE_STRING_BUFFER_SIZE];
 
 } dvfmEvsUmlUserDataType;
 
 typedef unsigned long long dvfmEvsUmlUserIdentifierType;
+
+typedef enum
+{
+	dvfmEvsUmlAdministrator = 1, 
+	dvfmEvsUmlProfessor = 2, 
+	dvfmEvsUmlStudent = 4
+} dvfmEvsUmlProfileType;
 
 /* ===== end of file code ====== */
 

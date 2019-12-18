@@ -52,6 +52,11 @@
 #define DVFM_EVS_UML_NICKNAME_BUFFER_SIZE               DVFM_EVS_UML_MAX_SIZE_NICKNAME + 1
 #define DVFM_EVS_UML_VALID_CHARACTERS_NICKNAME          "abcdefghijklmnopqrstuvwxyz."
 
+#define DVFM_EVS_UML_MAXIMUM_NUMBER_IN_ID               30
+
+#define DVFM_EVS_UML_MAX_SIZE_PROFILE_STRING            31
+#define DVFM_EVS_UML_PROFILE_STRING_BUFFER_SIZE         DVFM_EVS_UML_MAX_SIZE_PROFILE_STRING + 1
+
 /* ===== end of file code ====== */
 
 #endif

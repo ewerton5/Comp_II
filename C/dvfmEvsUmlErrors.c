@@ -75,7 +75,11 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Short or long invalid option",
 		"Missing sub option",
 		"Admin id conversion failed",
-		"Only the administrator can perform this option"
+		"Only the administrator can perform this option",
+		"Username verification is different",
+		"Email verification is different",
+		"Password verification is different",
+		"The file is corrupted"
 	},
 
 	{
@@ -127,7 +131,12 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Opcao curta ou longa invalida",
 		"Sub opcao curta ou longa invalida",
 		"Falha na conversao do id do administrador",
-		"Somente o adiministrador pode executar essa opcao"
+		"Somente o adiministrador pode executar essa opcao",
+		"A confirmacao do username esta diferente",
+		"A confirmacao do email esta diferente",
+		"A confirmacao da senha esta diferente",
+		"O arquivo esta corrompido"
+
 	}
 };
 
@@ -182,7 +191,11 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Short or long invalid option",
 		"Missing sub option",
 		"Admin id conversion failed",
-		"Only the administrator can perform this option"
+		"Only the administrator can perform this option",
+		"Username verification is different",
+		"Email verification is different",
+		"Password verification is different",
+		"The file is corrupted"
 	},
 
 	{
@@ -234,7 +247,12 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Opcao curta ou longa invalida",
 		"Sub opcao curta ou longa invalida",
 		"Falha na conversao do id do administrador",
-		"Somente o adiministrador pode executar essa opcao"
+		"Somente o adiministrador pode executar essa opcao",
+		"A confirmacao do username esta diferente",
+		"A confirmacao do email esta diferente",
+		"A confirmacao da senha esta diferente",
+		"O arquivo esta corrompido"
+
 	}
 };
 
@@ -289,7 +307,11 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Short or long invalid option",
 		"Missing sub option",
 		"Admin id conversion failed",
-		"Only the administrator can perform this option"
+		"Only the administrator can perform this option",
+		"Username verification is different",
+		"Email verification is different",
+		"Password verification is different",
+		"The file is corrupted"
 	},
 
 	{
@@ -341,7 +363,12 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Op&ccidil;&atilde;o curta ou longa inv&aacute;lida",
 		"Sub op&ccidil;&atilde;o inexistente",
 		"Falha na convers;&atilde;o do id do administrador",
-		"Somente o adiministrador pode executar essa op&ccidil;&atilde;o"
+		"Somente o adiministrador pode executar essa op&ccidil;&atilde;o",
+		"A confirma&ccidil;&atilde;o do username esta diferente",
+		"A confirma&ccidil;&atilde;o do email esta diferente",
+		"A confirma&ccidil;&atilde;o da senha esta diferente",
+		"O arquivo esta corrompido"
+
 	}
 };
 
