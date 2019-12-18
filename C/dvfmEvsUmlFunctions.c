@@ -337,8 +337,9 @@ DvfmEvsUmlCreateRandomString (char *dvfmEvsUmlValidCharacter, size_t dvfmEvsUmlS
 dvfmEvsUmlErrorType
 DvfmEvsUmlCreateNickname (char *dvfmEvsUmlName, char *dvfmEvsUmlFirstNickname, char *dvfmEvsUmlSecondNickname)
 {
-	unsigned dvfmEvsUmlIndexName = 0, dvfmEvsUmlCountName = 0, dvfmEvsUmlIndexOneName;
-	char dvfmEvsUmlNames [DVFM_EVS_UML_MAXIMUM_LENGTH_NICKNAME][DVFM_EVS_UML_MAXIMUM_LENGTH_NICKNAME - 2];
+	unsigned dvfmEvsUmlCountName = 0, dvfmEvsUmlIndexName, dvfmEvsUmlIndexOneName;
+	char dvfmEvsUmlNameCopy [DVFM_EVS_UML_MAX_SIZE_USER_NAME];
+	char dvfmEvsUmlNames [DVFM_EVS_UML_MAX_SIZE_NICKNAME][DVFM_EVS_UML_MAX_SIZE_NICKNAME - 2];
 
 	if(!dvfmEvsUmlName)
 		return dvfmEvsUmlFirstEmptyPointer;
@@ -352,20 +353,31 @@ DvfmEvsUmlCreateNickname (char *dvfmEvsUmlName, char *dvfmEvsUmlFirstNickname, c
 	if(!(strstr(dvfmEvsUmlName, " ")))
 		return dvfmEvsUmlUniqueName;
 
-	for (; dvfmEvsUmlName [dvfmEvsUmlIndexName?dvfmEvsUmlIndexName - 1:dvfmEvsUmlIndexName] != '\0'; dvfmEvsUmlCountName++)
+	for (dvfmEvsUmlIndexName = 0; dvfmEvsUmlName [dvfmEvsUmlIndexName] != '\0'; dvfmEvsUmlIndexName++)
+		if (dvfmEvsUmlName [dvfmEvsUmlIndexName] > 'A' && dvfmEvsUmlName [dvfmEvsUmlIndexName] < 'Z')
+			dvfmEvsUmlNameCopy [dvfmEvsUmlIndexName] = dvfmEvsUmlName [dvfmEvsUmlIndexName] + 'a' - 'A';
+		else
+			dvfmEvsUmlNameCopy [dvfmEvsUmlIndexName] = dvfmEvsUmlName [dvfmEvsUmlIndexName];
+	
+	dvfmEvsUmlNameCopy [dvfmEvsUmlIndexName] = '\0';
+		
+	dvfmEvsUmlIndexName = 0;
+	
+
+	for (;  dvfmEvsUmlNameCopy [dvfmEvsUmlIndexName?dvfmEvsUmlIndexName - 1:dvfmEvsUmlIndexName] != '\0'; dvfmEvsUmlCountName++)
 	{
-		for(dvfmEvsUmlIndexOneName = 0; dvfmEvsUmlName [dvfmEvsUmlIndexName] != ' '; dvfmEvsUmlIndexName++, dvfmEvsUmlIndexOneName++)
+		for(dvfmEvsUmlIndexOneName = 0;  dvfmEvsUmlNameCopy [dvfmEvsUmlIndexName] != ' '; dvfmEvsUmlIndexName++, dvfmEvsUmlIndexOneName++)
 		{
-			if (dvfmEvsUmlIndexOneName >= DVFM_EVS_UML_MAXIMUM_LENGTH_NICKNAME - 2)
+			if (dvfmEvsUmlIndexOneName >= DVFM_EVS_UML_MAX_SIZE_NICKNAME - 2)
 				return dvfmEvsUmlLongNickname;
 
-			if (dvfmEvsUmlName [dvfmEvsUmlIndexName] == '.')
+			if ( dvfmEvsUmlNameCopy [dvfmEvsUmlIndexName] == '.')
 				return dvfmEvsUmlDotInName;
 
-			if (dvfmEvsUmlName [dvfmEvsUmlIndexName] == '\0')
+			if ( dvfmEvsUmlNameCopy [dvfmEvsUmlIndexName] == '\0')
 				break;
 
-			dvfmEvsUmlNames [dvfmEvsUmlCountName] [dvfmEvsUmlIndexOneName] = dvfmEvsUmlName [dvfmEvsUmlIndexName];
+			dvfmEvsUmlNames [dvfmEvsUmlCountName] [dvfmEvsUmlIndexOneName] =  dvfmEvsUmlNameCopy [dvfmEvsUmlIndexName];
 		}
 		dvfmEvsUmlNames [dvfmEvsUmlCountName] [dvfmEvsUmlIndexOneName] = '\0';
 		dvfmEvsUmlIndexName++;
@@ -377,7 +389,7 @@ DvfmEvsUmlCreateNickname (char *dvfmEvsUmlName, char *dvfmEvsUmlFirstNickname, c
 	strcat(dvfmEvsUmlFirstNickname, ".");
 	strcat(dvfmEvsUmlFirstNickname, dvfmEvsUmlNames[dvfmEvsUmlCountName]);
 
-	if (strlen(dvfmEvsUmlFirstNickname) > DVFM_EVS_UML_MAXIMUM_LENGTH_NICKNAME)
+	if (strlen(dvfmEvsUmlFirstNickname) > DVFM_EVS_UML_MAX_SIZE_NICKNAME)
 		return dvfmEvsUmlLongNickname;
 
 	if (dvfmEvsUmlCountName == 1)
@@ -391,7 +403,7 @@ DvfmEvsUmlCreateNickname (char *dvfmEvsUmlName, char *dvfmEvsUmlFirstNickname, c
 			dvfmEvsUmlCountName--;
 		strcat(dvfmEvsUmlSecondNickname, dvfmEvsUmlNames[dvfmEvsUmlCountName - 1]);
 	}
-	if (strlen(dvfmEvsUmlSecondNickname) > DVFM_EVS_UML_MAXIMUM_LENGTH_NICKNAME)
+	if (strlen(dvfmEvsUmlSecondNickname) > DVFM_EVS_UML_MAX_SIZE_NICKNAME)
 		return dvfmEvsUmlLongNickname;
 
 	return dvfmEvsUmlOk;
