@@ -532,7 +532,7 @@ main (int argc, char *argv[])
             strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructPassword, dvfmEvsUmlAdimimPassword);
             strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmPassword, dvfmEvsUmlConfirmAdimimPassword);
 
-            /* faltou prencher os outros campos com NULL ou 0 ou '\0' porem como nao sei quais sao nao defini */
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructProfile, "\0");
 
             /* Populates the structure with the configuration information */
 
