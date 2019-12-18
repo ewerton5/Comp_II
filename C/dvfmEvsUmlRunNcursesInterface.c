@@ -14,7 +14,7 @@
 #include	<string.h>
 #include	"dvfmEvsUmlRunNcursesInterface.h"
 #include	"dvfmEvsUmlUserInterface.h"
-// #include	"dvfmEvsUmlFunctions.h"
+#include	"dvfmEvsUmlFunctions.h"
 
 /*
  * dvfmEvsUmlErrorType
@@ -41,11 +41,13 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
                               char *dvfmEvsUmlNickname,
                               dvfmEvsUmlLanguageType dvfmEvsUmlLanguage)
 {
-    WINDOW * dvfmEvsUmlWindow;
+    WINDOW *dvfmEvsUmlWindow;
     unsigned short dvfmEvsUmlCursor = 1, dvfmEvsUmlIndex;
     dvfmEvsUmlBool dvfmEvsUmlLogged = dvfmEvsUmlFalse, dvfmEvsUmlWithNickname = dvfmEvsUmlFalse,
                    dvfmEvsUmlIncorrectUser = dvfmEvsUmlFalse, dvfmEvsUmlBackScreen = dvfmEvsUmlFalse;
-    char dvfmEvsUmlBuffer [5][512];
+    char dvfmEvsUmlBuffer [5][DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE];
+    char dvfmEvsUmlAuxiliary [2] = "0\0";
+    FILE *dvfmEvsUmlRead;
 
     if(!dvfmEvsUmlSettings)
         return dvfmEvsUmlFirstEmptyPointer;
@@ -116,10 +118,14 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
         case 65:
             if(dvfmEvsUmlCursor > 1)
                 dvfmEvsUmlCursor--;
+            else
+                dvfmEvsUmlCursor = 4;
             break;
         case 66:
             if(dvfmEvsUmlCursor < 4)
                 dvfmEvsUmlCursor++;
+            else
+                dvfmEvsUmlCursor = 1;
             break;
         case 10:
             refresh();
@@ -182,14 +188,65 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
                         attroff(COLOR_PAIR(2));
                     }
 
-                    /*autentication code*/
-                    // if(!DvfmEvsUmlCheckPassword(dvfmEvsUmlBuffer [0], dvfmEvsUmlBuffer [1]))
-                        // dvfmEvsUmlLogged = dvfmEvsUmlTrue;
+                    if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "r")))
+                    {
+                        refresh();
+                        box(dvfmEvsUmlWindow, 0, 0);
+                        wrefresh(dvfmEvsUmlWindow);
+                        mvprintw(13, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExiting, dvfmEvsUmlLanguage)))/2,
+                                            "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExiting, dvfmEvsUmlLanguage));
+                        mvgetch(0, 0);
 
-                    /*---Just for test---*/
-                    if(!strcmp(dvfmEvsUmlBuffer [0], dvfmEvsUmlBuffer [1]))
-                        dvfmEvsUmlLogged = dvfmEvsUmlTrue;
-                    /*-------------------*/
+                        delwin(dvfmEvsUmlWindow);
+                        endwin();
+                        return dvfmEvsUmlCantOpenFile;
+                    }
+                    
+                    while(fgets(dvfmEvsUmlBuffer [2], DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE, dvfmEvsUmlRead))
+                    {
+                        strcpy(dvfmEvsUmlBuffer [2], strstr(dvfmEvsUmlBuffer [2], ":"));
+                        dvfmEvsUmlAuxiliary [0] = dvfmEvsUmlBuffer [2][1];
+                        strcpy(dvfmEvsUmlBuffer [2], strstr(dvfmEvsUmlBuffer [2], dvfmEvsUmlAuxiliary));
+
+                        strcpy(dvfmEvsUmlBuffer [3], strstr(dvfmEvsUmlBuffer [2], "$"));
+
+                        for (dvfmEvsUmlIndex = 0; dvfmEvsUmlBuffer [2][dvfmEvsUmlIndex] != '\0'; dvfmEvsUmlIndex++)
+                            if(dvfmEvsUmlBuffer [2][dvfmEvsUmlIndex] == ':')
+                            {
+                                dvfmEvsUmlBuffer [2][dvfmEvsUmlIndex] = '\0';
+                                break;
+                            }
+                        
+                        for (dvfmEvsUmlIndex = 0; dvfmEvsUmlBuffer [3][dvfmEvsUmlIndex] != '\0'; dvfmEvsUmlIndex++)
+                            if(dvfmEvsUmlBuffer [3][dvfmEvsUmlIndex] == ':')
+                            {
+                                dvfmEvsUmlBuffer [3][dvfmEvsUmlIndex] = '\0';
+                                break;
+                            }
+
+                        if(!strcmp(dvfmEvsUmlBuffer [0], dvfmEvsUmlBuffer [2]))
+                            if(!DvfmEvsUmlCheckPassword(dvfmEvsUmlBuffer [1], dvfmEvsUmlBuffer [3]))
+                                dvfmEvsUmlLogged = dvfmEvsUmlTrue;
+                    }
+
+                    if(ferror(dvfmEvsUmlRead))
+                    {
+                        fclose(dvfmEvsUmlRead);
+
+                        refresh();
+                        box(dvfmEvsUmlWindow, 0, 0);
+                        wrefresh(dvfmEvsUmlWindow);
+                        mvprintw(13, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExiting, dvfmEvsUmlLanguage)))/2,
+                                            "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExiting, dvfmEvsUmlLanguage));
+                        mvgetch(0, 0);
+
+                        delwin(dvfmEvsUmlWindow);
+                        endwin();
+                        
+                        return dvfmEvsUmlReadError;
+                    }
+
+                    fclose(dvfmEvsUmlRead);
                     
                     if(!dvfmEvsUmlWithNickname)
                     {
@@ -341,7 +398,7 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
     wrefresh(dvfmEvsUmlWindow);
     mvprintw(13, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExiting, dvfmEvsUmlLanguage)))/2,
                          "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExiting, dvfmEvsUmlLanguage));
-    getch();
+    mvgetch(0, 0);
 
     delwin(dvfmEvsUmlWindow);
     endwin();
