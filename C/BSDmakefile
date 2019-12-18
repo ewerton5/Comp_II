@@ -80,7 +80,7 @@ DVFM_EVS_CGISHOWADDUSERFORMOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowAddUserFor
 DVFM_EVS_DVFMEVSUMLOBJS = dvfmEvsUml.o dvfmEvsUmlErrors.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
 
 #===> Ncurses
-DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlRunNcursesInterface.o dvfmEvsUmlUserInterface.o dvfmEvsUmlRunNcursesInterfaceTestFile.o
+DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlRunNcursesInterface.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o dvfmEvsUmlRunNcursesInterfaceTestFile.o
 
 #===> Index html
 DVFM_EVS_INDEXHTMLFILE = ../HTML/index_en-us.html ../HTML/index_pt-br.html
@@ -282,7 +282,7 @@ dvfmEvsUml: $(DVFM_EVS_DVFMEVSUMLOBJS)
 #===> Ncurses
 
 dvfmEvsUmlRunNcursesInterface: $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS) $(LNCURSES)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS) $(LNCURSES)  $(LCRYPT)
 	cp $@ $(DVFM_EVS_BINARIES_DIRECTORY)
 
 #===> Install
