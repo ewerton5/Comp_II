@@ -13,6 +13,7 @@ $Log$
 #include					<stdio.h>
 #include					<stdlib.h>
 #include					"dvfmEvsUmlRunNcursesInterface.h"
+#include					"dvfmEvsUmlFunctions.h"
 
 #define DVFM_EVS_NUMBER_ARGUMENTS						3
 
@@ -54,6 +55,13 @@ main(int argc,char *argv[ ])
 		exit(DVFM_EVS_SECOND_ARGUMENT_INVALID);
 	}
 
+
+    dvfmEvsUmlErrorCode = DvfmEvsUmlGetConfigurationOptionsValues(NULL, dvfmEvsUmlSettings);
+	if (dvfmEvsUmlErrorCode)
+    {
+        printf("%s\n", DvfmEvsUmlGetCliErrorMessage(dvfmEvsUmlErrorCode, dvfmEvsUmlLanguage));
+        exit(DVFM_EVS_OK);
+    }
 
     dvfmEvsUmlErrorCode = DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlSettings, argv[1], dvfmEvsUmlLanguage);
 	if (dvfmEvsUmlErrorCode)
