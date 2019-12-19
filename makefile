@@ -1,5 +1,6 @@
 
 all:
+	cd C/ && make clean-all
 	git config --global credential.helper cache
 	git pull
 	git add *
