@@ -88,25 +88,25 @@ main (int argc, char *argv[])
 		{"help", 2, NULL, 'h'},
 		{"options", 2, NULL, 'o'},
         {"Ncurses", 2, NULL, 'N'},
-        {"Configure", 1, NULL, 'C'},
-        {"add", 1, NULL, 'a'},
-        {"invite", 1, NULL, 'i'},
-        {"accept", 1, NULL, 't'},
-        {"reject", 1, NULL, 'j'},
-        {"new", 1, NULL, 'n'},
-        {"request", 1, NULL, 'q'},
-        {"Request", 1, NULL, 'Q'},
-        {"approve", 1, NULL, 'v'},
-        {"disapprove", 1, NULL, 'd'},
-        {"Unlocking", 1, NULL, 'U'},
-        {"lock", 1, NULL, 'l'},
-        {"unlock", 1, NULL, 'u'},
-        {"password", 1, NULL, 'p'},
-        {"reset", 1, NULL, 'r'},
-        {"modify", 1, NULL, 'm'},
-        {"edit", 1, NULL, 'e'},
-        {"confirm", 1, NULL, 'c'},
-        {"group", 1, NULL, 'g'},
+        {"Configure", 2, NULL, 'C'},
+        {"add", 2, NULL, 'a'},
+        {"invite", 2, NULL, 'i'},
+        {"accept", 2, NULL, 't'},
+        {"reject", 2, NULL, 'j'},
+        {"new", 2, NULL, 'n'},
+        {"request", 2, NULL, 'q'},
+        {"Request", 2, NULL, 'Q'},
+        {"approve", 2, NULL, 'v'},
+        {"disapprove", 2, NULL, 'd'},
+        {"Unlocking", 2, NULL, 'U'},
+        {"lock", 2, NULL, 'l'},
+        {"unlock", 2, NULL, 'u'},
+        {"password", 2, NULL, 'p'},
+        {"reset", 2, NULL, 'r'},
+        {"modify", 2, NULL, 'm'},
+        {"edit", 2, NULL, 'e'},
+        {"confirm", 2, NULL, 'c'},
+        {"group", 2, NULL, 'g'},
         {"show", 2, NULL, 's'},
         {"Search", 2, NULL, 'S'},
         {NULL, 0, NULL, 0}
@@ -401,7 +401,7 @@ main (int argc, char *argv[])
         break;
         
         case 'C':
-
+            
             /* DvfmEvsUmlAddUser */ 
 
             if(argc - 2 < DVFM_EVS_UML_REQUIRED_SUBOPTION_ADD_USER_C)
@@ -494,25 +494,23 @@ main (int argc, char *argv[])
 
             /* user check to see if he is the administrator */
         
-            dvfmEvsUmlIdAdmim = strtoul( DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER, &dvfmEvsUmlValidation, 10);
+            /*===dvfmEvsUmlIdAdmim = strtoul( DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER, &dvfmEvsUmlValidation, 10);
 
             if(*dvfmEvsUmlValidation != DVFM_EVS_UML_EOS)
             {
-                /* error */
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlConvertAdmimId, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_CONVERT_ADMINISTRATOR_ID);
             }
 
             if(dvfmEvsUmlIdAdmim != getuid())
             {
-                /* error */
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidId, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_INVALID_ID);
-            }
+            }===*/
 
             /* get password */
 
-            printf("%s:", DvfmEvsUmlGetCliUserInterfaceMessage ( dvfmEvsUmlPassword, dvfmEvsUmlLanguage));
+            /*===printf("%s:", DvfmEvsUmlGetCliUserInterfaceMessage ( dvfmEvsUmlPassword, dvfmEvsUmlLanguage));
 
             strcpy (dvfmEvsUmlAdimimPassword, (dvfmEvsUmlPointerPassword = getpass ("")));
 
@@ -521,14 +519,14 @@ main (int argc, char *argv[])
             strcpy( dvfmEvsUmlConfirmAdimimPassword, (dvfmEvsUmlPointerPassword = getpass("")));
 
             memset( dvfmEvsUmlPointerPassword, 0x00, DVFM_EVS_UML_MAX_SIZE_PASSWORD);
-
+            ===*/
             /* put user information in a struct to pass to the function */
 
-            dvfmEvsUmlDataUser.dvfmEvsUmlStructUsername = dvfmEvsUmlUsername;
             dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmUsername = dvfmEvsUmlConfirmUsername;
             dvfmEvsUmlDataUser.dvfmEvsUmlStructEmail = dvfmEvsUmlEmail;
             dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmEmail = dvfmEvsUmlConfirmEmail;
 
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructUsername, dvfmEvsUmlUsername);
             strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructPassword, dvfmEvsUmlAdimimPassword);
             strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmPassword, dvfmEvsUmlConfirmAdimimPassword);
 
