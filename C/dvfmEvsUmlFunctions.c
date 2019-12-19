@@ -1134,7 +1134,7 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 	
 	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCreateNickname ( dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername, dvfmEvsUmlFirstNickname, dvfmEvsUmlSecondNickname)))
 		return dvfmEvsUmlReturnCode;
-	printf("%s\n", dvfmEvsUmlSecondNickname);
+
 	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckNickname ( dvfmEvsUmlFirstNickname, DVFM_EVS_UML_VALID_CHARACTERS_NICKNAME, DVFM_EVS_UML_MINIMUM_SIZE_NICKNAME, DVFM_EVS_UML_MAX_SIZE_NICKNAME)))
 		return dvfmEvsUmlReturnCode;
 
@@ -1174,13 +1174,16 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 		/* does not exist  */
 
 		/* creating encrypted password */
+		printf("oi\n");
+		printf("%s\n", dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword);
 
 		if((dvfmEvsUmlReturnCode = DvfmEvsUmlEncodePasswordWithSpecificAlgorithm( dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword, dvfmEvsUmlSha512, dvfmEvsUmlEncryptedPassword)))
 			return dvfmEvsUmlReturnCode;
-	
+		printf("%s\n", dvfmEvsUmlEncryptedPassword);
+		printf("oi\n");
 		if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckPassword( dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword, dvfmEvsUmlEncryptedPassword)))
 			return dvfmEvsUmlReturnCode;
-	
+		printf("oi\n");
 		/* writing the data in the file */
 
 		if(!(dvfmEvsUmlUsersFile = fopen (dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "w")))
