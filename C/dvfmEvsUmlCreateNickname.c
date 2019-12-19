@@ -29,8 +29,8 @@ int
 main(int argc,char *argv[ ]) 
 {
     dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
-    char dvfmEvsUmlFirstNickname [DVFM_EVS_UML_MAXIMUM_LENGTH_NICKNAME + 1];
-	char dvfmEvsUmlSecondNickname [DVFM_EVS_UML_MAXIMUM_LENGTH_NICKNAME + 1];
+    char dvfmEvsUmlFirstNickname [DVFM_EVS_UML_MAX_SIZE_NICKNAME + 1];
+	char dvfmEvsUmlSecondNickname [DVFM_EVS_UML_MAX_SIZE_NICKNAME + 1];
 	if (argc != DVFM_EVS_NUMBER_ARGUMENTS) 
 	{
 		printf("use: %s <full_name>\n", argv[0]);
