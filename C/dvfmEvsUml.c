@@ -527,8 +527,8 @@ main (int argc, char *argv[])
             dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmEmail = dvfmEvsUmlConfirmEmail;
 
             strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructUsername, dvfmEvsUmlUsername);
-            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructPassword, dvfmEvsUmlAdimimPassword);
-            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmPassword, dvfmEvsUmlConfirmAdimimPassword);
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructPassword, ".Aa55444512"/*===dvfmEvsUmlAdimimPassword===*/);
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmPassword, ".Aa55444512"/*===dvfmEvsUmlConfirmAdimimPassword===*/);
 
             strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructProfile, "\0");
 

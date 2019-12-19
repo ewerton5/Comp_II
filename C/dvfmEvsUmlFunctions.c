@@ -640,7 +640,7 @@ DvfmEvsUmlEncodePasswordWithSpecificSalt (char *dvfmEvsUmlFlatPassword, char *dv
 dvfmEvsUmlErrorType
 DvfmEvsUmlCheckPassword (char *dvfmEvsUmlFlatPassword, char *dvfmEvsUmlEncryptedPassword)
 {
-	unsigned dvfmEvsUmlIndexEncryptedPassword = 1;
+	unsigned dvfmEvsUmlIndexEncryptedPassword = 3;
 	char dvfmEvsUmlSalt[23];
 	char dvfmEvsUmlFlatPasswordEncrypted [108];
 	dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
@@ -1115,9 +1115,9 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckEmail( dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail, DVFM_EVS_UML_VALID_CHARACTERS_EMAIL, DVFM_EVS_UML_MINIMUM_SIZE_EMAIL, DVFM_EVS_UML_MAX_SIZE_EMAIL)))
 		return dvfmEvsUmlReturnCode;
 
-	/*===if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckStringField ( dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword, DVFM_EVS_UML_VALID_CHARACTERS_PASSWORD, DVFM_EVS_UML_MINIMUM_SIZE_PASSWORD, DVFM_EVS_UML_MAX_SIZE_PASSWORD)))
+	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckStringField ( dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword, DVFM_EVS_UML_VALID_CHARACTERS_PASSWORD, DVFM_EVS_UML_MINIMUM_SIZE_PASSWORD, DVFM_EVS_UML_MAX_SIZE_PASSWORD)))
 		return dvfmEvsUmlReturnCode;
-	===*/
+
 	/* redeeming username */
 
 	dvfmEvsUmlIndex = 0;
@@ -1134,14 +1134,13 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 	
 	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCreateNickname ( dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername, dvfmEvsUmlFirstNickname, dvfmEvsUmlSecondNickname)))
 		return dvfmEvsUmlReturnCode;
-	printf("oi\n");
-	printf("%s\n", dvfmEvsUmlFirstNickname);
 	printf("%s\n", dvfmEvsUmlSecondNickname);
 	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckNickname ( dvfmEvsUmlFirstNickname, DVFM_EVS_UML_VALID_CHARACTERS_NICKNAME, DVFM_EVS_UML_MINIMUM_SIZE_NICKNAME, DVFM_EVS_UML_MAX_SIZE_NICKNAME)))
 		return dvfmEvsUmlReturnCode;
-	printf("oi\n");
+
 	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckNickname ( dvfmEvsUmlSecondNickname, DVFM_EVS_UML_VALID_CHARACTERS_NICKNAME, DVFM_EVS_UML_MINIMUM_SIZE_NICKNAME, DVFM_EVS_UML_MAX_SIZE_NICKNAME)))
 		return dvfmEvsUmlReturnCode;
+
 	/* redeeming profiles */
 
 	if(strlen(dvfmEvsUmlDataUser->dvfmEvsUmlStructProfile))
@@ -1178,10 +1177,10 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 
 		if((dvfmEvsUmlReturnCode = DvfmEvsUmlEncodePasswordWithSpecificAlgorithm( dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword, dvfmEvsUmlSha512, dvfmEvsUmlEncryptedPassword)))
 			return dvfmEvsUmlReturnCode;
-
+	
 		if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckPassword( dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword, dvfmEvsUmlEncryptedPassword)))
 			return dvfmEvsUmlReturnCode;
-
+	
 		/* writing the data in the file */
 
 		if(!(dvfmEvsUmlUsersFile = fopen (dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "w")))
