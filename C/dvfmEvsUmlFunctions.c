@@ -640,7 +640,7 @@ DvfmEvsUmlEncodePasswordWithSpecificSalt (char *dvfmEvsUmlFlatPassword, char *dv
 dvfmEvsUmlErrorType
 DvfmEvsUmlCheckPassword (char *dvfmEvsUmlFlatPassword, char *dvfmEvsUmlEncryptedPassword)
 {
-	unsigned dvfmEvsUmlIndexEncryptedPassword = 1;
+	unsigned dvfmEvsUmlIndexEncryptedPassword = 3;
 	char dvfmEvsUmlSalt[23];
 	char dvfmEvsUmlFlatPasswordEncrypted [108];
 	dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
@@ -1118,12 +1118,27 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckStringField ( dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword, DVFM_EVS_UML_VALID_CHARACTERS_PASSWORD, DVFM_EVS_UML_MINIMUM_SIZE_PASSWORD, DVFM_EVS_UML_MAX_SIZE_PASSWORD)))
 		return dvfmEvsUmlReturnCode;
 
-	/* creating nickname */
+	/* redeeming username */
 
+	dvfmEvsUmlIndex = 0;
+
+	while (dvfmEvsUmlIndex < strlen(dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername))
+	{
+		if(dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername [dvfmEvsUmlIndex] == '-')
+			dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername [dvfmEvsUmlIndex] = ' ';
+					
+		dvfmEvsUmlIndex++;
+	}
+
+	/* creating nickname */
+	
 	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCreateNickname ( dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername, dvfmEvsUmlFirstNickname, dvfmEvsUmlSecondNickname)))
 		return dvfmEvsUmlReturnCode;
-
+	printf("%s\n", dvfmEvsUmlSecondNickname);
 	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckNickname ( dvfmEvsUmlFirstNickname, DVFM_EVS_UML_VALID_CHARACTERS_NICKNAME, DVFM_EVS_UML_MINIMUM_SIZE_NICKNAME, DVFM_EVS_UML_MAX_SIZE_NICKNAME)))
+		return dvfmEvsUmlReturnCode;
+
+	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckNickname ( dvfmEvsUmlSecondNickname, DVFM_EVS_UML_VALID_CHARACTERS_NICKNAME, DVFM_EVS_UML_MINIMUM_SIZE_NICKNAME, DVFM_EVS_UML_MAX_SIZE_NICKNAME)))
 		return dvfmEvsUmlReturnCode;
 
 	/* redeeming profiles */
@@ -1162,10 +1177,10 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 
 		if((dvfmEvsUmlReturnCode = DvfmEvsUmlEncodePasswordWithSpecificAlgorithm( dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword, dvfmEvsUmlSha512, dvfmEvsUmlEncryptedPassword)))
 			return dvfmEvsUmlReturnCode;
-
+	
 		if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckPassword( dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword, dvfmEvsUmlEncryptedPassword)))
 			return dvfmEvsUmlReturnCode;
-
+	
 		/* writing the data in the file */
 
 		if(!(dvfmEvsUmlUsersFile = fopen (dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "w")))
@@ -1196,7 +1211,7 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 
 			/* checking that there are no blank lines */
 
-			while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_BUFFER_SIZE_LINE_CONFIG_FILE, dvfmEvsUmlUsersFile));
+			while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_BUFFER_SIZE_LINE_CONFIG_FILE, dvfmEvsUmlUsersFile))
 			{
 				if (dvfmEvsUmlLastLine)
 				{
@@ -1213,7 +1228,7 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 				}
 
 				if (dvfmEvsUmlBuffer [strlen (dvfmEvsUmlBuffer) - 1] != '\n')
-				dvfmEvsUmlLastLine = dvfmEvsUmlTrue;
+					dvfmEvsUmlLastLine = dvfmEvsUmlTrue;
 			}
 
 			/* error test while reading file */
@@ -1254,7 +1269,7 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 					dvfmEvsUmlIndex++;
 				}
 
-				strncpy(dvfmEvsUmlPresentNickname, dvfmEvsUmlBuffer[dvfmEvsUmlBeginPresentNickname], dvfmEvsUmlEndPresentNickname - dvfmEvsUmlBeginPresentNickname + 1);
+				strncpy(dvfmEvsUmlPresentNickname, &dvfmEvsUmlBuffer[dvfmEvsUmlBeginPresentNickname], dvfmEvsUmlEndPresentNickname - dvfmEvsUmlBeginPresentNickname + 1);
 
 				dvfmEvsUmlPresentNickname[dvfmEvsUmlEndPresentNickname - dvfmEvsUmlBeginPresentNickname + 1] = '\0';
 
@@ -1330,16 +1345,16 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 
 					if(!dvfmEvsUmlExistFirstNickname)
 					{
-						snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%u", dvfmEvsUmlUserIdentifierPrevious + 1);
+						snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%llu", dvfmEvsUmlUserIdentifierPrevious + 1);
 
-						fprintf( dvfmEvsUmlUsersFile, "\n%s:%s:%s:%c:%s:%s", dvfmEvsUmlUserIdentifierString, dvfmEvsUmlFirstNickname, dvfmEvsUmlEncryptedPassword, dvfmEvsUmlNumberProfile + '0', dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
+						fprintf( dvfmEvsUmlUsersFile, "\n%s:%s:%s:%c:%s:%s", dvfmEvsUmlUserIdentifierString, dvfmEvsUmlFirstNickname, dvfmEvsUmlEncryptedPassword, (char)(dvfmEvsUmlNumberProfile + '0'), dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
 					}
 
 					else
 					{
-						snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%u", dvfmEvsUmlUserIdentifierPrevious + 1);
+						snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%llu", dvfmEvsUmlUserIdentifierPrevious + 1);
 
-						fprintf( dvfmEvsUmlUsersFile, "\n%s:%s:%s:%c:%s:%s", dvfmEvsUmlUserIdentifierString, dvfmEvsUmlSecondNickname, dvfmEvsUmlEncryptedPassword, dvfmEvsUmlNumberProfile + '0', dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
+						fprintf( dvfmEvsUmlUsersFile, "\n%s:%s:%s:%c:%s:%s", dvfmEvsUmlUserIdentifierString, dvfmEvsUmlSecondNickname, dvfmEvsUmlEncryptedPassword, (char)(dvfmEvsUmlNumberProfile + '0'), dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
 					}
 
 				}
@@ -1355,16 +1370,16 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 			{
 				if(!dvfmEvsUmlExistFirstNickname)
 				{
-					snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%u", dvfmEvsUmlUserIdentifierPresent + 1);
+					snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%llu", dvfmEvsUmlUserIdentifierPresent + 1);
 
-					fprintf( dvfmEvsUmlUsersFile, "\n%s:%s:%c:%s:%s", dvfmEvsUmlUserIdentifierString, dvfmEvsUmlFirstNickname, dvfmEvsUmlEncryptedPassword, dvfmEvsUmlNumberProfile + '0', dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
+					fprintf( dvfmEvsUmlUsersFile, "\n%s:%s:%s:%c:%s:%s", dvfmEvsUmlUserIdentifierString, dvfmEvsUmlFirstNickname, dvfmEvsUmlEncryptedPassword, (char)(dvfmEvsUmlNumberProfile + '0'), dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
 				}
 
 				else
 				{
-					snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%u", dvfmEvsUmlUserIdentifierPresent + 1);
+					snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%llu", dvfmEvsUmlUserIdentifierPresent + 1);
 
-					fprintf( dvfmEvsUmlUsersFile, "\n%s:%s:%c:%s:%s", dvfmEvsUmlUserIdentifierString, dvfmEvsUmlSecondNickname, dvfmEvsUmlEncryptedPassword, dvfmEvsUmlNumberProfile + '0', dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
+					fprintf( dvfmEvsUmlUsersFile, "\n%s:%s:%s:%c:%s:%s", dvfmEvsUmlUserIdentifierString, dvfmEvsUmlSecondNickname, dvfmEvsUmlEncryptedPassword, (char)(dvfmEvsUmlNumberProfile + '0'), dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
 				}
 
 			}

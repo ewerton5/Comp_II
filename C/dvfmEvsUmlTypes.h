@@ -75,7 +75,7 @@ typedef struct dvfmEvsUmlConfigurationOptions
 typedef struct dvfmEvsUmlUserData
 {
 	
-	char *dvfmEvsUmlStructUsername;
+	char dvfmEvsUmlStructUsername[DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
 	char *dvfmEvsUmlStructConfirmUsername;
 	char *dvfmEvsUmlStructEmail;
 	char *dvfmEvsUmlStructConfirmEmail;
