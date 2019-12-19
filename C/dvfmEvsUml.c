@@ -494,7 +494,7 @@ main (int argc, char *argv[])
 
             /* user check to see if he is the administrator */
         
-            /*===dvfmEvsUmlIdAdmim = strtoul( DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER, &dvfmEvsUmlValidation, 10);
+            dvfmEvsUmlIdAdmim = strtoul( DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER, &dvfmEvsUmlValidation, 10);
 
             if(*dvfmEvsUmlValidation != DVFM_EVS_UML_EOS)
             {
@@ -506,11 +506,11 @@ main (int argc, char *argv[])
             {
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidId, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_INVALID_ID);
-            }===*/
+            }
 
             /* get password */
 
-            /*===printf("%s:", DvfmEvsUmlGetCliUserInterfaceMessage ( dvfmEvsUmlPassword, dvfmEvsUmlLanguage));
+            printf("%s:", DvfmEvsUmlGetCliUserInterfaceMessage ( dvfmEvsUmlPassword, dvfmEvsUmlLanguage));
 
             strcpy (dvfmEvsUmlAdimimPassword, (dvfmEvsUmlPointerPassword = getpass ("")));
 
@@ -519,7 +519,7 @@ main (int argc, char *argv[])
             strcpy( dvfmEvsUmlConfirmAdimimPassword, (dvfmEvsUmlPointerPassword = getpass("")));
 
             memset( dvfmEvsUmlPointerPassword, 0x00, DVFM_EVS_UML_MAX_SIZE_PASSWORD);
-            ===*/
+
             /* put user information in a struct to pass to the function */
 
             dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmUsername = dvfmEvsUmlConfirmUsername;
@@ -527,8 +527,8 @@ main (int argc, char *argv[])
             dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmEmail = dvfmEvsUmlConfirmEmail;
 
             strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructUsername, dvfmEvsUmlUsername);
-            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructPassword, ".Aa55444512"/*===dvfmEvsUmlAdimimPassword===*/);
-            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmPassword, ".Aa55444512"/*===dvfmEvsUmlConfirmAdimimPassword===*/);
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructPassword, dvfmEvsUmlAdimimPassword);
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmPassword, dvfmEvsUmlConfirmAdimimPassword);
 
             strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructProfile, "\0");
 
