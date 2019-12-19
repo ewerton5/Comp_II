@@ -94,38 +94,38 @@ DVFM_EVS_INSTALLOBJS =  $(DVFM_EVS_CGIMAINOBJS)\
 						$(DVFM_EVS_CGISHOWADDUSERFORMOBJS)
 
 #===> Path
-DVFM_EVS_MAKE_DIRECTORY = 	~/private/EEL270/2019-2/DVFM_EVS/Binaries \
-							~/private/EEL270/2019-2/DVFM_EVS/Data/Cookies \
-							~/public/EEL270/2019-2/DVFM_EVS/CGIs
-
-DVFM_EVS_CGIS_DIRECTORY = ~/public/EEL270/2019-2/DVFM_EVS/CGIs
+DVFM_EVS_CGIS_DIRECTORY = ~/public/html/EEL270/2019-2/DVFM_EVS/CGIs
 
 DVFM_EVS_BINARIES_DIRECTORY = ~/private/EEL270/2019-2/DVFM_EVS/Binaries
 
-DVFM_EVS_DVFM_EVS_DIRECTORY = ~/public/EEL270/2019-2/DVFM_EVS
+DVFM_EVS_DVFM_EVS_DIRECTORY = ~/public/html/EEL270/2019-2/DVFM_EVS
+
+DVFM_EVS_MAKE_DIRECTORY = 	$(DVFM_EVS_BINARIES_DIRECTORY) \
+							~/private/EEL270/2019-2/DVFM_EVS/Data/Cookies \
+							$(DVFM_EVS_CGIS_DIRECTORY)
 
 # shortcut
 #===> secundary functions
-DVFM_EVS_SECUNDARYFUNCTIONS = getLanguageIndex\
-							  getAbsoluteFileName\
-							  checkStringField\
-							  checkNickname\
-							  checkEmail\
-							  createRandomString\
-							  createNickname\
-							  getCryptAlgorithm\
-							  encodePasswordWithSpecificAlgorithm\
-							  encodePasswordWithSpecificSalt\
-							  checkPassword\
-							  getConfigurationOptionsValues
+DVFM_EVS_SECUNDARYFUNCTIONS = dvfmEvsUmlGetLanguageIndex\
+							  dvfmEvsUmlGetAbsoluteFileName\
+							  dvfmEvsUmlCheckStringField\
+							  dvfmEvsUmlCheckNickname\
+							  dvfmEvsUmlCheckEmail\
+							  dvfmEvsUmlCreateRandomString\
+							  dvfmEvsUmlCreateNickname\
+							  dvfmEvsUmlGetCryptAlgorithm\
+							  dvfmEvsUmlEncodePasswordWithSpecificAlgorithm\
+							  dvfmEvsUmlEncodePasswordWithSpecificSalt\
+							  dvfmEvsUmlCheckPassword\
+							  dvfmEvsUmlGetConfigurationOptionsValues
 
 #===> primary functions
-DVFM_EVS_PRIMARYFUNCTIONS = getCliErrorMessage\
-							getNcursesErrorMessage\
-							getWebErrorMessage\
-							getCliUserInterfaceMessage\
-							getNcursesUserInterfaceMessage\
-							getWebUserInterfaceMessage
+DVFM_EVS_PRIMARYFUNCTIONS = dvfmEvsUmlGetCliErrorMessage\
+							dvfmEvsUmlGetNcursesErrorMessage\
+							dvfmEvsUmlGetWebErrorMessage\
+							dvfmEvsUmlGetCliUserInterfaceMessage\
+							dvfmEvsUmlGetNcursesUserInterfaceMessage\
+							dvfmEvsUmlGetWebUserInterfaceMessage
 
 #===> CGIs
 DVFM_EVS_CGIS = dvfmEvsUmlMain.cgi \
@@ -172,77 +172,77 @@ secundaryFunctions: $(DVFM_EVS_SECUNDARYFUNCTIONS)
 primaryFunctions: $(DVFM_EVS_PRIMARYFUNCTIONS)
 
 #===> secundary functions
-getLanguageIndex: $(DVFM_EVS_GETLANGUAGEINDEXOBJS)
+dvfmEvsUmlGetLanguageIndex: $(DVFM_EVS_GETLANGUAGEINDEXOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETLANGUAGEINDEXOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
-getAbsoluteFileName: $(DVFM_EVS_GETABSOLUTEFILENAMEOBJS)
+dvfmEvsUmlGetAbsoluteFileName: $(DVFM_EVS_GETABSOLUTEFILENAMEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETABSOLUTEFILENAMEOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
-checkStringField: $(DVFM_EVS_CHECKSTRINGFIELDOBJS)
+dvfmEvsUmlCheckStringField: $(DVFM_EVS_CHECKSTRINGFIELDOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKSTRINGFIELDOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
-checkNickname: $(DVFM_EVS_CHECKNICKNAMEOBJS)
+dvfmEvsUmlCheckNickname: $(DVFM_EVS_CHECKNICKNAMEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKNICKNAMEOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
-checkEmail: $(DVFM_EVS_CHECKEMAILOBJS)
+dvfmEvsUmlCheckEmail: $(DVFM_EVS_CHECKEMAILOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKEMAILOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
-createRandomString: $(DVFM_EVS_CREATERANDOMSTRINGOBJS)
+dvfmEvsUmlCreateRandomString: $(DVFM_EVS_CREATERANDOMSTRINGOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CREATERANDOMSTRINGOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
-createNickname: $(DVFM_EVS_CREATENICKNAMEOBJS)
+dvfmEvsUmlCreateNickname: $(DVFM_EVS_CREATENICKNAMEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CREATENICKNAMEOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
-getCryptAlgorithm: $(DVFM_EVS_GETCRYPTALGORITHMOBJS)
+dvfmEvsUmlGetCryptAlgorithm: $(DVFM_EVS_GETCRYPTALGORITHMOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETCRYPTALGORITHMOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
-encodePasswordWithSpecificAlgorithm: $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICALGORITHMOBJS)
+dvfmEvsUmlEncodePasswordWithSpecificAlgorithm: $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICALGORITHMOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICALGORITHMOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
-encodePasswordWithSpecificSalt: $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICSALTOBJS)
+dvfmEvsUmlEncodePasswordWithSpecificSalt: $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICSALTOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_ENCODEPASSWORDWITHSPECIFICSALTOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
-checkPassword: $(DVFM_EVS_CHECKPASSWORDOBJS)
+dvfmEvsUmlCheckPassword: $(DVFM_EVS_CHECKPASSWORDOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_CHECKPASSWORDOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
-getConfigurationOptionsValues: $(DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS)
+dvfmEvsUmlGetConfigurationOptionsValues: $(DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 
 #===> primary functions
 
-getCliErrorMessage: $(DVFM_EVS_GETCLIERRORMESSAGEOBJS)
+dvfmEvsUmlGetCliErrorMessage: $(DVFM_EVS_GETCLIERRORMESSAGEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETCLIERRORMESSAGEOBJS)
 	cp $@ $@-$(OS)-$(CC)
 
-getNcursesErrorMessage: $(DVFM_EVS_GETNCURSESERRORMESSAGEOBJS)
+dvfmEvsUmlGetNcursesErrorMessage: $(DVFM_EVS_GETNCURSESERRORMESSAGEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETNCURSESERRORMESSAGEOBJS)
 	cp $@ $@-$(OS)-$(CC)
 
-getWebErrorMessage: $(DVFM_EVS_GETWEBERRORMESSAGEOBJS)
+dvfmEvsUmlGetWebErrorMessage: $(DVFM_EVS_GETWEBERRORMESSAGEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETWEBERRORMESSAGEOBJS)
 	cp $@ $@-$(OS)-$(CC)
 
-getCliUserInterfaceMessage: $(DVFM_EVS_GETCLIUSERINTERFACEMESSAGEOBJS)
+dvfmEvsUmlGetCliUserInterfaceMessage: $(DVFM_EVS_GETCLIUSERINTERFACEMESSAGEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETCLIUSERINTERFACEMESSAGEOBJS)
 	cp $@ $@-$(OS)-$(CC)
 
-getNcursesUserInterfaceMessage: $(DVFM_EVS_GETNCURSESUSERINTERFACEMESSAGEOBJS)
+dvfmEvsUmlGetNcursesUserInterfaceMessage: $(DVFM_EVS_GETNCURSESUSERINTERFACEMESSAGEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETNCURSESUSERINTERFACEMESSAGEOBJS)
 	cp $@ $@-$(OS)-$(CC)
 
-getWebUserInterfaceMessage: $(DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS)
+dvfmEvsUmlGetWebUserInterfaceMessage: $(DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS)
 	cp $@ $@-$(OS)-$(CC)
 
@@ -276,6 +276,7 @@ dvfmEvsUmlShowAddUserForm.cgi: $(DVFM_EVS_CGISHOWADDUSERFORMOBJS)
 
 dvfmEvsUml: $(DVFM_EVS_DVFMEVSUMLOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_DVFMEVSUMLOBJS) $(LCRYPT)
+	cp $@ $@-$(OS)-$(CC)
 	cp $@ $(DVFM_EVS_BINARIES_DIRECTORY)
 
 
@@ -283,6 +284,7 @@ dvfmEvsUml: $(DVFM_EVS_DVFMEVSUMLOBJS)
 
 dvfmEvsUmlRunNcursesInterface: $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS) $(LNCURSES)  $(LCRYPT)
+	cp $@ $@-$(OS)-$(CC)
 	cp $@ $(DVFM_EVS_BINARIES_DIRECTORY)
 
 #===> Install
