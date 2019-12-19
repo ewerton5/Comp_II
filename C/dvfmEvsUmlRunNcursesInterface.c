@@ -64,10 +64,10 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
     bkgd(COLOR_PAIR(1));
 
     mvprintw(2, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlSystemName, dvfmEvsUmlLanguage)))/2,
-             "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlSystemName, dvfmEvsUmlLanguage));
+             "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlSystemName, dvfmEvsUmlLanguage));
 
     mvprintw(4, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlAuthors, dvfmEvsUmlLanguage)))/2,
-             "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlAuthors, dvfmEvsUmlLanguage));
+             "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlAuthors, dvfmEvsUmlLanguage));
     
     mvprintw(5, 34, "David Vinicius Ferreira Moreira");
     
@@ -82,33 +82,33 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
         wrefresh(dvfmEvsUmlWindow);
         
         mvprintw(8, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlHomePage, dvfmEvsUmlLanguage)))/2,
-                 "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlHomePage, dvfmEvsUmlLanguage));
+                 "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlHomePage, dvfmEvsUmlLanguage));
 
         if(dvfmEvsUmlCursor == 1)
             attron(COLOR_PAIR(2));
         mvprintw(10, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlLogin, dvfmEvsUmlLanguage)))/2,
-                 "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlLogin, dvfmEvsUmlLanguage));
+                 "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlLogin, dvfmEvsUmlLanguage));
         if(dvfmEvsUmlCursor == 1)
             attroff(COLOR_PAIR(2));
 
         if(dvfmEvsUmlCursor == 2)
             attron(COLOR_PAIR(2));
         mvprintw(11, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlRegister, dvfmEvsUmlLanguage)))/2,
-                 "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlRegister, dvfmEvsUmlLanguage));
+                 "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlRegister, dvfmEvsUmlLanguage));
         if(dvfmEvsUmlCursor == 2)
             attroff(COLOR_PAIR(2));
         
         if(dvfmEvsUmlCursor == 3)
             attron(COLOR_PAIR(2));
         mvprintw(12, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlHelp, dvfmEvsUmlLanguage)))/2,
-                 "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlHelp, dvfmEvsUmlLanguage));
+                 "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlHelp, dvfmEvsUmlLanguage));
         if(dvfmEvsUmlCursor == 3)
             attroff(COLOR_PAIR(2));
 
         if(dvfmEvsUmlCursor == 4)
             attron(COLOR_PAIR(2));
         mvprintw(13, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExit, dvfmEvsUmlLanguage)))/2,
-                 "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExit, dvfmEvsUmlLanguage));
+                 "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExit, dvfmEvsUmlLanguage));
         if(dvfmEvsUmlCursor == 4)
             attroff(COLOR_PAIR(2));
         
@@ -142,7 +142,7 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
                     wrefresh(dvfmEvsUmlWindow);
 
                     mvprintw(8, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlLogin, dvfmEvsUmlLanguage)))/2,
-                            "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlLogin, dvfmEvsUmlLanguage));
+                            "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlLogin, dvfmEvsUmlLanguage));
 
                     mvprintw(10, 2, "%s:",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlLogin, dvfmEvsUmlLanguage));
 
@@ -150,20 +150,20 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
 
                     if(!dvfmEvsUmlWithNickname)
                         mvprintw(18, (int) (50 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlBack, dvfmEvsUmlLanguage)))/2,
-                                "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlBack, dvfmEvsUmlLanguage));
+                                "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlBack, dvfmEvsUmlLanguage));
 
                     if(!dvfmEvsUmlWithNickname)
                         mvprintw(18, (int) 50 + (50 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage)))/2,
-                                "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage));
+                                "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage));
                     else
                         mvprintw(18, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage)))/2,
-                                "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage));
+                                "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage));
 
                     if(dvfmEvsUmlIncorrectUser)
                     {
                         attron(COLOR_PAIR(3));
                         mvprintw(16, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlIncorrectPassword, dvfmEvsUmlLanguage)))/2,
-                                    "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlIncorrectPassword, dvfmEvsUmlLanguage));
+                                    "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlIncorrectPassword, dvfmEvsUmlLanguage));
                         attroff(COLOR_PAIR(3));
                     }
 
@@ -184,7 +184,7 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
                     {
                         attron(COLOR_PAIR(2));
                         mvprintw(18, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage)))/2,
-                                "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage));
+                                "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage));
                         attroff(COLOR_PAIR(2));
                     }
 
@@ -194,7 +194,7 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
                         box(dvfmEvsUmlWindow, 0, 0);
                         wrefresh(dvfmEvsUmlWindow);
                         mvprintw(13, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExiting, dvfmEvsUmlLanguage)))/2,
-                                            "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExiting, dvfmEvsUmlLanguage));
+                                            "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExiting, dvfmEvsUmlLanguage));
                         mvgetch(0, 0);
 
                         delwin(dvfmEvsUmlWindow);
@@ -237,7 +237,7 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
                         box(dvfmEvsUmlWindow, 0, 0);
                         wrefresh(dvfmEvsUmlWindow);
                         mvprintw(13, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExiting, dvfmEvsUmlLanguage)))/2,
-                                            "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExiting, dvfmEvsUmlLanguage));
+                                            "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExiting, dvfmEvsUmlLanguage));
                         mvgetch(0, 0);
 
                         delwin(dvfmEvsUmlWindow);
@@ -257,14 +257,14 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
                             if(dvfmEvsUmlCursor == 1)
                                 attron(COLOR_PAIR(2));
                             mvprintw(18, (int) (50 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlBack, dvfmEvsUmlLanguage)))/2,
-                                    "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlBack, dvfmEvsUmlLanguage));
+                                    "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlBack, dvfmEvsUmlLanguage));
                             if(dvfmEvsUmlCursor == 1)
                                 attroff(COLOR_PAIR(2));
 
                             if(dvfmEvsUmlCursor == 2)
                                 attron(COLOR_PAIR(2));
                             mvprintw(18, (int) 50 + (50 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage)))/2,
-                                    "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage));
+                                    "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage));
                             if(dvfmEvsUmlCursor == 2)
                                 attroff(COLOR_PAIR(2));
                         
@@ -303,8 +303,24 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
 
                 /*next screen*/
                 if(dvfmEvsUmlLogged)
-                    dvfmEvsUmlCursor = 0;
+                {
+                    refresh();
+                    box(dvfmEvsUmlWindow, 0, 0);
+                    wrefresh(dvfmEvsUmlWindow);
 
+                    mvprintw(8, (int) 47, "Logged");
+                    mvprintw(8, (int) (100 - strlen(dvfmEvsUmlBuffer [0]))/2,
+                            "%s", dvfmEvsUmlBuffer [0]);
+
+                    attron(COLOR_PAIR(2));
+                    mvprintw(12, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExit, dvfmEvsUmlLanguage)))/2,
+                            "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExit, dvfmEvsUmlLanguage));
+                    attroff(COLOR_PAIR(2));
+
+                    while (mvgetch(0, 0) != 10);
+
+                    dvfmEvsUmlBackScreen = dvfmEvsUmlTrue;
+                }
                 
                 if(dvfmEvsUmlBackScreen)
                 {
@@ -315,7 +331,7 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
                 break;
             case 2:
                 mvprintw(8, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlRegister, dvfmEvsUmlLanguage)))/2,
-                         "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlRegister, dvfmEvsUmlLanguage));
+                         "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlRegister, dvfmEvsUmlLanguage));
 
                 mvprintw(10, 2, "%s:",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlEmailRequest, dvfmEvsUmlLanguage));
 
@@ -328,10 +344,10 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
                 mvprintw(14, 2, "%s:",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirmationEmail, dvfmEvsUmlLanguage));
 
                 mvprintw(16, (int) (50 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlBack, dvfmEvsUmlLanguage)))/2,
-                             "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlBack, dvfmEvsUmlLanguage));
+                             "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlBack, dvfmEvsUmlLanguage));
 
                 mvprintw(16, (int) 50 + (50 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage)))/2,
-                             "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage));
+                             "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage));
 
                 mvgetstr(10, 40, dvfmEvsUmlBuffer [0]);
                 mvgetstr(11, 40, dvfmEvsUmlBuffer [1]);
@@ -345,14 +361,14 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
                     if(dvfmEvsUmlCursor == 1)
                         attron(COLOR_PAIR(2));
                     mvprintw(16, (int) (50 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlBack, dvfmEvsUmlLanguage)))/2,
-                             "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlBack, dvfmEvsUmlLanguage));
+                             "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlBack, dvfmEvsUmlLanguage));
                     if(dvfmEvsUmlCursor == 1)
                         attroff(COLOR_PAIR(2));
 
                     if(dvfmEvsUmlCursor == 2)
                         attron(COLOR_PAIR(2));
                     mvprintw(16, (int) 50 + (50 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage)))/2,
-                             "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage));
+                             "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlConfirm, dvfmEvsUmlLanguage));
                     if(dvfmEvsUmlCursor == 2)
                         attroff(COLOR_PAIR(2));
                     
@@ -375,13 +391,13 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
                 break;
             case 3:
                 mvprintw(8, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlHelp, dvfmEvsUmlLanguage)))/2,
-                         "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlHelp, dvfmEvsUmlLanguage));
+                         "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlHelp, dvfmEvsUmlLanguage));
 
-                mvprintw(10, 2, "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlHelpText, dvfmEvsUmlLanguage));
+                mvprintw(10, 2, "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlHelpText, dvfmEvsUmlLanguage));
 
                 attron(COLOR_PAIR(2));
                 mvprintw(12, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlBack, dvfmEvsUmlLanguage)))/2,
-                         "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlBack, dvfmEvsUmlLanguage));
+                         "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlBack, dvfmEvsUmlLanguage));
                 attroff(COLOR_PAIR(2));
 
                 while (mvgetch(0, 0) != 10);
@@ -397,7 +413,7 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
     box(dvfmEvsUmlWindow, 0, 0);
     wrefresh(dvfmEvsUmlWindow);
     mvprintw(13, (int) (100 - strlen(DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExiting, dvfmEvsUmlLanguage)))/2,
-                         "%s",DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExiting, dvfmEvsUmlLanguage));
+                         "%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlExiting, dvfmEvsUmlLanguage));
     mvgetch(0, 0);
 
     delwin(dvfmEvsUmlWindow);
