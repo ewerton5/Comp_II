@@ -493,7 +493,7 @@ DvfmEvsUmlEncodePasswordWithSpecificAlgorithm (char *dvfmEvsUmlFlatPassword, dvf
 	char dvfmEvsUmlAuxiliarySalt[18] = "0\0";
 	char dvfmEvsUmlSalt[23] = "$0$\0";
 	dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
-
+		printf("oi\n");
 	if(!dvfmEvsUmlFlatPassword)
         return dvfmEvsUmlFirstEmptyPointer;
 
@@ -502,7 +502,7 @@ DvfmEvsUmlEncodePasswordWithSpecificAlgorithm (char *dvfmEvsUmlFlatPassword, dvf
 
 	if(!(strlen(dvfmEvsUmlFlatPassword)))
 		return dvfmEvsUmlVoidString;
-
+		printf("oi\n");
 	if(dvfmEvsUmlAlgorithm == dvfmEvsUmlDes)
 	{
 		if(strlen(dvfmEvsUmlFlatPassword) > 8)
@@ -552,12 +552,19 @@ DvfmEvsUmlEncodePasswordWithSpecificAlgorithm (char *dvfmEvsUmlFlatPassword, dvf
 			default:
 				return dvfmEvsUmlAlgorithmNotFound;
 		}
-
+		printf("ola\n");
 		strcat(dvfmEvsUmlAuxiliarySalt, "$\0");
 		strcat(dvfmEvsUmlSalt, dvfmEvsUmlAuxiliarySalt);
-
+		printf("achei\n");
+		printf("%s\n", dvfmEvsUmlFlatPassword);
+		printf("%s\n", dvfmEvsUmlSalt);
+		if(!(crypt(dvfmEvsUmlFlatPassword, dvfmEvsUmlSalt)))
+			printf("NULL\n");
+		printf("%s\n", crypt(dvfmEvsUmlFlatPassword, dvfmEvsUmlSalt));
+		printf("foi\n");
 		strcpy(dvfmEvsUmlEncryptedPassword, crypt(dvfmEvsUmlFlatPassword, dvfmEvsUmlSalt));
-	}
+		printf("terminou\n");
+	}printf("terminou\n");
 	return dvfmEvsUmlOk;
 }
 
