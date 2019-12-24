@@ -1,0 +1,102 @@
+head	1.2;
+access;
+symbols;
+locks
+	ewerton.silles:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	2019.11.30.04.31.06;	author ewerton.silles;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2019.11.16.03.48.22;	author ewerton.silles;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@/*
+Universidade Federal do Rio de Janeiro
+Escola Politecnica
+Departamento de Eletronica e de Computacao
+Prof. Marcelo Luiz Drumond Lanza
+EEL 270 - Computacao II - Turma 2019/2
+ 
+$Author: ewerton.silles $
+$Date: 2019/11/16 03:48:22 $
+$Log: dvfmEvsUmlGetAbsoluteFileName.c,v $
+Revision 1.1  2019/11/16 03:48:22  ewerton.silles
+Initial revision
+
+*/
+
+#include					<stdio.h>
+#include					<stdlib.h>
+#include					"dvfmEvsUmlFunctions.h"
+#include					"dvfmEvsUmlConst.h"
+
+#define DVFM_EVS_NUMBER_ARGUMENTS					3
+
+#define DVFM_EVS_OK											0
+#define DVFM_EVS_NUMBER_ARGUMENTS_INVALID				1
+
+#define DVFM_EVS_UML_MAXIMUM_LENGTH_CONCATENATED_STRING     DVFM_EVS_UML_MAXIMUM_LENGTH_ABSOLUTE_PATH + DVFM_EVS_UML_MAXIMUM_LENGTH_ARCHIVE_NAME
+
+int
+main(int argc,char *argv[ ]) 
+{
+    dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
+    char dvfmEvsUmlConcatenatedString [DVFM_EVS_UML_MAXIMUM_LENGTH_CONCATENATED_STRING];
+	if (argc != DVFM_EVS_NUMBER_ARGUMENTS) 
+	{
+		printf("use: %s <path> <filename>\n", argv[0]);
+		exit(DVFM_EVS_NUMBER_ARGUMENTS_INVALID);
+	}
+    dvfmEvsUmlErrorCode = DvfmEvsUmlGetAbsoluteFileName(argv[1], argv[2], dvfmEvsUmlConcatenatedString);
+	if (dvfmEvsUmlErrorCode)
+    {
+        printf("%s\n", DvfmEvsUmlGetCliErrorMessage(dvfmEvsUmlErrorCode, dvfmEvsUmlEnglish));
+        exit(DVFM_EVS_OK);
+    }
+    printf("%s\n", dvfmEvsUmlConcatenatedString);
+	return DVFM_EVS_OK;
+}
+/* $RCSfile: dvfmEvsUmlGetAbsoluteFileName.c,v $ */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 6
+a13 3
+$Author$
+$Date$
+$Log$
+d24 1
+a24 1
+#define DVFM_EVS_INVALID_NUMBER_ARGUMENTS					1
+d36 1
+a36 1
+		exit(DVFM_EVS_INVALID_NUMBER_ARGUMENTS);
+d42 1
+d44 1
+a44 1
+        printf("%s\n", dvfmEvsUmlConcatenatedString);
+d47 1
+a47 1
+/* $RCSfile$ */
+@

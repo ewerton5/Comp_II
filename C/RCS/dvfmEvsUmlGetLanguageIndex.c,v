@@ -1,0 +1,104 @@
+head	1.2;
+access;
+symbols;
+locks
+	ewerton.silles:1.2; strict;
+comment	@ * @;
+
+
+1.2
+date	2019.11.16.03.48.22;	author ewerton.silles;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2019.11.14.22.25.48;	author ewerton.silles;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@/*
+Universidade Federal do Rio de Janeiro
+Escola Politecnica
+Departamento de Eletronica e de Computacao
+Prof. Marcelo Luiz Drumond Lanza
+EEL 270 - Computacao II - Turma 2019/2
+ 
+$Author: ewerton.silles $
+$Date: 2019/11/14 22:25:48 $
+$Log: dvfmEvsUmlGetLanguageIndex.c,v $
+Revision 1.1  2019/11/14 22:25:48  ewerton.silles
+Initial revision
+ 
+*/
+
+#include					<stdio.h>
+#include					<stdlib.h>
+#include					"dvfmEvsUmlFunctions.h"
+
+#define DVFM_EVS_NUMBER_ARGUMENTS					2
+
+#define DVFM_EVS_OK											0
+#define DVFM_EVS_INVALID_NUMBER_ARGUMENTS					1
+
+int
+main(int argc,char *argv[ ]) 
+{
+	if (argc != DVFM_EVS_NUMBER_ARGUMENTS) 
+	{
+		printf("use: %s <language>\n", argv[0]);
+		exit(DVFM_EVS_INVALID_NUMBER_ARGUMENTS);
+	}
+	switch (DvfmEvsUmlGetLanguageIndex (argv[1]))
+	{
+		case dvfmEvsUmlEnglish:
+			printf("English language\n");
+			break;
+		case dvfmEvsUmlPortuguese:
+			printf("Portuguese language\n");
+			break;
+		default:
+			printf("English Language\n");
+			break;
+	}
+	return DVFM_EVS_OK;
+}
+/* $RCSfile: dvfmEvsUmlGetLanguageIndex.c,v $ */
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 6
+a13 3
+$Author$
+$Date$
+$Log$ 
+d20 1
+a20 1
+#define DVFM_EVS_NUMERO_ARGUMENTOS					2
+d23 1
+a23 1
+#define DVFM_EVS_NUMERO_ARGUMENTOS_INVALIDO					1
+d28 1
+a28 1
+	if (argc != DVFM_EVS_NUMERO_ARGUMENTOS) 
+d31 1
+a31 1
+		exit(DVFM_EVS_NUMERO_ARGUMENTOS_INVALIDO);
+d47 1
+a47 1
+/* $RCSfile$ */
+@

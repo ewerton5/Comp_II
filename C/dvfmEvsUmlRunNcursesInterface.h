@@ -5,13 +5,16 @@
  * Prof. Marcelo Luiz Drumond Lanza
  * EEL 270 - Computacao II - Turma 2019/2
  
- * $Author$
- * $Date$
- * $Log$
+ * $Author: ewerton.silles $
+ * $Date: 2019/12/24 13:52:26 $
+ * $Log: dvfmEvsUmlRunNcursesInterface.h,v $
+ * Revision 1.1  2019/12/24 13:52:26  ewerton.silles
+ * Initial revision
+ *
 */
 
 #ifndef DVFM_EVS_UML_RUN_NCURSES_INTERFACE_H
-#define DVFM_EVS_UML_RUN_NCURSES_INTERFACE_H "@(#)dvfmEvsUmlRunNcursesInterface.h $Revision$"
+#define DVFM_EVS_UML_RUN_NCURSES_INTERFACE_H "@(#)dvfmEvsUmlRunNcursesInterface.h $Revision: 1.1 $"
 
 /* ===== beginning of file code ===== */
 
@@ -46,4 +49,4 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *,
 /* ===== end of file code ====== */
 
 #endif
-/* $RCSfile$ */
+/* $RCSfile: dvfmEvsUmlRunNcursesInterface.h,v $ */

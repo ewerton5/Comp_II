@@ -5,9 +5,12 @@ Departamento de Eletronica e de Computacao
 Prof. Marcelo Luiz Drumond Lanza
 EEL 270 - Computacao II - Turma 2019/2
  
-$Author$
-$Date$
-$Log$
+$Author: ewerton.silles $
+$Date: 2019/12/24 13:52:26 $
+$Log: dvfmEvsUml.c,v $
+Revision 1.1  2019/12/24 13:52:26  ewerton.silles
+Initial revision
+
 */
 
 #ifdef __FreeBSD__
@@ -2213,4 +2216,4 @@ main (int argc, char *argv[])
 
 }
 
-/* $RCSfile$ */
+/* $RCSfile: dvfmEvsUml.c,v $ */
