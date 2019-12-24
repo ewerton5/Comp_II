@@ -173,10 +173,13 @@ main (int argc, char *argv[])
     char dvfmEvsUmlAdimimPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
     char dvfmEvsUmlConfirmAdimimPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
     char *dvfmEvsUmlPointerPassword;
+    char dvfmEvsUmlArgvLongOption [15];
 
     dvfmEvsUmlUserDataType  dvfmEvsUmlDataUser;
     dvfmEvsUmlConfigurationOptionsType dvfmEvsUmlSettings;
     dvfmEvsUmlErrorType dvfmEvsUmlReturnCode;
+
+    dvfmEvsUmlBool dvfmEvsUmlOptionLong = dvfmEvsUmlFalse;
 
     if(argc < DVFM_EVS_UML_MINIMUM_NUMBER_ARGUMENTS)
     {
@@ -199,11 +202,10 @@ main (int argc, char *argv[])
         exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
     }
 
-    if(argv[1][1] == '-' && strlen(argv[1]) == 3)
+    if(argv[1][1] == '-')
     {
-        /* error */
-        printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-        exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
+       strcpy(dvfmEvsUmlArgvLongOption, &argv [1][2]);
+       dvfmEvsUmlOptionLong = dvfmEvsUmlTrue;
     }
 
     dvfmEvsUmlCurrentOption = getopt_long(argc, argv, dvfmEvsUmlShortOption, dvfmEvsUmlLongOption, NULL);
@@ -219,6 +221,13 @@ main (int argc, char *argv[])
                 /* error */
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlFewSubOptions, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
+            }
+
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[0].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
             }
 
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
@@ -284,6 +293,13 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[1].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
+            }
+
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -344,6 +360,13 @@ main (int argc, char *argv[])
                 /* error */
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlFewSubOptions, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
+            }
+
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[2].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
             }
 
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
@@ -412,6 +435,13 @@ main (int argc, char *argv[])
                 /* error */
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlFewSubOptions, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
+            }
+
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[3].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
             }
 
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
@@ -513,11 +543,11 @@ main (int argc, char *argv[])
 
             /* get password */
 
-            printf("%s:", DvfmEvsUmlGetCliUserInterfaceMessage ( dvfmEvsUmlPassword, dvfmEvsUmlLanguage));
+            printf("%s:\n", DvfmEvsUmlGetCliUserInterfaceMessage ( dvfmEvsUmlPassword, dvfmEvsUmlLanguage));
 
             strcpy (dvfmEvsUmlAdimimPassword, (dvfmEvsUmlPointerPassword = getpass ("")));
 
-            printf("%s:", DvfmEvsUmlGetCliUserInterfaceMessage ( dvfmEvsUmlConfirmationPassword, dvfmEvsUmlLanguage));
+            printf("%s:\n", DvfmEvsUmlGetCliUserInterfaceMessage ( dvfmEvsUmlConfirmationPassword, dvfmEvsUmlLanguage));
 
             strcpy( dvfmEvsUmlConfirmAdimimPassword, (dvfmEvsUmlPointerPassword = getpass("")));
 
@@ -568,6 +598,13 @@ main (int argc, char *argv[])
                 /* error */
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlFewSubOptions, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
+            }
+
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[4].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
             }
 
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
@@ -687,6 +724,13 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[5].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
+            }
+
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -804,6 +848,13 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[6].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
+            }
+
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -874,6 +925,13 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[7].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
+            }
+
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -942,6 +1000,13 @@ main (int argc, char *argv[])
                 /* error */
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlFewSubOptions, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
+            }
+
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[8].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
             }
 
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
@@ -1046,6 +1111,13 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[9].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
+            }
+
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1116,6 +1188,13 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[10].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
+            }
+
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1184,6 +1263,13 @@ main (int argc, char *argv[])
                 /* error */
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlFewSubOptions, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
+            }
+
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[11].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
             }
 
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
@@ -1265,6 +1351,13 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[12].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
+            }
+
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1344,6 +1437,13 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[13].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
+            }
+
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1412,6 +1512,13 @@ main (int argc, char *argv[])
                 /* error */
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlFewSubOptions, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
+            }
+
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[14].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
             }
 
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
@@ -1490,6 +1597,13 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[15].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
+            }
+
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1558,6 +1672,13 @@ main (int argc, char *argv[])
                 /* error */
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlFewSubOptions, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
+            }
+
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[16].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
             }
 
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
@@ -1636,6 +1757,13 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[17].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
+            }
+
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1704,6 +1832,13 @@ main (int argc, char *argv[])
                 /* error */
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlFewSubOptions, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
+            }
+
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[18].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
             }
 
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
@@ -1798,6 +1933,13 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[19].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
+            }
+
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1890,6 +2032,13 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[20].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
+            }
+
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1971,6 +2120,13 @@ main (int argc, char *argv[])
                 /* error */
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlFewSubOptions, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
+            }
+
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[21].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
             }
 
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
@@ -2066,6 +2222,13 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[22].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
+            }
+
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -2126,6 +2289,13 @@ main (int argc, char *argv[])
                 /* error */
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlFewSubOptions, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
+            }
+
+            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[23].name) && dvfmEvsUmlOptionLong)
+            {
+                /* error */
+                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
             }
 
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
