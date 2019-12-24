@@ -6,8 +6,11 @@ Prof. Marcelo Luiz Drumond Lanza
 EEL 270 - Computacao II - Turma 2019/2
  
 $Author: ewerton.silles $
-$Date: 2019/12/11 22:43:11 $
-$Log: dvfmEvsUmlCleanAbeyances.c $
+$Date: 2019/12/24 13:52:26 $
+$Log: dvfmEvsUmlCleanAbeyances.c,v $
+Revision 1.1  2019/12/24 13:52:26  ewerton.silles
+Initial revision
+
 Revision 1.1  2019/12/11 22:43:11  ewerton.silles
 Initial revision
 
@@ -15,4 +18,4 @@ Initial revision
 
 
 
-/* $RCSfile: dvfmEvsUmlCleanAbeyances.c $ */
+/* $RCSfile: dvfmEvsUmlCleanAbeyances.c,v $ */

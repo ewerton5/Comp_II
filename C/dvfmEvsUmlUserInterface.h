@@ -6,8 +6,11 @@
  * EEL 270 - Computacao II - Turma 2019/2
  
  * $Author: ewerton.silles $
- * $Date: 2019/11/16 03:48:22 $
+ * $Date: 2019/12/24 13:52:26 $
  * $Log: dvfmEvsUmlUserInterface.h,v $
+ * Revision 1.3  2019/12/24 13:52:26  ewerton.silles
+ * *** empty log message ***
+ *
  * Revision 1.2  2019/11/16 03:48:22  ewerton.silles
  * *** empty log message ***
  *
@@ -17,7 +20,7 @@
 */
 
 #ifndef DVFM_EVS_UML_USER_INTERFACE_H
-#define DVFM_EVS_UML_USER_INTERFACE_H "@(#)dvfmEvsUmlUserInterface.h $Revision: 1.2 $"
+#define DVFM_EVS_UML_USER_INTERFACE_H "@(#)dvfmEvsUmlUserInterface.h $Revision: 1.3 $"
 
 /* ===== beginning of file code ===== */
 

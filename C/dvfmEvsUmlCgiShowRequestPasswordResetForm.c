@@ -5,9 +5,12 @@ Departamento de Eletronica e de Computacao
 Prof. Marcelo Luiz Drumond Lanza
 EEL 270 - Computacao II - Turma 2019/2
  
-$Author$
-$Date$
-$Log$
+$Author: ewerton.silles $
+$Date: 2019/12/24 13:52:26 $
+$Log: dvfmEvsUmlCgiShowRequestPasswordResetForm.c,v $
+Revision 1.1  2019/12/24 13:52:26  ewerton.silles
+Initial revision
+
 */
 
 #include <stdio.h>
@@ -214,4 +217,4 @@ main (int argc, char **argv)
 	return DVFM_EVS_UML_OK;
 }
 
-/* $RCSfile$ */
+/* $RCSfile: dvfmEvsUmlCgiShowRequestPasswordResetForm.c,v $ */

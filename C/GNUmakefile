@@ -5,8 +5,11 @@
  # EEL 270 - Computacao II - Turma 2019/2
  
  # $Author: ewerton.silles $
- # $Date: 2019/11/30 04:31:59 $
+ # $Date: 2019/12/24 13:52:26 $
  # $Log: GNUmakefile,v $
+ # Revision 1.5  2019/12/24 13:52:26  ewerton.silles
+ # *** empty log message ***
+ #
  # Revision 1.4  2019/11/30 04:31:59  ewerton.silles
  # *** empty log message ***
  #
