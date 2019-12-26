@@ -276,46 +276,6 @@ DvfmEvsUmlCheckPassword (char *, char *);
 dvfmEvsUmlErrorType
 DvfmEvsUmlGetConfigurationOptionsValues ( char *, dvfmEvsUmlConfigurationOptionsType *);
 
-/*
- * void
- * DvfmEvsUmlShowCliHelp (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlLanguageType);
- *
- *
- * Arguments:
- * dvfmEvsUmlConfigurationOptionsType * - the address of a local variable of type dvfmEvsUmlConfigurationOptionsType (I)
- * dvfmEvsUmlLanguageType - name of the configuration file (I)
- * 
- * Returned code:
- * 
- * void
- * 
- * Description:
- * This function shows help in the CLI environment.
- */
-
-void
-DvfmEvsUmlShowCliHelp (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlLanguageType);
-
-/*
- * dvfmEvsUmlErrorType
- * DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlUserDataType *);
- *
- *
- * Arguments:
- * dvfmEvsUmlConfigurationOptionsType * - configuration options (I)
- * dvfmEvsUmlUserDataType * - struct user information (I)
- * 
- * Returned code:
- * 
- * dvfmEvsUmlOk - all right
- * 
- * Description:
- * Permanently or temporarily add new user data to the system
- */
-
-dvfmEvsUmlErrorType
-DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlUserDataType *);
-
 /* ===== end of file code ====== */
 
 #endif

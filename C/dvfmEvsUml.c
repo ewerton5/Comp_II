@@ -29,6 +29,8 @@ Initial revision
 #include                           "dvfmEvsUmlUserInterface.h"
 #include                           "dvfmEvsUmlConst.h"
 #include                           "dvfmEvsUmlFunctions.h"
+#include	                       "dvfmEvsUmlShowCliHelp.h"
+#include                           "dvfmEvsUmlAddUser.h"
 
 #ifdef __linux__
 #define _XOPEN_SOURCE 600
