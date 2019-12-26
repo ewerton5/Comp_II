@@ -52,7 +52,8 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 
 	dvfmEvsUmlUserIdentifierType dvfmEvsUmlUserIdentifierPresent, dvfmEvsUmlUserIdentifierPrevious;
 
-	unsigned dvfmEvsUmlIndex, dvfmEvsUmlTwoPointCounter, dvfmEvsUmlMultiplier, dvfmEvsUmlNumber, dvfmEvsUmlBeginPresentNickname, dvfmEvsUmlEndPresentNickname, dvfmEvsUmlNumberProfile = 0;
+	unsigned dvfmEvsUmlTwoPointCounter, dvfmEvsUmlMultiplier, dvfmEvsUmlNumber, dvfmEvsUmlBeginPresentNickname, dvfmEvsUmlEndPresentNickname, dvfmEvsUmlLineCounter, dvfmEvsUmlInsertionLine, dvfmEvsUmlNumberProfile = 0;
+    int dvfmEvsUmlIndex;
 
 	dvfmEvsUmlBool dvfmEvsUmlLastLine = dvfmEvsUmlFalse;
 	dvfmEvsUmlBool dvfmEvsUmlFirstNumber = dvfmEvsUmlTrue;
@@ -242,14 +243,13 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 					return dvfmEvsUmlCorruptedFile;
 			}
 
-			
-
-			/* adding the user */
+			/* locating the new swell */
 
 			if(!(dvfmEvsUmlUsersFile = fopen (dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "r+")))
 				return dvfmEvsUmlCantOpenFile;
 
 			dvfmEvsUmlUserIdentifierPrevious = 0;
+            dvfmEvsUmlLineCounter = 0;
 
 			while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_BUFFER_SIZE_LINE_CONFIG_FILE, dvfmEvsUmlUsersFile))
 			{
@@ -260,6 +260,8 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 				dvfmEvsUmlMultiplier = 10;
 				dvfmEvsUmlNumber = 0;
 				dvfmEvsUmlUserIdentifierPresent = 0;
+
+                dvfmEvsUmlLineCounter++;
 
 				while (dvfmEvsUmlIndex >= 0)
 				{
@@ -277,10 +279,11 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 								dvfmEvsUmlUserIdentifierPresent +=  dvfmEvsUmlNumber;
 								dvfmEvsUmlFirstNumber = dvfmEvsUmlFalse;
 							}
+                            else
+                            {   dvfmEvsUmlUserIdentifierPresent +=  dvfmEvsUmlNumber * dvfmEvsUmlMultiplier;
 
-							dvfmEvsUmlUserIdentifierPresent +=  dvfmEvsUmlNumber * dvfmEvsUmlMultiplier;
-
-							dvfmEvsUmlMultiplier *= 10;
+                                dvfmEvsUmlMultiplier *= 10;
+                            }
 						}
 					}
 					
@@ -301,11 +304,13 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 					return dvfmEvsUmlCorruptedFile;
 				}
 				
-				if(dvfmEvsUmlUserIdentifierPresent != dvfmEvsUmlUserIdentifierPrevious + 1)
+				if(dvfmEvsUmlUserIdentifierPresent != dvfmEvsUmlUserIdentifierPrevious + 1 && !dvfmEvsUmlFirstLine && !dvfmEvsUmlFound)
 				{
 					dvfmEvsUmlFound = dvfmEvsUmlTrue;
 
-					if(!dvfmEvsUmlExistFirstNickname)
+                    dvfmEvsUmlInsertionLine = dvfmEvsUmlLineCounter;
+
+					/*===if(!dvfmEvsUmlExistFirstNickname)
 					{
 						snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%llu", dvfmEvsUmlUserIdentifierPrevious + 1);
 
@@ -317,7 +322,7 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 						snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%llu", dvfmEvsUmlUserIdentifierPrevious + 1);
 
 						fprintf( dvfmEvsUmlUsersFile, "\n%s:%s:%s:%c:%s:%s", dvfmEvsUmlUserIdentifierString, dvfmEvsUmlSecondNickname, dvfmEvsUmlEncryptedPassword, (char)(dvfmEvsUmlNumberProfile + '0'), dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
-					}
+					}===*/
 
 				}
 				else
@@ -328,8 +333,25 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 				dvfmEvsUmlFirstLine = dvfmEvsUmlFalse;
 			}
 
+            /* error test while reading file */
+
+			if(ferror(dvfmEvsUmlUsersFile))
+			{
+					/* error */
+					fclose (dvfmEvsUmlUsersFile);
+					return dvfmEvsUmlReadError;
+			}
+
+			fclose (dvfmEvsUmlUsersFile);
+
+            /* adding the user */
+
 			if(!dvfmEvsUmlFound)
 			{
+
+                if(!(dvfmEvsUmlUsersFile = fopen (dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "a")))
+				return dvfmEvsUmlCantOpenFile;
+
 				if(!dvfmEvsUmlExistFirstNickname)
 				{
 					snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%llu", dvfmEvsUmlUserIdentifierPresent + 1);
@@ -344,18 +366,58 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmE
 					fprintf( dvfmEvsUmlUsersFile, "\n%s:%s:%s:%c:%s:%s", dvfmEvsUmlUserIdentifierString, dvfmEvsUmlSecondNickname, dvfmEvsUmlEncryptedPassword, (char)(dvfmEvsUmlNumberProfile + '0'), dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
 				}
 
+                /* error test while reading file */
+
+                if(ferror(dvfmEvsUmlUsersFile))
+                {
+                        /* error */
+                        fclose (dvfmEvsUmlUsersFile);
+                        return dvfmEvsUmlReadError;
+                }
+
+			    fclose (dvfmEvsUmlUsersFile);
 			}
+            else
+            {
+                if(!(dvfmEvsUmlUsersFile = fopen (dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "r+")))
+				return dvfmEvsUmlCantOpenFile;
 
-			/* error test while reading file */
+                dvfmEvsUmlLineCounter = 0;
 
-			if(ferror(dvfmEvsUmlUsersFile))
-			{
-					/* error */
-					fclose (dvfmEvsUmlUsersFile);
-					return dvfmEvsUmlReadError;
-			}
+                while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_BUFFER_SIZE_LINE_CONFIG_FILE, dvfmEvsUmlUsersFile))
+                {
+                    dvfmEvsUmlLineCounter++;
 
-			fclose (dvfmEvsUmlUsersFile);
+                    if(dvfmEvsUmlLineCounter == dvfmEvsUmlInsertionLine - 1)
+                    {
+                        if(!dvfmEvsUmlExistFirstNickname)
+                        {
+                            snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%llu", dvfmEvsUmlUserIdentifierPresent + 1);
+
+                            fprintf( dvfmEvsUmlUsersFile, "\n%s:%s:%s:%c:%s:%s", dvfmEvsUmlUserIdentifierString, dvfmEvsUmlFirstNickname, dvfmEvsUmlEncryptedPassword, (char)(dvfmEvsUmlNumberProfile + '0'), dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
+                        }
+
+                        else
+                        {
+                            snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%llu", dvfmEvsUmlUserIdentifierPresent + 1);
+
+                            fprintf( dvfmEvsUmlUsersFile, "\n%s:%s:%s:%c:%s:%s", dvfmEvsUmlUserIdentifierString, dvfmEvsUmlSecondNickname, dvfmEvsUmlEncryptedPassword, (char)(dvfmEvsUmlNumberProfile + '0'), dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
+                        }
+                    }
+
+                }
+
+                /* error test while reading file */
+
+                if(ferror(dvfmEvsUmlUsersFile))
+                {
+                        /* error */
+                        fclose (dvfmEvsUmlUsersFile);
+                        return dvfmEvsUmlReadError;
+                }
+
+                fclose (dvfmEvsUmlUsersFile);
+            }
 
 			/* sending email to added user */
 
