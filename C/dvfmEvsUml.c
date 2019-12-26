@@ -529,7 +529,7 @@ main (int argc, char *argv[])
 
             /* user check to see if he is the administrator */
         
-            /*===dvfmEvsUmlIdAdmim = strtoul( DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER, &dvfmEvsUmlValidation, 10);
+            dvfmEvsUmlIdAdmim = strtoul( DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER, &dvfmEvsUmlValidation, 10);
 
             if(*dvfmEvsUmlValidation != DVFM_EVS_UML_EOS)
             {
@@ -541,7 +541,7 @@ main (int argc, char *argv[])
             {
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidId, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_INVALID_ID);
-            }===*/
+            }
 
             /* get password */
 
