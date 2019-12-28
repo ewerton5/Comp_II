@@ -35,6 +35,8 @@ typedef enum
 	dvfmEvsUmlFirstEmptyPointer,
 	dvfmEvsUmlSecondEmptyPointer,
 	dvfmEvsUmlThirdEmptyPointer,
+	dvfmEvsUmlFifthEmptyPointer,
+	dvfmEvsUmlSixthEmptyPointer,
 	dvfmEvsUmlPathLong,
 	dvfmEvsUmlLongFilename,
 	dvfmEvsUmlMinimumMaximumInverted,
@@ -104,7 +106,8 @@ typedef enum
  */
 
 char *
-DvfmEvsUmlGetCliErrorMessage (dvfmEvsUmlErrorType, dvfmEvsUmlLanguageType);
+DvfmEvsUmlGetCliErrorMessage (dvfmEvsUmlErrorType,
+							  dvfmEvsUmlLanguageType);
 
 /*
  * char *
@@ -123,7 +126,8 @@ DvfmEvsUmlGetCliErrorMessage (dvfmEvsUmlErrorType, dvfmEvsUmlLanguageType);
  */
 
 char *
-DvfmEvsUmlGetNcursesErrorMessage (dvfmEvsUmlErrorType, dvfmEvsUmlLanguageType);
+DvfmEvsUmlGetNcursesErrorMessage (dvfmEvsUmlErrorType,
+								  dvfmEvsUmlLanguageType);
 
 /*
  * char *
@@ -142,7 +146,8 @@ DvfmEvsUmlGetNcursesErrorMessage (dvfmEvsUmlErrorType, dvfmEvsUmlLanguageType);
  */
 
 char *
-DvfmEvsUmlGetWebErrorMessage (dvfmEvsUmlErrorType, dvfmEvsUmlLanguageType);
+DvfmEvsUmlGetWebErrorMessage (dvfmEvsUmlErrorType,
+							  dvfmEvsUmlLanguageType);
 
 /* ===== end of file code ====== */
 

@@ -1,0 +1,48 @@
+/*
+ * Universidade Federal do Rio de Janeiro
+ * Escola Politecnica
+ * Departamento de Eletronica e de Computacao
+ * Prof. Marcelo Luiz Drumond Lanza
+ * EEL 270 - Computacao II - Turma 2019/2
+ 
+ * $Author$
+ * $Date$
+ * $Log$
+*/
+
+#ifndef DVFM_EVS_UML_UNLOCK_USER_ACCOUNT_H
+#define DVFM_EVS_UML_UNLOCK_USER_ACCOUNT_H "@(#)dvfmEvsUmlUnlockUserAccount.h $Revision$"
+
+/* ===== beginning of file code ===== */
+
+#include	"dvfmEvsUmlTypes.h"
+#include	"dvfmEvsUmlErrors.h"
+
+/*
+ * dvfmEvsUmlErrorType
+ * DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *,
+ *                              char *,
+ *                              char *);
+ *
+ * Arguments:
+ * dvfmEvsUmlConfigurationOptionsType * - Configuration options (I)
+ * char * - user nickname string (I)
+ * char * - blocked user nickname string (I)
+ *
+ * Returned code:
+ * 
+ * dvfmEvsUmlErrorType - integer that correspond a error
+ * 
+ * Description:
+ * Unlocks a user account.
+ */
+
+dvfmEvsUmlErrorType
+DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *,
+                             char *,
+                             char *);
+
+/* ===== end of file code ====== */
+
+#endif
+/* $RCSfile$ */

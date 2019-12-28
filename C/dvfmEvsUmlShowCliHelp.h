@@ -19,7 +19,8 @@
 
 /*
  * void
- * DvfmEvsUmlShowCliHelp (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlLanguageType);
+ * DvfmEvsUmlShowCliHelp (dvfmEvsUmlConfigurationOptionsType *,
+ *                        dvfmEvsUmlLanguageType);
  *
  *
  * Arguments:
@@ -35,7 +36,8 @@
  */
 
 void
-DvfmEvsUmlShowCliHelp (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlLanguageType);
+DvfmEvsUmlShowCliHelp (dvfmEvsUmlConfigurationOptionsType *,
+                       dvfmEvsUmlLanguageType);
 
 /* ===== end of file code ====== */
 

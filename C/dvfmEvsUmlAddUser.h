@@ -36,7 +36,8 @@
  */
 
 dvfmEvsUmlErrorType
-DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlUserDataType *);
+DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *,
+                   dvfmEvsUmlUserDataType *);
 
 /* ===== end of file code ====== */
 

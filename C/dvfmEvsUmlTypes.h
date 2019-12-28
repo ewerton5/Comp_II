@@ -77,16 +77,20 @@ typedef struct dvfmEvsUmlConfigurationOptions
 
 typedef struct dvfmEvsUmlUserData
 {
-	
-	char dvfmEvsUmlStructUsername[DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
+	char dvfmEvsUmlStructUsername [DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
 	char *dvfmEvsUmlStructConfirmUsername;
 	char *dvfmEvsUmlStructEmail;
 	char *dvfmEvsUmlStructConfirmEmail;
 	char dvfmEvsUmlStructPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
 	char dvfmEvsUmlStructConfirmPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
 	char dvfmEvsUmlStructProfile [DVFM_EVS_UML_PROFILE_STRING_BUFFER_SIZE];
-
 } dvfmEvsUmlUserDataType;
+
+typedef struct dvfmEvsUmlNicknameList
+{
+	char dvfmEvsUmlNickname [DVFM_EVS_UML_MAX_SIZE_NICKNAME];
+	struct dvfmEvsUmlNicknameList *dvfmEvsUmlNextNickname;
+} dvfmEvsUmlNicknameListType;
 
 typedef unsigned long long dvfmEvsUmlUserIdentifierType;
 
