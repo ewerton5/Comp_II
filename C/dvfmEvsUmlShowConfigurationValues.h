@@ -10,16 +10,17 @@
  * $Log$
 */
 
-#ifndef DVFM_EVS_UML_SHOW_NCURSES_HELP_H
-#define DVFM_EVS_UML_SHOW_NCURSES_HELP_H "@(#)dvfmEvsUmlShowNcursesHelp.h $Revision$"
+#ifndef DVFM_EVS_UML_SHOW_CONFIGURATION_VALUES_H
+#define DVFM_EVS_UML_SHOW_CONFIGURATION_VALUES_H "@(#)dvfmEvsUmlShowConfigurationValues.h $Revision$"
 
 /* ===== beginning of file code ===== */
 
 #include	"dvfmEvsUmlTypes.h"
+#include	"dvfmEvsUmlErrors.h"
 
 /*
- * void
- * DvfmEvsUmlShowNcursesHelp (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlLanguageType);
+ * dvfmEvsUmlErrorType
+ * DvfmEvsUmlShowConfigurationValues (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlLanguageType);
  *
  * Arguments:
  * dvfmEvsUmlConfigurationOptionsType * - Configuration options (I)
@@ -27,15 +28,15 @@
  *
  * Returned code:
  * 
- * void - no return
+ * dvfmEvsUmlErrorType - integer that correspond a error
  * 
  * Description:
- * This function shows help in the Ncurse environment.
+ * Displays the values of all configuration options.
  */
 
-void
-DvfmEvsUmlShowNcursesHelp (dvfmEvsUmlConfigurationOptionsType *,
-                           dvfmEvsUmlLanguageType);
+dvfmEvsUmlErrorType
+DvfmEvsUmlShowConfigurationValues (dvfmEvsUmlConfigurationOptionsType *,
+                                   dvfmEvsUmlLanguageType);
 
 /* ===== end of file code ====== */
 

@@ -36,7 +36,8 @@
  */
 
 dvfmEvsUmlErrorType
-DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmEvsUmlUserDataType *dvfmEvsUmlDataUser)
+DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
+				   dvfmEvsUmlUserDataType *dvfmEvsUmlDataUser)
 {
 
 	FILE * dvfmEvsUmlUsersFile;

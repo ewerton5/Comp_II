@@ -11,7 +11,7 @@
 */
 
 #include	<curses.h>
-#include	"dvfmEvsUmlTypes.h"
+#include	"dvfmEvsUmlShowNcursesHelp.h"
 #include	"dvfmEvsUmlUserInterface.h"
 
 /*
@@ -27,11 +27,12 @@
  * void - no return
  * 
  * Description:
- * Displays the help message in the desired language in the Ncurses interface.
+ * This function shows help in the Ncurse environment.
  */
 
 void
-DvfmEvsUmlShowNcursesHelp (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmEvsUmlLanguageType dvfmEvsUmlLanguage)
+DvfmEvsUmlShowNcursesHelp (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
+                           dvfmEvsUmlLanguageType dvfmEvsUmlLanguage)
 {
     printw("%s", DvfmEvsUmlGetNcursesUserInterfaceMessage(dvfmEvsUmlHelpText, dvfmEvsUmlLanguage));
 }

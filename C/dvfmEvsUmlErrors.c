@@ -34,6 +34,8 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"The first argument passed is empty",
 		"The second argument passed is empty",
 		"The third argument passed is empty",
+		"The fifth argument passed is empty",
+		"The sixth argument passed is empty",
 		"The path is too long",
 		"The filename is too long",
 		"Minimum size as bigger than maximum size",
@@ -90,6 +92,8 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"O primeiro argumento passado esta vazio",
 		"O segundo argumento passado esta vazio",
 		"O terceiro argumento passado esta vazio",
+		"O quinto argumento passado esta vazio",
+		"O sexto argumento passado esta vazio",
 		"O caminho e muito longo",
 		"O nome do arquivo e muito longo",
 		"O tamanho minimo e maior que o tamanho maximo",
@@ -150,6 +154,8 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"The first argument passed is empty",
 		"The second argument passed is empty",
 		"The third argument passed is empty",
+		"The fifth argument passed is empty",
+		"The sixth argument passed is empty",
 		"The path is too long",
 		"The filename is too long",
 		"Minimum size as bigger than maximum size",
@@ -206,6 +212,8 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"O primeiro argumento passado esta vazio",
 		"O segundo argumento passado esta vazio",
 		"O terceiro argumento passado esta vazio",
+		"O quinto argumento passado esta vazio",
+		"O sexto argumento passado esta vazio",
 		"O caminho e muito longo",
 		"O nome do arquivo e muito longo",
 		"O tamanho minimo e maior que o tamanho maximo",
@@ -266,6 +274,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"The first argument passed is empty",
 		"The second argument passed is empty",
 		"The third argument passed is empty",
+		"The fifth argument passed is empty",
+		"The sixth argument passed is empty",
 		"The path is too long",
 		"The filename is too long",
 		"Minimum size as bigger than maximum size",
@@ -322,6 +332,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"O primeiro argumento passado est&aacute; vazio",
 		"O segundo argumento passado est&aacute; vazio",
 		"O terceiro argumento passado est&aacute; vazio",
+		"O quinto argumento passado est&aacute; vazio",
+		"O sexto argumento passado est&aacute; vazio",
 		"O caminho &eacute; muito longo",
 		"O nome do arquivo &eacute; muito longo",
 		"O tamanho minimo &eacute; maior que o tamanho m&aacute;ximo",
@@ -391,7 +403,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
  */
 
 char *
-DvfmEvsUmlGetCliErrorMessage (dvfmEvsUmlErrorType dvfmEvsUmlErrorCode, dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
+DvfmEvsUmlGetCliErrorMessage (dvfmEvsUmlErrorType dvfmEvsUmlErrorCode,
+							  dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
 {
 	char *dvfmEvsUmlIndexError = "Out of range error message";
 
@@ -420,7 +433,8 @@ DvfmEvsUmlGetCliErrorMessage (dvfmEvsUmlErrorType dvfmEvsUmlErrorCode, dvfmEvsUm
  */
 
 char *
-DvfmEvsUmlGetNcursesErrorMessage (dvfmEvsUmlErrorType dvfmEvsUmlErrorCode, dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
+DvfmEvsUmlGetNcursesErrorMessage (dvfmEvsUmlErrorType dvfmEvsUmlErrorCode,
+								  dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
 {
 	char *dvfmEvsUmlIndexError = "Out of range error message";
 
@@ -449,7 +463,8 @@ DvfmEvsUmlGetNcursesErrorMessage (dvfmEvsUmlErrorType dvfmEvsUmlErrorCode, dvfmE
  */
 
 char *
-DvfmEvsUmlGetWebErrorMessage (dvfmEvsUmlErrorType dvfmEvsUmlErrorCode, dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
+DvfmEvsUmlGetWebErrorMessage (dvfmEvsUmlErrorType dvfmEvsUmlErrorCode,
+							  dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
 {
 	char *dvfmEvsUmlIndexError = "Out of range error message";
 

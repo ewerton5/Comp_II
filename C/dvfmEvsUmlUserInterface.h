@@ -75,7 +75,8 @@ typedef enum
  */
 
 char *
-DvfmEvsUmlGetCliUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType, dvfmEvsUmlLanguageType);
+DvfmEvsUmlGetCliUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType,
+                                      dvfmEvsUmlLanguageType);
 
 /*
  * char *
@@ -94,7 +95,8 @@ DvfmEvsUmlGetCliUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType, 
  */
 
 char *
-DvfmEvsUmlGetNcursesUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType, dvfmEvsUmlLanguageType);
+DvfmEvsUmlGetNcursesUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType,
+                                          dvfmEvsUmlLanguageType);
 
 /*
  * char *
@@ -113,7 +115,8 @@ DvfmEvsUmlGetNcursesUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberTy
  */
 
 char *
-DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType, dvfmEvsUmlLanguageType);
+DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType,
+                                      dvfmEvsUmlLanguageType);
 
 /* ===== end of file code ====== */
 
