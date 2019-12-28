@@ -39,11 +39,11 @@
 
 dvfmEvsUmlErrorType
 DvfmEvsUmlChangeUserPassword (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
-                           char *dvfmEvsUmlAdminNickname,
-                           char *dvfmEvsUmlUserNickname,
-                           char *dvfmEvsUmlCurrentPassword,
-                           char *dvfmEvsUmlNewPassword,
-                           char *dvfmEvsUmlConfirmPassword)
+                              char *dvfmEvsUmlAdminNickname,
+                              char *dvfmEvsUmlUserNickname,
+                              char *dvfmEvsUmlCurrentPassword,
+                              char *dvfmEvsUmlNewPassword,
+                              char *dvfmEvsUmlConfirmPassword)
 {
     if (!dvfmEvsUmlSettings)
         return dvfmEvsUmlFirstEmptyPointer;

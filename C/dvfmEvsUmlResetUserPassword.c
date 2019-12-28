@@ -10,33 +10,33 @@
  * $Log$
 */
 
-#include	"dvfmEvsUmlGetPendingRegistrationRequests.h"
+#include	"dvfmEvsUmlResetUserPassword.h"
 
 /*
  * dvfmEvsUmlErrorType
- * DvfmEvsUmlGetPendingRegistrationRequests (dvfmEvsUmlConfigurationOptionsType *,
- *                                           dvfmEvsUmlUserDataType **);
+ * DvfmEvsUmlResetUserPassword (dvfmEvsUmlConfigurationOptionsType *,
+ *                              char *);
  *
  * Arguments:
  * dvfmEvsUmlConfigurationOptionsType * - Configuration options (I)
- * dvfmEvsUmlUserDataType ** - first element in the list containing data about pending requests for the user in question (O)
+ * char * - nickname string (I)
  *
  * Returned code:
  * 
  * dvfmEvsUmlErrorType - integer that correspond a error
  * 
  * Description:
- * Return a list of all valid requests not met.
+ * Request a temporary password.
  */
 
 dvfmEvsUmlErrorType
-DvfmEvsUmlGetPendingRegistrationRequests (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
-                                          dvfmEvsUmlUserDataType **dvfmEvsUmlUserData)
+DvfmEvsUmlResetUserPassword (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
+                             char *dvfmEvsUmlNickname)
 {
     if (!dvfmEvsUmlSettings)
         return dvfmEvsUmlFirstEmptyPointer;
 
-    if (!dvfmEvsUmlUserData)
+    if (!dvfmEvsUmlNickname)
         return dvfmEvsUmlSecondEmptyPointer;
     
     return dvfmEvsUmlOk;

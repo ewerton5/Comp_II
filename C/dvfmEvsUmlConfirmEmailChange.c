@@ -10,34 +10,40 @@
  * $Log$
 */
 
-#include	"dvfmEvsUmlGetPendingRegistrationRequests.h"
+#include	"dvfmEvsUmlConfirmEmailChange.h"
 
 /*
  * dvfmEvsUmlErrorType
- * DvfmEvsUmlGetPendingRegistrationRequests (dvfmEvsUmlConfigurationOptionsType *,
- *                                           dvfmEvsUmlUserDataType **);
+ * DvfmEvsUmlConfirmEmailChange (dvfmEvsUmlConfigurationOptionsType *,
+ *                               char *,
+ *                               char *);
  *
  * Arguments:
  * dvfmEvsUmlConfigurationOptionsType * - Configuration options (I)
- * dvfmEvsUmlUserDataType ** - first element in the list containing data about pending requests for the user in question (O)
+ * char * - user nickname string (I)
+ * char * - validation key string (I)
  *
  * Returned code:
  * 
  * dvfmEvsUmlErrorType - integer that correspond a error
  * 
  * Description:
- * Return a list of all valid requests not met.
+ * Validate an email.
  */
 
 dvfmEvsUmlErrorType
-DvfmEvsUmlGetPendingRegistrationRequests (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
-                                          dvfmEvsUmlUserDataType **dvfmEvsUmlUserData)
+DvfmEvsUmlConfirmEmailChange (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
+                              char *dvfmEvsUmlNickname,
+                              char *dvfmEvsUmlValidationKey)
 {
     if (!dvfmEvsUmlSettings)
         return dvfmEvsUmlFirstEmptyPointer;
 
-    if (!dvfmEvsUmlUserData)
+    if (!dvfmEvsUmlNickname)
         return dvfmEvsUmlSecondEmptyPointer;
+
+    if (!dvfmEvsUmlValidationKey)
+        return dvfmEvsUmlThirdEmptyPointer;
     
     return dvfmEvsUmlOk;
 }

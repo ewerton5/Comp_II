@@ -22,7 +22,7 @@
  * dvfmEvsUmlErrorType
  * DvfmEvsUmlGetUnlockingRequests (dvfmEvsUmlConfigurationOptionsType *,
  *                                 char *,
- *                                 dvfmEvsUmlNicknameListType *);
+ *                                 dvfmEvsUmlNicknameListType **);
  *
  * Arguments:
  * dvfmEvsUmlConfigurationOptionsType * - Configuration options (I)

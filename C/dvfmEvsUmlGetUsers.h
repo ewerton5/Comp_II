@@ -10,8 +10,8 @@
  * $Log$
 */
 
-#ifndef DVFM_EVS_UML_UNLOCK_USER_ACCOUNT_H
-#define DVFM_EVS_UML_UNLOCK_USER_ACCOUNT_H "@(#)dvfmEvsUmlUnlockUserAccount.h $Revision$"
+#ifndef DVFM_EVS_UML_GET_USERS_H
+#define DVFM_EVS_UML_GET_USERS_H "@(#)dvfmEvsUmlGetUsers.h $Revision$"
 
 /* ===== beginning of file code ===== */
 
@@ -20,27 +20,24 @@
 
 /*
  * dvfmEvsUmlErrorType
- * DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *,
- *                              char *,
- *                              char *);
+ * DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *,
+ *                     dvfmEvsUmlUserDataType **);
  *
  * Arguments:
  * dvfmEvsUmlConfigurationOptionsType * - Configuration options (I)
- * char * - administrator nickname string (I)
- * char * - blocked user nickname string (I)
+ * dvfmEvsUmlUserDataType ** - first element in the list containing data about all users (O)
  *
  * Returned code:
  * 
  * dvfmEvsUmlErrorType - integer that correspond a error
  * 
  * Description:
- * Unlocks a user account.
+ * Return a list of all users.
  */
 
 dvfmEvsUmlErrorType
-DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *,
-                             char *,
-                             char *);
+DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *,
+                    dvfmEvsUmlUserDataType **);
 
 /* ===== end of file code ====== */
 
