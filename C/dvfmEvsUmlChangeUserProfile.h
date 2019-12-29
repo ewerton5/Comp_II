@@ -10,8 +10,8 @@
  * $Log$
 */
 
-#ifndef DVFM_EVS_UML_UNLOCK_USER_ACCOUNT_H
-#define DVFM_EVS_UML_UNLOCK_USER_ACCOUNT_H "@(#)dvfmEvsUmlUnlockUserAccount.h $Revision$"
+#ifndef DVFM_EVS_UML_CHANGE_USER_PROFILE_H
+#define DVFM_EVS_UML_CHANGE_USER_PROFILE_H "@(#)dvfmEvsUmlChangeUserProfile.h $Revision$"
 
 /* ===== beginning of file code ===== */
 
@@ -20,27 +20,30 @@
 
 /*
  * dvfmEvsUmlErrorType
- * DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *,
+ * DvfmEvsUmlChangeUserProfile (dvfmEvsUmlConfigurationOptionsType *,
  *                              char *,
- *                              char *);
+ *                              char *,
+ *                              dvfmEvsUmlProfileType);
  *
  * Arguments:
  * dvfmEvsUmlConfigurationOptionsType * - Configuration options (I)
  * char * - administrator nickname string (I)
- * char * - blocked user nickname string (I)
+ * char * - user nickname string (I)
+ * dvfmEvsUmlProfileType - new profile (O)
  *
  * Returned code:
  * 
  * dvfmEvsUmlErrorType - integer that correspond a error
  * 
  * Description:
- * Unlocks a user account.
+ * Change a user profile.
  */
 
 dvfmEvsUmlErrorType
-DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *,
+DvfmEvsUmlChangeUserProfile (dvfmEvsUmlConfigurationOptionsType *,
                              char *,
-                             char *);
+                             char *,
+                             dvfmEvsUmlProfileType);
 
 /* ===== end of file code ====== */
 

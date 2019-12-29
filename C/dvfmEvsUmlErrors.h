@@ -35,6 +35,7 @@ typedef enum
 	dvfmEvsUmlFirstEmptyPointer,
 	dvfmEvsUmlSecondEmptyPointer,
 	dvfmEvsUmlThirdEmptyPointer,
+	dvfmEvsUmlFourthEmptyPointer,
 	dvfmEvsUmlFifthEmptyPointer,
 	dvfmEvsUmlSixthEmptyPointer,
 	dvfmEvsUmlPathLong,

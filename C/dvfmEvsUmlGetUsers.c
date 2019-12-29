@@ -10,28 +10,28 @@
  * $Log$
 */
 
-#include	"dvfmEvsUmlGetPendingRegistrationRequests.h"
+#include	"dvfmEvsUmlGetUsers.h"
 
 /*
  * dvfmEvsUmlErrorType
- * DvfmEvsUmlGetPendingRegistrationRequests (dvfmEvsUmlConfigurationOptionsType *,
- *                                           dvfmEvsUmlUserDataType **);
+ * DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *,
+ *                     dvfmEvsUmlUserDataType **);
  *
  * Arguments:
  * dvfmEvsUmlConfigurationOptionsType * - Configuration options (I)
- * dvfmEvsUmlUserDataType ** - first element in the list containing data about pending requests for the user in question (O)
+ * dvfmEvsUmlUserDataType ** - first element in the list containing data about all users (O)
  *
  * Returned code:
  * 
  * dvfmEvsUmlErrorType - integer that correspond a error
  * 
  * Description:
- * Return a list of all valid requests not met.
+ * Return a list of all users.
  */
 
 dvfmEvsUmlErrorType
-DvfmEvsUmlGetPendingRegistrationRequests (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
-                                          dvfmEvsUmlUserDataType **dvfmEvsUmlUserData)
+DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
+                    dvfmEvsUmlUserDataType **dvfmEvsUmlUserData)
 {
     if (!dvfmEvsUmlSettings)
         return dvfmEvsUmlFirstEmptyPointer;

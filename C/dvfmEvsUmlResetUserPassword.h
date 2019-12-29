@@ -10,8 +10,8 @@
  * $Log$
 */
 
-#ifndef DVFM_EVS_UML_UNLOCK_USER_ACCOUNT_H
-#define DVFM_EVS_UML_UNLOCK_USER_ACCOUNT_H "@(#)dvfmEvsUmlUnlockUserAccount.h $Revision$"
+#ifndef DVFM_EVS_UML_RESET_USER_PASSWORD_H
+#define DVFM_EVS_UML_RESET_USER_PASSWORD_H "@(#)dvfmEvsUmlResetUserPassword.h $Revision$"
 
 /* ===== beginning of file code ===== */
 
@@ -20,26 +20,23 @@
 
 /*
  * dvfmEvsUmlErrorType
- * DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *,
- *                              char *,
+ * DvfmEvsUmlResetUserPassword (dvfmEvsUmlConfigurationOptionsType *,
  *                              char *);
  *
  * Arguments:
  * dvfmEvsUmlConfigurationOptionsType * - Configuration options (I)
- * char * - administrator nickname string (I)
- * char * - blocked user nickname string (I)
+ * char * - nickname string (I)
  *
  * Returned code:
  * 
  * dvfmEvsUmlErrorType - integer that correspond a error
  * 
  * Description:
- * Unlocks a user account.
+ * Request a temporary password.
  */
 
 dvfmEvsUmlErrorType
-DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *,
-                             char *,
+DvfmEvsUmlResetUserPassword (dvfmEvsUmlConfigurationOptionsType *,
                              char *);
 
 /* ===== end of file code ====== */

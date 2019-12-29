@@ -16,7 +16,7 @@
  * dvfmEvsUmlErrorType
  * DvfmEvsUmlGetPendingRegistrationRequestsPerUser (dvfmEvsUmlConfigurationOptionsType *,
  *                                                  char *,
- *                                                  dvfmEvsUmlUserDataType *);
+ *                                                  dvfmEvsUmlUserDataType **);
  *
  * Arguments:
  * dvfmEvsUmlConfigurationOptionsType * - Configuration options (I)

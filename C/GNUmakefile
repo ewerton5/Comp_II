@@ -102,7 +102,14 @@ DVFM_EVS_DVFMEVSUMLOBJS = dvfmEvsUml.o\
 						  dvfmEvsUmlGetUnlockingRequests.o\
 						  dvfmEvsUmlLockUserAccount.o\
 						  dvfmEvsUmlUnlockUserAccount.o\
-						  dvfmEvsUmlChangeUserPassword.o
+						  dvfmEvsUmlChangeUserPassword.o\
+						  dvfmEvsUmlResetUserPassword.o\
+						  dvfmEvsUmlChangeUserName.o\
+						  dvfmEvsUmlChangeUserEmail.o\
+						  dvfmEvsUmlConfirmEmailChange.o\
+						  dvfmEvsUmlChangeUserProfile.o\
+						  dvfmEvsUmlGetUsers.o\
+						  dvfmEvsUmlSearchUsers.o
 
 #===> Ncurses (Remover depois)
 DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlRunNcursesInterface.o dvfmEvsUmlUserInterface.o dvfmEvsUmlShowNcursesHelp.o\

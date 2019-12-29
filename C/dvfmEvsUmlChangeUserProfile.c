@@ -10,31 +10,34 @@
  * $Log$
 */
 
-#include	"dvfmEvsUmlUnlockUserAccount.h"
+#include	"dvfmEvsUmlChangeUserProfile.h"
 
 /*
  * dvfmEvsUmlErrorType
- * DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *,
+ * DvfmEvsUmlChangeUserProfile (dvfmEvsUmlConfigurationOptionsType *,
  *                              char *,
- *                              char *);
+ *                              char *,
+ *                              dvfmEvsUmlProfileType);
  *
  * Arguments:
  * dvfmEvsUmlConfigurationOptionsType * - Configuration options (I)
  * char * - administrator nickname string (I)
- * char * - blocked user nickname string (I)
+ * char * - user nickname string (I)
+ * dvfmEvsUmlProfileType - new profile (O)
  *
  * Returned code:
  * 
  * dvfmEvsUmlErrorType - integer that correspond a error
  * 
  * Description:
- * Unlocks a user account.
+ * Change a user profile.
  */
 
 dvfmEvsUmlErrorType
-DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
+DvfmEvsUmlChangeUserProfile (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
                              char *dvfmEvsUmlAdminNickname,
-                             char *dvfmEvsUmlBlockedUserNickname)
+                             char *dvfmEvsUmlUserNickname,
+                             dvfmEvsUmlProfileType dvfmEvsUmlNewProfile)
 {
     if (!dvfmEvsUmlSettings)
         return dvfmEvsUmlFirstEmptyPointer;
@@ -42,7 +45,7 @@ DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetti
     if (!dvfmEvsUmlAdminNickname)
         return dvfmEvsUmlSecondEmptyPointer;
 
-    if (!dvfmEvsUmlBlockedUserNickname)
+    if (!dvfmEvsUmlUserNickname)
         return dvfmEvsUmlThirdEmptyPointer;
     
     return dvfmEvsUmlOk;
