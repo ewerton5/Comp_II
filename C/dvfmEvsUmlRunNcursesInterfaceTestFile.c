@@ -35,7 +35,7 @@ main(int argc,char *argv[ ])
 	dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
     dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings = (dvfmEvsUmlConfigurationOptionsType *) malloc(sizeof(dvfmEvsUmlConfigurationOptionsType));
 	dvfmEvsUmlLanguageType dvfmEvsUmlLanguage;
-	char *dvfmEvsUmlvalidation;
+	char *dvfmEvsUmlValidation;
 
 	if (argc != DVFM_EVS_NUMBER_ARGUMENTS) 
 	{
@@ -50,11 +50,11 @@ main(int argc,char *argv[ ])
 		exit(DVFM_EVS_SECOND_ARGUMENT_INVALID_HIFEN);
 	}
 
-	dvfmEvsUmlLanguage = (dvfmEvsUmlLanguageType) strtoul( argv[2], &dvfmEvsUmlvalidation, 10);
-	if(*dvfmEvsUmlvalidation != DVFM_EVS_EOS)
+	dvfmEvsUmlLanguage = (dvfmEvsUmlLanguageType) strtoul( argv[2], &dvfmEvsUmlValidation, 10);
+	if(*dvfmEvsUmlValidation != DVFM_EVS_EOS)
 	{
 		printf("Error: Argumento dois invalido\n");
-		printf("First character invalid: \"%c\"\n", dvfmEvsUmlvalidation[0]);
+		printf("First character invalid: \"%c\"\n", dvfmEvsUmlValidation[0]);
 		exit(DVFM_EVS_SECOND_ARGUMENT_INVALID);
 	}
 

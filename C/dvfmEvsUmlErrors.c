@@ -145,7 +145,6 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"A confirmacao do email esta diferente",
 		"A confirmacao da senha esta diferente",
 		"O arquivo esta corrompido"
-
 	}
 };
 
@@ -267,7 +266,6 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"A confirmacao do email esta diferente",
 		"A confirmacao da senha esta diferente",
 		"O arquivo esta corrompido"
-
 	}
 };
 
@@ -389,7 +387,6 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"A confirma&ccidil;&atilde;o do email esta diferente",
 		"A confirma&ccidil;&atilde;o da senha esta diferente",
 		"O arquivo esta corrompido"
-
 	}
 };
 
