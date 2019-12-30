@@ -107,7 +107,10 @@ DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
     }
 
     fclose(dvfmEvsUmlRead);
-    
+
+    if (dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData)
+        return dvfmEvsUmlEmptyList;
+
     *dvfmEvsUmlUserData = dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData;
 
     return dvfmEvsUmlOk;

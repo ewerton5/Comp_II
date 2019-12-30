@@ -87,6 +87,7 @@ typedef enum
 	dvfmEvsUmlDifferentEmailConfirmation,
 	dvfmEvsUmlDifferentPasswordConfirmation,
 	dvfmEvsUmlCorruptedFile,
+	dvfmEvsUmlEmptyList,
 	dvfmEvsUmlSizeErrorType
 } dvfmEvsUmlErrorType;
 

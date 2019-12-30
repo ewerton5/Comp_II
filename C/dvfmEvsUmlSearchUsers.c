@@ -44,6 +44,7 @@ DvfmEvsUmlSearchUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
                        dvfmEvsUmlProfileType dvfmEvsUmlProfile,
                        dvfmEvsUmlUserDataType **dvfmEvsUmlUserData)
 {
+    dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
     dvfmEvsUmlUserDataType *dvfmEvsUmlFullUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
     dvfmEvsUmlUserDataType *dvfmEvsUmlFilteredUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
     dvfmEvsUmlBool dvfmEvsUmlInFilter;
@@ -54,7 +55,9 @@ DvfmEvsUmlSearchUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
     if (!dvfmEvsUmlUserData)
         return dvfmEvsUmlFifthEmptyPointer;
 
-    DvfmEvsUmlGetUsers (dvfmEvsUmlSettings, &dvfmEvsUmlFullUserData);
+    dvfmEvsUmlErrorCode = DvfmEvsUmlGetUsers (dvfmEvsUmlSettings, &dvfmEvsUmlFullUserData);
+    if (dvfmEvsUmlErrorCode)
+        return dvfmEvsUmlSecondaryFunction;
 
     dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData = NULL;
 
@@ -79,6 +82,9 @@ DvfmEvsUmlSearchUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
         }
         dvfmEvsUmlFullUserData = dvfmEvsUmlFullUserData->dvfmEvsUmlNextUserData;
     }
+
+    if (dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData)
+        return dvfmEvsUmlEmptyList;
     
     *dvfmEvsUmlUserData = dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData;
     

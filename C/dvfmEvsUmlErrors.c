@@ -85,7 +85,8 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Username verification is different",
 		"Email verification is different",
 		"Password verification is different",
-		"The file is corrupted"
+		"The file is corrupted",
+		"The list is empty"
 	},
 
 	{
@@ -144,7 +145,8 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"A confirmacao do username esta diferente",
 		"A confirmacao do email esta diferente",
 		"A confirmacao da senha esta diferente",
-		"O arquivo esta corrompido"
+		"O arquivo esta corrompido",
+		"A lista esta vazia"
 	}
 };
 
@@ -206,7 +208,8 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Username verification is different",
 		"Email verification is different",
 		"Password verification is different",
-		"The file is corrupted"
+		"The file is corrupted",
+		"The list is empty"
 	},
 
 	{
@@ -265,7 +268,8 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"A confirmacao do username esta diferente",
 		"A confirmacao do email esta diferente",
 		"A confirmacao da senha esta diferente",
-		"O arquivo esta corrompido"
+		"O arquivo esta corrompido",
+		"A lista esta vazia"
 	}
 };
 
@@ -327,7 +331,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Username verification is different",
 		"Email verification is different",
 		"Password verification is different",
-		"The file is corrupted"
+		"The file is corrupted",
+		"The list is empty"
 	},
 
 	{
@@ -386,7 +391,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"A confirma&ccidil;&atilde;o do username esta diferente",
 		"A confirma&ccidil;&atilde;o do email esta diferente",
 		"A confirma&ccidil;&atilde;o da senha esta diferente",
-		"O arquivo esta corrompido"
+		"O arquivo esta corrompido",
+		"A lista est&aacute; vazia"
 	}
 };
 
