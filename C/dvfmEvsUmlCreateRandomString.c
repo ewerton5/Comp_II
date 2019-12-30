@@ -31,7 +31,7 @@ main(int argc,char *argv[ ])
 {
     dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
     size_t dvfmEvsUmlSizeRandomString;
-	char *dvfmEvsUmlvalidation;
+	char *dvfmEvsUmlValidation;
 	if (argc != DVFM_EVS_NUMBER_ARGUMENTS) 
 	{
 		printf("use: %s <valid_character> <size_random_string>\n", argv[0]);
@@ -45,12 +45,12 @@ main(int argc,char *argv[ ])
 		exit(DVFM_EVS_SECOND_ARGUMENT_INVALID_HIFEN);
 	}
 	
-	dvfmEvsUmlSizeRandomString = (size_t) strtoul( argv[2], &dvfmEvsUmlvalidation, 10);
+	dvfmEvsUmlSizeRandomString = (size_t) strtoul( argv[2], &dvfmEvsUmlValidation, 10);
     char dvfmEvsUmlRandomString [dvfmEvsUmlSizeRandomString + 1];
-	if(*dvfmEvsUmlvalidation != DVFM_EVS_EOS)
+	if(*dvfmEvsUmlValidation != DVFM_EVS_EOS)
 	{
 		printf("Error: First argument invalid\n");
-		printf("First character invalid: \"%c\"\n", dvfmEvsUmlvalidation[0]);
+		printf("First character invalid: \"%c\"\n", dvfmEvsUmlValidation[0]);
 		exit(DVFM_EVS_SECOND_ARGUMENT_INVALID);
 	}
 

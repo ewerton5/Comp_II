@@ -77,13 +77,15 @@ typedef struct dvfmEvsUmlConfigurationOptions
 
 typedef struct dvfmEvsUmlUserData
 {
-	char dvfmEvsUmlStructUsername [DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
-	char *dvfmEvsUmlStructConfirmUsername;
-	char *dvfmEvsUmlStructEmail;
-	char *dvfmEvsUmlStructConfirmEmail;
-	char dvfmEvsUmlStructPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
-	char dvfmEvsUmlStructConfirmPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
-	char dvfmEvsUmlStructProfile [DVFM_EVS_UML_PROFILE_STRING_BUFFER_SIZE];
+	unsigned dvfmEvsUmlNumericIndentifier;
+	char dvfmEvsUmlUsername [DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
+	char dvfmEvsUmlConfirmUsername [DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
+	dvfmEvsUmlProfileType *dvfmEvsUmlProfile;
+	char dvfmEvsUmlFullName [DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
+	char dvfmEvsUmlEmail [DVFM_EVS_UML_MAX_SIZE_EMAIL];
+	char dvfmEvsUmlConfirmEmail [DVFM_EVS_UML_MAX_SIZE_EMAIL];
+	char dvfmEvsUmlPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
+	char dvfmEvsUmlConfirmPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
 	struct dvfmEvsUmlUserData *dvfmEvsUmlPreviousUserData;
 	struct dvfmEvsUmlUserData *dvfmEvsUmlNextUserData;
 } dvfmEvsUmlUserDataType;

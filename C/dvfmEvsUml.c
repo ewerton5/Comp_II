@@ -557,15 +557,15 @@ main (int argc, char *argv[])
 
             /* put user information in a struct to pass to the function */
 
-            dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmUsername = dvfmEvsUmlConfirmUsername;
-            dvfmEvsUmlDataUser.dvfmEvsUmlStructEmail = dvfmEvsUmlEmail;
-            dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmEmail = dvfmEvsUmlConfirmEmail;
+            dvfmEvsUmlDataUser.dvfmEvsUmlConfirmUsername = dvfmEvsUmlConfirmUsername;
+            dvfmEvsUmlDataUser.dvfmEvsUmlEmail = dvfmEvsUmlEmail;
+            dvfmEvsUmlDataUser.dvfmEvsUmlConfirmEmail = dvfmEvsUmlConfirmEmail;
 
-            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructUsername, dvfmEvsUmlUsername);
-            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructPassword, dvfmEvsUmlAdimimPassword);
-            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmPassword, dvfmEvsUmlConfirmAdimimPassword);
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlUsername, dvfmEvsUmlUsername);
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlPassword, dvfmEvsUmlAdimimPassword);
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlConfirmPassword, dvfmEvsUmlConfirmAdimimPassword);
 
-            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructProfile, "\0");
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlProfile, "\0");
 
             /* Populates the structure with the configuration information */
 

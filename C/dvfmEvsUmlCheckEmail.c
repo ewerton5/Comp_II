@@ -34,7 +34,7 @@ main(int argc,char *argv[ ])
     dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
     size_t dvfmEvsUmlMinimumSize;
     size_t dvfmEvsUmlMaximumSize;
-	char *dvfmEvsUmlvalidation;
+	char *dvfmEvsUmlValidation;
 	if (argc != DVFM_EVS_NUMBER_ARGUMENTS) 
 	{
 		printf("use: %s <email> <valid_character> <minimum_size> <maximum_size>\n", argv[0]);
@@ -48,11 +48,11 @@ main(int argc,char *argv[ ])
 		exit(DVFM_EVS_THIRD_ARGUMENT_INVALID_HIFEN);
 	}
 	
-	dvfmEvsUmlMinimumSize = (size_t) strtoul( argv[3], &dvfmEvsUmlvalidation, 10);
-	if(*dvfmEvsUmlvalidation != DVFM_EVS_EOS)
+	dvfmEvsUmlMinimumSize = (size_t) strtoul( argv[3], &dvfmEvsUmlValidation, 10);
+	if(*dvfmEvsUmlValidation != DVFM_EVS_EOS)
 	{
 		printf("Error: First argument invalid\n");
-		printf("First character invalid: \"%c\"\n", dvfmEvsUmlvalidation[0]);
+		printf("First character invalid: \"%c\"\n", dvfmEvsUmlValidation[0]);
 		exit(DVFM_EVS_THIRD_ARGUMENT_INVALID);
 	}
 
@@ -63,11 +63,11 @@ main(int argc,char *argv[ ])
 		exit(DVFM_EVS_FOURTH_ARGUMENT_INVALID_HIFEN);
 	}
 
-    dvfmEvsUmlMaximumSize = (size_t) strtoul( argv[4], &dvfmEvsUmlvalidation, 10);
-	if(*dvfmEvsUmlvalidation != DVFM_EVS_EOS)
+    dvfmEvsUmlMaximumSize = (size_t) strtoul( argv[4], &dvfmEvsUmlValidation, 10);
+	if(*dvfmEvsUmlValidation != DVFM_EVS_EOS)
 	{
 		printf("Error: Argumento dois invalido\n");
-		printf("First character invalid: \"%c\"\n", dvfmEvsUmlvalidation[0]);
+		printf("First character invalid: \"%c\"\n", dvfmEvsUmlValidation[0]);
 		exit(DVFM_EVS_FOURTH_ARGUMENT_INVALID);
 	}
 
