@@ -10,6 +10,7 @@
  * $Log$
 */
 
+#include	<stdio.h>
 #include	"dvfmEvsUmlShowConfigurationValues.h"
 
 /*
@@ -34,6 +35,20 @@ DvfmEvsUmlShowConfigurationValues (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUm
 {
     if (!dvfmEvsUmlSettings)
         return dvfmEvsUmlFirstEmptyPointer;
+
+    if (dvfmEvsUmlLanguage == dvfmEvsUmlPortuguese)
+        printf("\n\t\t\tConfiguracoes atuais:\n\n");
+    else
+        printf("\n\t\t\tCurrent Configurations:\n\n");
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlWebServerUrlName, dvfmEvsUmlSettings->dvfmEvsUmlWebServerUrl);
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifierName, dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifier);
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectoryName, dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectory);
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlDataDirectoryName, dvfmEvsUmlSettings->dvfmEvsUmlDataDirectory);
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectoryName, dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectory);
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilenameName, dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename);
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilenameName, dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilename);
+    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilenameName, dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilename);
+    printf("%s = %s\n\n", dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilenameName, dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilename);
     
     return dvfmEvsUmlOk;
 }
