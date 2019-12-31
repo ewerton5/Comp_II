@@ -100,6 +100,7 @@ typedef unsigned long long dvfmEvsUmlUserIdentifierType;
 
 typedef enum
 {
+	dvfmEvsUmlUndefined = 0,
 	dvfmEvsUmlAdministrator = 1, 
 	dvfmEvsUmlProfessor = 2, 
 	dvfmEvsUmlStudent = 4

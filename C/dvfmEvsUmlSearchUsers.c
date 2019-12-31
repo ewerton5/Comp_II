@@ -71,8 +71,8 @@ DvfmEvsUmlSearchUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
         if (dvfmEvsUmlEmail)
             if (!strstr(dvfmEvsUmlFullUserData->dvfmEvsUmlEmail, dvfmEvsUmlEmail))
                 dvfmEvsUmlInFilter = dvfmEvsUmlFalse;
-        if (dvfmEvsUmlFullUserData->dvfmEvsUmlProfile != dvfmEvsUmlProfile)
-            dvfmEvsUmlInFilter = dvfmEvsUmlFalse;
+        if (dvfmEvsUmlProfile && (dvfmEvsUmlFullUserData->dvfmEvsUmlProfile != dvfmEvsUmlProfile))
+                dvfmEvsUmlInFilter = dvfmEvsUmlFalse;
         if(dvfmEvsUmlInFilter)
         {
             dvfmEvsUmlFilteredUserData = dvfmEvsUmlFullUserData;
