@@ -59,7 +59,7 @@ DvfmEvsUmlSearchUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
     if (dvfmEvsUmlErrorCode)
         return dvfmEvsUmlSecondaryFunction;
 
-    dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData = NULL;
+    dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData = NULL;
 
     while (dvfmEvsUmlFullUserData)
     {
@@ -76,17 +76,23 @@ DvfmEvsUmlSearchUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
         if(dvfmEvsUmlInFilter)
         {
             dvfmEvsUmlFilteredUserData = dvfmEvsUmlFullUserData;
-            dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));;
-            dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData->dvfmEvsUmlNextUserData = dvfmEvsUmlFilteredUserData;
-            dvfmEvsUmlFilteredUserData = dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData;
+            dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));;
+            dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData->dvfmEvsUmlPreviousUserData = dvfmEvsUmlFilteredUserData;
+            dvfmEvsUmlFilteredUserData = dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData;
         }
         dvfmEvsUmlFullUserData = dvfmEvsUmlFullUserData->dvfmEvsUmlNextUserData;
     }
 
-    if (dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData)
+    dvfmEvsUmlFilteredUserData = dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData;
+    dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData = NULL;
+
+    while (dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData)
+        dvfmEvsUmlFilteredUserData = dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData;
+
+    if (dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData)
         return dvfmEvsUmlEmptyList;
     
-    *dvfmEvsUmlUserData = dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData;
+    *dvfmEvsUmlUserData = dvfmEvsUmlFilteredUserData;
     
     return dvfmEvsUmlOk;
 }

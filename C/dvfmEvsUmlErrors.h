@@ -88,6 +88,7 @@ typedef enum
 	dvfmEvsUmlDifferentPasswordConfirmation,
 	dvfmEvsUmlCorruptedFile,
 	dvfmEvsUmlEmptyList,
+	dvfmEvsUmlUserNotFound,
 	dvfmEvsUmlSizeErrorType
 } dvfmEvsUmlErrorType;
 
