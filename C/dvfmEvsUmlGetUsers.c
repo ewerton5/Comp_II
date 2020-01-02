@@ -52,7 +52,7 @@ DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
     if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "r")))
         return dvfmEvsUmlCantOpenFile;
     
-    dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData = NULL;
+    dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData = NULL;
 
     while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE, dvfmEvsUmlRead))
     {
@@ -95,10 +95,16 @@ DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
                 break;
             }
         }
-        dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));;
-        dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData->dvfmEvsUmlNextUserData = dvfmEvsUmlCurrentUserData;
-        dvfmEvsUmlCurrentUserData = dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData;
+        dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));;
+        dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData->dvfmEvsUmlPreviousUserData = dvfmEvsUmlCurrentUserData;
+        dvfmEvsUmlCurrentUserData = dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData;
     }
+
+    dvfmEvsUmlCurrentUserData = dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData;
+    dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData = NULL;
+
+    while (dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData)
+        dvfmEvsUmlCurrentUserData = dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData;
 
     if(ferror(dvfmEvsUmlRead))
     {
@@ -108,10 +114,10 @@ DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
 
     fclose(dvfmEvsUmlRead);
 
-    if (dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData)
+    if (dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData)
         return dvfmEvsUmlEmptyList;
 
-    *dvfmEvsUmlUserData = dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData;
+    *dvfmEvsUmlUserData = dvfmEvsUmlCurrentUserData;
 
     return dvfmEvsUmlOk;
 }
