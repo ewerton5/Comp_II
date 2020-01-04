@@ -89,6 +89,8 @@ typedef enum
 	dvfmEvsUmlCorruptedFile,
 	dvfmEvsUmlEmptyList,
 	dvfmEvsUmlUserNotFound,
+	dvfmEvsUmlIncompatibleEmail,
+	dvfmEvsUmlIncompatibleFullName,
 	dvfmEvsUmlSizeErrorType
 } dvfmEvsUmlErrorType;
 

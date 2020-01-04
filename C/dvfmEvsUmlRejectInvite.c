@@ -44,7 +44,8 @@ DvfmEvsUmlRejectInvite (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
     dvfmEvsUmlUserDataType *dvfmEvsUmlUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
     FILE *dvfmEvsUmlRead, *dvfmEvsUmlWrite;
     char dvfmEvsUmlBuffer [DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE];
-    unsigned dvfmEvsUmlIndex, dvfmEvsUmlNumericIndentifier;
+    unsigned dvfmEvsUmlIndex;
+    dvfmEvsUmlUserIdentifierType dvfmEvsUmlNumericIndentifier;
 	char *dvfmEvsUmlValidation, dvfmEvsUmlNumericIndentifierString [10], dvfmEvsUmlAuxiliary [2] = "0\0";
 
     if (!dvfmEvsUmlSettings)
@@ -82,7 +83,7 @@ DvfmEvsUmlRejectInvite (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
         {
             dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
             dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
-            dvfmEvsUmlNumericIndentifier = (unsigned) strtoul(dvfmEvsUmlBuffer, &dvfmEvsUmlValidation, 10);
+            dvfmEvsUmlNumericIndentifier = (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlBuffer, &dvfmEvsUmlValidation, 10);
             dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
             if (dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier != dvfmEvsUmlNumericIndentifier)
                 fprintf(dvfmEvsUmlWrite, "%s", dvfmEvsUmlBuffer);
@@ -114,7 +115,7 @@ DvfmEvsUmlRejectInvite (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
             dvfmEvsUmlAuxiliary [0] = dvfmEvsUmlNumericIndentifierString[1];
             strcpy(dvfmEvsUmlNumericIndentifierString, strstr(dvfmEvsUmlNumericIndentifierString, dvfmEvsUmlAuxiliary));
             dvfmEvsUmlNumericIndentifierString [strlen(dvfmEvsUmlNumericIndentifierString) - strlen(strstr(dvfmEvsUmlNumericIndentifierString, ":"))] = '\0';
-            dvfmEvsUmlNumericIndentifier = (unsigned) strtoul(dvfmEvsUmlNumericIndentifierString, &dvfmEvsUmlValidation, 10);
+            dvfmEvsUmlNumericIndentifier = (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlNumericIndentifierString, &dvfmEvsUmlValidation, 10);
             if (dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier != dvfmEvsUmlNumericIndentifier)
                 fprintf(dvfmEvsUmlWrite, "%s", dvfmEvsUmlBuffer);
         }
