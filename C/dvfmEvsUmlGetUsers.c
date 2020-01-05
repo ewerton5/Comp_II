@@ -72,7 +72,7 @@ DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
             switch (dvfmEvsUmlDateIndex)
             {
             case 0:
-                dvfmEvsUmlCurrentUserData->dvfmEvsUmlNumericIndentifier = (unsigned) strtoul(dvfmEvsUmlDate, &dvfmEvsUmlValidation, 10);
+                dvfmEvsUmlCurrentUserData->dvfmEvsUmlNumericIndentifier = (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlDate, &dvfmEvsUmlValidation, 10);
                 if(*dvfmEvsUmlValidation != '\0')
                     return dvfmEvsUmlInvalidCharacter;
                 break;

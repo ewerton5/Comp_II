@@ -87,7 +87,9 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Password verification is different",
 		"The file is corrupted",
 		"The list is empty",
-		"User not found"
+		"User not found",
+		"Incompatible emails",
+		"Incompatible full names"
 	},
 
 	{
@@ -148,7 +150,9 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"A confirmacao da senha esta diferente",
 		"O arquivo esta corrompido",
 		"A lista esta vazia",
-		"Usuario nao encontrado"
+		"Usuario nao encontrado",
+		"Emails incompativeis",
+		"Nomes completos incompativeis"
 	}
 };
 
@@ -212,7 +216,9 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Password verification is different",
 		"The file is corrupted",
 		"The list is empty",
-		"User not found"
+		"User not found",
+		"Incompatible emails",
+		"Incompatible full names"
 	},
 
 	{
@@ -273,7 +279,9 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"A confirmacao da senha esta diferente",
 		"O arquivo esta corrompido",
 		"A lista esta vazia",
-		"Usuario nao encontrado"
+		"Usuario nao encontrado",
+		"Emails incompativeis",
+		"Nomes completos incompativeis"
 	}
 };
 
@@ -337,7 +345,9 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Password verification is different",
 		"The file is corrupted",
 		"The list is empty",
-		"User not found"
+		"User not found",
+		"Incompatible emails",
+		"Incompatible full names"
 	},
 
 	{
@@ -398,7 +408,9 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"A confirma&ccidil;&atilde;o da senha esta diferente",
 		"O arquivo esta corrompido",
 		"A lista est&aacute; vazia",
-		"Usu&aacute;rio n&atilde;o encontrado"
+		"Usu&aacute;rio n&atilde;o encontrado",
+		"Emails incompat&iacute;veis",
+		"Nomes completos incompat&iacute;veis"
 	}
 };
 
