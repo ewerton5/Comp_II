@@ -61,7 +61,7 @@ DvfmEvsUmlRejectInvite (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
     if (dvfmEvsUmlErrorCode)
         return dvfmEvsUmlSecondaryFunction;
 
-    while (strcmp(dvfmEvsUmlUserData->dvfmEvsUmlUsername, dvfmEvsUmlNickname))
+    while (strcmp(dvfmEvsUmlUserData->dvfmEvsUmlNickname, dvfmEvsUmlNickname))
         dvfmEvsUmlUserData = dvfmEvsUmlUserData->dvfmEvsUmlNextUserData;
     
     if (!dvfmEvsUmlUserData)

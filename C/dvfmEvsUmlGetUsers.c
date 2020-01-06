@@ -77,7 +77,7 @@ DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
                     return dvfmEvsUmlInvalidCharacter;
                 break;
             case 1:
-                strcpy(dvfmEvsUmlCurrentUserData->dvfmEvsUmlUsername, dvfmEvsUmlDate);
+                strcpy(dvfmEvsUmlCurrentUserData->dvfmEvsUmlNickname, dvfmEvsUmlDate);
                 break;
             case 2:
                 strcpy(dvfmEvsUmlCurrentUserData->dvfmEvsUmlPassword, dvfmEvsUmlDate);
@@ -95,13 +95,17 @@ DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
                 break;
             }
         }
-        dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));;
+        dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
         dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData->dvfmEvsUmlPreviousUserData = dvfmEvsUmlCurrentUserData;
         dvfmEvsUmlCurrentUserData = dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData;
     }
 
     dvfmEvsUmlCurrentUserData = dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData;
-    dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData = NULL;
+    if (dvfmEvsUmlCurrentUserData)
+        dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData = NULL;
+
+    if (dvfmEvsUmlCurrentUserData)
+        return dvfmEvsUmlEmptyList;
 
     while (dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData)
         dvfmEvsUmlCurrentUserData = dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData;
@@ -113,9 +117,6 @@ DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
     }
 
     fclose(dvfmEvsUmlRead);
-
-    if (dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData)
-        return dvfmEvsUmlEmptyList;
 
     *dvfmEvsUmlUserData = dvfmEvsUmlCurrentUserData;
 

@@ -10,6 +10,8 @@
  * $Log$
 */
 
+#include	<stdio.h>
+#include	<string.h>
 #include	"dvfmEvsUmlGetPendingRegistrationRequests.h"
 
 /*
@@ -33,11 +35,90 @@ dvfmEvsUmlErrorType
 DvfmEvsUmlGetPendingRegistrationRequests (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
                                           dvfmEvsUmlUserDataType **dvfmEvsUmlUserData)
 {
+    unsigned short dvfmEvsUmlIndex, dvfmEvsUmlDateIndex;
+    FILE *dvfmEvsUmlRead;
+    char dvfmEvsUmlBuffer [DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE];
+    char dvfmEvsUmlDate [DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE];
+    char dvfmEvsUmlAuxiliary [2] = "0\0";
+    dvfmEvsUmlUserDataType *dvfmEvsUmlCurrentUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
+	char *dvfmEvsUmlValidation;
+
     if (!dvfmEvsUmlSettings)
         return dvfmEvsUmlFirstEmptyPointer;
 
     if (!dvfmEvsUmlUserData)
         return dvfmEvsUmlSecondEmptyPointer;
+
+    if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilename, "r")))
+        return dvfmEvsUmlCantOpenFile;
+
+    dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData = NULL;
+
+    while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE, dvfmEvsUmlRead))
+    {
+        for(dvfmEvsUmlDateIndex = 0; dvfmEvsUmlDateIndex < 5; dvfmEvsUmlDateIndex++)
+        {
+            if (strstr(dvfmEvsUmlBuffer, ":"))
+            {
+                dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
+                dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
+                strcpy(dvfmEvsUmlDate, dvfmEvsUmlBuffer);
+                dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
+                strcpy(dvfmEvsUmlBuffer, strstr(dvfmEvsUmlBuffer, ":"));
+                dvfmEvsUmlAuxiliary [0] = dvfmEvsUmlBuffer[1];
+                strcpy(dvfmEvsUmlBuffer, strstr(dvfmEvsUmlBuffer, dvfmEvsUmlAuxiliary));
+            }
+
+            switch (dvfmEvsUmlDateIndex)
+            {
+            case 0:
+                dvfmEvsUmlCurrentUserData->dvfmEvsUmlValidationTime = (time_t) strtoul(dvfmEvsUmlDate, &dvfmEvsUmlValidation, 10);
+                if(*dvfmEvsUmlValidation != '\0')
+                    return dvfmEvsUmlInvalidCharacter;
+                break;
+            case 1:
+                dvfmEvsUmlCurrentUserData->dvfmEvsUmlResponsibleUserNumericIndentifier = (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlDate, &dvfmEvsUmlValidation, 10);
+                if(*dvfmEvsUmlValidation != '\0')
+                    return dvfmEvsUmlInvalidCharacter;
+                break;
+            case 2:
+                dvfmEvsUmlCurrentUserData->dvfmEvsUmlNumericIndentifier = (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlDate, &dvfmEvsUmlValidation, 10);
+                if(*dvfmEvsUmlValidation != '\0')
+                    return dvfmEvsUmlInvalidCharacter;
+                break;
+            case 3:
+                strcpy(dvfmEvsUmlCurrentUserData->dvfmEvsUmlPassword, dvfmEvsUmlDate);
+                break;
+            }
+        }
+
+        if (dvfmEvsUmlCurrentUserData->dvfmEvsUmlValidationTime > 0)
+        {
+            dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
+            dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData->dvfmEvsUmlPreviousUserData = dvfmEvsUmlCurrentUserData;
+            dvfmEvsUmlCurrentUserData = dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData;
+        }
+    }
+
+    dvfmEvsUmlCurrentUserData = dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData;
+    if (dvfmEvsUmlCurrentUserData)
+        dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData = NULL;
+
+    if (dvfmEvsUmlCurrentUserData)
+        return dvfmEvsUmlEmptyList;
+
+    while (dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData)
+        dvfmEvsUmlCurrentUserData = dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData;
+
+    if(ferror(dvfmEvsUmlRead))
+    {
+        fclose(dvfmEvsUmlRead);
+        return dvfmEvsUmlReadError;
+    }
+
+    fclose(dvfmEvsUmlRead);
+
+    *dvfmEvsUmlUserData = dvfmEvsUmlCurrentUserData;
     
     return dvfmEvsUmlOk;
 }
