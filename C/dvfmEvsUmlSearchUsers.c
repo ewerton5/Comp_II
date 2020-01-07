@@ -45,7 +45,7 @@ DvfmEvsUmlSearchUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
                        dvfmEvsUmlUserDataType **dvfmEvsUmlUserData)
 {
     dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
-    dvfmEvsUmlUserDataType *dvfmEvsUmlFullUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
+    dvfmEvsUmlUserDataType *dvfmEvsUmlAllUsersData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
     dvfmEvsUmlUserDataType *dvfmEvsUmlFilteredUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
     dvfmEvsUmlBool dvfmEvsUmlInFilter;
 
@@ -55,42 +55,43 @@ DvfmEvsUmlSearchUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
     if (!dvfmEvsUmlUserData)
         return dvfmEvsUmlFifthEmptyPointer;
 
-    dvfmEvsUmlErrorCode = DvfmEvsUmlGetUsers (dvfmEvsUmlSettings, &dvfmEvsUmlFullUserData);
+    dvfmEvsUmlErrorCode = DvfmEvsUmlGetUsers (dvfmEvsUmlSettings, &dvfmEvsUmlAllUsersData);
     if (dvfmEvsUmlErrorCode)
         return dvfmEvsUmlSecondaryFunction;
 
     dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData = NULL;
 
-    while (dvfmEvsUmlFullUserData)
+    while (dvfmEvsUmlAllUsersData)
     {
         dvfmEvsUmlInFilter = dvfmEvsUmlTrue;
         
         if (dvfmEvsUmlName)
-            if (!strstr(dvfmEvsUmlFullUserData->dvfmEvsUmlFullName, dvfmEvsUmlName))
+            if (!strstr(dvfmEvsUmlAllUsersData->dvfmEvsUmlFullName, dvfmEvsUmlName))
                 dvfmEvsUmlInFilter = dvfmEvsUmlFalse;
         if (dvfmEvsUmlEmail)
-            if (!strstr(dvfmEvsUmlFullUserData->dvfmEvsUmlEmail, dvfmEvsUmlEmail))
+            if (!strstr(dvfmEvsUmlAllUsersData->dvfmEvsUmlEmail, dvfmEvsUmlEmail))
                 dvfmEvsUmlInFilter = dvfmEvsUmlFalse;
-        if (dvfmEvsUmlProfile && (dvfmEvsUmlFullUserData->dvfmEvsUmlProfile != dvfmEvsUmlProfile))
+        if (dvfmEvsUmlProfile && (dvfmEvsUmlAllUsersData->dvfmEvsUmlProfile != dvfmEvsUmlProfile))
                 dvfmEvsUmlInFilter = dvfmEvsUmlFalse;
         if(dvfmEvsUmlInFilter)
         {
-            dvfmEvsUmlFilteredUserData = dvfmEvsUmlFullUserData;
-            dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));;
+            dvfmEvsUmlFilteredUserData = dvfmEvsUmlAllUsersData;
+            dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
             dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData->dvfmEvsUmlPreviousUserData = dvfmEvsUmlFilteredUserData;
             dvfmEvsUmlFilteredUserData = dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData;
         }
-        dvfmEvsUmlFullUserData = dvfmEvsUmlFullUserData->dvfmEvsUmlNextUserData;
+        dvfmEvsUmlAllUsersData = dvfmEvsUmlAllUsersData->dvfmEvsUmlNextUserData;
     }
 
     dvfmEvsUmlFilteredUserData = dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData;
-    dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData = NULL;
+    if (dvfmEvsUmlFilteredUserData)
+        dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData = NULL;
+
+    if (dvfmEvsUmlFilteredUserData)
+        return dvfmEvsUmlEmptyList;
 
     while (dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData)
         dvfmEvsUmlFilteredUserData = dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData;
-
-    if (dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData)
-        return dvfmEvsUmlEmptyList;
     
     *dvfmEvsUmlUserData = dvfmEvsUmlFilteredUserData;
     

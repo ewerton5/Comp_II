@@ -138,8 +138,8 @@ main (int argc, char *argv[])
     char *dvfmEvsUmlConfiguration = "";
     dvfmEvsUmlLanguageType dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
     char *dvfmEvsUmlUser = "";
-    char *dvfmEvsUmlUsername = "";
-    char *dvfmEvsUmlConfirmUsername = "";
+    char *dvfmEvsUmlNickname = "";
+    char *dvfmEvsUmlConfirmNickname = "";
     char *dvfmEvsUmlEmail = "";
     char *dvfmEvsUmlConfirmEmail = "";
     char *dvfmEvsUmlProfile = "";
@@ -481,7 +481,7 @@ main (int argc, char *argv[])
 
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlUsername = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlNickname = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -489,7 +489,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlConfirmUsername = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlConfirmNickname = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -557,11 +557,11 @@ main (int argc, char *argv[])
 
             /* put user information in a struct to pass to the function */
 
-            dvfmEvsUmlDataUser.dvfmEvsUmlConfirmUsername = dvfmEvsUmlConfirmUsername;
+            dvfmEvsUmlDataUser.dvfmEvsUmlConfirmNickname = dvfmEvsUmlConfirmNickname;
             dvfmEvsUmlDataUser.dvfmEvsUmlEmail = dvfmEvsUmlEmail;
             dvfmEvsUmlDataUser.dvfmEvsUmlConfirmEmail = dvfmEvsUmlConfirmEmail;
 
-            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlUsername, dvfmEvsUmlUsername);
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlNickname, dvfmEvsUmlNickname);
             strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlPassword, dvfmEvsUmlAdimimPassword);
             strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlConfirmPassword, dvfmEvsUmlConfirmAdimimPassword);
 
@@ -652,7 +652,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlUsername = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlNickname = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -660,7 +660,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlConfirmUsername = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlConfirmNickname = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -776,7 +776,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlUsername = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlNickname = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -784,7 +784,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlConfirmUsername = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlConfirmNickname = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -1046,7 +1046,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlUsername = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlNickname = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -1054,7 +1054,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlConfirmUsername = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlConfirmNickname = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -1878,7 +1878,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlUsername = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlNickname = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -1886,7 +1886,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlConfirmUsername = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlConfirmNickname = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -2333,7 +2333,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexUsername:
                     
-                    dvfmEvsUmlUsername = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlNickname = dvfmEvsUmlValueSubOption;
 
                     break;
 

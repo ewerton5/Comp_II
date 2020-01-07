@@ -10,7 +10,10 @@
  * $Log$
 */
 
+#include	<string.h>
 #include	"dvfmEvsUmlGetPendingRegistrationRequestsPerUser.h"
+#include	"dvfmEvsUmlGetUsers.h"
+#include	"dvfmEvsUmlGetPendingRegistrationRequests.h"
 
 /*
  * dvfmEvsUmlErrorType
@@ -36,6 +39,11 @@ DvfmEvsUmlGetPendingRegistrationRequestsPerUser (dvfmEvsUmlConfigurationOptionsT
                                                  char *dvfmEvsUmlNickname,
                                                  dvfmEvsUmlUserDataType **dvfmEvsUmlUserData)
 {
+    dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
+    dvfmEvsUmlUserDataType *dvfmEvsUmlAllUsersData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
+    dvfmEvsUmlUserDataType *dvfmEvsUmlFilteredUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
+    dvfmEvsUmlUserIdentifierType dvfmEvsUmlResponsibleUserNumericIndentifier;
+
     if (!dvfmEvsUmlSettings)
         return dvfmEvsUmlFirstEmptyPointer;
 
@@ -44,6 +52,56 @@ DvfmEvsUmlGetPendingRegistrationRequestsPerUser (dvfmEvsUmlConfigurationOptionsT
 
     if (!dvfmEvsUmlUserData)
         return dvfmEvsUmlThirdEmptyPointer;
+
+    dvfmEvsUmlErrorCode = DvfmEvsUmlGetUsers (dvfmEvsUmlSettings, &dvfmEvsUmlAllUsersData);
+    if (dvfmEvsUmlErrorCode)
+        return dvfmEvsUmlSecondaryFunction;
+
+    while (dvfmEvsUmlAllUsersData)
+    {
+        if (!strcmp(dvfmEvsUmlAllUsersData->dvfmEvsUmlNickname, dvfmEvsUmlNickname))
+        {
+            dvfmEvsUmlResponsibleUserNumericIndentifier = dvfmEvsUmlAllUsersData->dvfmEvsUmlNumericIndentifier;
+            break;
+        }
+        dvfmEvsUmlAllUsersData = dvfmEvsUmlAllUsersData->dvfmEvsUmlNextUserData;
+    }
+
+    if (dvfmEvsUmlAllUsersData)
+        return dvfmEvsUmlUserNotFound;
+
+    dvfmEvsUmlAllUsersData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
+    dvfmEvsUmlAllUsersData->dvfmEvsUmlPreviousUserData = NULL;
+
+    dvfmEvsUmlErrorCode = DvfmEvsUmlGetPendingRegistrationRequests (dvfmEvsUmlSettings, &dvfmEvsUmlAllUsersData);
+    if (dvfmEvsUmlErrorCode)
+        return dvfmEvsUmlSecondaryFunction;
+
+    dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData = NULL; 
+
+    while (dvfmEvsUmlAllUsersData)
+    {
+        if(strcmp(dvfmEvsUmlAllUsersData->dvfmEvsUmlResponsibleUserNumericIndentifier, dvfmEvsUmlResponsibleUserNumericIndentifier))
+        {
+            dvfmEvsUmlFilteredUserData = dvfmEvsUmlAllUsersData;
+            dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
+            dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData->dvfmEvsUmlPreviousUserData = dvfmEvsUmlFilteredUserData;
+            dvfmEvsUmlFilteredUserData = dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData;
+        }
+        dvfmEvsUmlAllUsersData = dvfmEvsUmlAllUsersData->dvfmEvsUmlNextUserData;
+    }
+
+    dvfmEvsUmlFilteredUserData = dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData;
+    if (dvfmEvsUmlFilteredUserData)
+        dvfmEvsUmlFilteredUserData->dvfmEvsUmlNextUserData = NULL;
+
+    if (dvfmEvsUmlFilteredUserData)
+        return dvfmEvsUmlEmptyList;
+
+    while (dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData)
+        dvfmEvsUmlFilteredUserData = dvfmEvsUmlFilteredUserData->dvfmEvsUmlPreviousUserData;
+    
+    *dvfmEvsUmlUserData = dvfmEvsUmlFilteredUserData;
     
     return dvfmEvsUmlOk;
 }

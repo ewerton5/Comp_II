@@ -45,7 +45,7 @@ DvfmEvsUmlRequestRegistration (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSet
     char dvfmEvsUmlBuffer [DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE];
     unsigned dvfmEvsUmlIndex, dvfmEvsUmlCounter;
     dvfmEvsUmlUserIdentifierType dvfmEvsUmlNumericIndentifier, dvfmEvsUmlNumericIndentifierFirstNumber;
-	char *dvfmEvsUmlValidation, dvfmEvsUmlNumericIndentifierString [10],
+	char *dvfmEvsUmlValidation, dvfmEvsUmlNumericIndentifierString [10], dvfmEvsUmlResponsibleUserNumericIndentifierString [10],
           dvfmEvsUmlAuxiliary [2] = "0\0", dvfmEvsUmlFirstNickname [DVFM_EVS_UML_MAX_SIZE_NICKNAME],
           dvfmEvsUmlSecondNickname [DVFM_EVS_UML_MAX_SIZE_NICKNAME];
 
@@ -92,10 +92,12 @@ DvfmEvsUmlRequestRegistration (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSet
 
     while (dvfmEvsUmlAllUsersData)
     {
-        if (!strcmp(dvfmEvsUmlAllUsersData->dvfmEvsUmlUsername, dvfmEvsUmlFirstNickname))
+        if (!strcmp(dvfmEvsUmlAllUsersData->dvfmEvsUmlNickname, dvfmEvsUmlFirstNickname))
             strcpy(dvfmEvsUmlFirstNickname, dvfmEvsUmlSecondNickname);
         dvfmEvsUmlAllUsersData = dvfmEvsUmlAllUsersData->dvfmEvsUmlNextUserData;
     }
+    dvfmEvsUmlAllUsersData = dvfmEvsUmlAllUsersData->dvfmEvsUmlPreviousUserData;
+
     dvfmEvsUmlNumericIndentifier = dvfmEvsUmlAllUsersData->dvfmEvsUmlNumericIndentifier + 1;
     for(dvfmEvsUmlIndex = 0; ;dvfmEvsUmlIndex++)
     {
@@ -106,6 +108,20 @@ DvfmEvsUmlRequestRegistration (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSet
         dvfmEvsUmlNumericIndentifier = dvfmEvsUmlNumericIndentifier - dvfmEvsUmlNumericIndentifierFirstNumber*pow(10, dvfmEvsUmlCounter);
     }
     dvfmEvsUmlNumericIndentifierString [dvfmEvsUmlIndex] = '\0';
+
+    while (dvfmEvsUmlAllUsersData && strcmp(dvfmEvsUmlAllUsersData->dvfmEvsUmlEmail, dvfmEvsUmlEmail))
+        dvfmEvsUmlAllUsersData = dvfmEvsUmlAllUsersData->dvfmEvsUmlPreviousUserData;
+
+    dvfmEvsUmlNumericIndentifier = dvfmEvsUmlAllUsersData->dvfmEvsUmlNumericIndentifier;
+    for(dvfmEvsUmlIndex = 0; ;dvfmEvsUmlIndex++)
+    {
+        dvfmEvsUmlNumericIndentifierFirstNumber = dvfmEvsUmlNumericIndentifier;
+        for (dvfmEvsUmlCounter = 0; dvfmEvsUmlNumericIndentifierFirstNumber > 10; dvfmEvsUmlCounter++)
+            dvfmEvsUmlNumericIndentifierFirstNumber = (dvfmEvsUmlUserIdentifierType) dvfmEvsUmlNumericIndentifierFirstNumber/10;
+        dvfmEvsUmlResponsibleUserNumericIndentifierString [dvfmEvsUmlIndex] = (char) dvfmEvsUmlNumericIndentifierFirstNumber + '0';
+        dvfmEvsUmlNumericIndentifier = dvfmEvsUmlNumericIndentifier - dvfmEvsUmlNumericIndentifierFirstNumber*pow(10, dvfmEvsUmlCounter);
+    }
+    dvfmEvsUmlResponsibleUserNumericIndentifierString [dvfmEvsUmlIndex] = '\0';
 
     if(!(dvfmEvsUmlWrite = fopen(dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "a")))
         return dvfmEvsUmlCantOpenFile;
@@ -123,10 +139,12 @@ DvfmEvsUmlRequestRegistration (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSet
 
     fclose(dvfmEvsUmlWrite);
 
-    if(!(dvfmEvsUmlWrite = fopen(dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilename, "ab")))
+    if(!(dvfmEvsUmlWrite = fopen(dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilename, "ab")))
         return dvfmEvsUmlCantOpenFile;
 
     strcpy(dvfmEvsUmlBuffer, "604800:");
+    strcat(dvfmEvsUmlBuffer, dvfmEvsUmlResponsibleUserNumericIndentifierString);
+    strcat(dvfmEvsUmlBuffer, ":");
     strcat(dvfmEvsUmlBuffer, dvfmEvsUmlNumericIndentifierString);
     strcat(dvfmEvsUmlBuffer, ":");
     strcat(dvfmEvsUmlBuffer, dvfmEvsUmlUserData->dvfmEvsUmlPassword);

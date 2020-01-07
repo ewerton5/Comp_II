@@ -27,6 +27,7 @@
 
 /* ===== beginning of file code ===== */
 
+#include	<time.h>
 #include	"dvfmEvsUmlConst.h"
 
 typedef enum
@@ -77,9 +78,11 @@ typedef struct dvfmEvsUmlConfigurationOptions
 
 typedef struct dvfmEvsUmlUserData
 {
+	time_t dvfmEvsUmlValidationTime;
+	dvfmEvsUmlUserIdentifierType dvfmEvsUmlResponsibleUserNumericIndentifier;
 	dvfmEvsUmlUserIdentifierType dvfmEvsUmlNumericIndentifier;
-	char dvfmEvsUmlUsername [DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
-	char dvfmEvsUmlConfirmUsername [DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
+	char dvfmEvsUmlNickname [DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
+	char dvfmEvsUmlConfirmNickname [DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
 	dvfmEvsUmlProfileType *dvfmEvsUmlProfile;
 	char dvfmEvsUmlFullName [DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
 	char dvfmEvsUmlConfirmFullName [DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
@@ -96,8 +99,6 @@ typedef struct dvfmEvsUmlNicknameList
 	char dvfmEvsUmlNickname [DVFM_EVS_UML_MAX_SIZE_NICKNAME];
 	struct dvfmEvsUmlNicknameList *dvfmEvsUmlNextNickname;
 } dvfmEvsUmlNicknameListType;
-
-typedef unsigned long long dvfmEvsUmlUserIdentifierType;
 
 typedef enum
 {
