@@ -66,7 +66,7 @@ DvfmEvsUmlRejectInvite (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
     
     if (!dvfmEvsUmlUserData)
         return dvfmEvsUmlUserNotFound;
-    
+
     dvfmEvsUmlErrorCode = DvfmEvsUmlCheckPassword (dvfmEvsUmlUserData->dvfmEvsUmlPassword, dvfmEvsUmlTemporaryPassword);
     if (dvfmEvsUmlErrorCode)
         return dvfmEvsUmlSecondaryFunction;
@@ -79,15 +79,15 @@ DvfmEvsUmlRejectInvite (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
 
     while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE, dvfmEvsUmlRead))
     {
-        if (strstr(dvfmEvsUmlBuffer, ":"))
-        {
-            dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
-            dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
-            dvfmEvsUmlNumericIndentifier = (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlBuffer, &dvfmEvsUmlValidation, 10);
-            dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
-            if (dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier != dvfmEvsUmlNumericIndentifier)
-                fprintf(dvfmEvsUmlWrite, "%s", dvfmEvsUmlBuffer);
-        }
+        if (!strstr(dvfmEvsUmlBuffer, ":"))
+                return dvfmEvsUmlReadError;
+
+        dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
+        dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
+        dvfmEvsUmlNumericIndentifier = (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlBuffer, &dvfmEvsUmlValidation, 10);
+        dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
+        if (dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier != dvfmEvsUmlNumericIndentifier)
+            fprintf(dvfmEvsUmlWrite, "%s", dvfmEvsUmlBuffer);
     }
     fprintf(dvfmEvsUmlWrite, "%c", EOF);
 
@@ -109,16 +109,20 @@ DvfmEvsUmlRejectInvite (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
 
     while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE, dvfmEvsUmlRead))
     {
-        if (strstr(dvfmEvsUmlBuffer, ":"))
-        {
-            strcpy(dvfmEvsUmlNumericIndentifierString, strstr(dvfmEvsUmlBuffer, ":"));
-            dvfmEvsUmlAuxiliary [0] = dvfmEvsUmlNumericIndentifierString[1];
-            strcpy(dvfmEvsUmlNumericIndentifierString, strstr(dvfmEvsUmlNumericIndentifierString, dvfmEvsUmlAuxiliary));
-            dvfmEvsUmlNumericIndentifierString [strlen(dvfmEvsUmlNumericIndentifierString) - strlen(strstr(dvfmEvsUmlNumericIndentifierString, ":"))] = '\0';
-            dvfmEvsUmlNumericIndentifier = (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlNumericIndentifierString, &dvfmEvsUmlValidation, 10);
-            if (dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier != dvfmEvsUmlNumericIndentifier)
-                fprintf(dvfmEvsUmlWrite, "%s", dvfmEvsUmlBuffer);
-        }
+        if (!strstr(dvfmEvsUmlBuffer, ":"))
+            return dvfmEvsUmlReadError;
+
+        strcpy(dvfmEvsUmlNumericIndentifierString, strstr(dvfmEvsUmlBuffer, ":"));
+        dvfmEvsUmlAuxiliary [0] = dvfmEvsUmlNumericIndentifierString[1];
+        strcpy(dvfmEvsUmlNumericIndentifierString, strstr(dvfmEvsUmlNumericIndentifierString, dvfmEvsUmlAuxiliary));
+
+        if (!strstr(dvfmEvsUmlNumericIndentifierString, ":"))
+            return dvfmEvsUmlReadError;
+
+        dvfmEvsUmlNumericIndentifierString [strlen(dvfmEvsUmlNumericIndentifierString) - strlen(strstr(dvfmEvsUmlNumericIndentifierString, ":"))] = '\0';
+        dvfmEvsUmlNumericIndentifier = (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlNumericIndentifierString, &dvfmEvsUmlValidation, 10);
+        if (dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier != dvfmEvsUmlNumericIndentifier)
+            fprintf(dvfmEvsUmlWrite, "%s", dvfmEvsUmlBuffer);
     }
     fprintf(dvfmEvsUmlWrite, "%c", EOF);
 
@@ -132,7 +136,7 @@ DvfmEvsUmlRejectInvite (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
     fclose(dvfmEvsUmlRead);
     fclose(dvfmEvsUmlWrite);
     
-    if(!(dvfmEvsUmlWrite = fopen(dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "w")))
+    if(!(dvfmEvsUmlWrite = fopen("dvfmEvsUmlMailFile", "w")))
         return dvfmEvsUmlCantOpenFile;
 
     fprintf(dvfmEvsUmlWrite, "%s\n%s",
@@ -140,7 +144,7 @@ DvfmEvsUmlRejectInvite (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
                              "If you did not make these changes contact us.\n");
     fclose(dvfmEvsUmlWrite);
 
-    sprintf(dvfmEvsUmlBuffer, "sendmail %s < %s",dvfmEvsUmlUserData->dvfmEvsUmlEmail ,"dvfmEvsUmlMailFile");
+    sprintf(dvfmEvsUmlBuffer, "sendmail %s < %s", dvfmEvsUmlUserData->dvfmEvsUmlEmail ,"dvfmEvsUmlMailFile");
     system(dvfmEvsUmlBuffer);
 
     remove("dvfmEvsUmlMailFile");

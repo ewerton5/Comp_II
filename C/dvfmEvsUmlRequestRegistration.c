@@ -154,7 +154,7 @@ DvfmEvsUmlRequestRegistration (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSet
 
     fclose(dvfmEvsUmlWrite);
     
-    if(!(dvfmEvsUmlWrite = fopen(dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "w")))
+    if(!(dvfmEvsUmlWrite = fopen("dvfmEvsUmlMailFile", "w")))
         return dvfmEvsUmlCantOpenFile;
 
     fprintf(dvfmEvsUmlWrite, "%s\n%s",
@@ -162,7 +162,7 @@ DvfmEvsUmlRequestRegistration (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSet
                              "If you did not make these changes contact us.\n");
     fclose(dvfmEvsUmlWrite);
 
-    sprintf(dvfmEvsUmlBuffer, "sendmail %s < %s",dvfmEvsUmlEmail ,"dvfmEvsUmlMailFile");
+    sprintf(dvfmEvsUmlBuffer, "sendmail %s < %s", dvfmEvsUmlEmail ,"dvfmEvsUmlMailFile");
     system(dvfmEvsUmlBuffer);
 
     remove("dvfmEvsUmlMailFile");

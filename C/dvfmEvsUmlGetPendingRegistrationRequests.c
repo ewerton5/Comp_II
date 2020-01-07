@@ -58,16 +58,20 @@ DvfmEvsUmlGetPendingRegistrationRequests (dvfmEvsUmlConfigurationOptionsType *dv
     {
         for(dvfmEvsUmlDateIndex = 0; dvfmEvsUmlDateIndex < 5; dvfmEvsUmlDateIndex++)
         {
-            if (strstr(dvfmEvsUmlBuffer, ":"))
-            {
-                dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
-                dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
-                strcpy(dvfmEvsUmlDate, dvfmEvsUmlBuffer);
-                dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
-                strcpy(dvfmEvsUmlBuffer, strstr(dvfmEvsUmlBuffer, ":"));
-                dvfmEvsUmlAuxiliary [0] = dvfmEvsUmlBuffer[1];
-                strcpy(dvfmEvsUmlBuffer, strstr(dvfmEvsUmlBuffer, dvfmEvsUmlAuxiliary));
-            }
+            if (!strstr(dvfmEvsUmlBuffer, ":"))
+                return dvfmEvsUmlReadError;
+
+            dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
+            dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
+            strcpy(dvfmEvsUmlDate, dvfmEvsUmlBuffer);
+            dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
+
+            if (!strstr(dvfmEvsUmlBuffer, ":"))
+                return dvfmEvsUmlReadError;
+
+            strcpy(dvfmEvsUmlBuffer, strstr(dvfmEvsUmlBuffer, ":"));
+            dvfmEvsUmlAuxiliary [0] = dvfmEvsUmlBuffer[1];
+            strcpy(dvfmEvsUmlBuffer, strstr(dvfmEvsUmlBuffer, dvfmEvsUmlAuxiliary));
 
             switch (dvfmEvsUmlDateIndex)
             {

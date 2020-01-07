@@ -67,7 +67,7 @@ DvfmEvsUmlGetPendingRegistrationRequestsPerUser (dvfmEvsUmlConfigurationOptionsT
         dvfmEvsUmlAllUsersData = dvfmEvsUmlAllUsersData->dvfmEvsUmlNextUserData;
     }
 
-    if (dvfmEvsUmlAllUsersData)
+    if (!dvfmEvsUmlAllUsersData)
         return dvfmEvsUmlUserNotFound;
 
     dvfmEvsUmlAllUsersData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
