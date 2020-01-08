@@ -91,6 +91,7 @@ typedef enum
 	dvfmEvsUmlUserNotFound,
 	dvfmEvsUmlIncompatibleEmail,
 	dvfmEvsUmlIncompatibleFullName,
+	dvfmEvsUmlUserISNotResponsible,
 	dvfmEvsUmlSizeErrorType
 } dvfmEvsUmlErrorType;
 

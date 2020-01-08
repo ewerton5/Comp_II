@@ -89,7 +89,8 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"The list is empty",
 		"User not found",
 		"Incompatible emails",
-		"Incompatible full names"
+		"Incompatible full names",
+		"User is not responsible"
 	},
 
 	{
@@ -152,7 +153,8 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"A lista esta vazia",
 		"Usuario nao encontrado",
 		"Emails incompativeis",
-		"Nomes completos incompativeis"
+		"Nomes completos incompativeis",
+		"O usuario nao e o responsavel"
 	}
 };
 
@@ -218,7 +220,8 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"The list is empty",
 		"User not found",
 		"Incompatible emails",
-		"Incompatible full names"
+		"Incompatible full names",
+		"User is not responsible"
 	},
 
 	{
@@ -281,7 +284,8 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"A lista esta vazia",
 		"Usuario nao encontrado",
 		"Emails incompativeis",
-		"Nomes completos incompativeis"
+		"Nomes completos incompativeis",
+		"O usuario nao e o responsavel"
 	}
 };
 
@@ -347,7 +351,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"The list is empty",
 		"User not found",
 		"Incompatible emails",
-		"Incompatible full names"
+		"Incompatible full names",
+		"User is not responsible"
 	},
 
 	{
@@ -410,7 +415,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"A lista est&aacute; vazia",
 		"Usu&aacute;rio n&atilde;o encontrado",
 		"Emails incompat&iacute;veis",
-		"Nomes completos incompat&iacute;veis"
+		"Nomes completos incompat&iacute;veis",
+		"O usu&aacute;rio n&atilde;o &eacute; o respons&aacute;vel"
 	}
 };
 
