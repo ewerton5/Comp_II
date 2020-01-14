@@ -80,7 +80,11 @@ DvfmEvsUmlRejectInvite (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
     while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE, dvfmEvsUmlRead))
     {
         if (!strstr(dvfmEvsUmlBuffer, ":"))
-                return dvfmEvsUmlReadError;
+        {
+            fclose(dvfmEvsUmlRead);
+            fclose(dvfmEvsUmlWrite);
+            return dvfmEvsUmlReadError;
+        }
 
         dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
         dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
@@ -110,14 +114,22 @@ DvfmEvsUmlRejectInvite (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
     while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE, dvfmEvsUmlRead))
     {
         if (!strstr(dvfmEvsUmlBuffer, ":"))
+        {
+            fclose(dvfmEvsUmlRead);
+            fclose(dvfmEvsUmlWrite);
             return dvfmEvsUmlReadError;
+        }
 
         strcpy(dvfmEvsUmlNumericIndentifierString, strstr(dvfmEvsUmlBuffer, ":"));
         dvfmEvsUmlAuxiliary [0] = dvfmEvsUmlNumericIndentifierString[1];
         strcpy(dvfmEvsUmlNumericIndentifierString, strstr(dvfmEvsUmlNumericIndentifierString, dvfmEvsUmlAuxiliary));
 
         if (!strstr(dvfmEvsUmlNumericIndentifierString, ":"))
+        {
+            fclose(dvfmEvsUmlRead);
+            fclose(dvfmEvsUmlWrite);
             return dvfmEvsUmlReadError;
+        }
 
         dvfmEvsUmlNumericIndentifierString [strlen(dvfmEvsUmlNumericIndentifierString) - strlen(strstr(dvfmEvsUmlNumericIndentifierString, ":"))] = '\0';
         dvfmEvsUmlNumericIndentifier = (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlNumericIndentifierString, &dvfmEvsUmlValidation, 10);

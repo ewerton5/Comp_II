@@ -59,7 +59,10 @@ DvfmEvsUmlGetPendingRegistrationRequests (dvfmEvsUmlConfigurationOptionsType *dv
         for(dvfmEvsUmlDateIndex = 0; dvfmEvsUmlDateIndex < 5; dvfmEvsUmlDateIndex++)
         {
             if (!strstr(dvfmEvsUmlBuffer, ":"))
+            {
+                fclose(dvfmEvsUmlRead);
                 return dvfmEvsUmlReadError;
+            }
 
             dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
             dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
@@ -67,7 +70,10 @@ DvfmEvsUmlGetPendingRegistrationRequests (dvfmEvsUmlConfigurationOptionsType *dv
             dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
 
             if (!strstr(dvfmEvsUmlBuffer, ":"))
+            {
+                fclose(dvfmEvsUmlRead);
                 return dvfmEvsUmlReadError;
+            }
 
             strcpy(dvfmEvsUmlBuffer, strstr(dvfmEvsUmlBuffer, ":"));
             dvfmEvsUmlAuxiliary [0] = dvfmEvsUmlBuffer[1];
@@ -78,17 +84,26 @@ DvfmEvsUmlGetPendingRegistrationRequests (dvfmEvsUmlConfigurationOptionsType *dv
             case 0:
                 dvfmEvsUmlCurrentUserData->dvfmEvsUmlValidationTime = (time_t) strtoul(dvfmEvsUmlDate, &dvfmEvsUmlValidation, 10);
                 if(*dvfmEvsUmlValidation != '\0')
+                {
+                    fclose(dvfmEvsUmlRead);
                     return dvfmEvsUmlInvalidCharacter;
+                }
                 break;
             case 1:
                 dvfmEvsUmlCurrentUserData->dvfmEvsUmlResponsibleUserNumericIndentifier = (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlDate, &dvfmEvsUmlValidation, 10);
                 if(*dvfmEvsUmlValidation != '\0')
+                {
+                    fclose(dvfmEvsUmlRead);
                     return dvfmEvsUmlInvalidCharacter;
+                }
                 break;
             case 2:
                 dvfmEvsUmlCurrentUserData->dvfmEvsUmlNumericIndentifier = (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlDate, &dvfmEvsUmlValidation, 10);
                 if(*dvfmEvsUmlValidation != '\0')
+                {
+                    fclose(dvfmEvsUmlRead);
                     return dvfmEvsUmlInvalidCharacter;
+                }
                 break;
             case 3:
                 strcpy(dvfmEvsUmlCurrentUserData->dvfmEvsUmlPassword, dvfmEvsUmlDate);
@@ -104,6 +119,14 @@ DvfmEvsUmlGetPendingRegistrationRequests (dvfmEvsUmlConfigurationOptionsType *dv
         }
     }
 
+    if(ferror(dvfmEvsUmlRead))
+    {
+        fclose(dvfmEvsUmlRead);
+        return dvfmEvsUmlReadError;
+    }
+
+    fclose(dvfmEvsUmlRead);
+
     dvfmEvsUmlCurrentUserData = dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData;
     if (dvfmEvsUmlCurrentUserData)
         dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData = NULL;
@@ -113,14 +136,6 @@ DvfmEvsUmlGetPendingRegistrationRequests (dvfmEvsUmlConfigurationOptionsType *dv
 
     while (dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData)
         dvfmEvsUmlCurrentUserData = dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData;
-
-    if(ferror(dvfmEvsUmlRead))
-    {
-        fclose(dvfmEvsUmlRead);
-        return dvfmEvsUmlReadError;
-    }
-
-    fclose(dvfmEvsUmlRead);
 
     *dvfmEvsUmlUserData = dvfmEvsUmlCurrentUserData;
     

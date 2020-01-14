@@ -90,7 +90,8 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"User not found",
 		"Incompatible emails",
 		"Incompatible full names",
-		"User is not responsible"
+		"User is not responsible",
+		"User is not administrator"
 	},
 
 	{
@@ -154,7 +155,8 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Usuario nao encontrado",
 		"Emails incompativeis",
 		"Nomes completos incompativeis",
-		"O usuario nao e o responsavel"
+		"O usuario nao e o responsavel",
+		"O usuario nao e administrador"
 	}
 };
 
@@ -221,7 +223,8 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"User not found",
 		"Incompatible emails",
 		"Incompatible full names",
-		"User is not responsible"
+		"User is not responsible",
+		"User is not administrator"
 	},
 
 	{
@@ -285,7 +288,8 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Usuario nao encontrado",
 		"Emails incompativeis",
 		"Nomes completos incompativeis",
-		"O usuario nao e o responsavel"
+		"O usuario nao e o responsavel",
+		"O usuario nao e administrador"
 	}
 };
 
@@ -352,7 +356,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"User not found",
 		"Incompatible emails",
 		"Incompatible full names",
-		"User is not responsible"
+		"User is not responsible",
+		"User is not administrator"
 	},
 
 	{
@@ -416,7 +421,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Usu&aacute;rio n&atilde;o encontrado",
 		"Emails incompat&iacute;veis",
 		"Nomes completos incompat&iacute;veis",
-		"O usu&aacute;rio n&atilde;o &eacute; o respons&aacute;vel"
+		"O usu&aacute;rio n&atilde;o &eacute; o respons&aacute;vel",
+		"O usu&aacute;rio n&atilde;o &eacute; administrador"
 	}
 };
 
