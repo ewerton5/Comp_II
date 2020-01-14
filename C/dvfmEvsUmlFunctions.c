@@ -727,23 +727,17 @@ DvfmEvsUmlGetConfigurationOptionsValues ( char *dvfmEvsUmlNameConfigurationFile,
 		return dvfmEvsUmlSecondEmptyPointer;
 
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlWebServerUrl, DVFM_EVS_UML_WEB_SERVER_URL);
-	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlWebServerUrlName, DVFM_EVS_UML_WEB_SERVER_URL_NAME);
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifier, DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER);
-	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifierName, DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER_NAME);
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectory, DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY);
-	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectoryName, DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY_NAME);
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlDataDirectory, DVFM_EVS_UML_DATA_DIRECTORY);
-	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlDataDirectoryName, DVFM_EVS_UML_DATA_DIRECTORY_NAME);
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectory, DVFM_EVS_UML_COOKIES_DIRECTORY);
-	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectoryName, DVFM_EVS_UML_COOKIES_DIRECTORY_NAME);
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, DVFM_EVS_UML_USERS_DATA_FILENAME);
-	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilenameName, DVFM_EVS_UML_USERS_DATA_FILENAME_NAME);
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilename, DVFM_EVS_UML_INVITED_USERS_DATA_FILENAME);
-	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilenameName, DVFM_EVS_UML_INVITED_USERS_DATA_FILENAME_NAME);
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilename, DVFM_EVS_UML_REQUESTING_USERS_DATA_FILENAME);
-	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilenameName, DVFM_EVS_UML_REQUESTING_USERS_DATA_FILENAME_NAME);
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilename, DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME);
-	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilenameName, DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME_NAME);
+	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlUnlockingUsersDataFilename, DVFM_EVS_UML_UNLOCKING_USERS_DATA_FILENAME);
+	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlPasswordAbeyancesDataFilename, DVFM_EVS_UML_PASSWORD_ABEYANCES_DATA_FILENAME);
+	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlEmailAbeyancesDataFilename, DVFM_EVS_UML_EMAIL_ABEYANCES_DATA_FILENAME);
 
 	if(dvfmEvsUmlNameConfigurationFile)
 		if(strlen(dvfmEvsUmlNameConfigurationFile) != 0)
@@ -758,7 +752,10 @@ DvfmEvsUmlGetConfigurationOptionsValues ( char *dvfmEvsUmlNameConfigurationFile,
 						dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer] != '='; dvfmEvsUmlIndex++, dvfmEvsUmlIndexBuffer++)
 					{
 						if (dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer] == '\0')
+						{
+							fclose(dvfmEvsUmlRead);
 							return dvfmEvsUmlInvalidConfigFile;
+						}
 						
 						dvfmEvsUmlSettingName[dvfmEvsUmlIndex] = dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer];
 					}
@@ -773,32 +770,41 @@ DvfmEvsUmlGetConfigurationOptionsValues ( char *dvfmEvsUmlNameConfigurationFile,
 						dvfmEvsUmlSettingValue[dvfmEvsUmlIndex] = dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer];
 					dvfmEvsUmlSettingValue[dvfmEvsUmlIndex] = '\0';
 
-					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlWebServerUrlName))
+					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_WEB_SERVER_URL_NAME))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlWebServerUrl, dvfmEvsUmlSettingValue);
 
-					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifierName))
+					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER_NAME))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifier, dvfmEvsUmlSettingValue);
 					
-					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectoryName))
+					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY_NAME))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectory, dvfmEvsUmlSettingValue);
 					
-					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlDataDirectoryName))
+					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_DATA_DIRECTORY_NAME))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlDataDirectory, dvfmEvsUmlSettingValue);
 					
-					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectoryName))
+					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_COOKIES_DIRECTORY_NAME))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectory, dvfmEvsUmlSettingValue);
 					
-					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilenameName))
+					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_USERS_DATA_FILENAME_NAME))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, dvfmEvsUmlSettingValue);
 					
-					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilenameName))
+					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_INVITED_USERS_DATA_FILENAME_NAME))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilename, dvfmEvsUmlSettingValue);
 					
-					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilenameName))
+					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_REQUESTING_USERS_DATA_FILENAME_NAME))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilename, dvfmEvsUmlSettingValue);
 					
-					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilenameName))
+					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME_NAME))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilename, dvfmEvsUmlSettingValue);
+					
+					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_UNLOCKING_USERS_DATA_FILENAME))
+						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlUnlockingUsersDataFilename, dvfmEvsUmlSettingValue);
+
+					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_PASSWORD_ABEYANCES_DATA_FILENAME))
+						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlPasswordAbeyancesDataFilename, dvfmEvsUmlSettingValue);
+
+					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_EMAIL_ABEYANCES_DATA_FILENAME))
+						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlEmailAbeyancesDataFilename, dvfmEvsUmlSettingValue);
 				}
 			if(ferror(dvfmEvsUmlRead))
 			{

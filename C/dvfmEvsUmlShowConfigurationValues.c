@@ -12,6 +12,7 @@
 
 #include	<stdio.h>
 #include	"dvfmEvsUmlShowConfigurationValues.h"
+#include	"dvfmEvsUmlConfig.h"
 
 /*
  * dvfmEvsUmlErrorType
@@ -40,15 +41,18 @@ DvfmEvsUmlShowConfigurationValues (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUm
         printf("\n\t\t\tConfiguracoes atuais:\n\n");
     else
         printf("\n\t\t\tCurrent Configurations:\n\n");
-    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlWebServerUrlName, dvfmEvsUmlSettings->dvfmEvsUmlWebServerUrl);
-    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifierName, dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifier);
-    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectoryName, dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectory);
-    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlDataDirectoryName, dvfmEvsUmlSettings->dvfmEvsUmlDataDirectory);
-    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectoryName, dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectory);
-    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilenameName, dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename);
-    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilenameName, dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilename);
-    printf("%s = %s\n", dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilenameName, dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilename);
-    printf("%s = %s\n\n", dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilenameName, dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilename);
+    printf("%s = %s\n", DVFM_EVS_UML_WEB_SERVER_URL_NAME, dvfmEvsUmlSettings->dvfmEvsUmlWebServerUrl);
+    printf("%s = %s\n", DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER_NAME, dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifier);
+    printf("%s = %s\n", DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY_NAME, dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectory);
+    printf("%s = %s\n", DVFM_EVS_UML_DATA_DIRECTORY_NAME, dvfmEvsUmlSettings->dvfmEvsUmlDataDirectory);
+    printf("%s = %s\n", DVFM_EVS_UML_COOKIES_DIRECTORY_NAME, dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectory);
+    printf("%s = %s\n", DVFM_EVS_UML_USERS_DATA_FILENAME_NAME, dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename);
+    printf("%s = %s\n", DVFM_EVS_UML_INVITED_USERS_DATA_FILENAME_NAME, dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilename);
+    printf("%s = %s\n", DVFM_EVS_UML_REQUESTING_USERS_DATA_FILENAME_NAME, dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilename);
+    printf("%s = %s\n", DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME_NAME, dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilename);
+    printf("%s = %s\n", DVFM_EVS_UML_UNLOCKING_USERS_DATA_FILENAME, dvfmEvsUmlSettings->dvfmEvsUmlUnlockingUsersDataFilename);
+    printf("%s = %s\n", DVFM_EVS_UML_PASSWORD_ABEYANCES_DATA_FILENAME, dvfmEvsUmlSettings->dvfmEvsUmlPasswordAbeyancesDataFilename);
+    printf("%s = %s\n\n", DVFM_EVS_UML_EMAIL_ABEYANCES_DATA_FILENAME, dvfmEvsUmlSettings->dvfmEvsUmlEmailAbeyancesDataFilename);
     
     return dvfmEvsUmlOk;
 }

@@ -59,15 +59,15 @@ DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
         for(dvfmEvsUmlDateIndex = 0; dvfmEvsUmlDateIndex < 6; dvfmEvsUmlDateIndex++)
         {
             if (!strstr(dvfmEvsUmlBuffer, ":"))
+            {
+                fclose(dvfmEvsUmlRead);
                 return dvfmEvsUmlReadError;
+            }
 
             dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
             dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
             strcpy(dvfmEvsUmlDate, dvfmEvsUmlBuffer);
             dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
-
-            if (!strstr(dvfmEvsUmlBuffer, ":"))
-                return dvfmEvsUmlReadError;
 
             strcpy(dvfmEvsUmlBuffer, strstr(dvfmEvsUmlBuffer, ":"));
             dvfmEvsUmlAuxiliary [0] = dvfmEvsUmlBuffer[1];
@@ -78,7 +78,10 @@ DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
             case 0:
                 dvfmEvsUmlCurrentUserData->dvfmEvsUmlNumericIndentifier = (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlDate, &dvfmEvsUmlValidation, 10);
                 if(*dvfmEvsUmlValidation != '\0')
+                {
+                    fclose(dvfmEvsUmlRead);
                     return dvfmEvsUmlInvalidCharacter;
+                }
                 break;
             case 1:
                 strcpy(dvfmEvsUmlCurrentUserData->dvfmEvsUmlNickname, dvfmEvsUmlDate);
@@ -89,7 +92,10 @@ DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
             case 3:
                 dvfmEvsUmlCurrentUserData->dvfmEvsUmlProfile = (dvfmEvsUmlProfileType) strtoul(dvfmEvsUmlDate, &dvfmEvsUmlValidation, 10);
                 if(*dvfmEvsUmlValidation != '\0')
+                {
+                    fclose(dvfmEvsUmlRead);
                     return dvfmEvsUmlInvalidCharacter;
+                }
                 break;
             case 4:
                 strcpy(dvfmEvsUmlCurrentUserData->dvfmEvsUmlFullName, dvfmEvsUmlDate);
@@ -108,12 +114,6 @@ DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
     if (dvfmEvsUmlCurrentUserData)
         dvfmEvsUmlCurrentUserData->dvfmEvsUmlNextUserData = NULL;
 
-    if (dvfmEvsUmlCurrentUserData)
-        return dvfmEvsUmlEmptyList;
-
-    while (dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData)
-        dvfmEvsUmlCurrentUserData = dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData;
-
     if(ferror(dvfmEvsUmlRead))
     {
         fclose(dvfmEvsUmlRead);
@@ -121,6 +121,12 @@ DvfmEvsUmlGetUsers (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
     }
 
     fclose(dvfmEvsUmlRead);
+
+    if (dvfmEvsUmlCurrentUserData)
+        return dvfmEvsUmlEmptyList;
+
+    while (dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData)
+        dvfmEvsUmlCurrentUserData = dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData;
 
     *dvfmEvsUmlUserData = dvfmEvsUmlCurrentUserData;
 

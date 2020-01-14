@@ -10,7 +10,10 @@
  * $Log$
 */
 
+#include	<stdio.h>
+#include	<string.h>
 #include	"dvfmEvsUmlGetUnlockingRequests.h"
+#include	"dvfmEvsUmlGetUsers.h"
 
 /*
  * dvfmEvsUmlErrorType
@@ -36,6 +39,17 @@ DvfmEvsUmlGetUnlockingRequests (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSe
                                 char *dvfmEvsUmlNickname,
                                 dvfmEvsUmlNicknameListType **dvfmEvsUmlNicknameList)
 {
+    unsigned short dvfmEvsUmlIndex;
+    dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
+    dvfmEvsUmlUserDataType *dvfmEvsUmlUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
+    dvfmEvsUmlNicknameListType *dvfmEvsUmlCurrentNickname = (dvfmEvsUmlNicknameListType *) malloc(sizeof(dvfmEvsUmlNicknameListType)),
+                               *dvfmEvsUmlFirstNickname = dvfmEvsUmlCurrentNickname;
+    FILE *dvfmEvsUmlRead;
+    char dvfmEvsUmlBuffer [DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE];
+    char dvfmEvsUmlAuxiliary [2] = "0\0";
+	char *dvfmEvsUmlValidation;
+    dvfmEvsUmlUserIdentifierType dvfmEvsUmlNumericIdentifier;
+
     if (!dvfmEvsUmlSettings)
         return dvfmEvsUmlFirstEmptyPointer;
 
@@ -44,7 +58,70 @@ DvfmEvsUmlGetUnlockingRequests (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSe
 
     if (!dvfmEvsUmlNicknameList)
         return dvfmEvsUmlThirdEmptyPointer;
+
+    dvfmEvsUmlErrorCode = DvfmEvsUmlGetUsers (dvfmEvsUmlSettings, &dvfmEvsUmlUserData);
+    if (dvfmEvsUmlErrorCode)
+        return dvfmEvsUmlSecondaryFunction;
+
+    while (strcmp(dvfmEvsUmlUserData->dvfmEvsUmlNickname, dvfmEvsUmlNickname))
+        dvfmEvsUmlUserData = dvfmEvsUmlUserData->dvfmEvsUmlNextUserData;
     
+    if (!dvfmEvsUmlUserData)
+        return dvfmEvsUmlUserNotFound;
+
+    if (dvfmEvsUmlUserData->dvfmEvsUmlProfile != dvfmEvsUmlAdministrator)
+        return dvfmEvsUmlUserIsNotAdministrator;
+
+    if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlUnlockingUsersDataFilename, "r")))
+        return dvfmEvsUmlCantOpenFile;
+    
+    while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE, dvfmEvsUmlRead))
+    {
+        if (!strstr(dvfmEvsUmlBuffer, ":"))
+        {
+            fclose(dvfmEvsUmlRead);
+            return dvfmEvsUmlReadError;
+        }
+
+        dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
+        dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
+        if (((time_t) strtoul(dvfmEvsUmlBuffer, &dvfmEvsUmlValidation, 10)) > 0)
+        {
+            dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
+
+            strcpy(dvfmEvsUmlBuffer, strstr(dvfmEvsUmlBuffer, ":"));
+            dvfmEvsUmlAuxiliary [0] = dvfmEvsUmlBuffer[1];
+            strcpy(dvfmEvsUmlBuffer, strstr(dvfmEvsUmlBuffer, dvfmEvsUmlAuxiliary));
+
+            dvfmEvsUmlNumericIdentifier = (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlBuffer, &dvfmEvsUmlValidation, 10);
+
+            while (dvfmEvsUmlUserData->dvfmEvsUmlPreviousUserData)
+                dvfmEvsUmlUserData = dvfmEvsUmlUserData->dvfmEvsUmlPreviousUserData;
+
+            while (dvfmEvsUmlUserData->dvfmEvsUmlNickname != dvfmEvsUmlNumericIdentifier)
+                dvfmEvsUmlUserData = dvfmEvsUmlUserData->dvfmEvsUmlNextUserData;
+
+            strcpy(dvfmEvsUmlCurrentNickname->dvfmEvsUmlNickname, dvfmEvsUmlUserData->dvfmEvsUmlNickname);
+            dvfmEvsUmlCurrentNickname->dvfmEvsUmlNextNickname = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
+            dvfmEvsUmlCurrentNickname = dvfmEvsUmlCurrentNickname->dvfmEvsUmlNextNickname;
+        }
+    }
+
+    dvfmEvsUmlCurrentNickname = NULL;
+
+    if(ferror(dvfmEvsUmlRead))
+    {
+        fclose(dvfmEvsUmlRead);
+        return dvfmEvsUmlReadError;
+    }
+
+    fclose(dvfmEvsUmlRead);
+
+    if (dvfmEvsUmlFirstNickname->dvfmEvsUmlNickname)
+        return dvfmEvsUmlEmptyList;
+    
+    *dvfmEvsUmlNicknameList = dvfmEvsUmlFirstNickname;
+
     return dvfmEvsUmlOk;
 }
 

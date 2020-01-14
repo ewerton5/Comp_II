@@ -39,6 +39,9 @@ DvfmEvsUmlChangeUserProfile (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetti
                              char *dvfmEvsUmlUserNickname,
                              dvfmEvsUmlProfileType dvfmEvsUmlNewProfile)
 {
+    dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
+    dvfmEvsUmlUserDataType *dvfmEvsUmlUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
+
     if (!dvfmEvsUmlSettings)
         return dvfmEvsUmlFirstEmptyPointer;
 
@@ -47,6 +50,19 @@ DvfmEvsUmlChangeUserProfile (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetti
 
     if (!dvfmEvsUmlUserNickname)
         return dvfmEvsUmlThirdEmptyPointer;
+
+    dvfmEvsUmlErrorCode = DvfmEvsUmlGetUsers (dvfmEvsUmlSettings, &dvfmEvsUmlUserData);
+    if (dvfmEvsUmlErrorCode)
+        return dvfmEvsUmlSecondaryFunction;
+
+    while (strcmp(dvfmEvsUmlUserData->dvfmEvsUmlNickname, dvfmEvsUmlAdminNickname))
+        dvfmEvsUmlUserData = dvfmEvsUmlUserData->dvfmEvsUmlNextUserData;
+    
+    if (!dvfmEvsUmlUserData)
+        return dvfmEvsUmlUserNotFound;
+
+    if (dvfmEvsUmlUserData->dvfmEvsUmlProfile != dvfmEvsUmlAdministrator)
+        return dvfmEvsUmlUserIsNotAdministrator;
     
     return dvfmEvsUmlOk;
 }
