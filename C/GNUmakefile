@@ -45,6 +45,7 @@ AFLAGS = -r
 LCRYPT = -lcrypt
 LMLCGI = -L./../Libraries/CentOS -lmlcgi
 LNCURSES = -lncurses
+MATH = -lm
 
 #  Options
 CFLAGS = -Wall -std=c11
@@ -315,7 +316,7 @@ dvfmEvsUmlShowAddUserForm.cgi: $(DVFM_EVS_CGISHOWADDUSERFORMOBJS)
 #===> primary files
 
 dvfmEvsUml: $(DVFM_EVS_DVFMEVSUMLOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_DVFMEVSUMLOBJS) $(LCRYPT)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_DVFMEVSUMLOBJS) $(LCRYPT) $(MATH)
 	cp $@ $@-$(OS)-$(CC)
 	cp $@ $(DVFM_EVS_BINARIES_DIRECTORY)
 

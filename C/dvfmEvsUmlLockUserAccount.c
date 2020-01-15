@@ -12,6 +12,7 @@
 
 #include    <stdio.h>
 #include    <string.h>
+#include	<math.h>
 #include	"dvfmEvsUmlLockUserAccount.h"
 
 /*
@@ -40,12 +41,12 @@ DvfmEvsUmlLockUserAccount (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetting
 {
     dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
     dvfmEvsUmlUserDataType *dvfmEvsUmlUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
-    dvfmEvsUmlUserIdentifierType dvfmEvsUmlNumericIndentifier;
+    dvfmEvsUmlUserIdentifierType dvfmEvsUmlNumericIndentifier, dvfmEvsUmlAdminNumericIndentifier, dvfmEvsUmlNumericIndentifierFirstNumber;
     FILE *dvfmEvsUmlRead, *dvfmEvsUmlWrite;
     char dvfmEvsUmlBuffer [DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE],
          dvfmEvsUmlAuxiliaryBuffer [DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE];
-    unsigned dvfmEvsUmlIndex;
-    char *dvfmEvsUmlValidation;
+    unsigned dvfmEvsUmlIndex, dvfmEvsUmlCounter;
+    char *dvfmEvsUmlValidation, dvfmEvsUmlAdminNumericIndentifierString [10];
 
     if (!dvfmEvsUmlSettings)
         return dvfmEvsUmlFirstEmptyPointer;
@@ -68,6 +69,8 @@ DvfmEvsUmlLockUserAccount (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetting
 
     if (dvfmEvsUmlUserData->dvfmEvsUmlProfile != dvfmEvsUmlAdministrator)
         return dvfmEvsUmlUserIsNotAdministrator;
+
+    dvfmEvsUmlAdminNumericIndentifier = dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier;
 
     while (dvfmEvsUmlUserData->dvfmEvsUmlPreviousUserData)
         dvfmEvsUmlUserData = dvfmEvsUmlUserData->dvfmEvsUmlPreviousUserData;
@@ -114,7 +117,7 @@ DvfmEvsUmlLockUserAccount (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetting
                 fclose(dvfmEvsUmlWrite);
                 return dvfmEvsUmlReadError;
             }
-            
+
             strcpy(dvfmEvsUmlAuxiliaryBuffer, strstr(dvfmEvsUmlBuffer, ":"));
             dvfmEvsUmlBuffer [strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ";"))] = ':';
             dvfmEvsUmlBuffer [strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":")) + 1] = '\0';
@@ -135,6 +138,85 @@ DvfmEvsUmlLockUserAccount (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetting
 
     fclose(dvfmEvsUmlRead);
     fclose(dvfmEvsUmlWrite);
+
+    if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilename, "rb")))
+        return dvfmEvsUmlCantOpenFile;
+
+    if(!(dvfmEvsUmlWrite = fopen(dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilename, "wb")))
+        return dvfmEvsUmlCantOpenFile;
+
+    while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE, dvfmEvsUmlRead))
+    {
+        if (!strstr(dvfmEvsUmlBuffer, ":"))
+        {
+            fclose(dvfmEvsUmlRead);
+            fclose(dvfmEvsUmlWrite);
+            return dvfmEvsUmlReadError;
+        }
+
+        dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
+        dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
+        dvfmEvsUmlNumericIndentifier = (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlBuffer, &dvfmEvsUmlValidation, 10);
+        dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
+        if (dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier < dvfmEvsUmlNumericIndentifier)
+        {
+            dvfmEvsUmlNumericIndentifier = dvfmEvsUmlAdminNumericIndentifier;
+            for(dvfmEvsUmlIndex = 0; dvfmEvsUmlNumericIndentifier != 0; dvfmEvsUmlIndex++)
+            {
+                dvfmEvsUmlNumericIndentifierFirstNumber = dvfmEvsUmlNumericIndentifier;
+                for (dvfmEvsUmlCounter = 0; dvfmEvsUmlNumericIndentifierFirstNumber > 10; dvfmEvsUmlCounter++)
+                    dvfmEvsUmlNumericIndentifierFirstNumber = (dvfmEvsUmlUserIdentifierType) dvfmEvsUmlNumericIndentifierFirstNumber/10;
+                dvfmEvsUmlAdminNumericIndentifierString [dvfmEvsUmlIndex] = (char) dvfmEvsUmlNumericIndentifierFirstNumber + '0';
+                dvfmEvsUmlNumericIndentifier = dvfmEvsUmlNumericIndentifier - dvfmEvsUmlNumericIndentifierFirstNumber*pow(10, dvfmEvsUmlCounter);
+            }
+            dvfmEvsUmlAdminNumericIndentifierString [dvfmEvsUmlIndex] = '\0';
+
+            dvfmEvsUmlNumericIndentifier = dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier;
+            for(dvfmEvsUmlIndex = 0; dvfmEvsUmlNumericIndentifier != 0; dvfmEvsUmlIndex++)
+            {
+                dvfmEvsUmlNumericIndentifierFirstNumber = dvfmEvsUmlNumericIndentifier;
+                for (dvfmEvsUmlCounter = 0; dvfmEvsUmlNumericIndentifierFirstNumber > 10; dvfmEvsUmlCounter++)
+                    dvfmEvsUmlNumericIndentifierFirstNumber = (dvfmEvsUmlUserIdentifierType) dvfmEvsUmlNumericIndentifierFirstNumber/10;
+                dvfmEvsUmlAuxiliaryBuffer [dvfmEvsUmlIndex] = (char) dvfmEvsUmlNumericIndentifierFirstNumber + '0';
+                dvfmEvsUmlNumericIndentifier = dvfmEvsUmlNumericIndentifier - dvfmEvsUmlNumericIndentifierFirstNumber*pow(10, dvfmEvsUmlCounter);
+            }
+            dvfmEvsUmlAuxiliaryBuffer [dvfmEvsUmlIndex] = '\0';
+
+            strcat(dvfmEvsUmlAuxiliaryBuffer, ":");
+            strcat(dvfmEvsUmlAuxiliaryBuffer, dvfmEvsUmlUserData->dvfmEvsUmlPassword);
+            strcat(dvfmEvsUmlAuxiliaryBuffer, ":");
+            strcat(dvfmEvsUmlAuxiliaryBuffer, "instante");
+            strcat(dvfmEvsUmlAuxiliaryBuffer, ":");
+            strcat(dvfmEvsUmlAuxiliaryBuffer, dvfmEvsUmlAdminNumericIndentifierString);
+            strcat(dvfmEvsUmlAuxiliaryBuffer, "\n");
+            fprintf(dvfmEvsUmlWrite, "%s", dvfmEvsUmlAuxiliaryBuffer);
+        }
+        fprintf(dvfmEvsUmlWrite, "%s", dvfmEvsUmlBuffer);
+    }
+    fprintf(dvfmEvsUmlWrite, "%c", EOF);
+
+    if(ferror(dvfmEvsUmlRead))
+    {
+        fclose(dvfmEvsUmlRead);
+        fclose(dvfmEvsUmlWrite);
+        return dvfmEvsUmlReadError;
+    }
+
+    fclose(dvfmEvsUmlRead);
+    fclose(dvfmEvsUmlWrite);
+
+    if(!(dvfmEvsUmlWrite = fopen("dvfmEvsUmlMailFile", "w")))
+        return dvfmEvsUmlCantOpenFile;
+
+    fprintf(dvfmEvsUmlWrite, "%s\n%s",
+                             "Sua conta foi bloqueada, siga os procedimentos necessários para o desbloqueio.\n",
+                             "Your account has been locked, please follow the necessary unlocking procedures.\n");
+    fclose(dvfmEvsUmlWrite);
+
+    sprintf(dvfmEvsUmlBuffer, "sendmail %s < %s", dvfmEvsUmlUserData->dvfmEvsUmlEmail ,"dvfmEvsUmlMailFile");
+    system(dvfmEvsUmlBuffer);
+
+    remove("dvfmEvsUmlMailFile");
 
     return dvfmEvsUmlOk;
 }
