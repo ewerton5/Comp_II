@@ -100,7 +100,7 @@ DvfmEvsUmlRequestRegistration (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSet
     dvfmEvsUmlAllUsersData = dvfmEvsUmlAllUsersData->dvfmEvsUmlPreviousUserData;
 
     dvfmEvsUmlNumericIndentifier = dvfmEvsUmlAllUsersData->dvfmEvsUmlNumericIndentifier + 1;
-    for(dvfmEvsUmlIndex = 0; dvfmEvsUmlNumericIndentifier != 0; dvfmEvsUmlIndex++)
+    for(dvfmEvsUmlIndex = 0; dvfmEvsUmlNumericIndentifier; dvfmEvsUmlIndex++)
     {
         dvfmEvsUmlNumericIndentifierFirstNumber = dvfmEvsUmlNumericIndentifier;
         for (dvfmEvsUmlCounter = 0; dvfmEvsUmlNumericIndentifierFirstNumber > 10; dvfmEvsUmlCounter++)
@@ -117,7 +117,7 @@ DvfmEvsUmlRequestRegistration (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSet
         return dvfmEvsUmlUserNotFound;
 
     dvfmEvsUmlNumericIndentifier = dvfmEvsUmlAllUsersData->dvfmEvsUmlNumericIndentifier;
-    for(dvfmEvsUmlIndex = 0; dvfmEvsUmlNumericIndentifier != 0;dvfmEvsUmlIndex++)
+    for(dvfmEvsUmlIndex = 0; dvfmEvsUmlNumericIndentifier;dvfmEvsUmlIndex++)
     {
         dvfmEvsUmlNumericIndentifierFirstNumber = dvfmEvsUmlNumericIndentifier;
         for (dvfmEvsUmlCounter = 0; dvfmEvsUmlNumericIndentifierFirstNumber > 10; dvfmEvsUmlCounter++)

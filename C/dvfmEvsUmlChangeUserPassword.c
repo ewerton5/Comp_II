@@ -10,7 +10,10 @@
  * $Log$
 */
 
+#include    <stdio.h>
+#include    <string.h>
 #include	"dvfmEvsUmlChangeUserPassword.h"
+#include	"dvfmEvsUmlFunctions.h"
 
 /*
  * dvfmEvsUmlErrorType
@@ -45,6 +48,16 @@ DvfmEvsUmlChangeUserPassword (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
                               char *dvfmEvsUmlNewPassword,
                               char *dvfmEvsUmlConfirmPassword)
 {
+    dvfmEvsUmlUserDataType *dvfmEvsUmlUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
+    dvfmEvsUmlBool dvfmEvsUmlAdmin = dvfmEvsUmlFalse, dvfmEvsUmlPass = dvfmEvsUmlFalse;
+    FILE *dvfmEvsUmlRead, *dvfmEvsUmlWrite;
+    unsigned dvfmEvsUmlIndex;
+    char dvfmEvsUmlBuffer [DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE],
+         dvfmEvsUmlAuxiliaryBuffer [DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE],
+         *dvfmEvsUmlValidation, dvfmEvsUmlAuxiliary [2] = "0\0",
+         dvfmEvsUmlEncryptedNewPassword [DVFM_EVS_UML_MAX_SIZE_PASSWORD];
+
+
     if (!dvfmEvsUmlSettings)
         return dvfmEvsUmlFirstEmptyPointer;
 
@@ -57,6 +70,222 @@ DvfmEvsUmlChangeUserPassword (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
     if (!dvfmEvsUmlConfirmPassword)
         return dvfmEvsUmlSixthEmptyPointer;
     
+    if (dvfmEvsUmlAdminNickname)
+        if(strlen(dvfmEvsUmlAdminNickname))
+            dvfmEvsUmlAdmin = dvfmEvsUmlTrue;
+
+    if (dvfmEvsUmlCurrentPassword)
+        if(strlen(dvfmEvsUmlCurrentPassword))
+            dvfmEvsUmlPass = dvfmEvsUmlTrue;
+
+    if (strcmp(dvfmEvsUmlNewPassword, dvfmEvsUmlConfirmPassword))
+        return dvfmEvsUmlIncompatiblePassword;
+
+    if (dvfmEvsUmlAdmin && !dvfmEvsUmlPass)
+    {
+        if (DvfmEvsUmlGetUsers (dvfmEvsUmlSettings, &dvfmEvsUmlUserData))
+            return dvfmEvsUmlSecondaryFunction;
+
+        while (strcmp(dvfmEvsUmlUserData->dvfmEvsUmlNickname, dvfmEvsUmlAdminNickname))
+            dvfmEvsUmlUserData = dvfmEvsUmlUserData->dvfmEvsUmlNextUserData;
+        
+        if (!dvfmEvsUmlUserData)
+            return dvfmEvsUmlUserNotFound;
+
+        if (dvfmEvsUmlUserData->dvfmEvsUmlProfile != dvfmEvsUmlAdministrator)
+            return dvfmEvsUmlUserIsNotAdministrator;
+
+        while (dvfmEvsUmlUserData->dvfmEvsUmlPreviousUserData)
+            dvfmEvsUmlUserData = dvfmEvsUmlUserData->dvfmEvsUmlPreviousUserData;
+
+        while (strcmp(dvfmEvsUmlUserData->dvfmEvsUmlNickname, dvfmEvsUmlUserNickname))
+            dvfmEvsUmlUserData = dvfmEvsUmlUserData->dvfmEvsUmlNextUserData;
+        
+        if (!dvfmEvsUmlUserData)
+            return dvfmEvsUmlUserNotFound;
+    }
+    else if (!dvfmEvsUmlAdmin && dvfmEvsUmlPass)
+    {
+        if (DvfmEvsUmlGetUsers (dvfmEvsUmlSettings, &dvfmEvsUmlUserData))
+            return dvfmEvsUmlSecondaryFunction;
+
+        while (strcmp(dvfmEvsUmlUserData->dvfmEvsUmlNickname, dvfmEvsUmlUserNickname))
+            dvfmEvsUmlUserData = dvfmEvsUmlUserData->dvfmEvsUmlNextUserData;
+        
+        if (!dvfmEvsUmlUserData)
+            return dvfmEvsUmlUserNotFound;
+
+        if (DvfmEvsUmlCheckPassword(dvfmEvsUmlCurrentPassword, dvfmEvsUmlUserData->dvfmEvsUmlPassword))
+        {
+            if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlPasswordAbeyancesDataFilename, "r")))
+                return dvfmEvsUmlCantOpenFile;
+
+            while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE, dvfmEvsUmlRead))
+            {
+                if (!strstr(dvfmEvsUmlBuffer, ":"))
+                {
+                    fclose(dvfmEvsUmlRead);
+                    return dvfmEvsUmlReadError;
+                }
+
+                strcpy(dvfmEvsUmlBuffer, strstr(dvfmEvsUmlBuffer, ":"));
+                dvfmEvsUmlAuxiliary [0] = dvfmEvsUmlBuffer[1];
+                strcpy(dvfmEvsUmlBuffer, strstr(dvfmEvsUmlBuffer, dvfmEvsUmlAuxiliary));
+
+                if (!strstr(dvfmEvsUmlBuffer, ":"))
+                {
+                    fclose(dvfmEvsUmlRead);
+                    return dvfmEvsUmlReadError;
+                }
+
+                dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
+                dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
+                if (dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier == (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlBuffer, &dvfmEvsUmlValidation, 10))
+                {
+                    dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
+
+                    if (!strstr(dvfmEvsUmlBuffer, ":"))
+                    {
+                        fclose(dvfmEvsUmlRead);
+                        return dvfmEvsUmlReadError;
+                    }
+
+                    strcpy(dvfmEvsUmlBuffer, strstr(dvfmEvsUmlBuffer, ":"));
+                    dvfmEvsUmlAuxiliary [0] = dvfmEvsUmlBuffer[1];
+                    strcpy(dvfmEvsUmlBuffer, strstr(dvfmEvsUmlBuffer, dvfmEvsUmlAuxiliary));
+
+                    if (DvfmEvsUmlCheckPassword(dvfmEvsUmlCurrentPassword, dvfmEvsUmlBuffer))
+                        return dvfmEvsUmlSecondaryFunction;
+                }
+            }
+
+            if(ferror(dvfmEvsUmlRead))
+            {
+                fclose(dvfmEvsUmlRead);
+                return dvfmEvsUmlReadError;
+            }
+
+            fclose(dvfmEvsUmlRead);
+        }
+    }
+    else
+        return dvfmEvsUmlIncorrectData;
+
+    if (DvfmEvsUmlEncodePasswordWithSpecificAlgorithm(dvfmEvsUmlNewPassword, dvfmEvsUmlSha512, dvfmEvsUmlEncryptedNewPassword))
+        return dvfmEvsUmlSecondaryFunction;
+    
+    if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "r")))
+        return dvfmEvsUmlCantOpenFile;
+
+    if(!(dvfmEvsUmlWrite = fopen(dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "w")))
+        return dvfmEvsUmlCantOpenFile;
+
+    while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE, dvfmEvsUmlRead))
+    {
+        if (!strstr(dvfmEvsUmlBuffer, ":"))
+        {
+            fclose(dvfmEvsUmlRead);
+            fclose(dvfmEvsUmlWrite);
+            return dvfmEvsUmlReadError;
+        }
+
+        dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
+        dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
+        if (dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier == (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlBuffer, &dvfmEvsUmlValidation, 10))
+        {
+            dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ';';
+
+            if (!strstr(dvfmEvsUmlBuffer, ":"))
+            {
+                fclose(dvfmEvsUmlRead);
+                fclose(dvfmEvsUmlWrite);
+                return dvfmEvsUmlReadError;
+            }
+
+            dvfmEvsUmlBuffer [strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"))] = ';';
+
+            if (!strstr(dvfmEvsUmlBuffer, ":"))
+            {
+                fclose(dvfmEvsUmlRead);
+                fclose(dvfmEvsUmlWrite);
+                return dvfmEvsUmlReadError;
+            }
+            
+            strcpy(dvfmEvsUmlAuxiliaryBuffer, strstr(dvfmEvsUmlBuffer, ":"));
+            dvfmEvsUmlBuffer [strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"))] = '\0';
+            dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
+            dvfmEvsUmlBuffer [strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ";"))] = ':';
+            strcat(dvfmEvsUmlBuffer, dvfmEvsUmlEncryptedNewPassword);
+            strcat(dvfmEvsUmlBuffer, dvfmEvsUmlAuxiliaryBuffer);
+        }
+        dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
+        fprintf(dvfmEvsUmlWrite, "%s", dvfmEvsUmlBuffer);
+    }
+    fprintf(dvfmEvsUmlWrite, "%c", EOF);
+
+    if(ferror(dvfmEvsUmlRead))
+    {
+        fclose(dvfmEvsUmlRead);
+        fclose(dvfmEvsUmlWrite);
+        return dvfmEvsUmlReadError;
+    }
+
+    fclose(dvfmEvsUmlRead);
+    fclose(dvfmEvsUmlWrite);
+
+    if(!(dvfmEvsUmlWrite = fopen("dvfmEvsUmlMailFile", "w")))
+        return dvfmEvsUmlCantOpenFile;
+
+    fprintf(dvfmEvsUmlWrite, "Sua senha foi alterada com sucesso.\n");
+
+    fclose(dvfmEvsUmlWrite);
+
+    sprintf(dvfmEvsUmlBuffer, "sendmail %s < %s", dvfmEvsUmlUserData->dvfmEvsUmlEmail ,"dvfmEvsUmlMailFile");
+    system(dvfmEvsUmlBuffer);
+
+    remove("dvfmEvsUmlMailFile");
+
+    if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlPasswordAbeyancesDataFilename, "r")))
+        return dvfmEvsUmlCantOpenFile;
+
+    if(!(dvfmEvsUmlWrite = fopen(dvfmEvsUmlSettings->dvfmEvsUmlPasswordAbeyancesDataFilename, "w")))
+        return dvfmEvsUmlCantOpenFile;
+
+    while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE, dvfmEvsUmlRead))
+    {
+        if (!strstr(dvfmEvsUmlBuffer, ":"))
+        {
+            fclose(dvfmEvsUmlRead);
+            return dvfmEvsUmlReadError;
+        }
+
+        strcpy(dvfmEvsUmlAuxiliaryBuffer, strstr(dvfmEvsUmlBuffer, ":"));
+        dvfmEvsUmlAuxiliary [0] = dvfmEvsUmlAuxiliaryBuffer[1];
+        strcpy(dvfmEvsUmlAuxiliaryBuffer, strstr(dvfmEvsUmlAuxiliaryBuffer, dvfmEvsUmlAuxiliary));
+
+        if (!strstr(dvfmEvsUmlAuxiliaryBuffer, ":"))
+        {
+            fclose(dvfmEvsUmlRead);
+            return dvfmEvsUmlReadError;
+        }
+
+        dvfmEvsUmlIndex = strlen(dvfmEvsUmlAuxiliaryBuffer) - strlen(strstr(dvfmEvsUmlAuxiliaryBuffer, ":"));
+        dvfmEvsUmlAuxiliaryBuffer [dvfmEvsUmlIndex] = '\0';
+        if (dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier != (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlAuxiliaryBuffer, &dvfmEvsUmlValidation, 10))
+            fprintf(dvfmEvsUmlWrite, "%s", dvfmEvsUmlBuffer);
+    }
+    fprintf(dvfmEvsUmlWrite, "%c", EOF);
+
+    if(ferror(dvfmEvsUmlRead))
+    {
+        fclose(dvfmEvsUmlRead);
+        fclose(dvfmEvsUmlWrite);
+        return dvfmEvsUmlReadError;
+    }
+
+    fclose(dvfmEvsUmlRead);
+    fclose(dvfmEvsUmlWrite);
+
     return dvfmEvsUmlOk;
 }
 

@@ -91,7 +91,8 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Incompatible emails",
 		"Incompatible full names",
 		"User is not responsible",
-		"User is not administrator"
+		"User is not administrator",
+		"Incorrect datas"
 	},
 
 	{
@@ -156,7 +157,8 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Emails incompativeis",
 		"Nomes completos incompativeis",
 		"O usuario nao e o responsavel",
-		"O usuario nao e administrador"
+		"O usuario nao e administrador",
+		"Dados incorretos"
 	}
 };
 
@@ -224,7 +226,8 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Incompatible emails",
 		"Incompatible full names",
 		"User is not responsible",
-		"User is not administrator"
+		"User is not administrator",
+		"Incorrect datas"
 	},
 
 	{
@@ -289,7 +292,8 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Emails incompativeis",
 		"Nomes completos incompativeis",
 		"O usuario nao e o responsavel",
-		"O usuario nao e administrador"
+		"O usuario nao e administrador",
+		"Dados incorretos"
 	}
 };
 
@@ -357,7 +361,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Incompatible emails",
 		"Incompatible full names",
 		"User is not responsible",
-		"User is not administrator"
+		"User is not administrator",
+		"Incorrect datas"
 	},
 
 	{
@@ -422,7 +427,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Emails incompat&iacute;veis",
 		"Nomes completos incompat&iacute;veis",
 		"O usu&aacute;rio n&atilde;o &eacute; o respons&aacute;vel",
-		"O usu&aacute;rio n&atilde;o &eacute; administrador"
+		"O usu&aacute;rio n&atilde;o &eacute; administrador",
+		"Dados incorretos"
 	}
 };
 
