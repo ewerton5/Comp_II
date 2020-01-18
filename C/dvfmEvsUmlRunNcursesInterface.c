@@ -57,7 +57,7 @@ DvfmEvsUmlRunNcursesInterface(dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
         return dvfmEvsUmlFirstEmptyPointer;
     
     if(dvfmEvsUmlNickname)
-        if(strlen(dvfmEvsUmlNickname) != 0)
+        if(strlen(dvfmEvsUmlNickname))
             dvfmEvsUmlWithNickname = dvfmEvsUmlTrue;
 
     initscr();

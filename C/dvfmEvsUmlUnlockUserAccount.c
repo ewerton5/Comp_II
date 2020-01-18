@@ -11,6 +11,7 @@
 */
 
 #include    <stdio.h>
+#include    <string.h>
 #include	"dvfmEvsUmlUnlockUserAccount.h"
 
 /*
@@ -53,8 +54,8 @@ DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetti
     if (!dvfmEvsUmlBlockedUserNickname)
         return dvfmEvsUmlThirdEmptyPointer;
     
-    if (!dvfmEvsUmlAdminNickname)
-        if(strlen(dvfmEvsUmlAdminNickname) != 0)
+    if (dvfmEvsUmlAdminNickname)
+        if(strlen(dvfmEvsUmlAdminNickname))
             dvfmEvsUmlAdmin = dvfmEvsUmlTrue;
 
     if (dvfmEvsUmlAdmin)
@@ -200,7 +201,7 @@ DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetti
         strcpy(dvfmEvsUmlNickname, dvfmEvsUmlUserData->dvfmEvsUmlNickname);
         dvfmEvsUmlNumericIndentifier = dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier;
 
-        for(dvfmEvsUmlIndex = 0; dvfmEvsUmlNumericIndentifier != 0;dvfmEvsUmlIndex++)
+        for(dvfmEvsUmlIndex = 0; dvfmEvsUmlNumericIndentifier;dvfmEvsUmlIndex++)
         {
             dvfmEvsUmlNumericIndentifierFirstNumber = dvfmEvsUmlNumericIndentifier;
             for (dvfmEvsUmlCounter = 0; dvfmEvsUmlNumericIndentifierFirstNumber > 10; dvfmEvsUmlCounter++)

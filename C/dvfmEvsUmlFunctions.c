@@ -691,7 +691,7 @@ DvfmEvsUmlCheckPassword (char *dvfmEvsUmlFlatPassword, char *dvfmEvsUmlEncrypted
 		return dvfmEvsUmlSecondaryFunction;
 
 	if (strcmp( dvfmEvsUmlEncryptedPassword, dvfmEvsUmlFlatPasswordEncrypted))
-		return dvfmEvsUmlIncompatibleFlatPassword;
+		return dvfmEvsUmlIncompatiblePassword;
 
 	return dvfmEvsUmlOk;
 }
@@ -740,7 +740,7 @@ DvfmEvsUmlGetConfigurationOptionsValues ( char *dvfmEvsUmlNameConfigurationFile,
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlEmailAbeyancesDataFilename, DVFM_EVS_UML_EMAIL_ABEYANCES_DATA_FILENAME);
 
 	if(dvfmEvsUmlNameConfigurationFile)
-		if(strlen(dvfmEvsUmlNameConfigurationFile) != 0)
+		if(strlen(dvfmEvsUmlNameConfigurationFile))
 		{
 			if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlNameConfigurationFile, "r")))
 				return dvfmEvsUmlCantOpenFile;

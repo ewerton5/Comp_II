@@ -161,7 +161,7 @@ DvfmEvsUmlLockUserAccount (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetting
         if (dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier < dvfmEvsUmlNumericIndentifier)
         {
             dvfmEvsUmlNumericIndentifier = dvfmEvsUmlAdminNumericIndentifier;
-            for(dvfmEvsUmlIndex = 0; dvfmEvsUmlNumericIndentifier != 0; dvfmEvsUmlIndex++)
+            for(dvfmEvsUmlIndex = 0; dvfmEvsUmlNumericIndentifier; dvfmEvsUmlIndex++)
             {
                 dvfmEvsUmlNumericIndentifierFirstNumber = dvfmEvsUmlNumericIndentifier;
                 for (dvfmEvsUmlCounter = 0; dvfmEvsUmlNumericIndentifierFirstNumber > 10; dvfmEvsUmlCounter++)
@@ -172,7 +172,7 @@ DvfmEvsUmlLockUserAccount (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetting
             dvfmEvsUmlAdminNumericIndentifierString [dvfmEvsUmlIndex] = '\0';
 
             dvfmEvsUmlNumericIndentifier = dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier;
-            for(dvfmEvsUmlIndex = 0; dvfmEvsUmlNumericIndentifier != 0; dvfmEvsUmlIndex++)
+            for(dvfmEvsUmlIndex = 0; dvfmEvsUmlNumericIndentifier; dvfmEvsUmlIndex++)
             {
                 dvfmEvsUmlNumericIndentifierFirstNumber = dvfmEvsUmlNumericIndentifier;
                 for (dvfmEvsUmlCounter = 0; dvfmEvsUmlNumericIndentifierFirstNumber > 10; dvfmEvsUmlCounter++)

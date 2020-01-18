@@ -68,7 +68,7 @@ typedef enum
 	dvfmEvsUmlVoidString,
 	dvfmEvsUmlInvalidEncryptedPassword,
 	dvfmEvsUmlLongEncryptedPassword,
-	dvfmEvsUmlIncompatibleFlatPassword,
+	dvfmEvsUmlIncompatiblePassword,
 	dvfmEvsUmlInvalidSalt,
 	dvfmEvsUmlCantOpenFile,
 	dvfmEvsUmlInvalidConfigFile,
@@ -93,6 +93,7 @@ typedef enum
 	dvfmEvsUmlIncompatibleFullName,
 	dvfmEvsUmlUserISNotResponsible,
 	dvfmEvsUmlUserIsNotAdministrator,
+	dvfmEvsUmlIncorrectData,
 	dvfmEvsUmlSizeErrorType
 } dvfmEvsUmlErrorType;
 
