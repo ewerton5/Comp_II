@@ -65,15 +65,15 @@ DvfmEvsUmlRequestRegistration (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSet
     if (!dvfmEvsUmlUserData)
         return dvfmEvsUmlThirdEmptyPointer;
 
-    dvfmEvsUmlErrorCode = DvfmEvsUmlCheckEmail(dvfmEvsUmlEmail, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-_", DVFM_EVS_UML_MINIMUM_SIZE_EMAIL, DVFM_EVS_UML_MAX_SIZE_EMAIL);
+    dvfmEvsUmlErrorCode = DvfmEvsUmlCheckEmail(dvfmEvsUmlEmail, DVFM_EVS_UML_VALID_CHARACTERS_EMAIL, DVFM_EVS_UML_MINIMUM_SIZE_EMAIL, DVFM_EVS_UML_MAX_SIZE_EMAIL);
     if (dvfmEvsUmlErrorCode)
         return dvfmEvsUmlSecondaryFunction;
 
-    dvfmEvsUmlErrorCode = DvfmEvsUmlCheckEmail(dvfmEvsUmlUserData->dvfmEvsUmlEmail, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-_", DVFM_EVS_UML_MINIMUM_SIZE_EMAIL, DVFM_EVS_UML_MAX_SIZE_EMAIL);
+    dvfmEvsUmlErrorCode = DvfmEvsUmlCheckEmail(dvfmEvsUmlUserData->dvfmEvsUmlEmail, DVFM_EVS_UML_VALID_CHARACTERS_EMAIL, DVFM_EVS_UML_MINIMUM_SIZE_EMAIL, DVFM_EVS_UML_MAX_SIZE_EMAIL);
     if (dvfmEvsUmlErrorCode)
         return dvfmEvsUmlSecondaryFunction;
 
-    dvfmEvsUmlErrorCode = DvfmEvsUmlCheckEmail(dvfmEvsUmlUserData->dvfmEvsUmlConfirmEmail, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890.-_", DVFM_EVS_UML_MINIMUM_SIZE_EMAIL, DVFM_EVS_UML_MAX_SIZE_EMAIL);
+    dvfmEvsUmlErrorCode = DvfmEvsUmlCheckEmail(dvfmEvsUmlUserData->dvfmEvsUmlConfirmEmail, DVFM_EVS_UML_VALID_CHARACTERS_EMAIL, DVFM_EVS_UML_MINIMUM_SIZE_EMAIL, DVFM_EVS_UML_MAX_SIZE_EMAIL);
     if (dvfmEvsUmlErrorCode)
         return dvfmEvsUmlSecondaryFunction;
 
@@ -91,13 +91,15 @@ DvfmEvsUmlRequestRegistration (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSet
     if (dvfmEvsUmlErrorCode)
         return dvfmEvsUmlSecondaryFunction;
 
-    while (dvfmEvsUmlAllUsersData)
+    while (dvfmEvsUmlAllUsersData->dvfmEvsUmlNextUserData)
     {
         if (!strcmp(dvfmEvsUmlAllUsersData->dvfmEvsUmlNickname, dvfmEvsUmlFirstNickname))
             strcpy(dvfmEvsUmlFirstNickname, dvfmEvsUmlSecondNickname);
         dvfmEvsUmlAllUsersData = dvfmEvsUmlAllUsersData->dvfmEvsUmlNextUserData;
     }
-    dvfmEvsUmlAllUsersData = dvfmEvsUmlAllUsersData->dvfmEvsUmlPreviousUserData;
+
+    if (!strcmp(dvfmEvsUmlAllUsersData->dvfmEvsUmlNickname, dvfmEvsUmlFirstNickname))
+        strcpy(dvfmEvsUmlFirstNickname, dvfmEvsUmlSecondNickname);
 
     dvfmEvsUmlNumericIndentifier = dvfmEvsUmlAllUsersData->dvfmEvsUmlNumericIndentifier + 1;
     for(dvfmEvsUmlIndex = 0; dvfmEvsUmlNumericIndentifier; dvfmEvsUmlIndex++)

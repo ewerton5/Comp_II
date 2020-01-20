@@ -51,7 +51,7 @@ DvfmEvsUmlChangeUserPassword (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
     dvfmEvsUmlUserDataType *dvfmEvsUmlUserData = (dvfmEvsUmlUserDataType *) malloc(sizeof(dvfmEvsUmlUserDataType));
     dvfmEvsUmlBool dvfmEvsUmlAdmin = dvfmEvsUmlFalse, dvfmEvsUmlPass = dvfmEvsUmlFalse;
     FILE *dvfmEvsUmlRead, *dvfmEvsUmlWrite;
-    unsigned dvfmEvsUmlIndex;
+    unsigned dvfmEvsUmlIndex1, dvfmEvsUmlIndex2;
     char dvfmEvsUmlBuffer [DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE],
          dvfmEvsUmlAuxiliaryBuffer [DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE],
          *dvfmEvsUmlValidation, dvfmEvsUmlAuxiliary [2] = "0\0",
@@ -138,11 +138,11 @@ DvfmEvsUmlChangeUserPassword (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
                     return dvfmEvsUmlReadError;
                 }
 
-                dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
-                dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
+                dvfmEvsUmlIndex1 = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
+                dvfmEvsUmlBuffer [dvfmEvsUmlIndex1] = '\0';
                 if (dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier == (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlBuffer, &dvfmEvsUmlValidation, 10))
                 {
-                    dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
+                    dvfmEvsUmlBuffer [dvfmEvsUmlIndex1] = ':';
 
                     if (!strstr(dvfmEvsUmlBuffer, ":"))
                     {
@@ -189,11 +189,11 @@ DvfmEvsUmlChangeUserPassword (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
             return dvfmEvsUmlReadError;
         }
 
-        dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
-        dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
+        dvfmEvsUmlIndex1 = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
+        dvfmEvsUmlBuffer [dvfmEvsUmlIndex1] = '\0';
         if (dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier == (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlBuffer, &dvfmEvsUmlValidation, 10))
         {
-            dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ';';
+            dvfmEvsUmlBuffer [dvfmEvsUmlIndex1] = ';';
 
             if (!strstr(dvfmEvsUmlBuffer, ":"))
             {
@@ -202,7 +202,8 @@ DvfmEvsUmlChangeUserPassword (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
                 return dvfmEvsUmlReadError;
             }
 
-            dvfmEvsUmlBuffer [strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"))] = ';';
+            dvfmEvsUmlIndex2 = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
+            dvfmEvsUmlBuffer [dvfmEvsUmlIndex2] = ';';
 
             if (!strstr(dvfmEvsUmlBuffer, ":"))
             {
@@ -212,13 +213,13 @@ DvfmEvsUmlChangeUserPassword (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
             }
             
             strcpy(dvfmEvsUmlAuxiliaryBuffer, strstr(dvfmEvsUmlBuffer, ":"));
-            dvfmEvsUmlBuffer [strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"))] = '\0';
-            dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
-            dvfmEvsUmlBuffer [strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ";"))] = ':';
+            dvfmEvsUmlBuffer [dvfmEvsUmlIndex1] = ':';
+            dvfmEvsUmlBuffer [dvfmEvsUmlIndex2] = ':';
+            dvfmEvsUmlBuffer [dvfmEvsUmlIndex2 + 1] = '\0';
             strcat(dvfmEvsUmlBuffer, dvfmEvsUmlEncryptedNewPassword);
             strcat(dvfmEvsUmlBuffer, dvfmEvsUmlAuxiliaryBuffer);
         }
-        dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
+        dvfmEvsUmlBuffer [dvfmEvsUmlIndex1] = ':';
         fprintf(dvfmEvsUmlWrite, "%s", dvfmEvsUmlBuffer);
     }
     fprintf(dvfmEvsUmlWrite, "%c", EOF);
@@ -269,8 +270,8 @@ DvfmEvsUmlChangeUserPassword (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
             return dvfmEvsUmlReadError;
         }
 
-        dvfmEvsUmlIndex = strlen(dvfmEvsUmlAuxiliaryBuffer) - strlen(strstr(dvfmEvsUmlAuxiliaryBuffer, ":"));
-        dvfmEvsUmlAuxiliaryBuffer [dvfmEvsUmlIndex] = '\0';
+        dvfmEvsUmlIndex1 = strlen(dvfmEvsUmlAuxiliaryBuffer) - strlen(strstr(dvfmEvsUmlAuxiliaryBuffer, ":"));
+        dvfmEvsUmlAuxiliaryBuffer [dvfmEvsUmlIndex1] = '\0';
         if (dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier != (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlAuxiliaryBuffer, &dvfmEvsUmlValidation, 10))
             fprintf(dvfmEvsUmlWrite, "%s", dvfmEvsUmlBuffer);
     }

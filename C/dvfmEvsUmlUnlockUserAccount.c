@@ -42,7 +42,7 @@ DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetti
     dvfmEvsUmlBool dvfmEvsUmlAdmin = dvfmEvsUmlFalse;
     dvfmEvsUmlUserIdentifierType dvfmEvsUmlNumericIndentifier, dvfmEvsUmlNumericIndentifierFirstNumber;
     FILE *dvfmEvsUmlRead, *dvfmEvsUmlWrite;
-    unsigned dvfmEvsUmlIndex, dvfmEvsUmlCounter;
+    unsigned dvfmEvsUmlIndex1, dvfmEvsUmlIndex2, dvfmEvsUmlCounter;
     char dvfmEvsUmlBuffer [DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE],
          dvfmEvsUmlAuxiliaryBuffer [DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE],
          *dvfmEvsUmlValidation, dvfmEvsUmlNumericIndentifierString [10],
@@ -96,10 +96,10 @@ DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetti
                 return dvfmEvsUmlReadError;
             }
 
-            dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
-            dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
+            dvfmEvsUmlIndex1 = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
+            dvfmEvsUmlBuffer [dvfmEvsUmlIndex1] = '\0';
             dvfmEvsUmlNumericIndentifier = (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlBuffer, &dvfmEvsUmlValidation, 10);
-            dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
+            dvfmEvsUmlBuffer [dvfmEvsUmlIndex1] = ':';
             if (dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier != dvfmEvsUmlNumericIndentifier)
                 fprintf(dvfmEvsUmlWrite, "%s", dvfmEvsUmlBuffer);
         }
@@ -130,11 +130,11 @@ DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetti
                 return dvfmEvsUmlReadError;
             }
 
-            dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
-            dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = '\0';
+            dvfmEvsUmlIndex1 = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
+            dvfmEvsUmlBuffer [dvfmEvsUmlIndex1] = '\0';
             if (dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier == (dvfmEvsUmlUserIdentifierType) strtoul(dvfmEvsUmlBuffer, &dvfmEvsUmlValidation, 10))
             {
-                dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ';';
+                dvfmEvsUmlBuffer [dvfmEvsUmlIndex1] = ';';
 
                 if (!strstr(dvfmEvsUmlBuffer, ":"))
                 {
@@ -143,7 +143,8 @@ DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetti
                     return dvfmEvsUmlReadError;
                 }
 
-                dvfmEvsUmlBuffer [strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"))] = ';';
+                dvfmEvsUmlIndex2 = strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"));
+                dvfmEvsUmlBuffer [dvfmEvsUmlIndex2] = ';';
 
                 if (!strstr(dvfmEvsUmlBuffer, ":"))
                 {
@@ -153,13 +154,13 @@ DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetti
                 }
                 
                 strcpy(dvfmEvsUmlAuxiliaryBuffer, strstr(dvfmEvsUmlBuffer, ":"));
-                dvfmEvsUmlBuffer [strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"))] = '\0';
-                dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
-                dvfmEvsUmlBuffer [strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ";"))] = ':';
+                dvfmEvsUmlBuffer [dvfmEvsUmlIndex1] = ':';
+                dvfmEvsUmlBuffer [dvfmEvsUmlIndex2] = ':';
+                dvfmEvsUmlBuffer [dvfmEvsUmlIndex2 + 1] = '\0';
                 strcat(dvfmEvsUmlBuffer, dvfmEvsUmlUserData->dvfmEvsUmlPassword);
                 strcat(dvfmEvsUmlBuffer, dvfmEvsUmlAuxiliaryBuffer);
             }
-            dvfmEvsUmlBuffer [dvfmEvsUmlIndex] = ':';
+            dvfmEvsUmlBuffer [dvfmEvsUmlIndex1] = ':';
             fprintf(dvfmEvsUmlWrite, "%s", dvfmEvsUmlBuffer);
         }
         fprintf(dvfmEvsUmlWrite, "%c", EOF);
@@ -201,21 +202,22 @@ DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSetti
         strcpy(dvfmEvsUmlNickname, dvfmEvsUmlUserData->dvfmEvsUmlNickname);
         dvfmEvsUmlNumericIndentifier = dvfmEvsUmlUserData->dvfmEvsUmlNumericIndentifier;
 
-        for(dvfmEvsUmlIndex = 0; dvfmEvsUmlNumericIndentifier;dvfmEvsUmlIndex++)
+        for(dvfmEvsUmlIndex1 = 0; dvfmEvsUmlNumericIndentifier;dvfmEvsUmlIndex1++)
         {
             dvfmEvsUmlNumericIndentifierFirstNumber = dvfmEvsUmlNumericIndentifier;
             for (dvfmEvsUmlCounter = 0; dvfmEvsUmlNumericIndentifierFirstNumber > 10; dvfmEvsUmlCounter++)
                 dvfmEvsUmlNumericIndentifierFirstNumber = (dvfmEvsUmlUserIdentifierType) dvfmEvsUmlNumericIndentifierFirstNumber/10;
-            dvfmEvsUmlNumericIndentifierString [dvfmEvsUmlIndex] = (char) dvfmEvsUmlNumericIndentifierFirstNumber + '0';
+            dvfmEvsUmlNumericIndentifierString [dvfmEvsUmlIndex1] = (char) dvfmEvsUmlNumericIndentifierFirstNumber + '0';
             dvfmEvsUmlNumericIndentifier = dvfmEvsUmlNumericIndentifier - dvfmEvsUmlNumericIndentifierFirstNumber*pow(10, dvfmEvsUmlCounter);
         }
-        dvfmEvsUmlNumericIndentifierString [dvfmEvsUmlIndex] = '\0';
+        dvfmEvsUmlNumericIndentifierString [dvfmEvsUmlIndex1] = '\0';
 
         if(!(dvfmEvsUmlWrite = fopen(dvfmEvsUmlSettings->dvfmEvsUmlUnlockingUsersDataFilename, "a")))
             return dvfmEvsUmlCantOpenFile;
 
         strcpy(dvfmEvsUmlBuffer, "86400:");
         strcat(dvfmEvsUmlBuffer, dvfmEvsUmlNumericIndentifierString);
+        strcpy(dvfmEvsUmlBuffer, "\n");
 
         fprintf(dvfmEvsUmlWrite, "%s", dvfmEvsUmlBuffer);
 
