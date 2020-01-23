@@ -49,7 +49,7 @@ DvfmEvsUmlGetPendingRegistrationRequests (dvfmEvsUmlConfigurationOptionsType *dv
     if (!dvfmEvsUmlUserData)
         return dvfmEvsUmlSecondEmptyPointer;
 
-    if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilename, "r")))
+    if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilename, "rb")))
         return dvfmEvsUmlCantOpenFile;
 
     dvfmEvsUmlCurrentUserData->dvfmEvsUmlPreviousUserData = NULL;

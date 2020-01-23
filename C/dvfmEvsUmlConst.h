@@ -58,6 +58,9 @@
 #define DVFM_EVS_UML_MAX_SIZE_PROFILE_STRING            31
 #define DVFM_EVS_UML_PROFILE_STRING_BUFFER_SIZE         31 + 1
 
+#define DVFM_EVS_UML_BASE_64                            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+#define DVFM_EVS_UML_SIZE_BASE_64                       64
+
 /* ===== end of file code ====== */
 
 #endif

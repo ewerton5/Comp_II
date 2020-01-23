@@ -117,7 +117,7 @@ DvfmEvsUmlChangeUserPassword (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
 
         if (DvfmEvsUmlCheckPassword(dvfmEvsUmlCurrentPassword, dvfmEvsUmlUserData->dvfmEvsUmlPassword))
         {
-            if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlPasswordAbeyancesDataFilename, "r")))
+            if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlPasswordAbeyancesDataFilename, "rb")))
                 return dvfmEvsUmlCantOpenFile;
 
             while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE, dvfmEvsUmlRead))
@@ -246,10 +246,10 @@ DvfmEvsUmlChangeUserPassword (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
 
     remove("dvfmEvsUmlMailFile");
 
-    if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlPasswordAbeyancesDataFilename, "r")))
+    if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlPasswordAbeyancesDataFilename, "rb")))
         return dvfmEvsUmlCantOpenFile;
 
-    if(!(dvfmEvsUmlWrite = fopen(dvfmEvsUmlSettings->dvfmEvsUmlPasswordAbeyancesDataFilename, "w")))
+    if(!(dvfmEvsUmlWrite = fopen(dvfmEvsUmlSettings->dvfmEvsUmlPasswordAbeyancesDataFilename, "wb")))
         return dvfmEvsUmlCantOpenFile;
 
     while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE, dvfmEvsUmlRead))
@@ -257,6 +257,7 @@ DvfmEvsUmlChangeUserPassword (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
         if (!strstr(dvfmEvsUmlBuffer, ":"))
         {
             fclose(dvfmEvsUmlRead);
+            fclose(dvfmEvsUmlWrite);
             return dvfmEvsUmlReadError;
         }
 
@@ -267,6 +268,7 @@ DvfmEvsUmlChangeUserPassword (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSett
         if (!strstr(dvfmEvsUmlAuxiliaryBuffer, ":"))
         {
             fclose(dvfmEvsUmlRead);
+            fclose(dvfmEvsUmlWrite);
             return dvfmEvsUmlReadError;
         }
 
