@@ -92,7 +92,8 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Incompatible full names",
 		"User is not responsible",
 		"User is not administrator",
-		"Incorrect datas"
+		"Incorrect datas",
+		"Incompatible validation key"
 	},
 
 	{
@@ -158,7 +159,8 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Nomes completos incompativeis",
 		"O usuario nao e o responsavel",
 		"O usuario nao e administrador",
-		"Dados incorretos"
+		"Dados incorretos",
+		"Chave de validacao incompativel"
 	}
 };
 
@@ -227,7 +229,8 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Incompatible full names",
 		"User is not responsible",
 		"User is not administrator",
-		"Incorrect datas"
+		"Incorrect datas",
+		"Incompatible validation key"
 	},
 
 	{
@@ -293,7 +296,8 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Nomes completos incompativeis",
 		"O usuario nao e o responsavel",
 		"O usuario nao e administrador",
-		"Dados incorretos"
+		"Dados incorretos",
+		"Chave de validacao incompativel"
 	}
 };
 
@@ -362,7 +366,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Incompatible full names",
 		"User is not responsible",
 		"User is not administrator",
-		"Incorrect datas"
+		"Incorrect datas",
+		"Incompatible validation key"
 	},
 
 	{
@@ -428,7 +433,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Nomes completos incompat&iacute;veis",
 		"O usu&aacute;rio n&atilde;o &eacute; o respons&aacute;vel",
 		"O usu&aacute;rio n&atilde;o &eacute; administrador",
-		"Dados incorretos"
+		"Dados incorretos",
+		"Chave de valida&ccidil;&atilde;o incompat&iacute;vel"
 	}
 };
 

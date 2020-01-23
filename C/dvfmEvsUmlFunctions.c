@@ -446,8 +446,8 @@ DvfmEvsUmlGetCryptAlgorithm (char *dvfmEvsUmlEncryptedPassword, dvfmEvsUmlCryptA
 
 		dvfmEvsUmlFirstCharacter [0] = dvfmEvsUmlEncryptedPassword [0];
 		dvfmEvsUmlSecondCharacter [0] = dvfmEvsUmlEncryptedPassword [1];
-		if(!strstr("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz./", dvfmEvsUmlFirstCharacter) ||
-		   !strstr("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz./", dvfmEvsUmlSecondCharacter))
+		if(!strstr(DVFM_EVS_UML_BASE_64, dvfmEvsUmlFirstCharacter) ||
+		   !strstr(DVFM_EVS_UML_BASE_64, dvfmEvsUmlSecondCharacter))
 			return dvfmEvsUmlFormatEncryptedPassword;
 
 		*dvfmEvsUmlAlgorithm = dvfmEvsUmlDes;
@@ -492,7 +492,6 @@ DvfmEvsUmlGetCryptAlgorithm (char *dvfmEvsUmlEncryptedPassword, dvfmEvsUmlCryptA
 dvfmEvsUmlErrorType
 DvfmEvsUmlEncodePasswordWithSpecificAlgorithm (char *dvfmEvsUmlFlatPassword, dvfmEvsUmlCryptAlgorithms dvfmEvsUmlAlgorithm, char *dvfmEvsUmlEncryptedPassword)
 {
-	char *dvfmEvsUmlBase64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz./";
 	char dvfmEvsUmlAuxiliarySalt[18] = "0\0";
 	char dvfmEvsUmlSalt[23] = "$0$\0";
 	dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
@@ -511,7 +510,7 @@ DvfmEvsUmlEncodePasswordWithSpecificAlgorithm (char *dvfmEvsUmlFlatPassword, dvf
 		if(strlen(dvfmEvsUmlFlatPassword) > 8)
 			return dvfmEvsUmlLongFlatPassword;
 
-		dvfmEvsUmlErrorCode = DvfmEvsUmlCreateRandomString(dvfmEvsUmlBase64, 2, dvfmEvsUmlSalt);
+		dvfmEvsUmlErrorCode = DvfmEvsUmlCreateRandomString(DVFM_EVS_UML_BASE_64, 2, dvfmEvsUmlSalt);
 
 		if(dvfmEvsUmlErrorCode)
 			return dvfmEvsUmlSecondaryFunction;
@@ -523,7 +522,7 @@ DvfmEvsUmlEncodePasswordWithSpecificAlgorithm (char *dvfmEvsUmlFlatPassword, dvf
 		switch(dvfmEvsUmlAlgorithm)
 		{
 			case dvfmEvsUmlMd5:
-				dvfmEvsUmlErrorCode = DvfmEvsUmlCreateRandomString(dvfmEvsUmlBase64, 8, dvfmEvsUmlAuxiliarySalt);
+				dvfmEvsUmlErrorCode = DvfmEvsUmlCreateRandomString(DVFM_EVS_UML_BASE_64, 8, dvfmEvsUmlAuxiliarySalt);
 
 				if(dvfmEvsUmlErrorCode)
 					return dvfmEvsUmlSecondaryFunction;
@@ -533,7 +532,7 @@ DvfmEvsUmlEncodePasswordWithSpecificAlgorithm (char *dvfmEvsUmlFlatPassword, dvf
 				break;
 
 			case dvfmEvsUmlSha256:
-				dvfmEvsUmlErrorCode = DvfmEvsUmlCreateRandomString(dvfmEvsUmlBase64, 16, dvfmEvsUmlAuxiliarySalt);
+				dvfmEvsUmlErrorCode = DvfmEvsUmlCreateRandomString(DVFM_EVS_UML_BASE_64, 16, dvfmEvsUmlAuxiliarySalt);
 
 				if(dvfmEvsUmlErrorCode)
 					return dvfmEvsUmlSecondaryFunction;
@@ -543,7 +542,7 @@ DvfmEvsUmlEncodePasswordWithSpecificAlgorithm (char *dvfmEvsUmlFlatPassword, dvf
 				break;
 
 			case dvfmEvsUmlSha512:
-				dvfmEvsUmlErrorCode = DvfmEvsUmlCreateRandomString(dvfmEvsUmlBase64, 16, dvfmEvsUmlAuxiliarySalt);
+				dvfmEvsUmlErrorCode = DvfmEvsUmlCreateRandomString(DVFM_EVS_UML_BASE_64, 16, dvfmEvsUmlAuxiliarySalt);
 
 				if(dvfmEvsUmlErrorCode)
 					return dvfmEvsUmlSecondaryFunction;

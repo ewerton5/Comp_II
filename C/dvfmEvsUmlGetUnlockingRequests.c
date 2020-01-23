@@ -72,7 +72,7 @@ DvfmEvsUmlGetUnlockingRequests (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSe
     if (dvfmEvsUmlUserData->dvfmEvsUmlProfile != dvfmEvsUmlAdministrator)
         return dvfmEvsUmlUserIsNotAdministrator;
 
-    if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlUnlockingUsersDataFilename, "r")))
+    if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlUnlockingUsersDataFilename, "rb")))
         return dvfmEvsUmlCantOpenFile;
     
     while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE, dvfmEvsUmlRead))

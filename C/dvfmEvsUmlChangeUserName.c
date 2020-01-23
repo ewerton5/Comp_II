@@ -143,9 +143,7 @@ DvfmEvsUmlChangeUserName (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings
         strcpy(dvfmEvsUmlNewNickname, dvfmEvsUmlFirstNickname);
     }
     else
-    {
         strcpy(dvfmEvsUmlNewNickname, dvfmEvsUmlUserData->dvfmEvsUmlNickname);
-    }
     
     if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "r")))
         return dvfmEvsUmlCantOpenFile;
@@ -241,7 +239,7 @@ DvfmEvsUmlChangeUserName (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings
 
     fclose(dvfmEvsUmlRead);
     fclose(dvfmEvsUmlWrite);
-    
+
     return dvfmEvsUmlOk;
 }
 
