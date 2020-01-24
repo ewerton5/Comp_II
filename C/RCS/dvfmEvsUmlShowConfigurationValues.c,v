@@ -1,0 +1,84 @@
+head	1.1;
+access;
+symbols;
+locks
+	ewerton.silles:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	2008.02.01.10.19.06;	author ewerton.silles;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*
+ * Universidade Federal do Rio de Janeiro
+ * Escola Politecnica
+ * Departamento de Eletronica e de Computacao
+ * Prof. Marcelo Luiz Drumond Lanza
+ * EEL 270 - Computacao II - Turma 2019/2
+ 
+ * $Author$
+ * $Date$
+ * $Log$
+*/
+
+#include	<stdio.h>
+#include	"dvfmEvsUmlShowConfigurationValues.h"
+#include	"dvfmEvsUmlConfig.h"
+
+/*
+ * dvfmEvsUmlErrorType
+ * DvfmEvsUmlShowConfigurationValues (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlLanguageType);
+ *
+ * Arguments:
+ * dvfmEvsUmlConfigurationOptionsType * - Configuration options (I)
+ * dvfmEvsUmlLanguageType - integer that corrects a language type enum (I)
+ *
+ * Returned code:
+ * 
+ * dvfmEvsUmlErrorType - integer that correspond a error
+ * 
+ * Description:
+ * Displays the values of all configuration options.
+ */
+
+dvfmEvsUmlErrorType
+DvfmEvsUmlShowConfigurationValues (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings,
+                                   dvfmEvsUmlLanguageType dvfmEvsUmlLanguage)
+{
+    if (!dvfmEvsUmlSettings)
+        return dvfmEvsUmlFirstEmptyPointer;
+
+    if (dvfmEvsUmlLanguage == dvfmEvsUmlPortuguese)
+        printf("\n\t\t\tConfiguracoes atuais:\n\n");
+    else
+        printf("\n\t\t\tCurrent Configurations:\n\n");
+    printf("%s = %s\n", DVFM_EVS_UML_WEB_SERVER_URL_NAME, dvfmEvsUmlSettings->dvfmEvsUmlWebServerUrl);
+    printf("%s = %s\n", DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER_NAME, dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifier);
+    printf("%s = %s\n", DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY_NAME, dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectory);
+    printf("%s = %s\n", DVFM_EVS_UML_DATA_DIRECTORY_NAME, dvfmEvsUmlSettings->dvfmEvsUmlDataDirectory);
+    printf("%s = %s\n", DVFM_EVS_UML_COOKIES_DIRECTORY_NAME, dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectory);
+    printf("%s = %s\n", DVFM_EVS_UML_USERS_DATA_FILENAME_NAME, dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename);
+    printf("%s = %s\n", DVFM_EVS_UML_INVITED_USERS_DATA_FILENAME_NAME, dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilename);
+    printf("%s = %s\n", DVFM_EVS_UML_REQUESTING_USERS_DATA_FILENAME_NAME, dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilename);
+    printf("%s = %s\n", DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME_NAME, dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilename);
+    printf("%s = %s\n", DVFM_EVS_UML_UNLOCKING_USERS_DATA_FILENAME, dvfmEvsUmlSettings->dvfmEvsUmlUnlockingUsersDataFilename);
+    printf("%s = %s\n", DVFM_EVS_UML_PASSWORD_ABEYANCES_DATA_FILENAME, dvfmEvsUmlSettings->dvfmEvsUmlPasswordAbeyancesDataFilename);
+    printf("%s = %s\n\n", DVFM_EVS_UML_EMAIL_ABEYANCES_DATA_FILENAME, dvfmEvsUmlSettings->dvfmEvsUmlEmailAbeyancesDataFilename);
+    
+    return dvfmEvsUmlOk;
+}
+
+/* $RCSfile$ */
+@

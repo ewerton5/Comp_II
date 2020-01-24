@@ -6,8 +6,11 @@ Prof. Marcelo Luiz Drumond Lanza
 EEL 270 - Computacao II - Turma 2019/2
  
 $Author: ewerton.silles $
-$Date: 2019/11/30 04:31:06 $
+$Date: 2020/01/24 05:37:49 $
 $Log: dvfmEvsUmlCheckEmail.c,v $
+Revision 1.2  2020/01/24 05:37:49  ewerton.silles
+*** empty log message ***
+
 Revision 1.1  2019/11/30 04:31:06  ewerton.silles
 Initial revision
 

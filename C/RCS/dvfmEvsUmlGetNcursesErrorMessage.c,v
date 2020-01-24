@@ -1,0 +1,176 @@
+head	1.3;
+access;
+symbols;
+locks
+	ewerton.silles:1.3; strict;
+comment	@ * @;
+
+
+1.3
+date	2020.01.24.05.37.49;	author ewerton.silles;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2019.11.15.01.42.45;	author ewerton.silles;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2019.11.14.22.25.48;	author ewerton.silles;	state Exp;
+branches;
+next	;
+
+
+desc
+@..
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@/*
+Universidade Federal do Rio de Janeiro
+Escola Politecnica
+Departamento de Eletronica e de Computacao
+Prof. Marcelo Luiz Drumond Lanza
+EEL 270 - Computacao II - Turma 2019/2
+ 
+$Author: ewerton.silles $
+$Date: 2019/11/15 01:42:45 $
+$Log: dvfmEvsUmlGetNcursesErrorMessage.c,v $
+Revision 1.2  2019/11/15 01:42:45  ewerton.silles
+*** empty log message ***
+
+Revision 1.1  2019/11/14 22:25:01  ewerton.silles
+Initial revision
+ 
+*/
+
+#include					<stdio.h>
+#include					<stdlib.h>
+#include					"dvfmEvsUmlErrors.h"
+
+#define DVFM_EVS_NUMBER_ARGUMENTS						3
+
+#define DVFM_EVS_OK											0
+#define DVFM_EVS_NUMBER_ARGUMENTS_INVALID				1
+#define DVFM_EVS_FIRST_ARGUMENT_INVALID				2
+#define DVFM_EVS_FIRST_ARGUMENT_INVALID_HIFEN		3
+#define DVFM_EVS_SECOND_ARGUMENT_INVALID				4
+#define DVFM_EVS_SECOND_ARGUMENT_INVALID_HIFEN		5
+
+#define DVFM_EVS_EOS											'\0'
+
+int
+main(int argc,char *argv[ ]) 
+{
+	dvfmEvsUmlErrorType dvfmEvsUmlError;
+	dvfmEvsUmlLanguageType dvfmEvsUmlLanguage;
+	char *dvfmEvsUmlValidation;
+
+	if (argc != DVFM_EVS_NUMBER_ARGUMENTS) 
+	{
+		printf("use: %s <error_number> <language_number>\n", argv[0]);
+		exit(DVFM_EVS_NUMBER_ARGUMENTS_INVALID);
+	}
+
+	if(argv[1][0] == '-')
+	{
+		printf("Error: First argument invalid\n");
+		printf("First character invalid: \"-\"\n");
+		exit(DVFM_EVS_FIRST_ARGUMENT_INVALID_HIFEN);
+	}
+	
+	dvfmEvsUmlError = (dvfmEvsUmlErrorType) strtoul( argv[1], &dvfmEvsUmlValidation, 10);
+	if(*dvfmEvsUmlValidation != DVFM_EVS_EOS)
+	{
+		printf("Error: First argument invalid\n");
+		printf("First character invalid: \"%c\"\n", dvfmEvsUmlValidation[0]);
+		exit(DVFM_EVS_FIRST_ARGUMENT_INVALID);
+	}
+
+	if(argv[2][0] == '-')
+	{
+		printf("Error: Second argument invalid\n");
+		printf("First character invalid: \"-\"\n");
+		exit(DVFM_EVS_SECOND_ARGUMENT_INVALID_HIFEN);
+	}
+
+	dvfmEvsUmlLanguage = (dvfmEvsUmlLanguageType) strtoul( argv[2], &dvfmEvsUmlValidation, 10);
+	if(*dvfmEvsUmlValidation != DVFM_EVS_EOS)
+	{
+		printf("Error: Argumento dois invalido\n");
+		printf("First character invalid: \"%c\"\n", dvfmEvsUmlValidation[0]);
+		exit(DVFM_EVS_SECOND_ARGUMENT_INVALID);
+	}
+
+
+	printf("%s\n", DvfmEvsUmlGetNcursesErrorMessage (dvfmEvsUmlError, dvfmEvsUmlLanguage));
+
+	return DVFM_EVS_OK;
+}
+/* $RCSfile: dvfmEvsUmlGetNcursesErrorMessage.c,v $ */
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d9 1
+a9 1
+$Date: 2019/11/14 22:25:01 $
+d11 3
+d39 1
+a39 1
+	char *dvfmEvsUmlvalidation;
+d54 2
+a55 2
+	dvfmEvsUmlError = (dvfmEvsUmlErrorType) strtoul( argv[1], &dvfmEvsUmlvalidation, 10);
+	if(*dvfmEvsUmlvalidation != DVFM_EVS_EOS)
+d58 1
+a58 1
+		printf("First character invalid: \"%c\"\n", dvfmEvsUmlvalidation[0]);
+d69 2
+a70 2
+	dvfmEvsUmlLanguage = (dvfmEvsUmlLanguageType) strtoul( argv[2], &dvfmEvsUmlvalidation, 10);
+	if(*dvfmEvsUmlvalidation != DVFM_EVS_EOS)
+d73 1
+a73 1
+		printf("First character invalid: \"%c\"\n", dvfmEvsUmlvalidation[0]);
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 6
+a13 3
+$Author$
+$Date$
+$Log$ 
+d34 1
+a34 1
+	dvfmEvsUmlErrorType dvfmEvsUmlErro;
+d51 1
+a51 1
+	dvfmEvsUmlErro = (dvfmEvsUmlErrorType) strtoul( argv[1], &dvfmEvsUmlvalidation, 10);
+d69 1
+a69 1
+		printf("Erro: Argumento dois invalido\n");
+a70 1
+		printf("use: %s <erro> <language>\n", argv[0]);
+d75 1
+a75 1
+	printf("%s\n", DvfmEvsUmlGetNcursesErrorMessage (dvfmEvsUmlErro, dvfmEvsUmlLanguage));
+d79 1
+a79 1
+/* $RCSfile$ */
+@

@@ -1,0 +1,174 @@
+head	1.4;
+access;
+symbols;
+locks
+	ewerton.silles:1.4; strict;
+comment	@ * @;
+
+
+1.4
+date	2020.01.24.05.37.49;	author ewerton.silles;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2019.12.24.13.52.26;	author ewerton.silles;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2019.11.30.04.31.06;	author ewerton.silles;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2019.11.16.03.48.22;	author ewerton.silles;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@/*
+ * Universidade Federal do Rio de Janeiro
+ * Escola Politecnica
+ * Departamento de Eletronica e de Computacao
+ * Prof. Marcelo Luiz Drumond Lanza
+ * EEL 270 - Computacao II - Turma 2019/2
+ 
+ * $Author: ewerton.silles $
+ * $Date: 2019/12/24 13:52:26 $
+ * $Log: dvfmEvsUmlConst.h,v $
+ * Revision 1.3  2019/12/24 13:52:26  ewerton.silles
+ * *** empty log message ***
+ *
+ * Revision 1.2  2019/11/30 04:31:06  ewerton.silles
+ * *** empty log message ***
+ *
+ * Revision 1.1  2019/11/16 03:48:22  ewerton.silles
+ * Initial revision
+ * 
+*/
+
+#ifndef DVFM_EVS_UML_CONST_H
+#define DVFM_EVS_UML_CONST_H "@@(#)dvfmEvsUmlConst.h $Revision: 1.3 $"
+
+/* ===== beginning of file code ===== */
+
+#define DVFM_EVS_UML_MAXIMUM_LENGTH_ABSOLUTE_PATH       4096
+#define DVFM_EVS_UML_MAXIMUM_LENGTH_ARCHIVE_NAME        255
+
+#define DVFM_EVS_UML_MAXIMUM_CHARACTERS_LINE_FILE_CONFIG    2048
+#define DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE             2048 + 1
+#define DVFM_EVS_UML_BUFFER_SIZE_LINE_CONFIG_FILE           2048 + 1 + 1
+
+#define DVFM_EVS_UML_MAX_SIZE_PASSWORD                  127
+#define DVFM_EVS_UML_MINIMUM_SIZE_PASSWORD              8
+#define DVFM_EVS_UML_PASSWORD_BUFFER_SIZE               127 + 1
+#define DVFM_EVS_UML_VALID_CHARACTERS_PASSWORD          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .-'\"()[]{}!?@@#$%&*/\\+=,;:"
+
+#define DVFM_EVS_UML_SIZE_ENCRYPTED_PASSWORD            107
+#define DVFM_EVS_UML_ENCRYPTED_PASSWORD_BUFFER_SIZE     107 + 1
+
+#define DVFM_EVS_UML_MAX_SIZE_USER_NAME                 256
+#define DVFM_EVS_UML_MINIMUM_SIZE_USER_NAME             11
+#define DVFM_EVS_UML_USER_NAME_BUFFER_SIZE              256 +1
+#define DVFM_EVS_UML_VALID_CHARACTERS_USER_NAME         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .-'"
+
+#define DVFM_EVS_UML_MAX_SIZE_EMAIL                     1024
+#define DVFM_EVS_UML_MINIMUM_SIZE_EMAIL                 11
+#define DVFM_EVS_UML_VALID_CHARACTERS_EMAIL             "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .-_@@"
+
+#define DVFM_EVS_UML_MAX_SIZE_NICKNAME                  65
+#define DVFM_EVS_UML_MINIMUM_SIZE_NICKNAME              5
+#define DVFM_EVS_UML_NICKNAME_BUFFER_SIZE               65 + 1
+#define DVFM_EVS_UML_VALID_CHARACTERS_NICKNAME          "abcdefghijklmnopqrstuvwxyz."
+
+#define DVFM_EVS_UML_MAXIMUM_NUMBER_IN_ID               30
+
+#define DVFM_EVS_UML_MAX_SIZE_PROFILE_STRING            31
+#define DVFM_EVS_UML_PROFILE_STRING_BUFFER_SIZE         31 + 1
+
+#define DVFM_EVS_UML_BASE_64                            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+#define DVFM_EVS_UML_SIZE_BASE_64                       64
+
+/* ===== end of file code ====== */
+
+#endif
+/* $RCSfile: dvfmEvsUmlConst.h,v $ */
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d9 1
+a9 1
+ * $Date: 2019/11/30 04:31:06 $
+d11 3
+d23 1
+a23 1
+#define DVFM_EVS_UML_CONST_H "@@(#)dvfmEvsUmlConst.h $Revision: 1.2 $"
+d37 1
+a37 1
+#define DVFM_EVS_UML_VALID_CHARACTERS_PASSWORD          "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .-'\"()[]{}!?@@#$%&*/\\+=,;:"
+d45 1
+a45 1
+#define DVFM_EVS_UML_VALID_CHARACTERS_USER_NAME         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .-'"
+d49 1
+a49 1
+#define DVFM_EVS_UML_VALID_CHARACTERS_EMAIL             "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .-_@@"
+d60 3
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d9 1
+a9 1
+ * $Date: 2019/11/16 03:48:22 $
+d11 3
+d20 1
+a20 1
+#define DVFM_EVS_UML_CONST_H "@@(#)dvfmEvsUmlConst.h $Revision: 1.1 $"
+d24 2
+a25 2
+#define DVFM_EVS_UML_MAXIMUM_LENGTH_ABSOLUTE_PATH   4096
+#define DVFM_EVS_UML_MAXIMUM_LENGTH_ARCHIVE_NAME    255
+d27 30
+a56 2
+#define DVFM_EVS_UML_MINIMUM_LENGTH_NICKNAME    	3
+#define DVFM_EVS_UML_MAXIMUM_LENGTH_NICKNAME    	65
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 6
+a13 3
+ * $Author$
+ * $Date$
+ * $Log$ 
+d17 1
+a17 1
+#define DVFM_EVS_UML_CONST_H "@@(#)dvfmEvsUmlConst.h $Revision$"
+d24 3
+d30 1
+a30 1
+/* $RCSfile$ */
+@
