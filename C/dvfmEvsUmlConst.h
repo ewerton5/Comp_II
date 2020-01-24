@@ -34,7 +34,7 @@
 #define DVFM_EVS_UML_MAX_SIZE_PASSWORD                  127
 #define DVFM_EVS_UML_MINIMUM_SIZE_PASSWORD              8
 #define DVFM_EVS_UML_PASSWORD_BUFFER_SIZE               127 + 1
-#define DVFM_EVS_UML_VALID_CHARACTERS_PASSWORD          "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .-'\"()[]{}!?@#$%&*/\\+=,;:"
+#define DVFM_EVS_UML_VALID_CHARACTERS_PASSWORD          "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .-'\"()[]{}!?@#$%&*/\\+=,;:"
 
 #define DVFM_EVS_UML_SIZE_ENCRYPTED_PASSWORD            107
 #define DVFM_EVS_UML_ENCRYPTED_PASSWORD_BUFFER_SIZE     107 + 1
@@ -42,11 +42,11 @@
 #define DVFM_EVS_UML_MAX_SIZE_USER_NAME                 256
 #define DVFM_EVS_UML_MINIMUM_SIZE_USER_NAME             11
 #define DVFM_EVS_UML_USER_NAME_BUFFER_SIZE              256 +1
-#define DVFM_EVS_UML_VALID_CHARACTERS_USER_NAME         "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ .-'"
+#define DVFM_EVS_UML_VALID_CHARACTERS_USER_NAME         "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz .-'"
 
 #define DVFM_EVS_UML_MAX_SIZE_EMAIL                     1024
 #define DVFM_EVS_UML_MINIMUM_SIZE_EMAIL                 11
-#define DVFM_EVS_UML_VALID_CHARACTERS_EMAIL             "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789 .-_@"
+#define DVFM_EVS_UML_VALID_CHARACTERS_EMAIL             "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789 .-_@"
 
 #define DVFM_EVS_UML_MAX_SIZE_NICKNAME                  65
 #define DVFM_EVS_UML_MINIMUM_SIZE_NICKNAME              5
@@ -57,6 +57,9 @@
 
 #define DVFM_EVS_UML_MAX_SIZE_PROFILE_STRING            31
 #define DVFM_EVS_UML_PROFILE_STRING_BUFFER_SIZE         31 + 1
+
+#define DVFM_EVS_UML_BASE_64                            "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+#define DVFM_EVS_UML_SIZE_BASE_64                       64
 
 /* ===== end of file code ====== */
 

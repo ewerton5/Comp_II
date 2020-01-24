@@ -34,6 +34,9 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"The first argument passed is empty",
 		"The second argument passed is empty",
 		"The third argument passed is empty",
+		"The fourth argument passed is empty",
+		"The fifth argument passed is empty",
+		"The sixth argument passed is empty",
 		"The path is too long",
 		"The filename is too long",
 		"Minimum size as bigger than maximum size",
@@ -82,7 +85,15 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Username verification is different",
 		"Email verification is different",
 		"Password verification is different",
-		"The file is corrupted"
+		"The file is corrupted",
+		"The list is empty",
+		"User not found",
+		"Incompatible emails",
+		"Incompatible full names",
+		"User is not responsible",
+		"User is not administrator",
+		"Incorrect datas",
+		"Incompatible validation key"
 	},
 
 	{
@@ -90,6 +101,9 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"O primeiro argumento passado esta vazio",
 		"O segundo argumento passado esta vazio",
 		"O terceiro argumento passado esta vazio",
+		"O quarto argumento passado esta vazio",
+		"O quinto argumento passado esta vazio",
+		"O sexto argumento passado esta vazio",
 		"O caminho e muito longo",
 		"O nome do arquivo e muito longo",
 		"O tamanho minimo e maior que o tamanho maximo",
@@ -138,8 +152,15 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"A confirmacao do username esta diferente",
 		"A confirmacao do email esta diferente",
 		"A confirmacao da senha esta diferente",
-		"O arquivo esta corrompido"
-
+		"O arquivo esta corrompido",
+		"A lista esta vazia",
+		"Usuario nao encontrado",
+		"Emails incompativeis",
+		"Nomes completos incompativeis",
+		"O usuario nao e o responsavel",
+		"O usuario nao e administrador",
+		"Dados incorretos",
+		"Chave de validacao incompativel"
 	}
 };
 
@@ -150,6 +171,9 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"The first argument passed is empty",
 		"The second argument passed is empty",
 		"The third argument passed is empty",
+		"The fourth argument passed is empty",
+		"The fifth argument passed is empty",
+		"The sixth argument passed is empty",
 		"The path is too long",
 		"The filename is too long",
 		"Minimum size as bigger than maximum size",
@@ -198,7 +222,15 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"Username verification is different",
 		"Email verification is different",
 		"Password verification is different",
-		"The file is corrupted"
+		"The file is corrupted",
+		"The list is empty",
+		"User not found",
+		"Incompatible emails",
+		"Incompatible full names",
+		"User is not responsible",
+		"User is not administrator",
+		"Incorrect datas",
+		"Incompatible validation key"
 	},
 
 	{
@@ -206,6 +238,9 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"O primeiro argumento passado esta vazio",
 		"O segundo argumento passado esta vazio",
 		"O terceiro argumento passado esta vazio",
+		"O quarto argumento passado esta vazio",
+		"O quinto argumento passado esta vazio",
+		"O sexto argumento passado esta vazio",
 		"O caminho e muito longo",
 		"O nome do arquivo e muito longo",
 		"O tamanho minimo e maior que o tamanho maximo",
@@ -254,8 +289,15 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"A confirmacao do username esta diferente",
 		"A confirmacao do email esta diferente",
 		"A confirmacao da senha esta diferente",
-		"O arquivo esta corrompido"
-
+		"O arquivo esta corrompido",
+		"A lista esta vazia",
+		"Usuario nao encontrado",
+		"Emails incompativeis",
+		"Nomes completos incompativeis",
+		"O usuario nao e o responsavel",
+		"O usuario nao e administrador",
+		"Dados incorretos",
+		"Chave de validacao incompativel"
 	}
 };
 
@@ -266,6 +308,9 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"The first argument passed is empty",
 		"The second argument passed is empty",
 		"The third argument passed is empty",
+		"The fourth argument passed is empty",
+		"The fifth argument passed is empty",
+		"The sixth argument passed is empty",
 		"The path is too long",
 		"The filename is too long",
 		"Minimum size as bigger than maximum size",
@@ -314,7 +359,15 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"Username verification is different",
 		"Email verification is different",
 		"Password verification is different",
-		"The file is corrupted"
+		"The file is corrupted",
+		"The list is empty",
+		"User not found",
+		"Incompatible emails",
+		"Incompatible full names",
+		"User is not responsible",
+		"User is not administrator",
+		"Incorrect datas",
+		"Incompatible validation key"
 	},
 
 	{
@@ -322,6 +375,9 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"O primeiro argumento passado est&aacute; vazio",
 		"O segundo argumento passado est&aacute; vazio",
 		"O terceiro argumento passado est&aacute; vazio",
+		"O quarto argumento passado est&aacute; vazio",
+		"O quinto argumento passado est&aacute; vazio",
+		"O sexto argumento passado est&aacute; vazio",
 		"O caminho &eacute; muito longo",
 		"O nome do arquivo &eacute; muito longo",
 		"O tamanho minimo &eacute; maior que o tamanho m&aacute;ximo",
@@ -370,8 +426,15 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"A confirma&ccidil;&atilde;o do username esta diferente",
 		"A confirma&ccidil;&atilde;o do email esta diferente",
 		"A confirma&ccidil;&atilde;o da senha esta diferente",
-		"O arquivo esta corrompido"
-
+		"O arquivo esta corrompido",
+		"A lista est&aacute; vazia",
+		"Usu&aacute;rio n&atilde;o encontrado",
+		"Emails incompat&iacute;veis",
+		"Nomes completos incompat&iacute;veis",
+		"O usu&aacute;rio n&atilde;o &eacute; o respons&aacute;vel",
+		"O usu&aacute;rio n&atilde;o &eacute; administrador",
+		"Dados incorretos",
+		"Chave de valida&ccidil;&atilde;o incompat&iacute;vel"
 	}
 };
 
@@ -391,7 +454,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
  */
 
 char *
-DvfmEvsUmlGetCliErrorMessage (dvfmEvsUmlErrorType dvfmEvsUmlErrorCode, dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
+DvfmEvsUmlGetCliErrorMessage (dvfmEvsUmlErrorType dvfmEvsUmlErrorCode,
+							  dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
 {
 	char *dvfmEvsUmlIndexError = "Out of range error message";
 
@@ -420,7 +484,8 @@ DvfmEvsUmlGetCliErrorMessage (dvfmEvsUmlErrorType dvfmEvsUmlErrorCode, dvfmEvsUm
  */
 
 char *
-DvfmEvsUmlGetNcursesErrorMessage (dvfmEvsUmlErrorType dvfmEvsUmlErrorCode, dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
+DvfmEvsUmlGetNcursesErrorMessage (dvfmEvsUmlErrorType dvfmEvsUmlErrorCode,
+								  dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
 {
 	char *dvfmEvsUmlIndexError = "Out of range error message";
 
@@ -449,7 +514,8 @@ DvfmEvsUmlGetNcursesErrorMessage (dvfmEvsUmlErrorType dvfmEvsUmlErrorCode, dvfmE
  */
 
 char *
-DvfmEvsUmlGetWebErrorMessage (dvfmEvsUmlErrorType dvfmEvsUmlErrorCode, dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
+DvfmEvsUmlGetWebErrorMessage (dvfmEvsUmlErrorType dvfmEvsUmlErrorCode,
+							  dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
 {
 	char *dvfmEvsUmlIndexError = "Out of range error message";
 
