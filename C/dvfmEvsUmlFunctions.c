@@ -446,8 +446,8 @@ DvfmEvsUmlGetCryptAlgorithm (char *dvfmEvsUmlEncryptedPassword, dvfmEvsUmlCryptA
 
 		dvfmEvsUmlFirstCharacter [0] = dvfmEvsUmlEncryptedPassword [0];
 		dvfmEvsUmlSecondCharacter [0] = dvfmEvsUmlEncryptedPassword [1];
-		if(!strstr(DVFM_EVS_UML_BASE_64, dvfmEvsUmlFirstCharacter) ||
-		   !strstr(DVFM_EVS_UML_BASE_64, dvfmEvsUmlSecondCharacter))
+		if(!strstr("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz./", dvfmEvsUmlFirstCharacter) ||
+		   !strstr("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz./", dvfmEvsUmlSecondCharacter))
 			return dvfmEvsUmlFormatEncryptedPassword;
 
 		*dvfmEvsUmlAlgorithm = dvfmEvsUmlDes;
@@ -492,6 +492,7 @@ DvfmEvsUmlGetCryptAlgorithm (char *dvfmEvsUmlEncryptedPassword, dvfmEvsUmlCryptA
 dvfmEvsUmlErrorType
 DvfmEvsUmlEncodePasswordWithSpecificAlgorithm (char *dvfmEvsUmlFlatPassword, dvfmEvsUmlCryptAlgorithms dvfmEvsUmlAlgorithm, char *dvfmEvsUmlEncryptedPassword)
 {
+	char *dvfmEvsUmlBase64 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz./";
 	char dvfmEvsUmlAuxiliarySalt[18] = "0\0";
 	char dvfmEvsUmlSalt[23] = "$0$\0";
 	dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
@@ -510,7 +511,7 @@ DvfmEvsUmlEncodePasswordWithSpecificAlgorithm (char *dvfmEvsUmlFlatPassword, dvf
 		if(strlen(dvfmEvsUmlFlatPassword) > 8)
 			return dvfmEvsUmlLongFlatPassword;
 
-		dvfmEvsUmlErrorCode = DvfmEvsUmlCreateRandomString(DVFM_EVS_UML_BASE_64, 2, dvfmEvsUmlSalt);
+		dvfmEvsUmlErrorCode = DvfmEvsUmlCreateRandomString(dvfmEvsUmlBase64, 2, dvfmEvsUmlSalt);
 
 		if(dvfmEvsUmlErrorCode)
 			return dvfmEvsUmlSecondaryFunction;
@@ -522,7 +523,7 @@ DvfmEvsUmlEncodePasswordWithSpecificAlgorithm (char *dvfmEvsUmlFlatPassword, dvf
 		switch(dvfmEvsUmlAlgorithm)
 		{
 			case dvfmEvsUmlMd5:
-				dvfmEvsUmlErrorCode = DvfmEvsUmlCreateRandomString(DVFM_EVS_UML_BASE_64, 8, dvfmEvsUmlAuxiliarySalt);
+				dvfmEvsUmlErrorCode = DvfmEvsUmlCreateRandomString(dvfmEvsUmlBase64, 8, dvfmEvsUmlAuxiliarySalt);
 
 				if(dvfmEvsUmlErrorCode)
 					return dvfmEvsUmlSecondaryFunction;
@@ -532,7 +533,7 @@ DvfmEvsUmlEncodePasswordWithSpecificAlgorithm (char *dvfmEvsUmlFlatPassword, dvf
 				break;
 
 			case dvfmEvsUmlSha256:
-				dvfmEvsUmlErrorCode = DvfmEvsUmlCreateRandomString(DVFM_EVS_UML_BASE_64, 16, dvfmEvsUmlAuxiliarySalt);
+				dvfmEvsUmlErrorCode = DvfmEvsUmlCreateRandomString(dvfmEvsUmlBase64, 16, dvfmEvsUmlAuxiliarySalt);
 
 				if(dvfmEvsUmlErrorCode)
 					return dvfmEvsUmlSecondaryFunction;
@@ -542,7 +543,7 @@ DvfmEvsUmlEncodePasswordWithSpecificAlgorithm (char *dvfmEvsUmlFlatPassword, dvf
 				break;
 
 			case dvfmEvsUmlSha512:
-				dvfmEvsUmlErrorCode = DvfmEvsUmlCreateRandomString(DVFM_EVS_UML_BASE_64, 16, dvfmEvsUmlAuxiliarySalt);
+				dvfmEvsUmlErrorCode = DvfmEvsUmlCreateRandomString(dvfmEvsUmlBase64, 16, dvfmEvsUmlAuxiliarySalt);
 
 				if(dvfmEvsUmlErrorCode)
 					return dvfmEvsUmlSecondaryFunction;
@@ -690,7 +691,7 @@ DvfmEvsUmlCheckPassword (char *dvfmEvsUmlFlatPassword, char *dvfmEvsUmlEncrypted
 		return dvfmEvsUmlSecondaryFunction;
 
 	if (strcmp( dvfmEvsUmlEncryptedPassword, dvfmEvsUmlFlatPasswordEncrypted))
-		return dvfmEvsUmlIncompatiblePassword;
+		return dvfmEvsUmlIncompatibleFlatPassword;
 
 	return dvfmEvsUmlOk;
 }
@@ -726,20 +727,26 @@ DvfmEvsUmlGetConfigurationOptionsValues ( char *dvfmEvsUmlNameConfigurationFile,
 		return dvfmEvsUmlSecondEmptyPointer;
 
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlWebServerUrl, DVFM_EVS_UML_WEB_SERVER_URL);
+	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlWebServerUrlName, DVFM_EVS_UML_WEB_SERVER_URL_NAME);
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifier, DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER);
+	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifierName, DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER_NAME);
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectory, DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY);
+	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectoryName, DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY_NAME);
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlDataDirectory, DVFM_EVS_UML_DATA_DIRECTORY);
+	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlDataDirectoryName, DVFM_EVS_UML_DATA_DIRECTORY_NAME);
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectory, DVFM_EVS_UML_COOKIES_DIRECTORY);
+	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectoryName, DVFM_EVS_UML_COOKIES_DIRECTORY_NAME);
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, DVFM_EVS_UML_USERS_DATA_FILENAME);
+	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilenameName, DVFM_EVS_UML_USERS_DATA_FILENAME_NAME);
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilename, DVFM_EVS_UML_INVITED_USERS_DATA_FILENAME);
+	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilenameName, DVFM_EVS_UML_INVITED_USERS_DATA_FILENAME_NAME);
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilename, DVFM_EVS_UML_REQUESTING_USERS_DATA_FILENAME);
+	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilenameName, DVFM_EVS_UML_REQUESTING_USERS_DATA_FILENAME_NAME);
 	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilename, DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME);
-	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlUnlockingUsersDataFilename, DVFM_EVS_UML_UNLOCKING_USERS_DATA_FILENAME);
-	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlPasswordAbeyancesDataFilename, DVFM_EVS_UML_PASSWORD_ABEYANCES_DATA_FILENAME);
-	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlEmailAbeyancesDataFilename, DVFM_EVS_UML_EMAIL_ABEYANCES_DATA_FILENAME);
+	strcpy(dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilenameName, DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME_NAME);
 
 	if(dvfmEvsUmlNameConfigurationFile)
-		if(strlen(dvfmEvsUmlNameConfigurationFile))
+		if(strlen(dvfmEvsUmlNameConfigurationFile) != 0)
 		{
 			if(!(dvfmEvsUmlRead = fopen(dvfmEvsUmlNameConfigurationFile, "r")))
 				return dvfmEvsUmlCantOpenFile;
@@ -751,10 +758,7 @@ DvfmEvsUmlGetConfigurationOptionsValues ( char *dvfmEvsUmlNameConfigurationFile,
 						dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer] != '='; dvfmEvsUmlIndex++, dvfmEvsUmlIndexBuffer++)
 					{
 						if (dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer] == '\0')
-						{
-							fclose(dvfmEvsUmlRead);
 							return dvfmEvsUmlInvalidConfigFile;
-						}
 						
 						dvfmEvsUmlSettingName[dvfmEvsUmlIndex] = dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer];
 					}
@@ -769,41 +773,32 @@ DvfmEvsUmlGetConfigurationOptionsValues ( char *dvfmEvsUmlNameConfigurationFile,
 						dvfmEvsUmlSettingValue[dvfmEvsUmlIndex] = dvfmEvsUmlBuffer[dvfmEvsUmlIndexBuffer];
 					dvfmEvsUmlSettingValue[dvfmEvsUmlIndex] = '\0';
 
-					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_WEB_SERVER_URL_NAME))
+					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlWebServerUrlName))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlWebServerUrl, dvfmEvsUmlSettingValue);
 
-					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_ADMINISTRATOR_USER_IDENTIFIER_NAME))
+					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifierName))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlAdministratorUserIdentifier, dvfmEvsUmlSettingValue);
 					
-					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_PRIVATE_ROOT_DIRECTORY_NAME))
+					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectoryName))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlPrivateRootDirectory, dvfmEvsUmlSettingValue);
 					
-					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_DATA_DIRECTORY_NAME))
+					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlDataDirectoryName))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlDataDirectory, dvfmEvsUmlSettingValue);
 					
-					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_COOKIES_DIRECTORY_NAME))
+					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectoryName))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlCookiesDirectory, dvfmEvsUmlSettingValue);
 					
-					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_USERS_DATA_FILENAME_NAME))
+					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilenameName))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, dvfmEvsUmlSettingValue);
 					
-					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_INVITED_USERS_DATA_FILENAME_NAME))
+					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilenameName))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlInvitedUsersDataFilename, dvfmEvsUmlSettingValue);
 					
-					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_REQUESTING_USERS_DATA_FILENAME_NAME))
+					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilenameName))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlRequestingUsersDataFilename, dvfmEvsUmlSettingValue);
 					
-					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME_NAME))
+					if(!strcmp(dvfmEvsUmlSettingName, dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilenameName))
 						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlLockedUsersDataFilename, dvfmEvsUmlSettingValue);
-					
-					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_UNLOCKING_USERS_DATA_FILENAME))
-						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlUnlockingUsersDataFilename, dvfmEvsUmlSettingValue);
-
-					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_PASSWORD_ABEYANCES_DATA_FILENAME))
-						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlPasswordAbeyancesDataFilename, dvfmEvsUmlSettingValue);
-
-					if(!strcmp(dvfmEvsUmlSettingName, DVFM_EVS_UML_EMAIL_ABEYANCES_DATA_FILENAME))
-						strcpy(dvfmEvsUmlSettings->dvfmEvsUmlEmailAbeyancesDataFilename, dvfmEvsUmlSettingValue);
 				}
 			if(ferror(dvfmEvsUmlRead))
 			{
@@ -813,6 +808,608 @@ DvfmEvsUmlGetConfigurationOptionsValues ( char *dvfmEvsUmlNameConfigurationFile,
 
 			fclose(dvfmEvsUmlRead);
 		}
+
+	return dvfmEvsUmlOk;
+}
+
+/*
+ * void
+ * DvfmEvsUmlShowCliHelp (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlLanguageType);
+ *
+ *
+ * Arguments:
+ * dvfmEvsUmlConfigurationOptionsType * - the address of a local variable of type dvfmEvsUmlConfigurationOptionsType (I)
+ * dvfmEvsUmlLanguageType - name of the configuration file (I)
+ * 
+ * Returned code:
+ * 
+ * void
+ * 
+ * Description:
+ * This function shows help in the CLI environment.
+ */
+
+void
+DvfmEvsUmlShowCliHelp (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmEvsUmlLanguageType dvfmEvsUmlLanguage)
+{
+	printf("************************************ ENGLISH ********************************\n");
+	printf("\n");
+	printf(" ==================================> Legend <===============================\n");
+	printf("|* Short option is indicated by: -\n");
+	printf("|* Long option is indicated by: --\n");
+	printf("|* Words before equals are argument names\n");
+	printf("|* Words after the equals are values ​​of their respective argument\n");
+	printf("|* The term 'or' is indicated by: |\n");
+	printf("|* Free values ​​and indicated by: <argument value>\n");	
+	printf("|* Default values ​​and indicated by: ->argument value<-\n");
+	printf("|* Optional arguments (not required) are indicated by: [argument=value]\n");
+	printf("|* Mandatory arguments are indicated by: argument=value\n");
+	printf(" ===========================================================================\n");
+	printf("\n");
+	printf("\t\t\t -h | --help\n");
+	printf("\t\t =>Description: shows a description of all options and how to use them in all available languages\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -h | --help [configuration=<arquivo-configuração>] [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -o | --options\n");
+	printf("\t\t =>Description: displays the values ​​of all configuration options\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -o | --options [configuration=<arquivo-configuração>] [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -N | --Ncurses\n");
+	printf("\t\t =>Description: run the program via Ncurses interface\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -N | --Ncurses [configuration=<arquivo-configuração>] [user=<apelido>][language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -C | --Configure\n");
+	printf("\t\t =>Description: configures the tool to permanently or temporarily add new user data to the system\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -C | --Configure [configuration=<arquivo-configuração>] username=<nome-completo> confirm-username=<nome-completo> email=<endereço-eletrônico> confirm-email=<endereço-eletrônico> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -a | --add\n");
+	printf("\t\t =>Description: permanently or temporarily adds new user data to the system\n");
+	printf("\t\t =>Use: -a | --add [configuration=<arquivo-configuração>] user=<apelido> username=<nome-completo> confirm-username=<nome-completo> email=<endereço-eletrônico> confirm-email=<endereço-eletrônico> profile=->administrator<- | ->professor<- | ->student<- [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -i | --invite\n");
+	printf("\t\t =>Description: requests the permanent or temporary addition of new user data to the system\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -i | --invite [configuration=<arquivo-configuração>] user=<apelido> username=<nome-completo> confirm-username=<nome-completo> email=<endereço-eletrônico> confirm-email=<endereço-eletrônico> profile=->administrator<- | ->professor<- | ->student<- [language=->english<- | ->portuguese<-]\n");	
+	printf("\n");
+	printf("\t\t\t -t | --accept\n");
+	printf("\t\t =>Description: accept a new user in the system\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -t | --accept [configuration=<arquivo-configuração>] user=<apelido>[language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -j | --reject\n");
+	printf("\t\t =>Description: delete a system user\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -j | --reject [configuration=<arquivo-configuração>] user=<apelido>[language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -n | --new\n");
+	printf("\t\t =>Description: start the evaluation process\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -n | --new [configuration=<arquivo-configuração>] username=<nome-completo> confirm-username=<nome-completo> email=<endereço-eletrônico> confirm-email=<endereço-eletrônico> friend-email=<endereço-eletrônico> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -q | --request\n");
+	printf("\t\t =>Description: lists all valid requests not met by the user in question\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -q | --request [configuration=<arquivo-configuração>] user=<apelido> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -Q | --Request\n");
+	printf("\t\t =>Description: lists all valid requests not fulfilled\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -Q | --Request [configuration=<arquivo-configuração>] user=<apelido> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -v | --approve\n");
+	printf("\t\t =>Description: concludes and accepts the process of adding a new user to the system\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -v | --approve [configuration=<arquivo-configuração>] user=<apelido> nickname=<apelido> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -d | --disapprove\n");
+	printf("\t\t =>Description: concludes and rejects the process of adding a new user to the system\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -d | --disapprove [configuration=<arquivo-configuração>] user=<apelido> nickname=<apelido> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -U | --Unlocking\n");
+	printf("\t\t =>Description: lists all users who have requested account unlocking\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -U | --Unlocking [configuration=<arquivo-configuração>] user=<apelido> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -l | --lock\n");
+	printf("\t\t =>Description: blocks the user account in question\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -l | --lock [configuration=<arquivo-configuração>] user=<apelido> [nickname=<apelido>] [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -u | --unlock\n");
+	printf("\t\t =>Description: unlock an account\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -u | --unlock [configuration=<arquivo-configuração>] user=<apelido> [nickname=<apelido>] [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -p | --password\n");
+	printf("\t\t =>Description: change password\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -p | --password [configuration=<arquivo-configuração>] user=<apelido> [nickname=<apelido>] [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -r | --reset\n");
+	printf("\t\t =>Description: request a temporary password for system access\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -r | --reset [configuration=<arquivo-configuração>] user=<apelido> [nickname=<apelido>] [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -m | --modify\n");
+	printf("\t\t =>Description: change name\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -m | --modify [configuration=<arquivo-configuração>] user=<apelido> [nickname=<apelido>] username=<nome- completo> confirm-username=<nome-completo> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -e | --edit\n");
+	printf("\t\t =>Description: change the electronic address\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -e | --edit [configuration=<arquivo-configuração>] user=<apelido> [nickname=<apelido>] email=<endereço-eletrônico> confirm-email=<endereço-eletrônico> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -c | --confirm\n");
+	printf("\t\t =>Description: validate your new email address\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -c | --confirm [configuration=<arquivo-configuração>] user=<apelido> [nickname=<apelido>] key=<chave> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -g | --group\n");
+	printf("\t\t =>Description: change profile\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -g | --group [configuration=<arquivo-configuração>] user=<apelido> nickname=<apelido>  profile=->administrator<- | ->professor<- | ->student<- [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -s | --show\n");
+	printf("\t\t =>Description: get information about all users registered in the system\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -s | --show [configuration=<arquivo-configuração>] [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -S | --Search\n");
+	printf("\t\t =>Description: get information about all users registered in the system that meet the search filters\n");
+	printf("\t\t =>Use: ./dvfmEvsUml -S | --Search [configuration=<arquivo-configuração>] [username=<nome-completo ou parte-do-nome>] [email=<endereço-eletrônico ou parte-do-endereço-eletrônico>] [profile=->administrator<- | ->professor<- | ->administrator-professor<- | ->student<- | ->administrator-student<- | ->professor-student<- | ->administrator-professor-student<- [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\n");
+	printf("\n");
+	printf("************************************ PORTUGUES ************************************\n");
+	printf("\n");
+	printf(" ==================================> Legenda <==================================\n");
+	printf("|* Opcao curta e indicado por: -\n");
+	printf("|* Opcao longa e indicado por: --\n");
+	printf("|* Palavras antes do igual sao nomes de argumentos\n");
+	printf("|* Palavras depois do igual sao valores de seu respectivo argumento\n");
+	printf("|* O termo 'ou' e indicado por: |\n");
+	printf("|* Valores livres e indicado por: <valor do argumento>\n");	
+	printf("|* Valores  predefinidos e indicado por: ->valor do argumento<-\n");
+	printf("|* Argumentos opcionais (nao obrigatorio) sao indicados por: [argumento=valor]\n");
+	printf("|* Argumentos obrigatorios sao indicados por: arguemnto=valor\n");
+	printf(" ===============================================================================\n");
+	printf("\n");
+	printf("\t\t\t -h | --help\n");
+	printf("\t\t =>Descricao: monstra uma descricao de todas as opcoes e como utilisa-las em todos os idiomas disponiveis\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -h | --help [configuration=<arquivo-configuração>] [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -o | --options\n");
+	printf("\t\t =>Descricao: exibe os valores de todas as opcoes de configuracao\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -o | --options [configuration=<arquivo-configuração>] [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -N | --Ncurses\n");
+	printf("\t\t =>Descricao: executa o programa via interface Ncurses\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -N | --Ncurses [configuration=<arquivo-configuração>] [user=<apelido>][language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -C | --Configure\n");
+	printf("\t\t =>Descricao: configura a ferramenta de adicionar permanente ou temporariamente os dados de um novo usuario ao sistema\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -C | --Configure [configuration=<arquivo-configuração>] username=<nome-completo> confirm-username=<nome-completo> email=<endereço-eletrônico> confirm-email=<endereço-eletrônico> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -a | --add\n");
+	printf("\t\t =>Descricao: adiciona permanente ou temporariamente os dados de um novo usuario ao sistema\n");
+	printf("\t\t =>Uso: -a | --add [configuration=<arquivo-configuração>] user=<apelido> username=<nome-completo> confirm-username=<nome-completo> email=<endereço-eletrônico> confirm-email=<endereço-eletrônico> profile=->administrator<- | ->professor<- | ->student<- [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -i | --invite\n");
+	printf("\t\t =>Descricao: solicita a adicao permanente ou temporariamente os dados de um novo usuario ao sistema\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -i | --invite [configuration=<arquivo-configuração>] user=<apelido> username=<nome-completo> confirm-username=<nome-completo> email=<endereço-eletrônico> confirm-email=<endereço-eletrônico> profile=->administrator<- | ->professor<- | ->student<- [language=->english<- | ->portuguese<-]\n");	
+	printf("\n");
+	printf("\t\t\t -t | --accept\n");
+	printf("\t\t =>Descricao: aceita um novo usuario no sistema\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -t | --accept [configuration=<arquivo-configuração>] user=<apelido>[language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -j | --reject\n");
+	printf("\t\t =>Descricao: exclui um usuario do sistema\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -j | --reject [configuration=<arquivo-configuração>] user=<apelido>[language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -n | --new\n");
+	printf("\t\t =>Descricao: inicia o processo de avaliacao\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -n | --new [configuration=<arquivo-configuração>] username=<nome-completo> confirm-username=<nome-completo> email=<endereço-eletrônico> confirm-email=<endereço-eletrônico> friend-email=<endereço-eletrônico> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -q | --request\n");
+	printf("\t\t =>Descricao: lista todas as solicitacoes validas nao atendidas pelo usuario em questao\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -q | --request [configuration=<arquivo-configuração>] user=<apelido> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -Q | --Request\n");
+	printf("\t\t =>Descricao: lista todas as solicitacoes validas nao atendidas\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -Q | --Request [configuration=<arquivo-configuração>] user=<apelido> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -v | --approve\n");
+	printf("\t\t =>Descricao: conclui e aceita o processo de adicionar um novo usuario ao sistema\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -v | --approve [configuration=<arquivo-configuração>] user=<apelido> nickname=<apelido> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -d | --disapprove\n");
+	printf("\t\t =>Descricao: conclui e rejeita o processo de adicionar um novo usuario ao sistema\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -d | --disapprove [configuration=<arquivo-configuração>] user=<apelido> nickname=<apelido> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -U | --Unlocking\n");
+	printf("\t\t =>Descricao: lista todos os usuarios que solicitaram desbloqueio de conta\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -U | --Unlocking [configuration=<arquivo-configuração>] user=<apelido> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -l | --lock\n");
+	printf("\t\t =>Descricao: bloqueia a conta do usuario em questao\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -l | --lock [configuration=<arquivo-configuração>] user=<apelido> [nickname=<apelido>] [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -u | --unlock\n");
+	printf("\t\t =>Descricao: desbloqueia uma conta\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -u | --unlock [configuration=<arquivo-configuração>] user=<apelido> [nickname=<apelido>] [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -p | --password\n");
+	printf("\t\t =>Descricao: altera a senha\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -p | --password [configuration=<arquivo-configuração>] user=<apelido> [nickname=<apelido>] [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -r | --reset\n");
+	printf("\t\t =>Descricao: solicita uma senha temporaria para acesso ao sistema\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -r | --reset [configuration=<arquivo-configuração>] user=<apelido> [nickname=<apelido>] [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -m | --modify\n");
+	printf("\t\t =>Descricao: altera o nome\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -m | --modify [configuration=<arquivo-configuração>] user=<apelido> [nickname=<apelido>] username=<nome- completo> confirm-username=<nome-completo> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -e | --edit\n");
+	printf("\t\t =>Descricao: altera o endereco eletronico\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -e | --edit [configuration=<arquivo-configuração>] user=<apelido> [nickname=<apelido>] email=<endereço-eletrônico> confirm-email=<endereço-eletrônico> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -c | --confirm\n");
+	printf("\t\t =>Descricao: valida o seu novo endereço eletronico\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -c | --confirm [configuration=<arquivo-configuração>] user=<apelido> [nickname=<apelido>] key=<chave> [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -g | --group\n");
+	printf("\t\t =>Descricao: troca o perfil\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -g | --group [configuration=<arquivo-configuração>] user=<apelido> nickname=<apelido>  profile=->administrator<- | ->professor<- | ->student<- [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -s | --show\n");
+	printf("\t\t =>Descricao: obter informacoes sobre todos os usuarios cadastrados no sistema\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -s | --show [configuration=<arquivo-configuração>] [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\t\t\t -S | --Search\n");
+	printf("\t\t =>Descricao: obter informacoes sobre todos os usuarios cadastrados no  sistema que atendam aos filtros de busca\n");
+	printf("\t\t =>Uso: ./dvfmEvsUml -S | --Search [configuration=<arquivo-configuração>] [username=<nome-completo ou parte-do-nome>] [email=<endereço-eletrônico ou parte-do-endereço-eletrônico>] [profile=->administrator<- | ->professor<- | ->administrator-professor<- | ->student<- | ->administrator-student<- | ->professor-student<- | ->administrator-professor-student<- [language=->english<- | ->portuguese<-]\n");
+	printf("\n");
+	printf("\n");
+	printf("################################ END OF HELP ################################\n");
+	printf("\n");
+
+}
+
+/*
+ * dvfmEvsUmlErrorType
+ * DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *, dvfmEvsUmlUserDataType *);
+ *
+ *
+ * Arguments:
+ * dvfmEvsUmlConfigurationOptionsType * - configuration options (I)
+ * dvfmEvsUmlUserDataType * - struct user information (I)
+ * 
+ * Returned code:
+ * 
+ * dvfmEvsUmlOk - all right
+ * 
+ * Description:
+ * Permanently or temporarily add new user data to the system
+ */
+
+dvfmEvsUmlErrorType
+DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings, dvfmEvsUmlUserDataType *dvfmEvsUmlDataUser)
+{
+
+	FILE * dvfmEvsUmlUsersFile;
+
+	dvfmEvsUmlErrorType dvfmEvsUmlReturnCode;
+
+	char dvfmEvsUmlFirstNickname [DVFM_EVS_UML_NICKNAME_BUFFER_SIZE];
+	char dvfmEvsUmlSecondNickname [DVFM_EVS_UML_NICKNAME_BUFFER_SIZE];
+	char dvfmEvsUmlPresentNickname [DVFM_EVS_UML_NICKNAME_BUFFER_SIZE];
+	char dvfmEvsUmlEncryptedPassword [DVFM_EVS_UML_ENCRYPTED_PASSWORD_BUFFER_SIZE];
+	char dvfmEvsUmlBuffer [DVFM_EVS_UML_BUFFER_SIZE_LINE_CONFIG_FILE];
+	char dvfmEvsUmlUserIdentifierString [DVFM_EVS_UML_MAXIMUM_NUMBER_IN_ID];
+
+	dvfmEvsUmlUserIdentifierType dvfmEvsUmlUserIdentifierPresent, dvfmEvsUmlUserIdentifierPrevious;
+
+	unsigned dvfmEvsUmlIndex, dvfmEvsUmlTwoPointCounter, dvfmEvsUmlMultiplier, dvfmEvsUmlNumber, dvfmEvsUmlBeginPresentNickname, dvfmEvsUmlEndPresentNickname, dvfmEvsUmlNumberProfile = 0;
+
+	dvfmEvsUmlBool dvfmEvsUmlLastLine = dvfmEvsUmlFalse;
+	dvfmEvsUmlBool dvfmEvsUmlFirstNumber = dvfmEvsUmlTrue;
+	dvfmEvsUmlBool dvfmEvsUmlFirstLine = dvfmEvsUmlTrue;
+	dvfmEvsUmlBool dvfmEvsUmlFound = dvfmEvsUmlFalse;
+	dvfmEvsUmlBool dvfmEvsUmlExistFirstNickname = dvfmEvsUmlFalse;
+
+	/* variation if the information is valid */
+
+	if(strcmp( dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername, dvfmEvsUmlDataUser->dvfmEvsUmlStructConfirmUsername))
+		return dvfmEvsUmlDifferentUsernameConfirmation;
+
+	if(strcmp( dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail, dvfmEvsUmlDataUser->dvfmEvsUmlStructConfirmEmail))
+		return dvfmEvsUmlDifferentEmailConfirmation;
+
+	if(strcmp( dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword, dvfmEvsUmlDataUser->dvfmEvsUmlStructConfirmPassword))
+		return dvfmEvsUmlDifferentPasswordConfirmation;
+
+	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckStringField ( dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername, DVFM_EVS_UML_VALID_CHARACTERS_USER_NAME, DVFM_EVS_UML_MINIMUM_SIZE_USER_NAME, DVFM_EVS_UML_MAX_SIZE_USER_NAME)))
+		return dvfmEvsUmlReturnCode;
+
+	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckEmail( dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail, DVFM_EVS_UML_VALID_CHARACTERS_EMAIL, DVFM_EVS_UML_MINIMUM_SIZE_EMAIL, DVFM_EVS_UML_MAX_SIZE_EMAIL)))
+		return dvfmEvsUmlReturnCode;
+
+	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckStringField ( dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword, DVFM_EVS_UML_VALID_CHARACTERS_PASSWORD, DVFM_EVS_UML_MINIMUM_SIZE_PASSWORD, DVFM_EVS_UML_MAX_SIZE_PASSWORD)))
+		return dvfmEvsUmlReturnCode;
+
+	/* redeeming username */
+
+	dvfmEvsUmlIndex = 0;
+
+	while (dvfmEvsUmlIndex < strlen(dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername))
+	{
+		if(dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername [dvfmEvsUmlIndex] == '-')
+			dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername [dvfmEvsUmlIndex] = ' ';
+					
+		dvfmEvsUmlIndex++;
+	}
+
+	/* creating nickname */
+	
+	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCreateNickname ( dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername, dvfmEvsUmlFirstNickname, dvfmEvsUmlSecondNickname)))
+		return dvfmEvsUmlReturnCode;
+
+	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckNickname ( dvfmEvsUmlFirstNickname, DVFM_EVS_UML_VALID_CHARACTERS_NICKNAME, DVFM_EVS_UML_MINIMUM_SIZE_NICKNAME, DVFM_EVS_UML_MAX_SIZE_NICKNAME)))
+		return dvfmEvsUmlReturnCode;
+
+	if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckNickname ( dvfmEvsUmlSecondNickname, DVFM_EVS_UML_VALID_CHARACTERS_NICKNAME, DVFM_EVS_UML_MINIMUM_SIZE_NICKNAME, DVFM_EVS_UML_MAX_SIZE_NICKNAME)))
+		return dvfmEvsUmlReturnCode;
+
+	/* redeeming profiles */
+
+	if(strlen(dvfmEvsUmlDataUser->dvfmEvsUmlStructProfile))
+	{
+		if(!(strcmp(dvfmEvsUmlDataUser->dvfmEvsUmlStructProfile, "administrator")))
+			dvfmEvsUmlNumberProfile  = (unsigned)(dvfmEvsUmlAdministrator);
+
+		if(!(strcmp(dvfmEvsUmlDataUser->dvfmEvsUmlStructProfile, "professor")))
+			dvfmEvsUmlNumberProfile  = (unsigned)(dvfmEvsUmlProfessor);
+
+		if(!(strcmp(dvfmEvsUmlDataUser->dvfmEvsUmlStructProfile, "student")))
+			dvfmEvsUmlNumberProfile  = (unsigned)(dvfmEvsUmlStudent);
+
+		if(!(strcmp(dvfmEvsUmlDataUser->dvfmEvsUmlStructProfile, "administrator-professor")))
+			dvfmEvsUmlNumberProfile  = (unsigned)(dvfmEvsUmlAdministrator + dvfmEvsUmlProfessor);
+
+		if(!(strcmp(dvfmEvsUmlDataUser->dvfmEvsUmlStructProfile, "administrator-student")))
+			dvfmEvsUmlNumberProfile  = (unsigned)(dvfmEvsUmlAdministrator + dvfmEvsUmlStudent);
+
+		if(!(strcmp(dvfmEvsUmlDataUser->dvfmEvsUmlStructProfile, "professor-student")))
+			dvfmEvsUmlNumberProfile  = (unsigned)(dvfmEvsUmlProfessor + dvfmEvsUmlStudent);
+
+		if(!(strcmp(dvfmEvsUmlDataUser->dvfmEvsUmlStructProfile, "administrator-professor-student")))
+			dvfmEvsUmlNumberProfile  = (unsigned)(dvfmEvsUmlAdministrator + dvfmEvsUmlProfessor + dvfmEvsUmlStudent);
+	}
+
+	/* existence test */
+
+	if(!(dvfmEvsUmlUsersFile = fopen (dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "r")))
+	{
+		/* does not exist  */
+
+		/* creating encrypted password */
+
+		if((dvfmEvsUmlReturnCode = DvfmEvsUmlEncodePasswordWithSpecificAlgorithm( dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword, dvfmEvsUmlSha512, dvfmEvsUmlEncryptedPassword)))
+			return dvfmEvsUmlReturnCode;
+
+		if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckPassword( dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword, dvfmEvsUmlEncryptedPassword)))
+			return dvfmEvsUmlReturnCode;
+
+		/* writing the data in the file */
+
+		if(!(dvfmEvsUmlUsersFile = fopen (dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "w")))
+			return dvfmEvsUmlCantOpenFile;
+
+		fprintf( dvfmEvsUmlUsersFile, "0:%s:%s:1:%s:%s", dvfmEvsUmlFirstNickname, dvfmEvsUmlEncryptedPassword, dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
+
+		fclose(dvfmEvsUmlUsersFile);	
+
+	}
+	else
+	{
+		/* exist  */
+
+		/* varying whether the password exists */
+
+		if(strlen(dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword))
+		{
+			/* exist  */
+
+			/* creating encrypted password */
+
+			if((dvfmEvsUmlReturnCode = DvfmEvsUmlEncodePasswordWithSpecificAlgorithm( dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword, dvfmEvsUmlSha512, dvfmEvsUmlEncryptedPassword)))
+				return dvfmEvsUmlReturnCode;
+
+			if((dvfmEvsUmlReturnCode = DvfmEvsUmlCheckPassword( dvfmEvsUmlDataUser->dvfmEvsUmlStructPassword, dvfmEvsUmlEncryptedPassword)))
+				return dvfmEvsUmlReturnCode;
+
+			/* checking that there are no blank lines */
+
+			while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_BUFFER_SIZE_LINE_CONFIG_FILE, dvfmEvsUmlUsersFile))
+			{
+				if (dvfmEvsUmlLastLine)
+				{
+					/* error */
+					fclose (dvfmEvsUmlUsersFile);
+					return dvfmEvsUmlCorruptedFile;
+				}
+
+				if(strlen (dvfmEvsUmlBuffer) == 1 && dvfmEvsUmlBuffer [strlen (dvfmEvsUmlBuffer) - 1] == '\n')
+				{
+					/* error */
+					fclose (dvfmEvsUmlUsersFile);
+					return dvfmEvsUmlCorruptedFile;
+				}
+
+				if (dvfmEvsUmlBuffer [strlen (dvfmEvsUmlBuffer) - 1] != '\n')
+					dvfmEvsUmlLastLine = dvfmEvsUmlTrue;
+			}
+
+			/* error test while reading file */
+
+			if(ferror(dvfmEvsUmlUsersFile))
+			{
+					/* error */
+					fclose (dvfmEvsUmlUsersFile);
+					return dvfmEvsUmlReadError;
+			}
+
+			fclose (dvfmEvsUmlUsersFile);
+
+			/* checking if nickname already exists */
+
+			if(!(dvfmEvsUmlUsersFile = fopen (dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "r")))
+				return dvfmEvsUmlCantOpenFile;
+
+			while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_BUFFER_SIZE_LINE_CONFIG_FILE, dvfmEvsUmlUsersFile))
+			{
+				dvfmEvsUmlIndex = 0;
+				dvfmEvsUmlTwoPointCounter = 0;
+
+				while (dvfmEvsUmlIndex < strlen(dvfmEvsUmlBuffer))
+				{
+					if(dvfmEvsUmlBuffer [dvfmEvsUmlIndex] == ':')
+					{
+
+						if(dvfmEvsUmlTwoPointCounter == 0)
+							dvfmEvsUmlBeginPresentNickname = dvfmEvsUmlIndex + 1;
+
+						if(dvfmEvsUmlTwoPointCounter == 1)
+							dvfmEvsUmlEndPresentNickname = dvfmEvsUmlIndex - 1;
+						
+						dvfmEvsUmlTwoPointCounter++;
+					}
+					
+					dvfmEvsUmlIndex++;
+				}
+
+				strncpy(dvfmEvsUmlPresentNickname, &dvfmEvsUmlBuffer[dvfmEvsUmlBeginPresentNickname], dvfmEvsUmlEndPresentNickname - dvfmEvsUmlBeginPresentNickname + 1);
+
+				dvfmEvsUmlPresentNickname[dvfmEvsUmlEndPresentNickname - dvfmEvsUmlBeginPresentNickname + 1] = '\0';
+
+				if(!(strcmp( dvfmEvsUmlPresentNickname, dvfmEvsUmlFirstNickname)))
+					dvfmEvsUmlExistFirstNickname = dvfmEvsUmlTrue;
+
+				if(dvfmEvsUmlTwoPointCounter != 5)
+					return dvfmEvsUmlCorruptedFile;
+			}
+
+			
+
+			/* adding the user */
+
+			if(!(dvfmEvsUmlUsersFile = fopen (dvfmEvsUmlSettings->dvfmEvsUmlUsersDataFilename, "r+")))
+				return dvfmEvsUmlCantOpenFile;
+
+			dvfmEvsUmlUserIdentifierPrevious = 0;
+
+			while(fgets(dvfmEvsUmlBuffer, DVFM_EVS_UML_BUFFER_SIZE_LINE_CONFIG_FILE, dvfmEvsUmlUsersFile))
+			{
+				/* collecting current id */
+
+				dvfmEvsUmlIndex = strlen(dvfmEvsUmlBuffer) -1;
+				dvfmEvsUmlTwoPointCounter = 0;
+				dvfmEvsUmlMultiplier = 10;
+				dvfmEvsUmlNumber = 0;
+				dvfmEvsUmlUserIdentifierPresent = 0;
+
+				while (dvfmEvsUmlIndex >= 0)
+				{
+					if(dvfmEvsUmlBuffer [dvfmEvsUmlIndex] == ':')
+							dvfmEvsUmlTwoPointCounter++;
+
+					else
+					{
+						if(dvfmEvsUmlTwoPointCounter == 5)
+						{
+							dvfmEvsUmlNumber = dvfmEvsUmlBuffer [dvfmEvsUmlIndex] - '0';
+
+							if(dvfmEvsUmlFirstNumber)
+							{
+								dvfmEvsUmlUserIdentifierPresent +=  dvfmEvsUmlNumber;
+								dvfmEvsUmlFirstNumber = dvfmEvsUmlFalse;
+							}
+
+							dvfmEvsUmlUserIdentifierPresent +=  dvfmEvsUmlNumber * dvfmEvsUmlMultiplier;
+
+							dvfmEvsUmlMultiplier *= 10;
+						}
+					}
+					
+					dvfmEvsUmlIndex--;
+				}
+
+				dvfmEvsUmlFirstNumber = dvfmEvsUmlTrue;
+
+				if(dvfmEvsUmlTwoPointCounter != 5)
+					return dvfmEvsUmlCorruptedFile;
+
+				/* comparing current id with previous id */
+
+				if(dvfmEvsUmlUserIdentifierPresent <= dvfmEvsUmlUserIdentifierPrevious && !dvfmEvsUmlFirstLine)
+				{
+					/* error */
+					fclose (dvfmEvsUmlUsersFile);
+					return dvfmEvsUmlCorruptedFile;
+				}
+				
+				if(dvfmEvsUmlUserIdentifierPresent != dvfmEvsUmlUserIdentifierPrevious + 1)
+				{
+					dvfmEvsUmlFound = dvfmEvsUmlTrue;
+
+					if(!dvfmEvsUmlExistFirstNickname)
+					{
+						snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%llu", dvfmEvsUmlUserIdentifierPrevious + 1);
+
+						fprintf( dvfmEvsUmlUsersFile, "\n%s:%s:%s:%c:%s:%s", dvfmEvsUmlUserIdentifierString, dvfmEvsUmlFirstNickname, dvfmEvsUmlEncryptedPassword, (char)(dvfmEvsUmlNumberProfile + '0'), dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
+					}
+
+					else
+					{
+						snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%llu", dvfmEvsUmlUserIdentifierPrevious + 1);
+
+						fprintf( dvfmEvsUmlUsersFile, "\n%s:%s:%s:%c:%s:%s", dvfmEvsUmlUserIdentifierString, dvfmEvsUmlSecondNickname, dvfmEvsUmlEncryptedPassword, (char)(dvfmEvsUmlNumberProfile + '0'), dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
+					}
+
+				}
+				else
+				{
+					dvfmEvsUmlUserIdentifierPrevious = dvfmEvsUmlUserIdentifierPresent;
+				}
+
+				dvfmEvsUmlFirstLine = dvfmEvsUmlFalse;
+			}
+
+			if(!dvfmEvsUmlFound)
+			{
+				if(!dvfmEvsUmlExistFirstNickname)
+				{
+					snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%llu", dvfmEvsUmlUserIdentifierPresent + 1);
+
+					fprintf( dvfmEvsUmlUsersFile, "\n%s:%s:%s:%c:%s:%s", dvfmEvsUmlUserIdentifierString, dvfmEvsUmlFirstNickname, dvfmEvsUmlEncryptedPassword, (char)(dvfmEvsUmlNumberProfile + '0'), dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
+				}
+
+				else
+				{
+					snprintf(dvfmEvsUmlUserIdentifierString, sizeof(dvfmEvsUmlUserIdentifierPrevious + 1), "%llu", dvfmEvsUmlUserIdentifierPresent + 1);
+
+					fprintf( dvfmEvsUmlUsersFile, "\n%s:%s:%s:%c:%s:%s", dvfmEvsUmlUserIdentifierString, dvfmEvsUmlSecondNickname, dvfmEvsUmlEncryptedPassword, (char)(dvfmEvsUmlNumberProfile + '0'), dvfmEvsUmlDataUser->dvfmEvsUmlStructUsername,  dvfmEvsUmlDataUser->dvfmEvsUmlStructEmail);
+				}
+
+			}
+
+			/* error test while reading file */
+
+			if(ferror(dvfmEvsUmlUsersFile))
+			{
+					/* error */
+					fclose (dvfmEvsUmlUsersFile);
+					return dvfmEvsUmlReadError;
+			}
+
+			fclose (dvfmEvsUmlUsersFile);
+
+			/* sending email to added user */
+
+
+
+		}
+		else
+		{
+			/* does not exist  */
+		}
+
+	}
 
 	return dvfmEvsUmlOk;
 }

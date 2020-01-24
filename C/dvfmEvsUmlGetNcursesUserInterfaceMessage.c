@@ -36,7 +36,7 @@ main(int argc,char *argv[ ])
 {
 	dvfmEvsUmlUserInterfaceMessageNumberType dvfmEvsUmlUserInterfaceMessageNumber;
 	dvfmEvsUmlLanguageType dvfmEvsUmlLanguage;
-	char *dvfmEvsUmlValidation;
+	char *dvfmEvsUmlvalidation;
 
 	if (argc != DVFM_EVS_NUMBER_ARGUMENTS) 
 	{
@@ -51,11 +51,11 @@ main(int argc,char *argv[ ])
 		exit(DVFM_EVS_FIRST_ARGUMENT_INVALID_HIFEN);
 	}
 	
-	dvfmEvsUmlUserInterfaceMessageNumber = (dvfmEvsUmlUserInterfaceMessageNumberType) strtoul( argv[1], &dvfmEvsUmlValidation, 10);
-	if(*dvfmEvsUmlValidation != DVFM_EVS_EOS)
+	dvfmEvsUmlUserInterfaceMessageNumber = (dvfmEvsUmlUserInterfaceMessageNumberType) strtoul( argv[1], &dvfmEvsUmlvalidation, 10);
+	if(*dvfmEvsUmlvalidation != DVFM_EVS_EOS)
 	{
 		printf("Error: First argument invalid\n");
-		printf("First character invalid: \"%c\"\n", dvfmEvsUmlValidation[0]);
+		printf("First character invalid: \"%c\"\n", dvfmEvsUmlvalidation[0]);
 		exit(DVFM_EVS_FIRST_ARGUMENT_INVALID);
 	}
 
@@ -66,11 +66,11 @@ main(int argc,char *argv[ ])
 		exit(DVFM_EVS_SECOND_ARGUMENT_INVALID_HIFEN);
 	}
 
-	dvfmEvsUmlLanguage = (dvfmEvsUmlLanguageType) strtoul( argv[2], &dvfmEvsUmlValidation, 10);
-	if(*dvfmEvsUmlValidation != DVFM_EVS_EOS)
+	dvfmEvsUmlLanguage = (dvfmEvsUmlLanguageType) strtoul( argv[2], &dvfmEvsUmlvalidation, 10);
+	if(*dvfmEvsUmlvalidation != DVFM_EVS_EOS)
 	{
 		printf("Error: Argumento dois invalido\n");
-		printf("First character invalid: \"%c\"\n", dvfmEvsUmlValidation[0]);
+		printf("First character invalid: \"%c\"\n", dvfmEvsUmlvalidation[0]);
 		printf("use: %s <erro> <language>\n", argv[0]);
 		exit(DVFM_EVS_SECOND_ARGUMENT_INVALID);
 	}

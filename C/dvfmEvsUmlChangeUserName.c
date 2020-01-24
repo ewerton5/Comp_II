@@ -5,9 +5,12 @@
  * Prof. Marcelo Luiz Drumond Lanza
  * EEL 270 - Computacao II - Turma 2019/2
  
- * $Author$
- * $Date$
- * $Log$
+ * $Author: ewerton.silles $
+ * $Date: 2008/02/01 10:19:06 $
+ * $Log: dvfmEvsUmlChangeUserName.c,v $
+ * Revision 1.1  2008/02/01 10:19:06  ewerton.silles
+ * Initial revision
+ *
 */
 
 #include    <stdio.h>
@@ -234,4 +237,4 @@ DvfmEvsUmlChangeUserName (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings
     return dvfmEvsUmlOk;
 }
 
-/* $RCSfile$ */
+/* $RCSfile: dvfmEvsUmlChangeUserName.c,v $ */

@@ -229,8 +229,7 @@ char *dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlS
  */
 
 char *
-DvfmEvsUmlGetCliUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType dvfmEvsUmlUserInterfaceMessageNumberCode,
-									  dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
+DvfmEvsUmlGetCliUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType dvfmEvsUmlUserInterfaceMessageNumberCode, dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
 {
 	char *dvfmEvsUmlIndexUserInterfaceMessageNumber = "Out of range user interface message number message";
 
@@ -259,8 +258,7 @@ DvfmEvsUmlGetCliUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType d
  */
 
 char *
-DvfmEvsUmlGetNcursesUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType dvfmEvsUmlUserInterfaceMessageNumberCode,
-										  dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
+DvfmEvsUmlGetNcursesUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType dvfmEvsUmlUserInterfaceMessageNumberCode, dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
 {
 	char *dvfmEvsUmlIndexUserInterfaceMessageNumber = "Out of range user interface message number message";
 
@@ -289,8 +287,7 @@ DvfmEvsUmlGetNcursesUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberTy
  */
 
 char *
-DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType dvfmEvsUmlUserInterfaceMessageNumberCode,
-									  dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
+DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType dvfmEvsUmlUserInterfaceMessageNumberCode, dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
 {
 	char *dvfmEvsUmlIndexUserInterfaceMessageNumber = "Out of range user interface message number message";
 

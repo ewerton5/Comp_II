@@ -72,21 +72,6 @@
 #endif
 #define DVFM_EVS_UML_LOCKED_USERS_DATA_FILENAME_NAME    "dvfm-evs-uml-loked-users-data-filename"
 
-#ifndef DVFM_EVS_UML_UNLOCKING_USERS_DATA_FILENAME
-#define DVFM_EVS_UML_UNLOCKING_USERS_DATA_FILENAME		"unlocking.users"
-#endif
-#define DVFM_EVS_UML_UNLOCKING_USERS_DATA_FILENAME      "dvfm-evs-uml-unlocking-users-data-filename"
-
-#ifndef DVFM_EVS_UML_PASSWORD_ABEYANCES_DATA_FILENAME
-#define DVFM_EVS_UML_PASSWORD_ABEYANCES_DATA_FILENAME		"password.abeyances"
-#endif
-#define DVFM_EVS_UML_PASSWORD_ABEYANCES_DATA_FILENAME      "dvfm-evs-uml-password-abeyances-data-filename"
-
-#ifndef DVFM_EVS_UML_EMAIL_ABEYANCES_DATA_FILENAME
-#define DVFM_EVS_UML_EMAIL_ABEYANCES_DATA_FILENAME		"email.abeyances"
-#endif
-#define DVFM_EVS_UML_EMAIL_ABEYANCES_DATA_FILENAME      "dvfm-evs-uml-email-abeyances-data-filename"
-
 /* ===== end of file code ====== */
 
 #endif

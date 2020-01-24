@@ -27,7 +27,6 @@
 
 /* ===== beginning of file code ===== */
 
-#include	<time.h>
 #include	"dvfmEvsUmlConst.h"
 
 typedef enum
@@ -57,46 +56,42 @@ typedef enum
 typedef struct dvfmEvsUmlConfigurationOptions
 {
 	char dvfmEvsUmlWebServerUrl[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlWebServerUrlName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
 	char dvfmEvsUmlAdministratorUserIdentifier[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlAdministratorUserIdentifierName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
 	char dvfmEvsUmlPrivateRootDirectory[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlPrivateRootDirectoryName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
 	char dvfmEvsUmlDataDirectory[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlDataDirectoryName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
 	char dvfmEvsUmlCookiesDirectory[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlCookiesDirectoryName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
 	char dvfmEvsUmlUsersDataFilename[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlUsersDataFilenameName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
 	char dvfmEvsUmlInvitedUsersDataFilename[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlInvitedUsersDataFilenameName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
 	char dvfmEvsUmlRequestingUsersDataFilename[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlRequestingUsersDataFilenameName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
 	char dvfmEvsUmlLockedUsersDataFilename[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
-	char dvfmEvsUmlUnlockingUsersDataFilename[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
-	char dvfmEvsUmlPasswordAbeyancesDataFilename[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
-	char dvfmEvsUmlEmailAbeyancesDataFilename[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
+	char dvfmEvsUmlLockedUsersDataFilenameName[DVFM_EVS_UML_MAXIMUM_LENGTH_CONFIG_FILE - 1];
 } dvfmEvsUmlConfigurationOptionsType;
 
 typedef struct dvfmEvsUmlUserData
 {
-	time_t dvfmEvsUmlValidationTime;
-	dvfmEvsUmlUserIdentifierType dvfmEvsUmlResponsibleUserNumericIndentifier;
-	dvfmEvsUmlUserIdentifierType dvfmEvsUmlNumericIndentifier;
-	char dvfmEvsUmlNickname [DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
-	char dvfmEvsUmlConfirmNickname [DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
-	dvfmEvsUmlProfileType *dvfmEvsUmlProfile;
-	char dvfmEvsUmlFullName [DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
-	char dvfmEvsUmlConfirmFullName [DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
-	char dvfmEvsUmlEmail [DVFM_EVS_UML_MAX_SIZE_EMAIL];
-	char dvfmEvsUmlConfirmEmail [DVFM_EVS_UML_MAX_SIZE_EMAIL];
-	char dvfmEvsUmlPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
-	char dvfmEvsUmlConfirmPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
-	struct dvfmEvsUmlUserData *dvfmEvsUmlPreviousUserData;
-	struct dvfmEvsUmlUserData *dvfmEvsUmlNextUserData;
+	
+	char dvfmEvsUmlStructUsername[DVFM_EVS_UML_USER_NAME_BUFFER_SIZE];
+	char *dvfmEvsUmlStructConfirmUsername;
+	char *dvfmEvsUmlStructEmail;
+	char *dvfmEvsUmlStructConfirmEmail;
+	char dvfmEvsUmlStructPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
+	char dvfmEvsUmlStructConfirmPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
+	char dvfmEvsUmlStructProfile [DVFM_EVS_UML_PROFILE_STRING_BUFFER_SIZE];
+
 } dvfmEvsUmlUserDataType;
 
-typedef struct dvfmEvsUmlNicknameList
-{
-	char dvfmEvsUmlNickname [DVFM_EVS_UML_MAX_SIZE_NICKNAME];
-	struct dvfmEvsUmlNicknameList *dvfmEvsUmlNextNickname;
-} dvfmEvsUmlNicknameListType;
+typedef unsigned long long dvfmEvsUmlUserIdentifierType;
 
 typedef enum
 {
-	dvfmEvsUmlUndefined = 0,
 	dvfmEvsUmlAdministrator = 1, 
 	dvfmEvsUmlProfessor = 2, 
 	dvfmEvsUmlStudent = 4

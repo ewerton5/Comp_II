@@ -35,9 +35,6 @@ typedef enum
 	dvfmEvsUmlFirstEmptyPointer,
 	dvfmEvsUmlSecondEmptyPointer,
 	dvfmEvsUmlThirdEmptyPointer,
-	dvfmEvsUmlFourthEmptyPointer,
-	dvfmEvsUmlFifthEmptyPointer,
-	dvfmEvsUmlSixthEmptyPointer,
 	dvfmEvsUmlPathLong,
 	dvfmEvsUmlLongFilename,
 	dvfmEvsUmlMinimumMaximumInverted,
@@ -68,7 +65,7 @@ typedef enum
 	dvfmEvsUmlVoidString,
 	dvfmEvsUmlInvalidEncryptedPassword,
 	dvfmEvsUmlLongEncryptedPassword,
-	dvfmEvsUmlIncompatiblePassword,
+	dvfmEvsUmlIncompatibleFlatPassword,
 	dvfmEvsUmlInvalidSalt,
 	dvfmEvsUmlCantOpenFile,
 	dvfmEvsUmlInvalidConfigFile,
@@ -87,15 +84,6 @@ typedef enum
 	dvfmEvsUmlDifferentEmailConfirmation,
 	dvfmEvsUmlDifferentPasswordConfirmation,
 	dvfmEvsUmlCorruptedFile,
-	dvfmEvsUmlEmptyList,
-	dvfmEvsUmlUserNotFound,
-	dvfmEvsUmlIncompatibleEmail,
-	dvfmEvsUmlIncompatibleFullName,
-	dvfmEvsUmlUserISNotResponsible,
-	dvfmEvsUmlUserIsNotAdministrator,
-	dvfmEvsUmlIncorrectData,
-	dvfmEvsUmlIncompatibleValidationKey,
-	dvfmEvsUmlPrimaryAdministrator,
 	dvfmEvsUmlSizeErrorType
 } dvfmEvsUmlErrorType;
 
@@ -116,8 +104,7 @@ typedef enum
  */
 
 char *
-DvfmEvsUmlGetCliErrorMessage (dvfmEvsUmlErrorType,
-							  dvfmEvsUmlLanguageType);
+DvfmEvsUmlGetCliErrorMessage (dvfmEvsUmlErrorType, dvfmEvsUmlLanguageType);
 
 /*
  * char *
@@ -136,8 +123,7 @@ DvfmEvsUmlGetCliErrorMessage (dvfmEvsUmlErrorType,
  */
 
 char *
-DvfmEvsUmlGetNcursesErrorMessage (dvfmEvsUmlErrorType,
-								  dvfmEvsUmlLanguageType);
+DvfmEvsUmlGetNcursesErrorMessage (dvfmEvsUmlErrorType, dvfmEvsUmlLanguageType);
 
 /*
  * char *
@@ -156,8 +142,7 @@ DvfmEvsUmlGetNcursesErrorMessage (dvfmEvsUmlErrorType,
  */
 
 char *
-DvfmEvsUmlGetWebErrorMessage (dvfmEvsUmlErrorType,
-							  dvfmEvsUmlLanguageType);
+DvfmEvsUmlGetWebErrorMessage (dvfmEvsUmlErrorType, dvfmEvsUmlLanguageType);
 
 /* ===== end of file code ====== */
 

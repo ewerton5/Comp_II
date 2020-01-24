@@ -29,8 +29,6 @@ Initial revision
 #include                           "dvfmEvsUmlUserInterface.h"
 #include                           "dvfmEvsUmlConst.h"
 #include                           "dvfmEvsUmlFunctions.h"
-#include	                       "dvfmEvsUmlShowCliHelp.h"
-#include                           "dvfmEvsUmlAddUser.h"
 
 #ifdef __linux__
 #define _XOPEN_SOURCE 600
@@ -138,8 +136,8 @@ main (int argc, char *argv[])
     char *dvfmEvsUmlConfiguration = "";
     dvfmEvsUmlLanguageType dvfmEvsUmlLanguage = dvfmEvsUmlEnglish;
     char *dvfmEvsUmlUser = "";
-    char *dvfmEvsUmlNickname = "";
-    char *dvfmEvsUmlConfirmNickname = "";
+    char *dvfmEvsUmlUsername = "";
+    char *dvfmEvsUmlConfirmUsername = "";
     char *dvfmEvsUmlEmail = "";
     char *dvfmEvsUmlConfirmEmail = "";
     char *dvfmEvsUmlProfile = "";
@@ -175,13 +173,10 @@ main (int argc, char *argv[])
     char dvfmEvsUmlAdimimPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
     char dvfmEvsUmlConfirmAdimimPassword [DVFM_EVS_UML_PASSWORD_BUFFER_SIZE];
     char *dvfmEvsUmlPointerPassword;
-    char dvfmEvsUmlArgvLongOption [15];
 
     dvfmEvsUmlUserDataType  dvfmEvsUmlDataUser;
     dvfmEvsUmlConfigurationOptionsType dvfmEvsUmlSettings;
     dvfmEvsUmlErrorType dvfmEvsUmlReturnCode;
-
-    dvfmEvsUmlBool dvfmEvsUmlOptionLong = dvfmEvsUmlFalse;
 
     if(argc < DVFM_EVS_UML_MINIMUM_NUMBER_ARGUMENTS)
     {
@@ -204,10 +199,11 @@ main (int argc, char *argv[])
         exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
     }
 
-    if(argv[1][1] == '-')
+    if(argv[1][1] == '-' && strlen(argv[1]) == 3)
     {
-       strcpy(dvfmEvsUmlArgvLongOption, &argv [1][2]);
-       dvfmEvsUmlOptionLong = dvfmEvsUmlTrue;
+        /* error */
+        printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
+        exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
     }
 
     dvfmEvsUmlCurrentOption = getopt_long(argc, argv, dvfmEvsUmlShortOption, dvfmEvsUmlLongOption, NULL);
@@ -223,13 +219,6 @@ main (int argc, char *argv[])
                 /* error */
                 printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlFewSubOptions, dvfmEvsUmlLanguage));
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
-            }
-
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[0].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
             }
 
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
@@ -248,7 +237,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
 
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -295,13 +284,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[1].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -318,7 +300,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
 
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -364,13 +346,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[2].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -387,7 +362,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -439,13 +414,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[3].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -462,7 +430,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -481,7 +449,7 @@ main (int argc, char *argv[])
 
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlNickname = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlUsername = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -489,7 +457,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlConfirmNickname = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlConfirmUsername = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -545,11 +513,11 @@ main (int argc, char *argv[])
 
             /* get password */
 
-            printf("%s:\n", DvfmEvsUmlGetCliUserInterfaceMessage ( dvfmEvsUmlPassword, dvfmEvsUmlLanguage));
+            printf("%s:", DvfmEvsUmlGetCliUserInterfaceMessage ( dvfmEvsUmlPassword, dvfmEvsUmlLanguage));
 
             strcpy (dvfmEvsUmlAdimimPassword, (dvfmEvsUmlPointerPassword = getpass ("")));
 
-            printf("%s:\n", DvfmEvsUmlGetCliUserInterfaceMessage ( dvfmEvsUmlConfirmationPassword, dvfmEvsUmlLanguage));
+            printf("%s:", DvfmEvsUmlGetCliUserInterfaceMessage ( dvfmEvsUmlConfirmationPassword, dvfmEvsUmlLanguage));
 
             strcpy( dvfmEvsUmlConfirmAdimimPassword, (dvfmEvsUmlPointerPassword = getpass("")));
 
@@ -557,15 +525,15 @@ main (int argc, char *argv[])
 
             /* put user information in a struct to pass to the function */
 
-            dvfmEvsUmlDataUser.dvfmEvsUmlConfirmNickname = dvfmEvsUmlConfirmNickname;
-            dvfmEvsUmlDataUser.dvfmEvsUmlEmail = dvfmEvsUmlEmail;
-            dvfmEvsUmlDataUser.dvfmEvsUmlConfirmEmail = dvfmEvsUmlConfirmEmail;
+            dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmUsername = dvfmEvsUmlConfirmUsername;
+            dvfmEvsUmlDataUser.dvfmEvsUmlStructEmail = dvfmEvsUmlEmail;
+            dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmEmail = dvfmEvsUmlConfirmEmail;
 
-            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlNickname, dvfmEvsUmlNickname);
-            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlPassword, dvfmEvsUmlAdimimPassword);
-            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlConfirmPassword, dvfmEvsUmlConfirmAdimimPassword);
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructUsername, dvfmEvsUmlUsername);
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructPassword, dvfmEvsUmlAdimimPassword);
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructConfirmPassword, dvfmEvsUmlConfirmAdimimPassword);
 
-            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlProfile, "\0");
+            strcpy(dvfmEvsUmlDataUser.dvfmEvsUmlStructProfile, "\0");
 
             /* Populates the structure with the configuration information */
 
@@ -602,13 +570,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[4].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -625,7 +586,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -652,7 +613,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlNickname = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlUsername = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -660,7 +621,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlConfirmNickname = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlConfirmUsername = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -684,7 +645,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "administrator") && strcmp( dvfmEvsUmlValueSubOption, "professor") && strcmp( dvfmEvsUmlValueSubOption, "student"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "administrator") != 0 && strcmp( dvfmEvsUmlValueSubOption, "professor") != 0 && strcmp( dvfmEvsUmlValueSubOption, "student") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -726,13 +687,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[5].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -749,7 +703,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -776,7 +730,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlNickname = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlUsername = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -784,7 +738,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlConfirmNickname = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlConfirmUsername = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -808,7 +762,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "administrator") && strcmp( dvfmEvsUmlValueSubOption, "professor") && strcmp( dvfmEvsUmlValueSubOption, "student"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "administrator") != 0 && strcmp( dvfmEvsUmlValueSubOption, "professor") != 0 && strcmp( dvfmEvsUmlValueSubOption, "student") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -850,13 +804,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[6].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -873,7 +820,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -927,13 +874,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[7].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -950,7 +890,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -1004,13 +944,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[8].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1027,7 +960,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -1046,7 +979,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlNickname = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlUsername = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -1054,7 +987,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlConfirmNickname = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlConfirmUsername = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -1113,13 +1046,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[9].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1136,7 +1062,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -1190,13 +1116,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[10].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1213,7 +1132,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -1267,13 +1186,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[11].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1290,7 +1202,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -1353,13 +1265,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[12].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1376,7 +1281,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -1439,13 +1344,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[13].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1462,7 +1360,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -1516,13 +1414,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[14].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1539,7 +1430,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -1599,13 +1490,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[15].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1622,7 +1506,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -1676,13 +1560,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[16].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1699,7 +1576,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -1759,13 +1636,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[17].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1782,7 +1652,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -1836,13 +1706,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[18].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1859,7 +1722,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -1878,7 +1741,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlNickname = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlUsername = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -1886,7 +1749,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    dvfmEvsUmlConfirmNickname = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlConfirmUsername = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -1935,13 +1798,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[19].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -1958,7 +1814,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -2034,13 +1890,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[20].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -2057,7 +1906,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -2124,13 +1973,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[21].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -2147,7 +1989,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -2182,7 +2024,7 @@ main (int argc, char *argv[])
                     
                     dvfmEvsUmlMandatorySubOptionOccurs++;
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "administrator") && strcmp( dvfmEvsUmlValueSubOption, "professor") && strcmp( dvfmEvsUmlValueSubOption, "student"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "administrator") != 0 && strcmp( dvfmEvsUmlValueSubOption, "professor") != 0 && strcmp( dvfmEvsUmlValueSubOption, "student") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -2224,13 +2066,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[22].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -2247,7 +2082,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -2293,13 +2128,6 @@ main (int argc, char *argv[])
                 exit(DVFM_EVS_UML_INVALID_NUMBER_SUB_OPTIONS_SHORT);
             }
 
-            if(strcmp( dvfmEvsUmlArgvLongOption, dvfmEvsUmlLongOption[23].name) && dvfmEvsUmlOptionLong)
-            {
-                /* error */
-                printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidOptions, dvfmEvsUmlLanguage));
-                exit(DVFM_EVS_UML_INVALID_POSITION_OPTION);
-            }
-
             for(dvfmEvsUmlIndexArgument = DVFM_EVS_UML_START_SUB_OPTIONS; dvfmEvsUmlIndexArgument < argc; dvfmEvsUmlIndexArgument++)
             {
                 dvfmEvsUmlCurrentArgument = argv[dvfmEvsUmlIndexArgument];
@@ -2316,7 +2144,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexLanguage:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") && strcmp( dvfmEvsUmlValueSubOption, "english"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "portuguese") != 0 && strcmp( dvfmEvsUmlValueSubOption, "english") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));
@@ -2333,7 +2161,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexUsername:
                     
-                    dvfmEvsUmlNickname = dvfmEvsUmlValueSubOption;
+                    dvfmEvsUmlUsername = dvfmEvsUmlValueSubOption;
 
                     break;
 
@@ -2345,7 +2173,7 @@ main (int argc, char *argv[])
 
                 case dvfmEvsUmlIndexProfile:
                     
-                    if(strcmp( dvfmEvsUmlValueSubOption, "administrator") && strcmp( dvfmEvsUmlValueSubOption, "professor") && strcmp( dvfmEvsUmlValueSubOption, "student") && strcmp( dvfmEvsUmlValueSubOption, "administrator-professor") && strcmp( dvfmEvsUmlValueSubOption, "administrator-student") && strcmp( dvfmEvsUmlValueSubOption, "professor-student") && strcmp( dvfmEvsUmlValueSubOption, "administrator-professor-student"))
+                    if(strcmp( dvfmEvsUmlValueSubOption, "administrator") != 0 && strcmp( dvfmEvsUmlValueSubOption, "professor") != 0 && strcmp( dvfmEvsUmlValueSubOption, "student") != 0 && strcmp( dvfmEvsUmlValueSubOption, "administrator-professor") != 0 && strcmp( dvfmEvsUmlValueSubOption, "administrator-student") != 0 && strcmp( dvfmEvsUmlValueSubOption, "professor-student") != 0 && strcmp( dvfmEvsUmlValueSubOption, "administrator-professor-student") != 0)
                     {
                         /* error */
                         printf("%s\n", DvfmEvsUmlGetCliErrorMessage ( dvfmEvsUmlInvalidSubOption, dvfmEvsUmlLanguage));

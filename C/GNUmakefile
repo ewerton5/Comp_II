@@ -45,7 +45,6 @@ AFLAGS = -r
 LCRYPT = -lcrypt
 LMLCGI = -L./../Libraries/CentOS -lmlcgi
 LNCURSES = -lncurses
-MATH = -lm
 
 #  Options
 CFLAGS = -Wall -std=c11
@@ -66,12 +65,10 @@ DVFM_EVS_ENCODEPASSWORDWITHSPECIFICSALTOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlEr
 DVFM_EVS_CHECKPASSWORDOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlCheckPassword.o
 DVFM_EVS_GETCONFIGURATIONOPTIONSVALUESOBJS = dvfmEvsUmlFunctions.o dvfmEvsUmlErrors.o dvfmEvsUmlGetConfigurationOptionsValues.o
 
-#===> error message functions
+#===> primary functions
 DVFM_EVS_GETCLIERRORMESSAGEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlGetCliErrorMessage.o
 DVFM_EVS_GETNCURSESERRORMESSAGEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlGetNcursesErrorMessage.o
 DVFM_EVS_GETWEBERRORMESSAGEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlGetWebErrorMessage.o
-
-#===> interface message functions
 DVFM_EVS_GETCLIUSERINTERFACEMESSAGEOBJS = dvfmEvsUmlUserInterface.o dvfmEvsUmlGetCliUserInterfaceMessage.o
 DVFM_EVS_GETNCURSESUSERINTERFACEMESSAGEOBJS = dvfmEvsUmlUserInterface.o dvfmEvsUmlGetNcursesUserInterfaceMessage.o
 DVFM_EVS_GETWEBUSERINTERFACEMESSAGEOBJS = dvfmEvsUmlUserInterface.o dvfmEvsUmlGetWebUserInterfaceMessage.o
@@ -84,37 +81,11 @@ DVFM_EVS_CGISHOWWEBHELPOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowWebHelp.o dvfm
 DVFM_EVS_CGISHOWLICENSEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowLicense.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
 DVFM_EVS_CGISHOWADDUSERFORMOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlCgiShowAddUserForm.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
 
-#===> primary file
-DVFM_EVS_DVFMEVSUMLOBJS = dvfmEvsUml.o\
-						  dvfmEvsUmlFunctions.o\
-						  dvfmEvsUmlErrors.o\
-						  dvfmEvsUmlUserInterface.o\
-						  dvfmEvsUmlShowCliHelp.o\
-						  dvfmEvsUmlShowConfigurationValues.o\
-						  dvfmEvsUmlRunNcursesInterface.o\
-						  dvfmEvsUmlAddUser.o\
-						  dvfmEvsUmlAcceptInvite.o\
-						  dvfmEvsUmlRejectInvite.o\
-						  dvfmEvsUmlRequestRegistration.o\
-						  dvfmEvsUmlGetPendingRegistrationRequestsPerUser.o\
-						  dvfmEvsUmlGetPendingRegistrationRequests.o\
-						  dvfmEvsUmlApproveRegistrationRequest.o\
-						  dvfmEvsUmlDisapproveRegistrationRequest.o\
-						  dvfmEvsUmlGetUnlockingRequests.o\
-						  dvfmEvsUmlLockUserAccount.o\
-						  dvfmEvsUmlUnlockUserAccount.o\
-						  dvfmEvsUmlChangeUserPassword.o\
-						  dvfmEvsUmlResetUserPassword.o\
-						  dvfmEvsUmlChangeUserName.o\
-						  dvfmEvsUmlChangeUserEmail.o\
-						  dvfmEvsUmlConfirmEmailChange.o\
-						  dvfmEvsUmlChangeUserProfile.o\
-						  dvfmEvsUmlGetUsers.o\
-						  dvfmEvsUmlSearchUsers.o
+#===> primary files
+DVFM_EVS_DVFMEVSUMLOBJS = dvfmEvsUml.o dvfmEvsUmlErrors.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o
 
-#===> Ncurses (Remover depois)
-DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlRunNcursesInterface.o dvfmEvsUmlUserInterface.o dvfmEvsUmlShowNcursesHelp.o\
-									   dvfmEvsUmlFunctions.o dvfmEvsUmlRunNcursesInterfaceTestFile.o 
+#===> Ncurses
+DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS = dvfmEvsUmlErrors.o dvfmEvsUmlRunNcursesInterface.o dvfmEvsUmlUserInterface.o dvfmEvsUmlFunctions.o dvfmEvsUmlRunNcursesInterfaceTestFile.o
 
 #===> Index html
 DVFM_EVS_INDEXHTMLFILE = ../HTML/index_en-us.html ../HTML/index_pt-br.html
@@ -134,8 +105,8 @@ DVFM_EVS_BINARIES_DIRECTORY = ~/private/EEL270/2019-2/DVFM_EVS/Binaries
 
 DVFM_EVS_DVFM_EVS_DIRECTORY = ~/public/html/EEL270/2019-2/DVFM_EVS
 
-DVFM_EVS_MAKE_DIRECTORY = 	$(DVFM_EVS_BINARIES_DIRECTORY)\
-							~/private/EEL270/2019-2/DVFM_EVS/Data/Cookies\
+DVFM_EVS_MAKE_DIRECTORY = 	$(DVFM_EVS_BINARIES_DIRECTORY) \
+							~/private/EEL270/2019-2/DVFM_EVS/Data/Cookies \
 							$(DVFM_EVS_CGIS_DIRECTORY)
 
 # shortcut
@@ -153,22 +124,20 @@ DVFM_EVS_SECUNDARYFUNCTIONS = dvfmEvsUmlGetLanguageIndex\
 							  dvfmEvsUmlCheckPassword\
 							  dvfmEvsUmlGetConfigurationOptionsValues
 
-#===> error message functions
-DVFM_EVS_ERRORSFUNCTIONS = dvfmEvsUmlGetCliErrorMessage\
+#===> primary functions
+DVFM_EVS_PRIMARYFUNCTIONS = dvfmEvsUmlGetCliErrorMessage\
 							dvfmEvsUmlGetNcursesErrorMessage\
-							dvfmEvsUmlGetWebErrorMessage
-
-#===> interface message functions
-DVFM_EVS_INTERFACEFUNCTIONS = dvfmEvsUmlGetCliUserInterfaceMessage\
+							dvfmEvsUmlGetWebErrorMessage\
+							dvfmEvsUmlGetCliUserInterfaceMessage\
 							dvfmEvsUmlGetNcursesUserInterfaceMessage\
 							dvfmEvsUmlGetWebUserInterfaceMessage
 
 #===> CGIs
-DVFM_EVS_CGIS = dvfmEvsUmlMain.cgi\
-				dvfmEvsUmlShowRequestRegistrationForm.cgi\
-				dvfmEvsUmlShowRequestPasswordResetForm.cgi\
-				dvfmEvsUmlShowWebHelp.cgi\
-				dvfmEvsUmlShowLicense.cgi\
+DVFM_EVS_CGIS = dvfmEvsUmlMain.cgi \
+				dvfmEvsUmlShowRequestRegistrationForm.cgi \
+				dvfmEvsUmlShowRequestPasswordResetForm.cgi \
+				dvfmEvsUmlShowWebHelp.cgi \
+				dvfmEvsUmlShowLicense.cgi \
 				dvfmEvsUmlShowAddUserForm.cgi
 
 #===> primary files
@@ -183,15 +152,14 @@ DVFM_EVS_INDEXHTM = indexHtml
 #===> Install
 DVFM_EVS_CLEAN_ALL = clean-all
 
-DVFM_EVS_INSTALL =  $(DVFM_EVS_CGIS)\
-					$(DVFM_EVS_NCURSES)\
-					$(DVFM_EVS_PRIMARYFILES)\
+DVFM_EVS_INSTALL =  $(DVFM_EVS_CGIS) \
+					$(DVFM_EVS_NCURSES) \
+					$(DVFM_EVS_PRIMARYFILES) \
 					$(DVFM_EVS_INDEXHTM)
 
 #===> All
 DVFM_EVS_ALL = $(DVFM_EVS_SECUNDARYFUNCTIONS)\
-			   $(DVFM_EVS_ERRORSFUNCTIONS)\
-			   $(DVFM_EVS_INTERFACEFUNCTIONS)\
+			   $(DVFM_EVS_PRIMARYFUNCTIONS)\
 			   $(DVFM_EVS_CGIS)\
 			   $(DVFM_EVS_PRIMARYFILES)\
 			   $(DVFM_EVS_NCURSES)\
@@ -206,11 +174,7 @@ all: $(DVFM_EVS_ALL)
 
 secundaryFunctions: $(DVFM_EVS_SECUNDARYFUNCTIONS)
 
-errorsFunctions: $(DVFM_EVS_ERRORSFUNCTIONS)
-
-interfaceFunctions: $(DVFM_EVS_INTERFACEFUNCTIONS)
-
-interfaceFunctions: $(DVFM_EVS_CGIS)
+primaryFunctions: $(DVFM_EVS_PRIMARYFUNCTIONS)
 
 #===> secundary functions
 dvfmEvsUmlGetLanguageIndex: $(DVFM_EVS_GETLANGUAGEINDEXOBJS)
@@ -316,12 +280,12 @@ dvfmEvsUmlShowAddUserForm.cgi: $(DVFM_EVS_CGISHOWADDUSERFORMOBJS)
 #===> primary files
 
 dvfmEvsUml: $(DVFM_EVS_DVFMEVSUMLOBJS)
-	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_DVFMEVSUMLOBJS) $(LCRYPT) $(MATH)
+	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_DVFMEVSUMLOBJS) $(LCRYPT)
 	cp $@ $@-$(OS)-$(CC)
 	cp $@ $(DVFM_EVS_BINARIES_DIRECTORY)
 
 
-#===> Ncurses (Remover depois)
+#===> Ncurses
 
 dvfmEvsUmlRunNcursesInterface: $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS)
 	$(LD) $(LFLAGS) -o $@ $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS) $(LNCURSES)  $(LCRYPT)
@@ -330,14 +294,14 @@ dvfmEvsUmlRunNcursesInterface: $(DVFM_EVS_UML_RUNNCURSESINTERFACEOBJS)
 
 #===> Install
 
+indexHtml: $(DVFM_EVS_INDEXHTMLFILE)
+	cd ../HTML && cp index_*.html $(DVFM_EVS_DVFM_EVS_DIRECTORY)
+	cd $(DVFM_EVS_DVFM_EVS_DIRECTORY) && ln -s index-en.html index.html
+
 install: $(DVFM_EVS_INSTALLOBJS)
 	mkdir -p $(DVFM_EVS_MAKE_DIRECTORY)
 	make $(DVFM_EVS_CLEAN_ALL)
 	make $(DVFM_EVS_INSTALL)
-
-indexHtml: $(DVFM_EVS_INDEXHTMLFILE)
-	cd ../HTML && cp index_*.html $(DVFM_EVS_DVFM_EVS_DIRECTORY)
-	cd $(DVFM_EVS_DVFM_EVS_DIRECTORY) && ln -s index-en.html index.html
 
 clean:
 	rm -f *.o $(DVFM_EVS_ALL)
