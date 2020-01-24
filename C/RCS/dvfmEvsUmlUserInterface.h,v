@@ -1,0 +1,224 @@
+head	1.4;
+access;
+symbols;
+locks
+	ewerton.silles:1.4; strict;
+comment	@ * @;
+
+
+1.4
+date	2020.01.24.05.37.49;	author ewerton.silles;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2019.12.24.13.52.26;	author ewerton.silles;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2019.11.16.03.48.22;	author ewerton.silles;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2019.11.15.01.42.45;	author ewerton.silles;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@/*
+ * Universidade Federal do Rio de Janeiro
+ * Escola Politecnica
+ * Departamento de Eletronica e de Computacao
+ * Prof. Marcelo Luiz Drumond Lanza
+ * EEL 270 - Computacao II - Turma 2019/2
+ 
+ * $Author: ewerton.silles $
+ * $Date: 2019/12/24 13:52:26 $
+ * $Log: dvfmEvsUmlUserInterface.h,v $
+ * Revision 1.3  2019/12/24 13:52:26  ewerton.silles
+ * *** empty log message ***
+ *
+ * Revision 1.2  2019/11/16 03:48:22  ewerton.silles
+ * *** empty log message ***
+ *
+ * Revision 1.1  2019/11/15 01:42:45  ewerton.silles
+ * Initial revision
+ * 
+*/
+
+#ifndef DVFM_EVS_UML_USER_INTERFACE_H
+#define DVFM_EVS_UML_USER_INTERFACE_H "@@(#)dvfmEvsUmlUserInterface.h $Revision: 1.3 $"
+
+/* ===== beginning of file code ===== */
+
+#include			"dvfmEvsUmlTypes.h"
+
+typedef enum 
+{
+    dvfmEvsUmlSystemName,
+    dvfmEvsUmlAuthors,
+    dvfmEvsUmlLogin,
+    dvfmEvsUmlPassword,
+    dvfmEvsUmlConfirm,
+    dvfmEvsUmlLanguageOption,
+    dvfmEvsUmlLanguageVariable,
+    dvfmEvsUmlRegister,
+    dvfmEvsUmlResetPassword,
+    dvfmEvsUmlHelp,
+    dvfmEvsUmlUseLicense,
+    dvfmEvsUmlEmailRequest,
+    dvfmEvsUmlFullName,
+    dvfmEvsUmlConfirmationFullName,
+    dvfmEvsUmlEmail,
+    dvfmEvsUmlConfirmationEmail,
+    dvfmEvsUmlHomePage,
+    dvfmEvsUmlHelpText,
+    dvfmEvsUmlUseLicenseText,
+    dvfmEvsUmlAddPermanentUser,
+    dvfmEvsUmlConfirmationPassword,
+    dvfmEvsUmlAdd,
+    dvfmEvsUmlAddTemporaryUser,
+    dvfmEvsUmlExit,
+    dvfmEvsUmlBack,
+    dvfmEvsUmlIncorrectPassword,
+    dvfmEvsUmlExiting,
+    dvfmEvsUmlSizeUserInterfaceMessageNumberType
+} dvfmEvsUmlUserInterfaceMessageNumberType;
+
+/*
+ * char *
+ * DvfmEvsUmlGetCliUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType, dvfmEvsUmlLanguageType);
+ *
+ * Arguments:
+ * char * - user interface message string (O)
+ * dvfmEvsUmlUserInterfaceMessageNumberType - user interface message number code Type enum (I)
+ * dvfmEvsUmlLanguageType - language code Type enum (I)
+ *
+ * Returned code:
+ * char *
+ *
+ * Description:
+ * This function converts the user interface message number code into an user interface message for interface CLI.
+ */
+
+char *
+DvfmEvsUmlGetCliUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType,
+                                      dvfmEvsUmlLanguageType);
+
+/*
+ * char *
+ * dvfmEvsUmlGetCliNcursesInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType, dvfmEvsUmlLanguageType);
+ *
+ * Arguments:
+ * char * - user interface message string (O)
+ * dvfmEvsUmlUserInterfaceMessageNumberType - user interface message number code Type enum (I)
+ * dvfmEvsUmlLanguageType - language code Type enum (I)
+ *
+ * Returned code:
+ * char *
+ *
+ * Description:
+ * This function converts the user interface message number code into an user interface message for interface Ncurses.
+ */
+
+char *
+DvfmEvsUmlGetNcursesUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType,
+                                          dvfmEvsUmlLanguageType);
+
+/*
+ * char *
+ * dvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType, dvfmEvsUmlLanguageType);
+ *
+ * Arguments:
+ * char * - user interface message string (O)
+ * dvfmEvsUmlUserInterfaceMessageNumberType - user interface message number code Type enum (I)
+ * dvfmEvsUmlLanguageType - language code Type enum (I)
+ *
+ * Returned code:
+ * char *
+ *
+ * Description:
+ * This function converts the user interface message number code into an user interface message for interface Web.
+ */
+
+char *
+DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType,
+                                      dvfmEvsUmlLanguageType);
+
+/* ===== end of file code ====== */
+
+#endif
+/* $RCSfile: dvfmEvsUmlUserInterface.h,v $ */
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d9 1
+a9 1
+ * $Date: 2019/11/16 03:48:22 $
+d11 3
+d23 1
+a23 1
+#define DVFM_EVS_UML_USER_INTERFACE_H "@@(#)dvfmEvsUmlUserInterface.h $Revision: 1.2 $"
+d78 2
+a79 1
+DvfmEvsUmlGetCliUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType, dvfmEvsUmlLanguageType);
+d98 2
+a99 1
+DvfmEvsUmlGetNcursesUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType, dvfmEvsUmlLanguageType);
+d118 2
+a119 1
+DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType, dvfmEvsUmlLanguageType);
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d9 1
+a9 1
+ * $Date: 2019/11/15 01:42:45 $
+d11 3
+d20 1
+a20 1
+#define DVFM_EVS_UML_USER_INTERFACE_H "@@(#)dvfmEvsUmlUserInterface.h $Revision: 1.1 $"
+d26 29
+a54 1
+typedef enum {
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 6
+a13 3
+ * $Author$
+ * $Date$
+ * $Log$ 
+d17 1
+a17 1
+#define DVFM_EVS_UML_USER_INTERFACE_H "@@(#)dvfmEvsUmlUserInterface.h $Revision$"
+d87 1
+a87 1
+/* $RCSfile$ */
+@

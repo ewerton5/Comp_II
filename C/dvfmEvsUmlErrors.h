@@ -6,8 +6,11 @@
  * EEL 270 - Computacao II - Turma 2019/2
  
  * $Author: ewerton.silles $
- * $Date: 2019/12/24 13:52:26 $
+ * $Date: 2020/01/24 05:37:49 $
  * $Log: dvfmEvsUmlErrors.h,v $
+ * Revision 1.5  2020/01/24 05:37:49  ewerton.silles
+ * *** empty log message ***
+ *
  * Revision 1.4  2019/12/24 13:52:26  ewerton.silles
  * *** empty log message ***
  *
@@ -23,7 +26,7 @@
 */
 
 #ifndef DVFM_EVS_UML_ERRORS_H
-#define DVFM_EVS_UML_ERRORS_H "@(#)dvfmEvsUmlErrors.h $Revision: 1.4 $"
+#define DVFM_EVS_UML_ERRORS_H "@(#)dvfmEvsUmlErrors.h $Revision: 1.5 $"
 
 /* ===== beginning of file code ===== */
 

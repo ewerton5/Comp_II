@@ -1,0 +1,420 @@
+head	1.4;
+access;
+symbols;
+locks
+	ewerton.silles:1.4; strict;
+comment	@ * @;
+
+
+1.4
+date	2020.01.24.05.37.49;	author ewerton.silles;	state Exp;
+branches;
+next	1.3;
+
+1.3
+date	2019.12.24.13.52.26;	author ewerton.silles;	state Exp;
+branches;
+next	1.2;
+
+1.2
+date	2019.11.16.03.48.22;	author ewerton.silles;	state Exp;
+branches;
+next	1.1;
+
+1.1
+date	2019.11.15.01.42.45;	author ewerton.silles;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.4
+log
+@*** empty log message ***
+@
+text
+@/*
+Universidade Federal do Rio de Janeiro
+Escola Politecnica
+Departamento de Eletronica e de Computacao
+Prof. Marcelo Luiz Drumond Lanza
+EEL 270 - Computacao II - Turma 2019/2
+ 
+$Author: ewerton.silles $
+$Date: 2019/12/24 13:52:26 $
+$Log: dvfmEvsUmlUserInterface.c,v $
+Revision 1.3  2019/12/24 13:52:26  ewerton.silles
+*** empty log message ***
+
+Revision 1.2  2019/11/16 03:48:22  ewerton.silles
+*** empty log message ***
+
+Revision 1.1  2019/11/15 01:42:45  ewerton.silles
+Initial revision
+ 
+*/
+
+#include			"dvfmEvsUmlTypes.h"
+#include			"dvfmEvsUmlUserInterface.h"
+
+					/*VARIAVEIS GLOBAIS*/
+
+char *dvfmEvsUmlCliUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeUserInterfaceMessageNumberType]=
+{
+	{
+		"Account Management System",
+		"Authors",
+		"Login",
+		"Password",
+		"Confirm",
+		"Portuguese",
+		"dvfmEvsUmlPortuguese",
+		"Register",
+		"Reset password",
+		"Help",
+		"Use license",
+		"Electronic mail for request",
+		"Full name",
+		"Confirmation Full Name",
+		"Email",
+		"Confirm Email",
+		"Home page",
+		"Help text",
+		"Use license text",
+		"Add permanent user",
+		"Confirm password",
+		"Add",
+		"Add temporary user",
+		"Exit",
+		"Back",
+		"Incorrect nickname or password",
+		"You are leaving"
+	},
+
+	{
+		"Sistema de Gerenciamento de Contas",
+		"Autores",
+		"Login",
+		"Senha",
+		"Confirmar",
+		"Ingles",
+		"dvfmEvsUmlEnglish",
+		"Cadastro",
+		"Alterar senha",
+		"Ajuda",
+		"Licenca de uso",
+		"Correio eletronico para solicitacao",
+		"Nome completo",
+		"Confirmar nome completo",
+		"Correio eletronico",
+		"Confirmar correio eletronico",
+		"Pagina inicial",
+		"texto de ajuda",
+		"texto de licenca de uso",
+		"Adicionar usuario permanente",
+		"Confirmar senha",
+		"Adicionar",
+		"Adicionar usuario temporario",
+		"Sair",
+		"Voltar",
+		"Apelido ou senha incorretos",
+		"Voce esta saindo"
+	}
+};
+
+char *dvfmEvsUmlNcursesUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeUserInterfaceMessageNumberType]=
+{
+	{
+		"Account Management System",
+		"Authors",
+		"Login",
+		"Password",
+		"Confirm",
+		"Portuguese",
+		"dvfmEvsUmlPortuguese",
+		"Register",
+		"Reset password",
+		"Help",
+		"Use license",
+		"Electronic mail for request",
+		"Full name",
+		"Confirmation Full Name",
+		"Email",
+		"Confirm Email",
+		"Home page",
+		"Use the directional arrows to move the cursor and press 'Enter' to select options",
+		"Use license text",
+		"Add permanent user",
+		"Confirm password",
+		"Add",
+		"Add temporary user",
+		"Exit",
+		"Back",
+		"Incorrect nickname or password",
+		"You are leaving the program, press any key to continue"
+	},
+
+	{
+		"Sistema de Gerenciamento de Contas",
+		"Autores",
+		"Login",
+		"Senha",
+		"Confirmar",
+		"Ingles",
+		"dvfmEvsUmlEnglish",
+		"Cadastro",
+		"Alterar senha",
+		"Ajuda",
+		"Licenca de uso",
+		"Correio eletronico para solicitacao",
+		"Nome completo",
+		"Confirmar nome completo",
+		"Correio eletronico",
+		"Confirmar correio eletronico",
+		"Pagina inicial",
+		"Utilize as setas direcionais para mover o cusor e aperte 'Enter' para selecionar as opcoes",
+		"texto de licenca de uso",
+		"Adicionar usuario permanente",
+		"Confirmar senha",
+		"Adicionar",
+		"Adicionar usuario temporario",
+		"Sair",
+		"Voltar",
+		"Apelido ou senha incorretos",
+		"Voce esta saindo do programa, precione qualquer tecla para continuar"
+	}
+};
+
+char *dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeUserInterfaceMessageNumberType]=
+{
+	{
+		"Account Management System",
+		"Authors",
+		"Login",
+		"Password",
+		"Confirm",
+		"Portuguese",
+		"dvfmEvsUmlPortuguese",
+		"Register",
+		"Reset password",
+		"Help",
+		"Use license",
+		"Electronic mail for request",
+		"Full name",
+		"Confirmation Full Name",
+		"Email",
+		"Confirm Email",
+		"Home page",
+		"Help text",
+		"Use license text",
+		"Add permanent user",
+		"Confirm password",
+		"Add",
+		"Add temporary user",
+		"Exit",
+		"Back",
+		"Incorrect nickname or password",
+		"You are leaving"
+	},
+
+ 	{
+		"Sistema de Gerenciamento de Contas",
+		"Autores",
+		"Login",
+		"Senha",
+		"Confirmar",
+		"Ingl&ecirc;s",
+		"dvfmEvsUmlEnglish",
+		"Cadastro",
+		"Alterar senha",
+		"Ajuda",
+		"Licen&ccedil;a de uso",
+		"Correio eletr&ocirc;nico para solicita&ccedil;&atilde;o",
+		"Nome completo",
+		"Confirmar nome completo",
+		"Correio eletr&ocirc;nico",
+		"Confirmar correio eletr&ocirc;nico",
+		"P&aacute;gina inicial",
+		"texto de ajuda",
+		"texto de licen&ccedil;a de uso",
+		"Adicionar usu&aacute;rio permanente",
+		"Confirmar senha",
+		"Adicionar",
+		"Adicionar usu&aacute;rio tempor&aacute;rio",
+		"Sair",
+		"Voltar",
+		"Apelido ou senha incorretos",
+		"Voc&ecirc; est&aacute; saindo"
+ 	}
+};
+
+/*
+ * char *
+ * DvfmEvsUmlGetCliUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType, dvfmEvsUmlLanguageType);
+ *
+ * Arguments:
+ * dvfmEvsUmlLanguageType - integer that corrects a language type enum (I)
+ * dvfmEvsUmlUserInterfaceMessageNumberType - integer that corrects a user interface message number type enum (I)
+ *
+ * Returned code:
+ * char * - User interface message
+ *
+ * Description:
+ * This function returns the appropriate user interface message to the user interface message code and language option in the interface CLI.
+ */
+
+char *
+DvfmEvsUmlGetCliUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType dvfmEvsUmlUserInterfaceMessageNumberCode,
+									  dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
+{
+	char *dvfmEvsUmlIndexUserInterfaceMessageNumber = "Out of range user interface message number message";
+
+	if(dvfmEvsUmlLanguageOption >= dvfmEvsUmlLanguagesAmount)
+		return dvfmEvsUmlIndexUserInterfaceMessageNumber;
+
+	if(dvfmEvsUmlUserInterfaceMessageNumberCode >= dvfmEvsUmlSizeUserInterfaceMessageNumberType)
+		return dvfmEvsUmlIndexUserInterfaceMessageNumber;
+
+	return dvfmEvsUmlCliUserInterfaceMessages [dvfmEvsUmlLanguageOption][dvfmEvsUmlUserInterfaceMessageNumberCode];
+}
+
+/*
+ * char *
+ * DvfmEvsUmlGetNcursesUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType, dvfmEvsUmlLanguageType);
+ *
+ * Arguments:
+ * dvfmEvsUmlLanguageType - integer that corrects a language type enum (I)
+ * dvfmEvsUmlUserInterfaceMessageNumberType - integer that corrects a user interface message number type enum (I)
+ *
+ * Returned code:
+ * char * - User interface message
+ *
+ * Description:
+ * This function returns the appropriate user interface message to the user interface message code and language option in the interface Ncurses.
+ */
+
+char *
+DvfmEvsUmlGetNcursesUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType dvfmEvsUmlUserInterfaceMessageNumberCode,
+										  dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
+{
+	char *dvfmEvsUmlIndexUserInterfaceMessageNumber = "Out of range user interface message number message";
+
+	if(dvfmEvsUmlLanguageOption >= dvfmEvsUmlLanguagesAmount)
+		return dvfmEvsUmlIndexUserInterfaceMessageNumber;
+
+	if(dvfmEvsUmlUserInterfaceMessageNumberCode >= dvfmEvsUmlSizeUserInterfaceMessageNumberType)
+		return dvfmEvsUmlIndexUserInterfaceMessageNumber;
+
+	return dvfmEvsUmlNcursesUserInterfaceMessages [dvfmEvsUmlLanguageOption][dvfmEvsUmlUserInterfaceMessageNumberCode];
+}
+
+/*
+ * char *
+ * DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType, dvfmEvsUmlLanguageType);
+ *
+ * Arguments:
+ * dvfmEvsUmlLanguageType - integer that corrects a language type enum (I)
+ * dvfmEvsUmlUserInterfaceMessageNumberType - integer that corrects a user interface message number type enum (I)
+ *
+ * Returned code:
+ * char * - User interface message
+ *
+ * Description:
+ * This function returns the appropriate user interface message to the user interface message code and language option in the interface Web.
+ */
+
+char *
+DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType dvfmEvsUmlUserInterfaceMessageNumberCode,
+									  dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
+{
+	char *dvfmEvsUmlIndexUserInterfaceMessageNumber = "Out of range user interface message number message";
+
+	if(dvfmEvsUmlLanguageOption >= dvfmEvsUmlLanguagesAmount)
+		return dvfmEvsUmlIndexUserInterfaceMessageNumber;
+
+	if(dvfmEvsUmlUserInterfaceMessageNumberCode >= dvfmEvsUmlSizeUserInterfaceMessageNumberType)
+		return dvfmEvsUmlIndexUserInterfaceMessageNumber;
+
+	return dvfmEvsUmlWebUserInterfaceMessages [dvfmEvsUmlLanguageOption][dvfmEvsUmlUserInterfaceMessageNumberCode];
+}
+/* $RCSfile: dvfmEvsUmlUserInterface.c,v $ */
+@
+
+
+1.3
+log
+@*** empty log message ***
+@
+text
+@d9 1
+a9 1
+$Date: 2019/11/16 03:48:22 $
+d11 3
+d232 2
+a233 1
+DvfmEvsUmlGetCliUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType dvfmEvsUmlUserInterfaceMessageNumberCode, dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
+d262 2
+a263 1
+DvfmEvsUmlGetNcursesUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType dvfmEvsUmlUserInterfaceMessageNumberCode, dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
+d292 2
+a293 1
+DvfmEvsUmlGetWebUserInterfaceMessage (dvfmEvsUmlUserInterfaceMessageNumberType dvfmEvsUmlUserInterfaceMessageNumberCode, dvfmEvsUmlLanguageType dvfmEvsUmlLanguageOption)
+@
+
+
+1.2
+log
+@*** empty log message ***
+@
+text
+@d9 1
+a9 1
+$Date: 2019/11/15 01:42:45 $
+d11 3
+d26 59
+a84 7
+ {
+
+ },
+
+ {
+
+ }
+d89 59
+a147 7
+ {
+
+ },
+
+ {
+
+ }
+d152 59
+a210 7
+ {
+
+ },
+
+ {
+
+ }
+@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@d8 6
+a13 3
+$Author$
+$Date$
+$Log$ 
+d140 1
+a140 1
+/* $RCSfile$ */
+@

@@ -1,0 +1,70 @@
+head	1.1;
+access;
+symbols;
+locks
+	ewerton.silles:1.1; strict;
+comment	@ * @;
+
+
+1.1
+date	2019.11.30.04.31.06;	author ewerton.silles;	state Exp;
+branches;
+next	;
+
+
+desc
+@@
+
+
+1.1
+log
+@Initial revision
+@
+text
+@/*
+Universidade Federal do Rio de Janeiro
+Escola Politecnica
+Departamento de Eletronica e de Computacao
+Prof. Marcelo Luiz Drumond Lanza
+EEL 270 - Computacao II - Turma 2019/2
+ 
+$Author$
+$Date$
+$Log$
+*/
+
+#include					<stdio.h>
+#include					<stdlib.h>
+#include					"dvfmEvsUmlFunctions.h"
+#include					"dvfmEvsUmlConst.h"
+
+#define DVFM_EVS_NUMBER_ARGUMENTS			    		2
+
+#define DVFM_EVS_OK								    	0
+#define DVFM_EVS_NUMBER_ARGUMENTS_INVALID		        1
+
+#define DVFM_EVS_EOS									'\0'
+
+int
+main(int argc,char *argv[ ]) 
+{
+    dvfmEvsUmlErrorType dvfmEvsUmlErrorCode;
+    dvfmEvsUmlCryptAlgorithms dvfmEvsUmlAlgorithm;
+	if (argc != DVFM_EVS_NUMBER_ARGUMENTS) 
+	{
+		printf("use: %s <encrypted_password>\n", argv[0]);
+		exit(DVFM_EVS_NUMBER_ARGUMENTS_INVALID);
+	}
+
+    dvfmEvsUmlErrorCode = DvfmEvsUmlGetCryptAlgorithm(argv[1], &dvfmEvsUmlAlgorithm);
+	if (dvfmEvsUmlErrorCode)
+    {
+        printf("%s\n", DvfmEvsUmlGetCliErrorMessage(dvfmEvsUmlErrorCode, dvfmEvsUmlEnglish));
+        exit(DVFM_EVS_OK);
+    }
+    printf("Algorithm number: %d.\n", dvfmEvsUmlAlgorithm);
+    
+	return DVFM_EVS_OK;
+}
+/* $RCSfile$ */
+@
