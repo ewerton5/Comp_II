@@ -5,14 +5,18 @@
  * Prof. Marcelo Luiz Drumond Lanza
  * EEL 270 - Computacao II - Turma 2019/2
  
- * $Author$
- * $Date$
- * $Log$
+ * $Author: ewerton.silles $
+ * $Date: 2008/02/01 10:19:06 $
+ * $Log: dvfmEvsUmlChangeUserName.c,v $
+ * Revision 1.1  2008/02/01 10:19:06  ewerton.silles
+ * Initial revision
+ *
 */
 
 #include    <stdio.h>
 #include    <string.h>
 #include	"dvfmEvsUmlChangeUserName.h"
+#include	"dvfmEvsUmlGetUsers.h"
 #include	"dvfmEvsUmlFunctions.h"
 
 /*
@@ -174,19 +178,9 @@ DvfmEvsUmlChangeUserName (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings
             }
             
             strcpy(dvfmEvsUmlAuxiliaryBuffer, strstr(dvfmEvsUmlBuffer, ":"));
-            dvfmEvsUmlBuffer [dvfmEvsUmlIndex1] = ':';
             dvfmEvsUmlBuffer [dvfmEvsUmlIndex1 + 1] = '\0';
             strcat(dvfmEvsUmlBuffer, dvfmEvsUmlFirstNickname);
             strcat(dvfmEvsUmlBuffer, dvfmEvsUmlAuxiliaryBuffer);
-
-            dvfmEvsUmlBuffer [dvfmEvsUmlIndex1] = ';';
-
-            if (!strstr(dvfmEvsUmlBuffer, ":"))
-            {
-                fclose(dvfmEvsUmlRead);
-                fclose(dvfmEvsUmlWrite);
-                return dvfmEvsUmlReadError;
-            }
 
             dvfmEvsUmlBuffer [strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"))] = ';';
 
@@ -243,4 +237,4 @@ DvfmEvsUmlChangeUserName (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings
     return dvfmEvsUmlOk;
 }
 
-/* $RCSfile$ */
+/* $RCSfile: dvfmEvsUmlChangeUserName.c,v $ */

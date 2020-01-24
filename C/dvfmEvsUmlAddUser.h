@@ -5,16 +5,19 @@
   Prof. Marcelo Luiz Drumond Lanza
   EEL 270 - Computacao II - Turma 2019/2
  
-  $Author$
-  $Date$
-  $Log$ 
+  $Author: ewerton.silles $
+  $Date: 2008/02/01 10:19:06 $
+  $Log: dvfmEvsUmlAddUser.h,v $
+  Revision 1.1  2008/02/01 10:19:06  ewerton.silles
+  Initial revision
+ 
 */
 
 #include	"dvfmEvsUmlTypes.h"
 #include	"dvfmEvsUmlErrors.h"
 
 #ifndef DVFM_EVS_UML_ADD_USER
-#define DVFM_EVS_UML_ADD_USER "@(#)dvfmEvsUmlAddUser.h $Revision$"
+#define DVFM_EVS_UML_ADD_USER "@(#)dvfmEvsUmlAddUser.h $Revision: 1.1 $"
 
 /* ===== beginning of file code ===== */
 
@@ -42,4 +45,4 @@ DvfmEvsUmlAddUser (dvfmEvsUmlConfigurationOptionsType *,
 /* ===== end of file code ====== */
 
 #endif
-/* $RCSfile$ */
+/* $RCSfile: dvfmEvsUmlAddUser.h,v $ */

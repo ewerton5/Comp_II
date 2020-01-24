@@ -5,15 +5,19 @@
  * Prof. Marcelo Luiz Drumond Lanza
  * EEL 270 - Computacao II - Turma 2019/2
  
- * $Author$
- * $Date$
- * $Log$
+ * $Author: ewerton.silles $
+ * $Date: 2008/02/01 10:19:06 $
+ * $Log: dvfmEvsUmlRequestRegistration.c,v $
+ * Revision 1.1  2008/02/01 10:19:06  ewerton.silles
+ * Initial revision
+ *
 */
 
 #include	<stdio.h>
 #include	<string.h>
 #include	<math.h>
 #include	"dvfmEvsUmlRequestRegistration.h"
+#include	"dvfmEvsUmlGetUsers.h"
 #include	"dvfmEvsUmlFunctions.h"
 
 /*
@@ -176,4 +180,4 @@ DvfmEvsUmlRequestRegistration (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSet
     return dvfmEvsUmlOk;
 }
 
-/* $RCSfile$ */
+/* $RCSfile: dvfmEvsUmlRequestRegistration.c,v $ */

@@ -5,13 +5,16 @@
  * Prof. Marcelo Luiz Drumond Lanza
  * EEL 270 - Computacao II - Turma 2019/2
  
- * $Author$
- * $Date$
- * $Log$
+ * $Author: ewerton.silles $
+ * $Date: 2008/02/01 10:19:06 $
+ * $Log: dvfmEvsUmlUnlockUserAccount.h,v $
+ * Revision 1.1  2008/02/01 10:19:06  ewerton.silles
+ * Initial revision
+ *
 */
 
 #ifndef DVFM_EVS_UML_UNLOCK_USER_ACCOUNT_H
-#define DVFM_EVS_UML_UNLOCK_USER_ACCOUNT_H "@(#)dvfmEvsUmlUnlockUserAccount.h $Revision$"
+#define DVFM_EVS_UML_UNLOCK_USER_ACCOUNT_H "@(#)dvfmEvsUmlUnlockUserAccount.h $Revision: 1.1 $"
 
 /* ===== beginning of file code ===== */
 
@@ -45,4 +48,4 @@ DvfmEvsUmlUnlockUserAccount (dvfmEvsUmlConfigurationOptionsType *,
 /* ===== end of file code ====== */
 
 #endif
-/* $RCSfile$ */
+/* $RCSfile: dvfmEvsUmlUnlockUserAccount.h,v $ */
