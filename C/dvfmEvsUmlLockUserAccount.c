@@ -14,6 +14,7 @@
 #include    <string.h>
 #include	<math.h>
 #include	"dvfmEvsUmlLockUserAccount.h"
+#include	"dvfmEvsUmlGetUsers.h"
 
 /*
  * dvfmEvsUmlErrorType

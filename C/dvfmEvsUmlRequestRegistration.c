@@ -14,6 +14,7 @@
 #include	<string.h>
 #include	<math.h>
 #include	"dvfmEvsUmlRequestRegistration.h"
+#include	"dvfmEvsUmlGetUsers.h"
 #include	"dvfmEvsUmlFunctions.h"
 
 /*

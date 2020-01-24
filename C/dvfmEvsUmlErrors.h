@@ -95,6 +95,7 @@ typedef enum
 	dvfmEvsUmlUserIsNotAdministrator,
 	dvfmEvsUmlIncorrectData,
 	dvfmEvsUmlIncompatibleValidationKey,
+	dvfmEvsUmlPrimaryAdministrator,
 	dvfmEvsUmlSizeErrorType
 } dvfmEvsUmlErrorType;
 

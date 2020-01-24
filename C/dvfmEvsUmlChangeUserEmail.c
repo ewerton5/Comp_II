@@ -13,6 +13,7 @@
 #include    <stdio.h>
 #include    <string.h>
 #include	"dvfmEvsUmlChangeUserEmail.h"
+#include	"dvfmEvsUmlGetUsers.h"
 #include	"dvfmEvsUmlFunctions.h"
 
 /*

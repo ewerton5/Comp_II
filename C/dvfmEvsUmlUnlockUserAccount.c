@@ -13,6 +13,7 @@
 #include    <stdio.h>
 #include    <string.h>
 #include	"dvfmEvsUmlUnlockUserAccount.h"
+#include	"dvfmEvsUmlGetUsers.h"
 
 /*
  * dvfmEvsUmlErrorType

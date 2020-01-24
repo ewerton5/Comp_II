@@ -93,7 +93,8 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"User is not responsible",
 		"User is not administrator",
 		"Incorrect datas",
-		"Incompatible validation key"
+		"Incompatible validation key",
+		"The primary administrator cannot have his profile changed"
 	},
 
 	{
@@ -160,7 +161,8 @@ char *dvfmEvsUmlCliErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"O usuario nao e o responsavel",
 		"O usuario nao e administrador",
 		"Dados incorretos",
-		"Chave de validacao incompativel"
+		"Chave de validacao incompativel",
+		"O administrador principal nao pode ter o seu perfil alterado"
 	}
 };
 
@@ -230,7 +232,8 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"User is not responsible",
 		"User is not administrator",
 		"Incorrect datas",
-		"Incompatible validation key"
+		"Incompatible validation key",
+		"The primary administrator cannot have his profile changed"
 	},
 
 	{
@@ -297,7 +300,8 @@ char *dvfmEvsUmlNcursesErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeE
 		"O usuario nao e o responsavel",
 		"O usuario nao e administrador",
 		"Dados incorretos",
-		"Chave de validacao incompativel"
+		"Chave de validacao incompativel",
+		"O administrador principal nao pode ter o seu perfil alterado"
 	}
 };
 
@@ -367,7 +371,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"User is not responsible",
 		"User is not administrator",
 		"Incorrect datas",
-		"Incompatible validation key"
+		"Incompatible validation key",
+		"The primary administrator cannot have his profile changed"
 	},
 
 	{
@@ -434,7 +439,8 @@ char *dvfmEvsUmlWebErrorMessages [dvfmEvsUmlLanguagesAmount][dvfmEvsUmlSizeError
 		"O usu&aacute;rio n&atilde;o &eacute; o respons&aacute;vel",
 		"O usu&aacute;rio n&atilde;o &eacute; administrador",
 		"Dados incorretos",
-		"Chave de valida&ccidil;&atilde;o incompat&iacute;vel"
+		"Chave de valida&ccidil;&atilde;o incompat&iacute;vel",
+		"O administrador principal n&atilde;o pode ter o seu perfil alterado"
 	}
 };
 

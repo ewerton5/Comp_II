@@ -13,6 +13,7 @@
 #include    <stdio.h>
 #include    <string.h>
 #include	"dvfmEvsUmlChangeUserName.h"
+#include	"dvfmEvsUmlGetUsers.h"
 #include	"dvfmEvsUmlFunctions.h"
 
 /*
@@ -174,19 +175,9 @@ DvfmEvsUmlChangeUserName (dvfmEvsUmlConfigurationOptionsType *dvfmEvsUmlSettings
             }
             
             strcpy(dvfmEvsUmlAuxiliaryBuffer, strstr(dvfmEvsUmlBuffer, ":"));
-            dvfmEvsUmlBuffer [dvfmEvsUmlIndex1] = ':';
             dvfmEvsUmlBuffer [dvfmEvsUmlIndex1 + 1] = '\0';
             strcat(dvfmEvsUmlBuffer, dvfmEvsUmlFirstNickname);
             strcat(dvfmEvsUmlBuffer, dvfmEvsUmlAuxiliaryBuffer);
-
-            dvfmEvsUmlBuffer [dvfmEvsUmlIndex1] = ';';
-
-            if (!strstr(dvfmEvsUmlBuffer, ":"))
-            {
-                fclose(dvfmEvsUmlRead);
-                fclose(dvfmEvsUmlWrite);
-                return dvfmEvsUmlReadError;
-            }
 
             dvfmEvsUmlBuffer [strlen(dvfmEvsUmlBuffer) - strlen(strstr(dvfmEvsUmlBuffer, ":"))] = ';';
 
